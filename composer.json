@@ -1,0 +1,11 @@
+{
+    "name": "drupal/hdbt_admin",
+    "type": "drupal-custom-theme",
+    "description": "Helsinki Drupal Base admin theme",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+      "drupal/gin": "^3.0"
+    }
+}

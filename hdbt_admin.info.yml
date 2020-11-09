@@ -1,0 +1,6 @@
+name: HDBT Admin - Helsinki Drupal Base admin theme
+description: Base theme for Helsinki Drupal instances.
+type: theme
+base theme: gin
+tags: sub-theme
+core_version_requirement: ^8 || ^9

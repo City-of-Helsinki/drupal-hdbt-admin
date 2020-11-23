@@ -5,8 +5,8 @@ features:
   favicon: 1
 favicon:
   use_default: 1
-enable_darkmode: 1
-preset_accent_color: orange
+enable_darkmode: 0
+preset_accent_color: light_blue
 accent_color: ''
 preset_focus_color: gin
 focus_color: ''
@@ -14,3 +14,4 @@ high_contrast_mode: 0
 classic_toolbar: horizontal
 icon_default: 1
 icon_upload: ''
+

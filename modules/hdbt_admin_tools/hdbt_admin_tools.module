@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Custom admin tools.
+ */
+
+/**
+ * Implements hook_toolbar_alter()
+ */
+function hdbt_admin_tools_toolbar_alter(&$items) {
+  foreach ($items as $key => $value) {
+    if (isset($items[$key]['#attached']) && is_array($items[$key]['#attached']['library'])) {
+      $items[$key]['#attached']['library'][] = 'hdbt_admin_tools/hdbt_admin_tools';
+    }
+  }
+}

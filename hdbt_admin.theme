@@ -1,0 +1,43 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+* Implements hook_form_BASE_FORM_ID_alter().
+*
+* {@inheritdoc}
+*/
+function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (
+    $form_id == 'node_article_edit_form' ||
+    $form_id == 'node_article_form'
+  ) {
+    $form['field_hero']['#states'] = [
+      'visible' => [
+        ':input[name="field_has_hero[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_preprocess_input().
+ */
+function hdbt_admin_preprocess_input(&$variables) {
+  if ($variables["element"]["#type"] !== 'submit') {
+    return;
+  }
+
+  if (strpos($variables['element']['#name'], 'field_hero') !== FALSE) {
+    if ($variables["element"]["#paragraphs_mode"]) {
+      $variables['#attached']['library'][] = 'hdbt_admin/hero-toggle';
+      $variables["hdbt_selector"] = 'field-hero-action--' . $variables["element"]["#paragraphs_mode"];
+    }
+    elseif ($variables["element"]["#name"] === 'field_hero_hero_add_more') {
+      $variables['#attached']['library'][] = 'hdbt_admin/hero-toggle';
+      $variables["hdbt_selector"] = 'field-hero-action--add';
+    }
+  }
+}

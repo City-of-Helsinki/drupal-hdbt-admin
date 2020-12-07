@@ -4,3 +4,8 @@ type: theme
 base theme: gin
 tags: sub-theme
 core_version_requirement: ^8 || ^9
+
+# Define Libraries
+libraries:
+  - hdbt_admin/global-styling
+  - hdbt_admin/global-scripting

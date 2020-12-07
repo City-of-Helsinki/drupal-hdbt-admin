@@ -1,0 +1,18 @@
+// Apply styles for the branding.
+.block-system-branding-block {
+  align-items: center;
+  display: flex;
+}
+
+.site-logo {
+  margin-right: 0.5rem;
+  width: 5rem;
+}
+
+.site-name {
+  padding: 0 0 0.5rem;
+
+  a {
+    --colorGinPrimary: #000000;
+  }
+}

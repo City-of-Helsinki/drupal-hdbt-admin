@@ -2,8 +2,10 @@
 
 /**
  * @file
- * Custom admin tools.
+ * Admin tools.
  */
+
+use Drupal\locale\SourceString;
 
 /**
  * Implements hook_toolbar_alter()
@@ -14,4 +16,35 @@ function hdbt_admin_tools_toolbar_alter(&$items) {
       $items[$key]['#attached']['library'][] = 'hdbt_admin_tools/hdbt_admin_tools';
     }
   }
+}
+
+/**
+ * Helper function to manually add a single translation string.
+ *
+ * @param string $source_string
+ *   Source string.
+ * @param string $lang_code
+ *   The language code.
+ * @param string $translated_string
+ *   Translated string.
+ *
+ * @throws \Drupal\locale\StringStorageException
+ */
+function hdbt_admin_tools_add_translation($source_string, $lang_code, $translated_string) {
+  // Find existing source string.
+  $storage = \Drupal::service('locale.storage');
+  $string = $storage->findString(['source' => $source_string]);
+  if (is_null($string)) {
+    $string = new SourceString();
+    $string->setString($source_string);
+    $string->setStorage($storage);
+    $string->save();
+  }
+  // Create translation. If one already exists, it will be replaced.
+  $translation = $storage->createTranslation([
+    'lid' => $string->lid,
+    'language' => $lang_code,
+    'translation' => $translated_string,
+  ]);
+  $translation->save();
 }

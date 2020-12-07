@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the HDBT admin tools module.
+ */
+
+/**
+ * Create translations for admin tools.
+ */
+function hdbt_admin_tools_update_8001() {
+  hdbt_admin_tools_add_translation('Site settings', 'fi', 'Sivuston asetukset');
+  hdbt_admin_tools_add_translation('Select wave motif', 'fi', 'Valitse koromuoto');
+  hdbt_admin_tools_add_translation('Wave', 'fi', 'Tyrsky');
+  hdbt_admin_tools_add_translation('Vibration', 'fi', 'Värinä');
+  hdbt_admin_tools_add_translation('Beat', 'fi', 'Syke');
+  hdbt_admin_tools_add_translation('Pulse', 'fi', 'Pulssi');
+  hdbt_admin_tools_add_translation('Basic motif', 'fi', 'Perusmuoto');
+  hdbt_admin_tools_add_translation('Calm', 'fi', 'Tyyni');
+  hdbt_admin_tools_add_translation('See wave motifs from <a href=":vig" target="_blank">Visual Identity Guidelines</a>.', 'fi', 'Voit tarkistaa koromuodot <a href=":vig" target="_blank">Visuaalisen ilmeen ohjeistosta</a>.');
+  hdbt_admin_tools_add_translation('Wave motif', 'fi', 'Koromuoto');
+  hdbt_admin_tools_add_translation('Select footer background color', 'fi', 'Valitse alatunnisteen taustaväri');
+  hdbt_admin_tools_add_translation('Footer top title', 'fi', 'Alatunnisteen otsikko');
+  hdbt_admin_tools_add_translation('Footer top content', 'fi', 'Alatunnisteen sisältö');
+}

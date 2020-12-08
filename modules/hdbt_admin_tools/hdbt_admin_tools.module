@@ -19,6 +19,19 @@ function hdbt_admin_tools_toolbar_alter(&$items) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter config translation edit form.
+ */
+function hdbt_admin_tools_form_config_translation_edit_form_alter(&$form, &$form_state, $form_id) {
+  $settings = &$form['config_names']['hdbt_admin_tools.site_settings'];
+
+  // Don't translate global fields.
+  $settings['footer_settings']['footer_top_content']['#open'] = TRUE;
+  $settings['footer_settings']['footer_color']['#disabled'] = TRUE;
+  $settings['koro_settings']['koro']['#disabled'] = TRUE;
+}
+/**
  * Helper function to manually add a single translation string.
  *
  * @param string $source_string

@@ -9,11 +9,17 @@ hdbt_admin_tools.site_settings_form:
   title: 'Site settings'
   parent: hdbt_admin_tools.overview
   route_name: hdbt_admin_tools.site_settings_form
-  weight: 1
+  weight: -8
+
+hdbt_admin_tools.menus:
+  title: 'Menus'
+  parent: hdbt_admin_tools.overview
+  route_name: entity.menu.collection
+  weight: 0
 
 hdbt_admin_tools.main_menu:
   title: 'Main menu'
-  parent: hdbt_admin_tools.overview
+  parent: hdbt_admin_tools.menus
   route_name: entity.menu.edit_form
   route_parameters: { menu: 'main' }
   weight: 0
@@ -26,14 +32,14 @@ hdbt_admin_tools.site_information:
 
 hdbt_admin_tools.footer_top_menu:
   title: 'Footer top navigation menu links'
-  parent: hdbt_admin_tools.site_settings_form
+  parent: hdbt_admin_tools.menus
   route_name: entity.menu.edit_form
   route_parameters: { menu: 'footer-top-navigation' }
   weight: 1
 
 hdbt_admin_tools.footer_bottom_menu:
   title: 'Footer bottom navigation menu links'
-  parent: hdbt_admin_tools.site_settings_form
+  parent: hdbt_admin_tools.menus
   route_name: entity.menu.edit_form
   route_parameters: { menu: 'footer-bottom-navigation' }
   weight: 2

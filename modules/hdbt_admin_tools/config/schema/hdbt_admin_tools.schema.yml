@@ -9,7 +9,6 @@ hdbt_admin_tools.site_settings:
         koro:
           label: 'Koro'
           type: label
-          translatable: false
     footer_settings:
       label: 'Footer settings'
       type: mapping
@@ -17,12 +16,9 @@ hdbt_admin_tools.site_settings:
         footer_color:
           label: 'Footer color'
           type: label
-          translatable: false
         footer_top_title:
           label: 'Footer top title'
           type: label
-          translatable: true
         footer_top_content:
           label: 'Footer top content'
           type: text_format
-          translatable: true

@@ -7,5 +7,5 @@ footer_settings:
   footer_color: dark
   footer_top_title: 'Contact information'
   footer_top_content:
-    format: html
+    format: full_html
     value: "<p><a href=\"#\">Search for contacts and phone numbers</a></p>\r\n\r\n<p><a href=\"#\" class=\"hds-button hds-button--secondary\"><span aria-hidden=\"true\" class=\"hds-icon hds-icon--phone\"></span><span class=\"hds-button__label\">Helsinki-info 09 310 1691</span></a>\r\n</p>"

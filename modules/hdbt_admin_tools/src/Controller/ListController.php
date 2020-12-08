@@ -114,24 +114,6 @@ class ListController {
       ];
     }
 
-//    if ($current_user->hasPermission('administer redirects')) {
-//      $faked_blocks['redirect_menu'] = [
-//        'title' => $this->t('URL Redirects'),
-//        'description' => '',
-//        'content' => [
-//          '#theme' => 'admin_block_content',
-//          '#content' => [
-//            'navigation' => [
-//              'url' => Url::fromUri('internal:/admin/config/search/redirect'),
-//              'title' => $this->t('Edit URL redirects'),
-//              'description' => '',
-//              'options' => '',
-//            ],
-//          ],
-//        ],
-//      ];
-//    }
-
     return [
       '#theme' => 'admin_page',
       '#blocks' => $faked_blocks,

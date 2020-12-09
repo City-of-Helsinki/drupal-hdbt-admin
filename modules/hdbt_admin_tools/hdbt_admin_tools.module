@@ -36,34 +36,3 @@ function hdbt_admin_tools_form_config_translation_form_alter(&$form, &$form_stat
     $settings['koro_settings']['koro']['#disabled'] = TRUE;
   }
 }
-
-/**
- * Helper function to manually add a single translation string.
- *
- * @param string $source_string
- *   Source string.
- * @param string $lang_code
- *   The language code.
- * @param string $translated_string
- *   Translated string.
- *
- * @throws \Drupal\locale\StringStorageException
- */
-function hdbt_admin_tools_add_translation($source_string, $lang_code, $translated_string) {
-  // Find existing source string.
-  $storage = \Drupal::service('locale.storage');
-  $string = $storage->findString(['source' => $source_string]);
-  if (is_null($string)) {
-    $string = new SourceString();
-    $string->setString($source_string);
-    $string->setStorage($storage);
-    $string->save();
-  }
-  // Create translation. If one already exists, it will be replaced.
-  $translation = $storage->createTranslation([
-    'lid' => $string->lid,
-    'language' => $lang_code,
-    'translation' => $translated_string,
-  ]);
-  $translation->save();
-}

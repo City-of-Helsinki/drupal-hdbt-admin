@@ -5,21 +5,138 @@
  * Install, update and uninstall functions for the HDBT admin tools module.
  */
 
+use Drupal\locale\SourceString;
+
+/**
+ * Helper function for adding translations.
+ *
+ * @param array $strings
+ *   The array with strings and translations.
+ */
+function _hdbt_admin_tools_add_translations(array $strings) {
+
+  // Get locale storage service.
+  $storage = \Drupal::service('locale.storage');
+
+  // Loop through the translations.
+  foreach ($strings as $translation) {
+
+    // Find the source string.
+    try {
+      $string = $storage->findString(['source' => $translation['label']]);
+
+      if (is_null($string)) {
+        $string = new SourceString();
+        $string->setString($translation['label']);
+        $string->setStorage($storage);
+        $string->save();
+      }
+
+      // Create translation. If one already exists, it will be replaced.
+      foreach ($translation['translations'] as $langcode => $string_translation) {
+        $storage->createTranslation([
+          'lid' => $string->lid,
+          'language' => $langcode,
+          'translation' => $string_translation,
+        ])->save();
+      }
+    }
+    catch (Exception $e) {
+      \Drupal::logger('hdbt_admin_tools')->warning('Error trying to find string @s: @e on line @l', [
+        '@s' => $translation['label'],
+        '@e' => $e->getMessage(),
+        '@l' => $e->getLine(),
+      ]);
+    }
+  }
+}
+
 /**
  * Create translations for admin tools.
  */
 function hdbt_admin_tools_update_8001() {
-  hdbt_admin_tools_add_translation('Site settings', 'fi', 'Sivuston asetukset');
-  hdbt_admin_tools_add_translation('Select wave motif', 'fi', 'Valitse koromuoto');
-  hdbt_admin_tools_add_translation('Wave', 'fi', 'Tyrsky');
-  hdbt_admin_tools_add_translation('Vibration', 'fi', 'Värinä');
-  hdbt_admin_tools_add_translation('Beat', 'fi', 'Syke');
-  hdbt_admin_tools_add_translation('Pulse', 'fi', 'Pulssi');
-  hdbt_admin_tools_add_translation('Basic motif', 'fi', 'Perusmuoto');
-  hdbt_admin_tools_add_translation('Calm', 'fi', 'Tyyni');
-  hdbt_admin_tools_add_translation('See wave motifs from <a href=":vig" target="_blank">Visual Identity Guidelines</a>.', 'fi', 'Voit tarkistaa koromuodot <a href=":vig" target="_blank">Visuaalisen ilmeen ohjeistosta</a>.');
-  hdbt_admin_tools_add_translation('Wave motif', 'fi', 'Koromuoto');
-  hdbt_admin_tools_add_translation('Select footer background color', 'fi', 'Valitse alatunnisteen taustaväri');
-  hdbt_admin_tools_add_translation('Footer top title', 'fi', 'Alatunnisteen otsikko');
-  hdbt_admin_tools_add_translation('Footer top content', 'fi', 'Alatunnisteen sisältö');
+
+  $translations = [
+    [
+      'label' => 'Site settings',
+      'translations' => [
+        'fi' => 'Sivuston asetukset',
+      ],
+    ],
+    [
+      'label' => 'Select wave motif',
+      'translations' => [
+        'fi' => 'Valitse koromuoto',
+      ],
+    ],
+    [
+      'label' => 'Wave',
+      'translations' => [
+        'fi' => 'Tyrsky',
+      ],
+    ],
+    [
+      'label' => 'Vibration',
+      'translations' => [
+        'fi' => 'Värinä',
+      ],
+    ],
+    [
+      'label' => 'Beat',
+      'translations' => [
+        'fi' => 'Syke',
+      ],
+    ],
+    [
+      'label' => 'Pulse',
+      'translations' => [
+        'fi' => 'Pulssi',
+      ],
+    ],
+    [
+      'label' => 'Basic motif',
+      'translations' => [
+        'fi' => 'Perusmuoto',
+      ],
+    ],
+    [
+      'label' => 'Calm',
+      'translations' => [
+        'fi' => 'Tyyni',
+      ],
+    ],
+    [
+      'label' => 'See wave motifs from <a href=":vig" target="_blank">Visual Identity Guidelines</a>.',
+      'translations' => [
+        'fi' => 'Voit tarkistaa koromuodot <a href=":vig" target="_blank">Visuaalisen ilmeen ohjeistosta</a>.',
+      ],
+    ],
+    [
+      'label' => 'Wave motif',
+      'translations' => [
+        'fi' => 'Koromuoto',
+      ],
+    ],
+    [
+      'label' => 'Select footer background color',
+      'translations' => [
+        'fi' => 'Valitse alatunnisteen taustaväri',
+      ],
+    ],
+    [
+      'label' => 'Footer top title',
+      'translations' => [
+        'fi' => 'Alatunnisteen otsikko',
+      ],
+    ],
+    [
+      'label' => 'Footer top content',
+      'translations' => [
+        'fi' => 'Alatunnisteen sisältö',
+      ],
+    ],
+  ];
+
+  // Add the translations.
+  _hdbt_admin_tools_add_translations($translations);
 }

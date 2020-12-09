@@ -1,0 +1,9 @@
+langcode: en
+koro_settings:
+  koro: basic
+footer_settings:
+  footer_color: dark
+  footer_top_content:
+    format: full_html
+    value: '<p><a href="#">Search for contacts and phone numbers</a></p><p><a href="#" class="hds-button hds-button--secondary"><span aria-hidden="true" class="hds-icon hds-icon--phone"></span><span class="hds-button__label">Helsinki-info 09 310 1691</span></a></p>'
+  footer_top_title: 'Contact information'

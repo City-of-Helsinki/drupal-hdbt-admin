@@ -1,0 +1,4 @@
+hdbt_admin_tools:
+  css:
+    theme:
+       assets/css/menu.css: {}

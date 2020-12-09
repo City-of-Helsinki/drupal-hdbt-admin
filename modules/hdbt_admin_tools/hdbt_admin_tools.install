@@ -54,7 +54,7 @@ function _hdbt_admin_tools_add_translations(array $strings) {
 /**
  * Create translations for admin tools.
  */
-function hdbt_admin_tools_update_8001() {
+function hdbt_admin_tools_update_8002() {
 
   $translations = [
     [
@@ -127,6 +127,12 @@ function hdbt_admin_tools_update_8001() {
       'label' => 'Footer top title',
       'translations' => [
         'fi' => 'Alatunnisteen otsikko',
+      ],
+    ],
+    [
+      'label' => 'Footer settings',
+      'translations' => [
+        'fi' => 'Alatunnisteen asetukset',
       ],
     ],
     [

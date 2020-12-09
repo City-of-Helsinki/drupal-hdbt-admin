@@ -6,16 +6,6 @@
  */
 
 /**
- * If configuration for site settings is already found, remove it
- * before installing the module.
- */
-function hdbt_admin_tools_install() {
-  if (\Drupal::config('hdbt_admin_tools.site_settings')) {
-    Drupal::configFactory()->getEditable('hdbt_admin_tools.site_settings')->delete();
-  }
-}
-
-/**
  * Create translations for admin tools.
  */
 function hdbt_admin_tools_update_8001() {

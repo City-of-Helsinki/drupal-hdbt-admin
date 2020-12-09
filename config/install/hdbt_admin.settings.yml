@@ -1,7 +1,3 @@
-dependencies:
-  enforced:
-    module:
-      - hdbt_admin_tools
 features:
   node_user_picture: false
   comment_user_picture: true

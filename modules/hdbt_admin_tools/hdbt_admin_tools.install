@@ -9,7 +9,7 @@
  * If configuration for site settings is already found, remove it
  * before installing the module.
  */
-function hdbt_admin_tools_update_8001() {
+function hdbt_admin_tools_install() {
   if (\Drupal::config('hdbt_admin_tools.site_settings')) {
     Drupal::configFactory()->getEditable('hdbt_admin_tools.site_settings')->delete();
   }
@@ -18,7 +18,7 @@ function hdbt_admin_tools_update_8001() {
 /**
  * Create translations for admin tools.
  */
-function hdbt_admin_tools_update_8002() {
+function hdbt_admin_tools_update_8001() {
   hdbt_admin_tools_add_translation('Site settings', 'fi', 'Sivuston asetukset');
   hdbt_admin_tools_add_translation('Select wave motif', 'fi', 'Valitse koromuoto');
   hdbt_admin_tools_add_translation('Wave', 'fi', 'Tyrsky');

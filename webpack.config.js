@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     styles: ["./src/scss/styles.scss"],
     bundle: ["./src/js/common.js"],
+    heroToggle: ["./src/js/heroToggle.js"],
   },
   output: {
     devtoolLineToLine: true,

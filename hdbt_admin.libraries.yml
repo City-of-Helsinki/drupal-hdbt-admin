@@ -10,3 +10,7 @@ global-scripting:
   version: 1.x
   dependencies:
     - core/drupal
+
+hero-toggle:
+  js:
+    dist/js/heroToggle.min.js: {}

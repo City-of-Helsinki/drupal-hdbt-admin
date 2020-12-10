@@ -7,7 +7,6 @@ namespace Drupal\hdbt_admin_tools\Form;
  * Contains Drupal\hdbt_admin_tools\Form\SiteHeaderSettings.
  */
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -135,10 +134,9 @@ class SiteSettings extends ConfigFormBase {
     $settings = $this->configFactory->getEditable('hdbt_admin_tools.site_settings');
     $settings->set('koro_settings', $form_state->getValue('koro_settings'))->save();
     $settings->set('footer_settings', $form_state->getValue('footer_settings'))->save();
-    Cache::invalidateTags([
-      'hdbt_settings_koro',
-      'hdbt_settings_footer_color',
-      'hdbt_footer_top'
+    \Drupal::cache()->invalidateMultiple([
+      'hdbt_settings:koro',
+      'hdbt_settings:footer_color',
     ]);
   }
 

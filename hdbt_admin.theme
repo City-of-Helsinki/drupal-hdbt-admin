@@ -3,26 +3,6 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
-* Implements hook_form_BASE_FORM_ID_alter().
-*
-* {@inheritdoc}
-*/
-function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (
-    $form_id == 'node_page_edit_form' ||
-    $form_id == 'node_page_form'
-  ) {
-    $form['field_hero']['#states'] = [
-      'visible' => [
-        ':input[name="field_has_hero[value]"]' => ['checked' => TRUE],
-      ],
-    ];
-  }
-
-  return $form;
-}
-
-/**
  * Implements hook_preprocess_input().
  */
 function hdbt_admin_preprocess_input(&$variables) {

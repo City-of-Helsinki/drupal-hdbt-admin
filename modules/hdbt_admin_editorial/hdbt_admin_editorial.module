@@ -1,0 +1,81 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (
+    $form_id == 'node_page_edit_form' ||
+    $form_id == 'node_page_form'
+  ) {
+    // Control Hero paragraph visibility via checkbox states.
+    $form['field_hero']['#states'] = [
+      'visible' => [
+        ':input[name="field_has_hero[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+
+  // Custom submit callback.
+  $form['actions']['submit']['#submit'][] = 'hdbt_admin_editorial_node_form_submit_callback';
+}
+
+/**
+ * Form submit callback for node forms.
+ *
+ * Redirect content editor to correct translation after saving the node.
+ */
+function hdbt_admin_editorial_node_form_submit_callback($form, FormStateInterface $form_state) {
+  if ($langcode = $form_state->get('langcode')) {
+    $language = [
+      'language' => \Drupal::languageManager()->getLanguage($langcode)
+    ];
+    if ($nid = $form_state->get('nid')) {
+      $node = [
+        'node' => $nid
+      ];
+      $form_state->setRedirect('entity.node.canonical', $node, $language);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ *
+ * Hero designs:
+ *   background-image     = "Background image"
+ *   diagonal             = "Diagonal"
+ *   with-image-bottom    = "Image on the bottom"
+ *   with-image-left      = "Image on the left"
+ *   with-image-right     = "Image on the right"
+ *   without-image-center = "Without image, align center"
+ *   without-image-left   = "Without image, align left"
+ */
+function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$form_state, $context) {
+
+  // Perform alterations to Hero paragraph.
+  if ($element['#paragraph_type'] == 'hero') {
+
+    // Hero designs & hero design selection.
+    $designs = $element["subform"]["field_hero_design"]["widget"]["#options"];
+    $design_select = 'select[name="field_hero[' . $element['#delta'] . '][subform][field_hero_design]"';
+
+    // Show image only if design needs it.
+    $element['subform']['field_hero_image']['#states'] = [
+      'invisible' => [
+        [$design_select => ['value' => 'without-image-center']],
+        'or',
+        [$design_select => ['value' => 'without-image-left']],
+      ],
+    ];
+
+    // Show text color only if the background color is not available.
+    $element['subform']['field_hero_text_color']['#states'] = [
+      'visible' => [
+        $design_select => ['value' => 'background-image'],
+      ],
+    ];
+  }
+}

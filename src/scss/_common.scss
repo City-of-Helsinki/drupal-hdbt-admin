@@ -7,6 +7,11 @@
 .site-logo {
   margin-right: 0.5rem;
   width: 5rem;
+
+  // Fix cut logo.
+  img {
+    padding-top: 1px;
+  }
 }
 
 .site-name {

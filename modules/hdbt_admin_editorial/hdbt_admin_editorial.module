@@ -59,7 +59,6 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
   if ($element['#paragraph_type'] == 'hero') {
 
     // Hero designs & hero design selection.
-    $designs = $element["subform"]["field_hero_design"]["widget"]["#options"];
     $design_select = 'select[name="field_hero[' . $element['#delta'] . '][subform][field_hero_design]"';
 
     // Show image only if design needs it.

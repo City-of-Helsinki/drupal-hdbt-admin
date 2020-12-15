@@ -61,6 +61,13 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     // Hero designs & hero design selection.
     $design_select = 'select[name="field_hero[' . $element['#delta'] . '][subform][field_hero_design]"';
 
+    // Show description only if design needs it.
+    $element['subform']['field_hero_desc']['#states'] = [
+      'invisible' => [
+        [$design_select => ['value' => 'background-image']],
+      ],
+    ];
+
     // Show image only if design needs it.
     $element['subform']['field_hero_image']['#states'] = [
       'invisible' => [

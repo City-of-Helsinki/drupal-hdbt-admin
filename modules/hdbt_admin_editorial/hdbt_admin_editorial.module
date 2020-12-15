@@ -1,6 +1,19 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function hdbt_admin_editorial_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() === 'paragraph' && $bundle == 'hero') {
+    // Add constraint to check if Hero image is mandatory.
+    if (key_exists('field_hero_image', $fields)) {
+      $fields['field_hero_image']->addConstraint('HeroImage', []);
+    }
+  }
+}
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -74,13 +87,6 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
         [$design_select => ['value' => 'without-image-center']],
         'or',
         [$design_select => ['value' => 'without-image-left']],
-      ],
-    ];
-
-    // Show text color only if the background color is not available.
-    $element['subform']['field_hero_text_color']['#states'] = [
-      'visible' => [
-        $design_select => ['value' => 'background-image'],
       ],
     ];
   }

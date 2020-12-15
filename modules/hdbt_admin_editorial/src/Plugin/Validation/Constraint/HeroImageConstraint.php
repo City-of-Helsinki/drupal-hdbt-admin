@@ -19,7 +19,7 @@ class HeroImageConstraint extends Constraint {
    *
    * @var string
    */
-  public $heroImageRequired = 'Image is mandatory when the design needs it.';
+  public $heroImageRequired = 'Image is mandatory with the selected Hero design.';
 
   /**
    * Designs which need an image.
@@ -31,4 +31,5 @@ class HeroImageConstraint extends Constraint {
     'with-image-right',
     'diagonal'
   ];
+
 }

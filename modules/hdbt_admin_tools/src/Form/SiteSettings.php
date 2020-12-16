@@ -139,7 +139,7 @@ class SiteSettings extends ConfigFormBase {
       'hdbt_settings:koro',
       'hdbt_settings:footer_color',
     ]);
-    \Drupal\Core\Cache\Cache::invalidateTags([
+    Cache::invalidateTags([
       'config:block.block.footertopblock',
     ]);
   }

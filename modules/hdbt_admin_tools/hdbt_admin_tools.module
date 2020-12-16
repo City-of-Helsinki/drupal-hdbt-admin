@@ -5,8 +5,8 @@
  * Admin tools.
  */
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\locale\SourceString;
 
 /**
  * Implements hook_toolbar_alter()
@@ -42,7 +42,7 @@ function hdbt_admin_tools_form_config_translation_form_alter(&$form, &$form_stat
 }
 
 function _hdbt_admin_tools_config_translation_form_submit(array $form, FormStateInterface $form_state) {
-  \Drupal\Core\Cache\Cache::invalidateTags([
+  Cache::invalidateTags([
     'config:block.block.footertopblock',
   ]);
 }

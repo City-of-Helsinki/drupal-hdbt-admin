@@ -55,22 +55,16 @@ class ListController {
               'description' => '',
               'options' => '',
             ],
-            'navigation_footer' => [
-              'url' => Url::fromUri('internal:/admin/structure/menu/manage/footer'),
-              'title' => $this->t('Edit footer navigation links'),
-              'description' => $this->t('These links appear next to copyright message.'),
-              'options' => '',
-            ],
             'navigation_footer_top' => [
               'url' => Url::fromUri('internal:/admin/structure/menu/manage/footer-top-navigation'),
               'title' => $this->t('Edit footer top navigation links'),
-              'description' => '',
+              'description' => $this->t('These links appear on top part of the footer.'),
               'options' => '',
             ],
             'navigation_footer_bottom' => [
               'url' => Url::fromUri('internal:/admin/structure/menu/manage/footer-bottom-navigation'),
               'title' => $this->t('Edit footer bottom navigation links'),
-              'description' => '',
+              'description' => $this->t('These links appear next to footer logo.'),
               'options' => '',
             ],
           ],
@@ -106,6 +100,27 @@ class ListController {
             'navigation' => [
               'url' => Url::fromUri('internal:/admin/config/regional/translate'),
               'title' => $this->t('Edit user interface translations'),
+              'description' => '',
+              'options' => '',
+            ],
+          ],
+        ],
+      ];
+    }
+
+    if (
+      $current_user->hasPermission('access administration pages') &&
+      \Drupal::moduleHandler()->moduleExists('hdbt_component_library')
+    ) {
+      $faked_blocks['hdbt_component_library'] = [
+        'title' => $this->t('HDBT Component Library'),
+        'description' => '',
+        'content' => [
+          '#theme' => 'admin_block_content',
+          '#content' => [
+            'navigation' => [
+              'url' => Url::fromUri('internal:/admin/appearance/hdbt/component-library'),
+              'title' => $this->t('View HDBT Component Library'),
               'description' => '',
               'options' => '',
             ],

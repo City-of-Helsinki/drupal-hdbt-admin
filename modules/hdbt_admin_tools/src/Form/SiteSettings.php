@@ -135,13 +135,9 @@ class SiteSettings extends ConfigFormBase {
     $settings = $this->configFactory->getEditable('hdbt_admin_tools.site_settings');
     $settings->set('koro_settings', $form_state->getValue('koro_settings'))->save();
     $settings->set('footer_settings', $form_state->getValue('footer_settings'))->save();
-    \Drupal::cache()->invalidateMultiple([
-      'hdbt_settings:koro',
-      'hdbt_settings:footer_color',
-    ]);
-    Cache::invalidateTags([
-      'config:block.block.footertopblock',
-    ]);
+
+    // Flush all caches when settings have been saved.
+    drupal_flush_all_caches();
   }
 
 }

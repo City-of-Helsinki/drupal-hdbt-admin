@@ -24,7 +24,17 @@
 
 // Paragraphs edit from style adjustments
 .paragraphs-add-wrapper {
-  .dropbutton-wrapper.dropbutton-multiple {
-    margin-right: .75rem;
+  .dropbutton-wrapper.dropbutton-multiple .button {
+    min-height: 3rem;
   }
+}
+
+// Override margin nullification from the gin theme.
+.js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
+  margin-right: .75rem;
+}
+
+// Hide "Show row weights" option when editing paragraphs.
+.field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
+  display: none;
 }

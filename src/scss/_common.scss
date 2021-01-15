@@ -22,6 +22,14 @@
   }
 }
 
+// Remove obsolete padding around the node form on large desktop modes.
+.gin--edit-form .page-wrapper__node-edit-form .node-form {
+  @media (min-width: 1440px) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 // Paragraphs edit from style adjustments
 .paragraphs-add-wrapper {
   .dropbutton-wrapper.dropbutton-multiple .button {
@@ -29,12 +37,41 @@
   }
 }
 
-// Override margin nullification from the gin theme.
+// Override margin nullification from the admin theme.
 .js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
   margin-right: .75rem;
 }
 
+// remove white background and paddings from first level of paragraph elements.
+.paragraphs-tabs-wrapper > .form-item > .layer-wrapper {
+  padding: 0;
+  border: 0 none;
+  background-color: transparent;
+  box-shadow: 0 0 0 transparent;
+}
+
 // Hide "Show row weights" option when editing paragraphs.
 .field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+
+// Hide "About text formats" link from text-area fields on node form.
+.node-form .field--widget-text-textarea {
+  .form-type--textarea + .filter-wrapper {
+    display: none;
+  }
+}
+
+.paragraphs-tabs-wrapper .field-multiple-table .draggable {
+  background-color: #fff;
+
+  // Hide the paragraph bullet when you are not able to organize paragraphs.
+  td.paragraph-bullet::after {
+    display: none;
+  }
+}
+
+// Hero-block style overrides
+.node-form .field--name-field-hero thead .field-label {
   display: none;
 }

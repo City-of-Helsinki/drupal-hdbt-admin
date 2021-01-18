@@ -1,3 +1,9 @@
+// Font to Helsinki Grotesk
+body {
+  font-family: $base-font-family;
+  line-height: $lineheight-l;
+}
+
 // Apply styles for the branding.
 .block-system-branding-block {
   align-items: center;
@@ -5,8 +11,16 @@
 }
 
 .site-logo {
-  margin-right: 0.5rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
   width: 5rem;
+  line-height: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
   // Fix cut logo.
   img {
@@ -14,10 +28,182 @@
   }
 }
 
+.gin--edit-form {
+  .block-system-branding-block {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    .site-logo {
+      @media (min-width: 1024px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .region.region-sticky {
+    .region-sticky__items {
+      max-width: 1280px;
+      
+      @media (min-width: 1767px) {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
 .site-name {
-  padding: 0 0 0.5rem;
+  padding: 0;
+  margin-bottom: 1.2rem;
 
   a {
     --colorGinPrimary: #000000;
   }
+}
+
+// H1 wrapper line-height to 0.
+.block-page-title-block {
+  line-height: 0;
+}
+
+.region {
+  &.region-meta {
+    align-items: center;
+    padding: 0;
+
+    .toolbar-meta {
+      margin-top: 0;
+    }
+  }
+
+  &.region-sticky {
+    padding: 0;
+
+    .region-sticky__items {
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.layout-container {
+  &::after {
+    display: none;
+    content: none;
+  }
+}
+
+// Horizontal tab overrides.
+.is-horizontal .tabs--primary {
+  margin-bottom: -12px !important;
+
+  @media (min-width: $breakpoint-m) {
+    padding-left: calc(.5rem - 4px) !important;
+  }
+
+  .tabs__link {
+    border-radius: 0 !important;
+
+    @media (min-width: $breakpoint-m) {
+      padding: $spacing-quarter !important;
+    }
+  }
+
+  .tabs__tab {
+    @media (min-width: $breakpoint-m) {
+      margin-left: $spacing-double;
+    }
+
+    &:first-child {
+      @media (min-width: $breakpoint-m) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+// Fix title cutting when using italic.
+.page-title em {
+  padding-right: 5px;
+}
+
+// Remove obsolete padding around the node form on large desktop modes.
+.gin--edit-form .page-wrapper__node-edit-form .node-form {
+  @media (min-width: 1440px) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+// Paragraphs edit from style adjustments.
+.paragraphs-add-wrapper {
+  .dropbutton-wrapper.dropbutton-multiple .button {
+    min-height: 3rem;
+  }
+}
+
+.paragraphs-tabs-wrapper .paragraph-type-label {
+  font-size: 18px !important;
+}
+
+// Hide Paragraph badge.
+.paragraphs-badge {
+  display: none;
+}
+
+// Override margin nullification from the admin theme.
+.js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
+  margin-right: .75rem;
+}
+
+// remove white background and paddings from first level of paragraph elements.
+.paragraphs-tabs-wrapper > .form-item > .layer-wrapper {
+  padding: 0;
+  border: 0 none;
+  background-color: transparent;
+  box-shadow: 0 0 0 transparent;
+}
+
+.form-item__label {
+  font-size: 16px;
+}
+
+// Hide "Show row weights" option when editing paragraphs.
+.field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+
+// Hide "About text formats" link from text-area fields on node form.
+.node-form .field--widget-text-textarea {
+  .form-type--textarea + .filter-wrapper {
+    display: none;
+  }
+}
+
+.paragraphs-tabs-wrapper {
+  table.field-multiple-table {
+    thead {
+      box-shadow: 0 0 0 transparent;
+
+      th {
+        background: transparent;
+        padding-left: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    .draggable {
+      background-color: #fff;
+      margin-top: 0.5rem;
+
+      // Hide the paragraph bullet when you are not able to organize paragraphs.
+      td.paragraph-bullet::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// Hero-block style overrides
+.node-form .field--name-field-hero thead .field-label {
+  display: none;
 }

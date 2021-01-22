@@ -34,7 +34,8 @@ function hdbt_admin_tools_form_config_translation_form_alter(&$form, &$form_stat
     // Don't translate global fields.
     $settings['footer_settings']['footer_top_content']['#open'] = TRUE;
     $settings['footer_settings']['footer_color']['#disabled'] = TRUE;
-    $settings['koro_settings']['koro']['#disabled'] = TRUE;
+    $settings['site_settings']['koro']['#disabled'] = TRUE;
+    $settings['site_settings']['theme_color']['#disabled'] = TRUE;
 
     // Custom submit callback to invalidate caches.
     $form['#submit'][] = '_hdbt_admin_tools_config_translation_form_submit';

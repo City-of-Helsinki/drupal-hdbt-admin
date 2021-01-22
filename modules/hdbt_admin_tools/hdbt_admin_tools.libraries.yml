@@ -2,3 +2,5 @@ hdbt_admin_tools:
   css:
     theme:
        assets/css/menu.css: {}
+  js:
+    assets/js/select_options.js: {}

@@ -1,0 +1,100 @@
+:root {
+  --input-radio-theme-color: var(--color-black-70);
+}
+
+.hdbt-admin-tools-site-settings {
+  // Default text colors based on background colors.
+  .default-icon__text--coat-of-arms { color: $color-white}
+  .default-icon__text--gold { color: $color-black}
+  .default-icon__text--silver { color: $color-black}
+  .default-icon__text--brick { color: $color-white}
+  .default-icon__text--bus { color: $color-white}
+  .default-icon__text--copper { color: $color-black}
+  .default-icon__text--engel { color: $color-black}
+  .default-icon__text--fog { color: $color-black}
+  .default-icon__text--metro { color: $color-white}
+  .default-icon__text--summer { color: $color-black}
+  .default-icon__text--suomenlinna { color: $color-black}
+  .default-icon__text--tram { color: $color-white}
+
+  .form-radios {
+    &.form-boolean-group {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      margin: $spacing-half -#{$spacing-half};
+    }
+
+    .form-type--boolean {
+      align-items: center;
+      border: 2px solid var(--input-radio-theme-color);
+      border-radius: $spacing-quarter;
+      display: flex;
+      margin: $spacing-half;
+      min-width: 200px;
+      padding: 0 $spacing-half 0 0;
+
+      &.form-item--site-settings-koro {
+        width: calc(100% - #{$spacing-double} - 4px); // 4px: Border.
+      }
+
+      &.form-item--site-settings-koro,
+      &.form-item--site-settings-default-icon {
+        width: 100%;
+
+        @media only screen and (min-width: $breakpoint-l) {
+          width: 40%;
+        }
+      }
+
+      .form-boolean {
+        margin-left: $spacing-half;
+        margin-top: -#{$spacing-quarter / 2};
+      }
+
+      .form-item__label.option {
+        margin: $spacing-quarter / 2 $spacing-half 0 $spacing-half;
+        padding: 0;
+      }
+    }
+
+    .theme-color {
+      background-color: var(--input-radio-theme-color);
+      height: 40px;
+      width: 40px;
+    }
+
+    .koro {
+      align-items: flex-end;
+      color: var(--hdbtAdminDefaultColor);
+      display: flex;
+      height: 70px;
+      width: calc(100% - 150px); // Some spacing for the label.
+
+      .wave {
+        align-items: flex-start;
+      }
+
+      svg path {
+        fill: var(--hdbtAdminDefaultColor);
+      }
+    }
+
+    .default-icon {
+      align-items: center;
+      background-color: var(--hdbtAdminDefaultColor);
+      display: flex;
+      height: 100px;
+      justify-content: center;
+      width: 230px;
+
+      .icon {
+        height: 60%;
+      }
+    }
+  }
+}
+
+#edit-site-settings-koro {
+  flex-flow: column;
+}

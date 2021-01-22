@@ -1,6 +1,7 @@
 langcode: en
-koro_settings:
+site_settings:
   koro: basic
+  theme_color: engel
 footer_settings:
   footer_color: dark
   footer_top_content:

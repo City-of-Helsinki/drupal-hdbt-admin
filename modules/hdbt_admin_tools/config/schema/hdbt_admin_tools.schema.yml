@@ -2,7 +2,7 @@ hdbt_admin_tools.site_settings:
   type: config_object
   label: 'Site settings'
   mapping:
-    koro_settings:
+    site_settings:
       label: 'Koro settings'
       type: mapping
       mapping:

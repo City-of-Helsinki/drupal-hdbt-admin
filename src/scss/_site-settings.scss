@@ -40,9 +40,12 @@
 
       &.form-item--site-settings-koro {
         width: calc(100% - #{$spacing-double} - 4px); // 4px: Border.
+
+        @media only screen and (min-width: $breakpoint-l) {
+          width: 60%;
+        }
       }
 
-      &.form-item--site-settings-koro,
       &.form-item--site-settings-default-icon {
         width: 100%;
 

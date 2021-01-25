@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * hdbt_admin_editorial.module
+ */
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 
@@ -9,7 +14,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 function hdbt_admin_editorial_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
   if ($entity_type->id() === 'paragraph' && $bundle == 'hero') {
     // Add constraint to check if Hero image is mandatory.
-    if (key_exists('field_hero_image', $fields)) {
+    if (array_key_exists('field_hero_image', $fields)) {
       $fields['field_hero_image']->addConstraint('HeroImage', []);
     }
   }
@@ -43,11 +48,11 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
 function hdbt_admin_editorial_node_form_submit_callback($form, FormStateInterface $form_state) {
   if ($langcode = $form_state->get('langcode')) {
     $language = [
-      'language' => \Drupal::languageManager()->getLanguage($langcode)
+      'language' => \Drupal::languageManager()->getLanguage($langcode),
     ];
     if ($nid = $form_state->get('nid')) {
       $node = [
-        'node' => $nid
+        'node' => $nid,
       ];
       $form_state->setRedirect('entity.node.canonical', $node, $language);
     }

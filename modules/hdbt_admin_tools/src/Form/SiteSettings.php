@@ -7,13 +7,15 @@ namespace Drupal\hdbt_admin_tools\Form;
  * Contains Drupal\hdbt_admin_tools\Form\SiteHeaderSettings.
  */
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * SiteSettings.
+ */
 class SiteSettings extends ConfigFormBase {
 
   /**

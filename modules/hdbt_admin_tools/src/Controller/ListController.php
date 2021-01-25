@@ -11,6 +11,9 @@ use Drupal\user\Entity\User;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 
+/**
+ * ListController.
+ */
 class ListController {
   use StringTranslationTrait;
 

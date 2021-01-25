@@ -26,8 +26,8 @@ function setDefaultColor(newColor = defaultColor) {
   let styles = document.createElement('style');
   styles.setAttribute('id', 'hdbt-admin-default-color');
   styles.innerHTML = `:root {\n\
-      --hdbtAdminDefaultColor: var(--color-${newColor});\n\
-      --hdbtAdminDefaultTextColor: var(--default-icon__text--${newColor});\n\
+      --hdbt-admin-theme-color: var(--color-${newColor});\n\
+      --hdbt-admin-text-color: var(--hdbt-admin-text-color--${newColor});\n\
     }`;
   document.body.appendChild(styles);
 }

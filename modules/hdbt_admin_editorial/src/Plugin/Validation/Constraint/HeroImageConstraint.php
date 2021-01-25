@@ -23,13 +23,15 @@ class HeroImageConstraint extends Constraint {
 
   /**
    * Designs which need an image.
+   *
+   * @var array
    */
   public $heroImageMandatoryDesigns = [
     'background-image',
     'with-image-bottom',
     'with-image-left',
     'with-image-right',
-    'diagonal'
+    'diagonal',
   ];
 
 }

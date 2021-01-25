@@ -1,22 +1,22 @@
 :root {
   // Default color variables.
   --input-radio-theme-color: var(--color-black-70);
-  --hdbtAdminDefaultColor: var(--color-black);
-  --hdbtAdminDefaultTextColor: var(--color-white);
+  --hdbt-admin-theme-color: var(--color-black);
+  --hdbt-admin-text-color: var(--color-white);
 
   // Default text colors based on background colors.
-  --default-icon__text--coat-of-arms: var(--color-white);
-  --default-icon__text--brick: var(--color-white);
-  --default-icon__text--bus: var(--color-white);
-  --default-icon__text--metro: var(--color-white);
-  --default-icon__text--tram: var(--color-white);
-  --default-icon__text--gold: var(--color-black);
-  --default-icon__text--silver: var(--color-black);
-  --default-icon__text--copper: var(--color-black);
-  --default-icon__text--engel: var(--color-black);
-  --default-icon__text--fog: var(--color-black);
-  --default-icon__text--summer: var(--color-black);
-  --default-icon__text--suomenlinna: var(--color-black);
+  --hdbt-admin-text-color--coat-of-arms: var(--color-white);
+  --hdbt-admin-text-color--brick: var(--color-white);
+  --hdbt-admin-text-color--bus: var(--color-white);
+  --hdbt-admin-text-color--metro: var(--color-white);
+  --hdbt-admin-text-color--tram: var(--color-white);
+  --hdbt-admin-text-color--gold: var(--color-black);
+  --hdbt-admin-text-color--silver: var(--color-black);
+  --hdbt-admin-text-color--copper: var(--color-black);
+  --hdbt-admin-text-color--engel: var(--color-black);
+  --hdbt-admin-text-color--fog: var(--color-black);
+  --hdbt-admin-text-color--summer: var(--color-black);
+  --hdbt-admin-text-color--suomenlinna: var(--color-black);
 }
 
 .hdbt-admin-tools-site-settings {
@@ -64,14 +64,14 @@
 
     .theme-color {
       background-color: var(--input-radio-theme-color);
-      color: var(--hdbtAdminDefaultTextColor);
+      color: var(--hdbt-admin-text-color);
       height: 40px;
       width: 40px;
     }
 
     .koro {
       align-items: flex-end;
-      color: var(--hdbtAdminDefaultColor);
+      color: var(--hdbt-admin-theme-color);
       display: flex;
       height: 70px;
       width: calc(100% - 150px); // Some spacing for the label.
@@ -81,21 +81,22 @@
       }
 
       svg path {
-        fill: var(--hdbtAdminDefaultColor);
+        fill: var(--hdbt-admin-theme-color);
       }
     }
 
+    // Imitate 3:2 image style.
     .default-icon {
       align-items: center;
-      background-color: var(--hdbtAdminDefaultColor);
+      background-color: var(--hdbt-admin-theme-color);
       display: flex;
-      height: 100px;
+      height: 150px;
       justify-content: center;
-      width: 230px;
+      width: 225px;
 
       .icon {
-        color: var(--hdbtAdminDefaultTextColor);
-        height: 60%;
+        color: var(--hdbt-admin-text-color);
+        height: 50%;
       }
     }
   }

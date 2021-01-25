@@ -1,7 +1,8 @@
 langcode: en
 site_settings:
+  theme_color: coat-of-arms
+  default_icon: home-smoke
   koro: basic
-  theme_color: engel
 footer_settings:
   footer_color: dark
   footer_top_content:

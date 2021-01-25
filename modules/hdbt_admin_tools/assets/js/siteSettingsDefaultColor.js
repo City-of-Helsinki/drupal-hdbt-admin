@@ -15,11 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Act on click event.
 function setDefaultColor(newColor = defaultColor) {
   const style = document.getElementById('hdbt-admin-default-color');
-
-  // TODO: Text colors classes strpos ja color.
-
 
   if (style !== null) {
     style.remove();
@@ -29,6 +27,7 @@ function setDefaultColor(newColor = defaultColor) {
   styles.setAttribute('id', 'hdbt-admin-default-color');
   styles.innerHTML = `:root {\n\
       --hdbtAdminDefaultColor: var(--color-${newColor});\n\
+      --hdbtAdminDefaultTextColor: var(--default-icon__text--${newColor});\n\
     }`;
   document.body.appendChild(styles);
 }

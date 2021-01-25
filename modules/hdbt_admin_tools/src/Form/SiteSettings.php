@@ -166,6 +166,8 @@ class SiteSettings extends ConfigFormBase {
       '#default_value' => $settings->get('footer_settings')['footer_top_content']['value'],
     ];
 
+    $form['#attached']['library'][] = 'hdbt_admin_tools/site_settings';
+
     return $form;
   }
 

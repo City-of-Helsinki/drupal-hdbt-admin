@@ -1,21 +1,25 @@
 :root {
+  // Default color variables.
   --input-radio-theme-color: var(--color-black-70);
+  --hdbtAdminDefaultColor: var(--color-black);
+  --hdbtAdminDefaultTextColor: var(--color-white);
+
+  // Default text colors based on background colors.
+  --default-icon__text--coat-of-arms: var(--color-white);
+  --default-icon__text--brick: var(--color-white);
+  --default-icon__text--bus: var(--color-white);
+  --default-icon__text--metro: var(--color-white);
+  --default-icon__text--tram: var(--color-white);
+  --default-icon__text--gold: var(--color-black);
+  --default-icon__text--silver: var(--color-black);
+  --default-icon__text--copper: var(--color-black);
+  --default-icon__text--engel: var(--color-black);
+  --default-icon__text--fog: var(--color-black);
+  --default-icon__text--summer: var(--color-black);
+  --default-icon__text--suomenlinna: var(--color-black);
 }
 
 .hdbt-admin-tools-site-settings {
-  // Default text colors based on background colors.
-  .default-icon__text--coat-of-arms { color: $color-white}
-  .default-icon__text--gold { color: $color-black}
-  .default-icon__text--silver { color: $color-black}
-  .default-icon__text--brick { color: $color-white}
-  .default-icon__text--bus { color: $color-white}
-  .default-icon__text--copper { color: $color-black}
-  .default-icon__text--engel { color: $color-black}
-  .default-icon__text--fog { color: $color-black}
-  .default-icon__text--metro { color: $color-white}
-  .default-icon__text--summer { color: $color-black}
-  .default-icon__text--suomenlinna { color: $color-black}
-  .default-icon__text--tram { color: $color-white}
 
   .form-radios {
     &.form-boolean-group {
@@ -60,6 +64,7 @@
 
     .theme-color {
       background-color: var(--input-radio-theme-color);
+      color: var(--hdbtAdminDefaultTextColor);
       height: 40px;
       width: 40px;
     }
@@ -89,6 +94,7 @@
       width: 230px;
 
       .icon {
+        color: var(--hdbtAdminDefaultTextColor);
         height: 60%;
       }
     }

@@ -14,7 +14,7 @@ use Drupal\node\NodeStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * SiteSettings.
+ * Site settings.
  */
 class SiteSettings extends ConfigFormBase {
 

@@ -19,14 +19,14 @@ class HeroImageConstraint extends Constraint {
    *
    * @var string
    */
-  public $heroImageRequired = 'Image is mandatory with the selected Hero design.';
+  public string $heroImageRequired = 'Image is mandatory with the selected Hero design.';
 
   /**
    * Designs which need an image.
    *
    * @var array
    */
-  public $heroImageMandatoryDesigns = [
+  public array $heroImageMandatoryDesigns = [
     'background-image',
     'with-image-bottom',
     'with-image-left',

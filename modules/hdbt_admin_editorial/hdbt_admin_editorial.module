@@ -2,7 +2,7 @@
 
 /**
  * @file
- * hdbt_admin_editorial.module
+ * Contains editorial alterations.
  */
 
 use Drupal\Core\Form\FormStateInterface;

@@ -12,7 +12,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 
 /**
- * ListController.
+ * List controller.
  */
 class ListController {
   use StringTranslationTrait;

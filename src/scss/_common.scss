@@ -11,15 +11,15 @@ body {
 }
 
 .site-logo {
-  margin-top: 1rem;
-  margin-right: 1rem;
-  width: 5rem;
   line-height: 0;
   margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  width: 5rem;
 
   @media (min-width: 1024px) {
-    margin-top: 0;
     margin-bottom: 0;
+    margin-top: 0;
   }
 
   // Fix cut logo.
@@ -30,8 +30,8 @@ body {
 
 .gin--edit-form {
   .block-system-branding-block {
-    max-width: 1280px;
     margin: 0 auto;
+    max-width: 1280px;
 
     .site-logo {
       @media (min-width: 1024px) {
@@ -43,7 +43,7 @@ body {
   .region.region-sticky {
     .region-sticky__items {
       max-width: 1280px;
-      
+
       @media (min-width: 1767px) {
         margin: 0 auto;
       }
@@ -52,8 +52,8 @@ body {
 }
 
 .site-name {
-  padding: 0;
   margin-bottom: 1.2rem;
+  padding: 0;
 
   a {
     --colorGinPrimary: #000000;
@@ -87,8 +87,8 @@ body {
 
 .layout-container {
   &::after {
-    display: none;
     content: none;
+    display: none;
   }
 }
 
@@ -157,10 +157,10 @@ body {
 
 // remove white background and paddings from first level of paragraph elements.
 .paragraphs-tabs-wrapper > .form-item > .layer-wrapper {
-  padding: 0;
-  border: 0 none;
   background-color: transparent;
+  border: 0 none;
   box-shadow: 0 0 0 transparent;
+  padding: 0;
 }
 
 .form-item__label {
@@ -186,8 +186,8 @@ body {
 
       th {
         background: transparent;
-        padding-left: 0;
         padding-bottom: 0;
+        padding-left: 0;
       }
     }
 
@@ -206,4 +206,72 @@ body {
 // Hero-block style overrides
 .node-form .field--name-field-hero thead .field-label {
   display: none;
+}
+
+// Select2 to look and feel more Gin-like.
+.select2-container {
+  .select2-selection {
+    border: 1px solid var(--colorGinFormElementBorder);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    color: var(--colorGinText);
+
+    &:hover {
+      border-color: var(--colorGinText);
+      box-shadow: inset 0 0 0 1px var(--colorGinText);
+    }
+
+    .select2-selection__rendered {
+      align-items: center;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 0.25rem;
+    }
+
+    .select2-search__field {
+      @include font-size(16px, 24px);
+      color: var(--colorGinText);
+      margin: 0;
+      min-width: 100px;
+      padding: calc(0.75rem - 1px) calc(1rem - 1px);
+    }
+
+    // Like button--small.
+    .select2-selection__choice {
+      align-items: center;
+      background: var(--colorGinPrimary);
+      display: flex;
+      margin: .25rem;
+      padding: .5rem 1rem;
+
+      &:hover {
+        background-color: var(--colorGinPrimaryHover);
+      }
+
+      &:active, &:focus {
+        background-color: var(--colorGinPrimaryActive);
+      }
+
+      &, &:hover, &:active, &:focus {
+        color: var(--colorGinButtonText);
+      }
+    }
+
+    .select2-selection__choice__remove {
+      @include font-size(16px);
+      color: var(--colorGinButtonText);
+      margin-right: .5rem;
+      transition: color 200ms;
+
+      &:hover, &:active, &:focus {
+        color: var(--color-metro);
+      }
+    }
+  }
+
+  .select2-results__option {
+    @include font-size(16px, 24px);
+    color: var(--colorGinText);
+    padding: calc(0.75rem - 1px) calc(1rem - 1px);
+  }
 }

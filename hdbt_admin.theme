@@ -39,7 +39,10 @@ function hdbt_admin_preprocess_input(&$variables) {
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
-  if ($variables['theme_hook_original'] == 'form_element') {
+  if (
+    is_array($variables['element']['#parents']) &&
+    $variables['theme_hook_original'] == 'form_element'
+  ) {
     if (in_array('theme_color', $variables['element']['#parents'])) {
       $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
     }
@@ -56,7 +59,10 @@ function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, ar
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $variables) {
-  if ($variables['theme_hook_original'] == 'input__radio') {
+  if (
+    is_array($variables['element']['#parents']) &&
+    $variables['theme_hook_original'] == 'input__radio'
+  ) {
     if (in_array('theme_color', $variables['element']['#parents'])) {
       $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
     }

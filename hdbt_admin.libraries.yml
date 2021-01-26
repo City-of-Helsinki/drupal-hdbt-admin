@@ -5,10 +5,10 @@ select2.min:
     url: https://github.com/select2/select2/blob/master/LICENSE.md
     gpl-compatible: true
   js:
-    dist/js/select2.min.js: { minified: true }
+    dist/js/select2.min.js: { minified: true, preprocess: false }
   css:
     component:
-      dist/css/select2.min.css: {}
+      dist/css/select2.min.css: { preprocess: false }
   dependencies:
     - core/jquery.once
     - core/drupal
@@ -29,7 +29,3 @@ global-scripting:
   version: 1.x
   dependencies:
     - core/drupal
-
-# Override libraries.
-libraries-override:
-  select2/select2.min: hdbt_admin/select2.min

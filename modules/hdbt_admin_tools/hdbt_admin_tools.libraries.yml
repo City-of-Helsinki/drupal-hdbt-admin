@@ -1,4 +1,8 @@
-hdbt_admin_tools:
+menu_styles:
   css:
     theme:
        assets/css/menu.css: {}
+
+site_settings:
+  js:
+    assets/js/siteSettingsDefaultColor.js: {}

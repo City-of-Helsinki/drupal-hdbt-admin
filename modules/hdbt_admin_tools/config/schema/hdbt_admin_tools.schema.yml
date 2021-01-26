@@ -3,9 +3,15 @@ hdbt_admin_tools.site_settings:
   label: 'Site settings'
   mapping:
     site_settings:
-      label: 'Koro settings'
+      label: 'Site settings'
       type: mapping
       mapping:
+        default_icon:
+          label: 'Default icon'
+          type: label
+        theme_color:
+          label: 'Theme color'
+          type: label
         koro:
           label: 'Koro'
           type: label

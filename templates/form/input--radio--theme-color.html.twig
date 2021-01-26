@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ * @see claro_preprocess_input()
+ */
+#}
+{% apply spaceless %}
+  <div class="theme-color" style="--input-radio-theme-color: var(--color-{{ attributes.value }});"></div>
+  <input{{ attributes }}/>{{ children }}
+{% endapply %}

@@ -1,3 +1,22 @@
+select2.min:
+  remote: https://github.com/select2/select2
+  license:
+    name: MIT
+    url: https://github.com/select2/select2/blob/master/LICENSE.md
+    gpl-compatible: true
+  js:
+    dist/js/select2.min.js: { minified: true }
+  css:
+    component:
+      dist/css/select2.min.css: {}
+  dependencies:
+    - core/jquery.once
+    - core/drupal
+
+hero-toggle:
+  js:
+    dist/js/heroToggle.min.js: {}
+
 global-styling:
   version: 1.x
   css:
@@ -11,6 +30,6 @@ global-scripting:
   dependencies:
     - core/drupal
 
-hero-toggle:
-  js:
-    dist/js/heroToggle.min.js: {}
+# Override libraries.
+libraries-override:
+  select2/select2.min: hdbt_admin/select2.min

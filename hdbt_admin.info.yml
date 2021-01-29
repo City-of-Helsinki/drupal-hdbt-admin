@@ -10,3 +10,7 @@ libraries:
   - hdbt_admin/global-styling
   - hdbt_admin/global-scripting
   - hdbt_admin/list-of-links
+
+# Override libraries.
+libraries-override:
+  select2/select2.min: hdbt_admin/select2.min

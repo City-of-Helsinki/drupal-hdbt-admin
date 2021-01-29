@@ -2,6 +2,7 @@ const path = require("path");
 const isDev = (process.env.NODE_ENV !== "production");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const SVGSpritemapPlugin = require("svg-spritemap-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
@@ -157,6 +158,24 @@ module.exports = {
           view: "-view"
         }
       },
+    }),
+    new CopyPlugin({
+      "patterns": [
+        {
+          "context": "./",
+          "from": "node_modules/select2/dist/js/select2.min.js",
+          "to": path.resolve(__dirname, "dist") + "/js/",
+          "force": true,
+          "flatten": true
+        },
+        {
+          "context": "./",
+          "from": "node_modules/select2/dist/css/select2.min.css",
+          "to": path.resolve(__dirname, "dist") + "/css/",
+          "force": true,
+          "flatten": true
+        }
+      ]
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].min.css",

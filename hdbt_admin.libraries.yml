@@ -17,6 +17,14 @@ hero-toggle:
   js:
     dist/js/heroToggle.min.js: {}
 
+list-of-links:
+  js:
+    dist/js/listOfLinks.min.js: {}
+  version: 1.x
+  dependencies:
+    - core/drupal
+    - core/jquery
+
 global-styling:
   version: 1.x
   css:

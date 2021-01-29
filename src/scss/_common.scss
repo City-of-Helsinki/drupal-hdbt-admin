@@ -163,8 +163,26 @@ body {
   padding: 0;
 }
 
+// Paragraphs inside paragraph
+.paragraphs-tabs-wrapper .layer-wrapper .layer-wrapper {
+  background: none;
+  border: 0 none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+
+  table thead tr {
+    border-bottom: none;
+  }
+}
+
 .form-item__label {
   font-size: 16px;
+}
+
+.fieldset:not(.fieldgroup) {
+  background-color: $color-white;
+  box-shadow: 4px 4px 10px var(--colorGinLayer2Background);
 }
 
 // Hide "Show row weights" option when editing paragraphs.

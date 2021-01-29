@@ -14,6 +14,7 @@ module.exports = {
     styles: ["./src/scss/styles.scss"],
     bundle: ["./src/js/common.js"],
     heroToggle: ["./src/js/heroToggle.js"],
+    listOfLinks: ["./src/js/listOfLinks.js"],
   },
   output: {
     devtoolLineToLine: true,

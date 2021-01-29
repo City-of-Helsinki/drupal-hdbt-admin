@@ -9,6 +9,7 @@ core_version_requirement: ^8 || ^9
 libraries:
   - hdbt_admin/global-styling
   - hdbt_admin/global-scripting
+  - hdbt_admin/list-of-links
 
 # Override libraries.
 libraries-override:

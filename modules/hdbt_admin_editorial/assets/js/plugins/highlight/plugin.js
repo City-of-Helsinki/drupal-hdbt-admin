@@ -8,6 +8,7 @@
   CKEDITOR.plugins.add('highlight', {
     lang: ['fi','en'],
     icons: 'highlight',
+    hidpi: true,
 
     init: function (editor) {
       let addButtonCommand = function (buttonName, buttonLabel, commandName, styleDefiniton) {

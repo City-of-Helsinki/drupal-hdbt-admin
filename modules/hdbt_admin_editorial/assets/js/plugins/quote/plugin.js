@@ -7,6 +7,7 @@
   CKEDITOR.plugins.add('quote', {
     lang: ['fi','en'],
     icons: 'quote',
+    hidpi: true,
 
     init: function (editor) {
       editor.addCommand('handleQuote', new CKEDITOR.dialogCommand('quoteDialog'));

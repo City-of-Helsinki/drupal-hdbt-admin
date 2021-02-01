@@ -6,11 +6,9 @@
  * http://docs.ckeditor.com/#!/guide/plugin_sdk_sample_1
  */
 
-// Our dialog definition.
+// Quote dialog definition.
 CKEDITOR.dialog.add('quoteDialog', function (editor) {
   return {
-
-    // Basic properties of the dialog window: title, minimum size.
     title: editor.lang.quote.dialogTitle,
     minWidth: 400,
     minHeight: 200,
@@ -18,7 +16,6 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
     // Dialog window contents definition.
     contents: [
       {
-        // Definition of the Basic Settings dialog tab (page).
         id: 'tab-basic',
         label: 'Basic Settings',
 
@@ -33,6 +30,15 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
+
+              // Get the div.quoted element.
+              if (element) {
+                let parent = element.getAscendant('div');
+                if (parent && parent.hasClass('quoted')) {
+                  element = parent;
+                }
+              }
+
               let paragraphs = element.find('p.quoted__text');
               if (paragraphs.count() > 0) {
                 let quote = paragraphs.getItem(0).getText();
@@ -42,7 +48,6 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
                 this.setValue(quote);
               }
               else {
-                // It is a common blockquote without <p>.
                 this.setValue(element.getText());
               }
             },
@@ -70,6 +75,14 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
+              // Get the div.quoted element.
+              if (element) {
+                let parent = element.getAscendant('div');
+                if (parent && parent.hasClass('quoted')) {
+                  element = parent;
+                }
+              }
+
               let authorElem = element.findOne('footer.quoted__author');
               if (authorElem !== null) {
                 this.setValue(authorElem.getText());

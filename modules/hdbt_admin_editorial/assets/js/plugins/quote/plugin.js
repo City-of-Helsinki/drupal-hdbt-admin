@@ -29,7 +29,7 @@
 
         editor.contextMenu.addListener(function (element) {
           let parent = element.getAscendant('div');
-          if (parent && parent.hasClass('quoted')) {
+          if (parent && parent.hasClass('quote')) {
             return { quoteItem: CKEDITOR.TRISTATE_OFF };
           }
         });

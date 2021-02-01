@@ -31,15 +31,15 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
 
-              // Get the div.quoted element.
+              // Get the div.quote element.
               if (element) {
                 let parent = element.getAscendant('div');
-                if (parent && parent.hasClass('quoted')) {
+                if (parent && parent.hasClass('quote')) {
                   element = parent;
                 }
               }
 
-              let paragraphs = element.find('p.quoted__text');
+              let paragraphs = element.find('p.quote__text');
               if (paragraphs.count() > 0) {
                 let quote = paragraphs.getItem(0).getText();
                 for (let i = 1; i < paragraphs.count(); i++) {
@@ -62,7 +62,7 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
               for (let i = 0; i < lines.length; i++) {
                 let p = editor.document.createElement('p');
                 p.setText(lines[i]);
-                p.setAttribute('class', 'quoted__text');
+                p.setAttribute('class', 'quote__text');
                 element.append(p);
               }
             }
@@ -75,15 +75,15 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
-              // Get the div.quoted element.
+              // Get the div.quote element.
               if (element) {
                 let parent = element.getAscendant('div');
-                if (parent && parent.hasClass('quoted')) {
+                if (parent && parent.hasClass('quote')) {
                   element = parent;
                 }
               }
 
-              let authorElem = element.findOne('footer.quoted__author');
+              let authorElem = element.findOne('footer.quote__author');
               if (authorElem !== null) {
                 this.setValue(authorElem.getText());
               }
@@ -91,18 +91,18 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
             // Called by the main commitContent call on dialog confirmation.
             commit: function (element) {
-              let authorElem = element.findOne('footer.quoted__author');
+              let authorElem = element.findOne('footer.quote__author');
               if (authorElem === null) {
                 if (this.getValue() !== '') {
                   authorElem = editor.document.createElement('footer');
                   element.append(authorElem);
-                  authorElem.setAttribute('class', 'quoted__author');
+                  authorElem.setAttribute('class', 'quote__author');
                   authorElem.setText(this.getValue());
                 }
               }
               else {
                 if (this.getValue() !== '') {
-                  authorElem.setAttribute('class', 'quoted__author');
+                  authorElem.setAttribute('class', 'quote__author');
                   authorElem.setText(this.getValue());
                 }
                 else {
@@ -127,15 +127,15 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
       // Get the authorElem element closest to the selection, if any.
       if (element) {
         let parent = element.getAscendant('div');
-        if (parent && parent.hasClass('quoted')) {
+        if (parent && parent.hasClass('quote')) {
           element = parent;
         }
       }
 
       // Create a new <authorElem> element if it does not exist.
-      if (!element || !element.hasClass('quoted')) {
+      if (!element || !element.hasClass('quote')) {
         element = editor.document.createElement('div');
-        element.addClass('quoted');
+        element.addClass('quote');
         // Flag the insertion mode for later use.
         this.insertMode = true;
       }

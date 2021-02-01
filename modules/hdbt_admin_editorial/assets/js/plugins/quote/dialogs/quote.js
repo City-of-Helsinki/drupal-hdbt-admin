@@ -113,7 +113,10 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
       // Get the authorElem element closest to the selection, if any.
       if (element) {
-        element = element.getAscendant('.quoted', true);
+        let parent = element.getAscendant('div');
+        if (parent && parent.hasClass('quoted')) {
+          element = parent;
+        }
       }
 
       // Create a new <authorElem> element if it does not exist.

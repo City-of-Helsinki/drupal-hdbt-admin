@@ -58,13 +58,12 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
               element.setHtml('');
 
               // Set a <p> for each line.
-              let lines = this.getValue().split(/\r\n|\r|\n/g);
-              for (let i = 0; i < lines.length; i++) {
-                let p = editor.document.createElement('p');
-                p.setText(lines[i]);
-                p.setAttribute('class', 'quote__text');
-                element.append(p);
-              }
+              let lines = this.getValue()
+              let value = lines.replace(/(?:\r\n|\r|\n)/g, '<br>');
+              let p = editor.document.createElement('p');
+              p.setAttribute('class', 'quote__text');
+              p.setHtml(value);
+              element.append(p);
             }
           },
           {

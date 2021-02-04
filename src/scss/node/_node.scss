@@ -1,0 +1,43 @@
+//
+// @file
+// Styles for nodes and node forms.
+//
+
+// Node edit form.
+.gin--edit-form {
+  .block-system-branding-block {
+    margin: 0 auto;
+    max-width: 1280px;
+
+    .site-logo {
+      @media (min-width: 1024px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .region.region-sticky {
+    .region-sticky__items {
+      max-width: 1280px;
+
+      @media (min-width: 1767px) {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Remove obsolete padding around the node form on large desktop modes.
+  .page-wrapper__node-edit-form .node-form {
+    @media (min-width: 1440px) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+
+// Hide "About text formats" link from text-area fields on node form.
+.node-form .field--widget-text-textarea {
+  .form-type--textarea + .filter-wrapper {
+    display: none;
+  }
+}

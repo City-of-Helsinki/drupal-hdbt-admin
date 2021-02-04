@@ -1,0 +1,72 @@
+//
+// @file
+// Styles for Select2.
+//
+
+// Select2 to look and feel more Gin-like.
+.select2-container {
+  .select2-selection {
+    border: 1px solid var(--colorGinFormElementBorder);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba($hdbt-color-black, .25);
+    color: var(--colorGinText);
+
+    &:hover {
+      border-color: var(--colorGinText);
+      box-shadow: inset 0 0 0 1px var(--colorGinText);
+    }
+
+    .select2-selection__rendered {
+      align-items: center;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 0.25rem;
+    }
+
+    .select2-search__field {
+      @include font-size(16px, 24px);
+      color: var(--colorGinText);
+      margin: 0;
+      min-width: 100px;
+      padding: calc(0.75rem - 1px) calc(1rem - 1px);
+    }
+
+    // Like button--small.
+    .select2-selection__choice {
+      align-items: center;
+      background: var(--colorGinPrimary);
+      display: flex;
+      margin: .25rem;
+      padding: .5rem 1rem;
+
+      &:hover {
+        background-color: var(--colorGinPrimaryHover);
+      }
+
+      &:active, &:focus {
+        background-color: var(--colorGinPrimaryActive);
+      }
+
+      &, &:hover, &:active, &:focus {
+        color: var(--colorGinButtonText);
+      }
+    }
+
+    .select2-selection__choice__remove {
+      @include font-size(16px);
+      color: var(--colorGinButtonText);
+      margin-right: .5rem;
+      transition: color 200ms;
+
+      &:hover, &:active, &:focus {
+        color: var(--color-metro);
+      }
+    }
+  }
+
+  .select2-results__option {
+    @include font-size(16px, 24px);
+    color: var(--colorGinText);
+    padding: calc(0.75rem - 1px) calc(1rem - 1px);
+  }
+}

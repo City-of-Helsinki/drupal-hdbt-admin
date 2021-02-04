@@ -6,5 +6,10 @@
 @import "library/variables/*.*";
 @import "library/mixins/*.*";
 @import "library/fonts/*.*";
-@import "_common";
 @import "_site-settings";
+@import "_common";
+
+@import "menu/**/*.*";
+@import "node/**/*.*";
+@import "taxonomy/**/*.*";
+@import "paragraphs/**/*.*";

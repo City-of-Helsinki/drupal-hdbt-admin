@@ -17,6 +17,13 @@ hero-toggle:
   js:
     dist/js/heroToggle.min.js: {}
 
+columns-toggle:
+  js:
+    dist/js/columnsToggle.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
 list-of-links:
   js:
     dist/js/listOfLinks.min.js: {}

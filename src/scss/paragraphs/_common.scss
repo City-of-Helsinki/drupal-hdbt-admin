@@ -55,4 +55,8 @@
 // Override margin nullification from the admin theme.
 .js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
   margin-right: .75rem;
+
+  &.dropbutton-wrapper {
+    padding: 0;
+  }
 }

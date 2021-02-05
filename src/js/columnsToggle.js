@@ -47,12 +47,16 @@
       // Find the column paragraphs and add columns_size element if necessary.
       if (leftColumn.find('.columns_size').length === 0) {
         leftColumn
-          .find('thead .form-item__label')
+          .find(
+            'table.field-columns-left-column-values > thead .form-item__label'
+          )
           .after('<span class="columns_size"></span>');
       }
       if (rightColumn.find('.columns_size').length === 0) {
         rightColumn
-          .find('thead .form-item__label')
+          .find(
+            'table.field-columns-right-column-values > thead .form-item__label'
+          )
           .after('<span class="columns_size"></span>');
       }
 

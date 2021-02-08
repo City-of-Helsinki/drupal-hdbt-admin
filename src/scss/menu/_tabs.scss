@@ -1,0 +1,33 @@
+//
+// @file
+// Styles for tabs.
+//
+
+// Horizontal tab overrides.
+.is-horizontal .tabs--primary {
+  margin-bottom: -12px !important;
+
+  @media (min-width: $breakpoint-m) {
+    padding-left: calc(.5rem - 4px) !important;
+  }
+
+  .tabs__link {
+    border-radius: 0 !important;
+
+    @media (min-width: $breakpoint-m) {
+      padding: $spacing-quarter !important;
+    }
+  }
+
+  .tabs__tab {
+    @media (min-width: $breakpoint-m) {
+      margin-left: $spacing-double;
+    }
+
+    &:first-child {
+      @media (min-width: $breakpoint-m) {
+        margin-left: 0;
+      }
+    }
+  }
+}

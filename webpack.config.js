@@ -1,12 +1,12 @@
-const path = require("path");
 const isDev = (process.env.NODE_ENV !== "production");
+
+const path = require("path");
+const globImporter = require("node-sass-glob-importer");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const SVGSpritemapPlugin = require("svg-spritemap-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const globImporter = require("node-sass-glob-importer");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
     styles: ["./src/scss/styles.scss"],
     bundle: ["./src/js/common.js"],
     heroToggle: ["./src/js/heroToggle.js"],
+    columnsToggle: ["./src/js/columnsToggle.js"],
     listOfLinks: ["./src/js/listOfLinks.js"],
   },
   output: {
@@ -45,24 +46,6 @@ module.exports = {
             name: "media/[name].[ext]?[hash]",
           },
         },
-        ],
-      },
-      {
-        test: /\.svg$/,
-        include: [
-          path.resolve(__dirname, "src/icons")
-        ],
-        use: [
-          {
-            loader: "file-loader",
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
-          },
         ],
       },
       {
@@ -138,26 +121,6 @@ module.exports = {
     new FixStyleOnlyEntriesPlugin(),
     new CleanWebpackPlugin(["dist"], {
       root: path.resolve(__dirname),
-    }),
-    new SVGSpritemapPlugin([
-      path.resolve(__dirname, "src/icons/**/*.svg"),
-    ], {
-      output: {
-        filename: "./icons/sprite.svg",
-        svg: {
-          sizes: false
-        }
-      },
-      sprite: {
-        prefix: false,
-        gutter: 0,
-        generate: {
-          title: false,
-          symbol: true,
-          use: true,
-          view: "-view"
-        }
-      },
     }),
     new CopyPlugin({
       "patterns": [

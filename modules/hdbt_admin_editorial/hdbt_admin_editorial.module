@@ -95,4 +95,10 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
       ],
     ];
   }
+
+  // Perform alterations to Columns paragraph.
+  if ($element['#paragraph_type'] == 'columns') {
+    // Attach columns toggle JS when necessary.
+    $element['#attached']['library'][] = 'hdbt_admin/columns-toggle';
+  }
 }

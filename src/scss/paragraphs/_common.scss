@@ -1,0 +1,62 @@
+//
+// @file
+// Styles for all paragraphs.
+//
+
+// Paragraphs edit from style adjustments.
+.paragraphs-add-wrapper {
+  .dropbutton-wrapper.dropbutton-multiple .button {
+    min-height: 3rem;
+  }
+}
+
+// remove white background and paddings from first level of paragraph elements.
+.paragraphs-tabs-wrapper {
+
+  > .form-item > .layer-wrapper {
+    background-color: transparent;
+    border: 0 none;
+    box-shadow: 0 0 0 transparent;
+    padding: 0;
+  }
+
+  .paragraph-type-label {
+    font-size: 18px !important;
+  }
+
+  table.field-multiple-table {
+    thead {
+      box-shadow: 0 0 0 transparent;
+
+      th {
+        background: transparent;
+        padding-bottom: 0;
+        padding-left: 0;
+      }
+    }
+
+    .draggable {
+      background-color: #fff;
+      margin-top: 0.5rem;
+
+      // Hide the paragraph bullet when you are not able to organize paragraphs.
+      td.paragraph-bullet::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// Hide Paragraph badge.
+.paragraphs-badge {
+  display: none;
+}
+
+// Override margin nullification from the admin theme.
+.js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
+  margin-right: .75rem;
+
+  &.dropbutton-wrapper {
+    padding: 0;
+  }
+}

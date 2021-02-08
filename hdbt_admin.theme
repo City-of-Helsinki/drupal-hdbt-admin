@@ -43,15 +43,7 @@ function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, ar
     is_array($variables['element']['#parents']) &&
     $variables['theme_hook_original'] == 'form_element'
   ) {
-    if (in_array('theme_color', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
-    }
-    if (in_array('default_icon', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
-    }
-    if (in_array('koro', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__koro';
-    }
+    _hdbt_admin_form_template_suggestions($suggestions, $variables);
   }
 }
 
@@ -63,15 +55,27 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
     is_array($variables['element']['#parents']) &&
     $variables['theme_hook_original'] == 'input__radio'
   ) {
-    if (in_array('theme_color', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
-    }
-    if (in_array('default_icon', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
-    }
-    if (in_array('koro', $variables['element']['#parents'])) {
-      $suggestions[] = $variables['theme_hook_original'] . '__koro';
-    }
+    _hdbt_admin_form_template_suggestions($suggestions, $variables);
+  }
+}
+
+/**
+ * Helper function for applying template suggestions.
+ *
+ * @param array $suggestions
+ *   Existing suggestions.
+ * @param array $variables
+ *   Variables array.
+ */
+function _hdbt_admin_form_template_suggestions(&$suggestions, &$variables) {
+  if (in_array('theme_color', $variables['element']['#parents'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
+  }
+  if (in_array('default_icon', $variables['element']['#parents'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
+  }
+  if (in_array('koro', $variables['element']['#parents'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__koro';
   }
 }
 
@@ -79,6 +83,8 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_admin_preprocess_table(&$variables) {
-  // Add table field ID as a class as well.
-  $variables['attributes']['class'][] = $variables['attributes']['id'];
+  // Add table field ID as a class as well. Remove the possible temp value from
+  // the ID before adding it as a class.
+  $class = explode('--', $variables['attributes']['id']);
+  $variables['attributes']['class'][] = reset($class);
 }

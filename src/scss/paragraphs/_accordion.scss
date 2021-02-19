@@ -1,0 +1,12 @@
+.paragraph-type--accordion {
+  .field-accordion-items-values > thead {
+    display: none;
+  }
+}
+
+
+.paragraph-type--accordion-item {
+  .field-accordion-item-content-values > thead {
+    display: none;
+  }
+}

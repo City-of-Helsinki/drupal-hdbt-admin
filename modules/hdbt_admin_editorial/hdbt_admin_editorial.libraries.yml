@@ -1,0 +1,8 @@
+design_selection:
+  version: 1.x
+  js:
+    assets/js/zooming.min.js: {}
+    assets/js/designSelection.js: {}
+  dependencies:
+    - core/jquery
+    - select2/select2

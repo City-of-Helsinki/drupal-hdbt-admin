@@ -70,7 +70,7 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
  * @param array $variables
  *   Variables array.
  */
-function _hdbt_admin_form_template_suggestions(&$suggestions, &$variables) {
+function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$variables) {
   if (in_array('theme_color', $variables['element']['#parents'])) {
     $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
   }

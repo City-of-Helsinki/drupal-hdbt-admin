@@ -12,7 +12,6 @@
 
 // remove white background and paddings from first level of paragraph elements.
 .paragraphs-tabs-wrapper {
-
   > .form-item > .layer-wrapper {
     background-color: transparent;
     border: 0 none;
@@ -50,6 +49,16 @@
 // Table drag handle resizing
 .js .field--widget-paragraphs .draggable .tabledrag-handle {
   min-width: 20px;
+
+  // Hide additional table drags if there is no patch for the core.
+  + .tabledrag-cell-content__item {
+    display: none;
+  }
+}
+
+.js .paragraph-top .paragraph-type,
+.js .paragraph-top .paragraph-summary {
+  align-self: center;
 }
 
 .paragraphs-tabs-wrapper .field-multiple-table .draggable {
@@ -71,6 +80,7 @@ body:not(.toolbar-tray-open) .page-wrapper .layout-container {
     margin-right: m#{i}n(5vw, 24px);
   }
 }
+
 
 // Hide Paragraph badge.
 .paragraphs-badge {

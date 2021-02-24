@@ -96,6 +96,15 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
         [$design_select => ['value' => 'without-image-left']],
       ],
     ];
+
+    // Show link and link design only if design needs them.
+    $link_states = [
+      'visible' => [
+        [$design_select => ['value' => 'background-image']],
+      ],
+    ];
+    $element['subform']['field_hero_link']['#states'] = $link_states;
+    $element['subform']['field_hero_link_design']['#states'] = $link_states;
   }
 
   // Perform alterations to Columns paragraph.

@@ -96,11 +96,142 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
         [$design_select => ['value' => 'without-image-left']],
       ],
     ];
+
+    // Show link and link design only if design needs them.
+    $link_states = [
+      'visible' => [
+        [$design_select => ['value' => 'background-image']],
+      ],
+    ];
+    $element['subform']['field_hero_link']['#states'] = $link_states;
+    $element['subform']['field_hero_link_design']['#states'] = $link_states;
   }
 
   // Perform alterations to Columns paragraph.
   if ($element['#paragraph_type'] == 'columns') {
     // Attach columns toggle JS when necessary.
     $element['#attached']['library'][] = 'hdbt_admin/columns-toggle';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a title, design and target fields to EditorLinkDialog.
+ */
+function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInterface $form_state) {
+
+  if (isset($form_state->getUserInput()['editor_object'])) {
+    $input = $form_state->getUserInput()['editor_object'];
+    $form_state->set('link_element', $input);
+    $form_state->setCached(TRUE);
+  }
+  else {
+    // Retrieve the link element's attributes from form state.
+    $input = $form_state->get('link_element') ?: [];
+  }
+
+  /*
+   * Helper to retrieve form fields' default values.
+   *
+   * @param string $attribute_name
+   * @param string $fallback
+   *
+   * @return mixed
+   *   The existing value or the fallback.
+   */
+  $get_default_value = function ($attribute_name, $fallback = '') use ($input) {
+    return !empty($input[$attribute_name]) ? $input[$attribute_name] : $fallback;
+  };
+
+  $form['#attached']['library'][] = 'hdbt_admin_editorial/modal_window_position';
+  $form['attributes']['href']['#weight'] = 0;
+
+  $form['attributes']['data-link-text'] = [
+    '#type' => 'textfield',
+    '#title' => t('Link text'),
+    '#default_value' => $get_default_value('data-link-text'),
+    '#maxlength' => 512,
+  ];
+
+  $form['attributes']['class'] = [
+    '#type' => 'select',
+    '#title' => t('Design'),
+    '#default_value' => $get_default_value('class'),
+    '#options' => [
+      'link' => t('Default'),
+      'hds-button hds-button--primary' => t('Button primary'),
+      'hds-button hds-button--secondary' => t('Button secondary'),
+      'hds-button hds-button--supplementary' => t('Button supplementary'),
+    ],
+    '#weight' => 1,
+  ];
+
+  $form['advanced'] = [
+    '#type' => 'details',
+    '#title' => t('Advanced settings'),
+    '#weight' => 2,
+  ];
+
+  $form['attributes']['title'] = [
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#description' => t(
+      'Populates the title attribute of the link, usually shown as a small tooltip on hover.'
+    ),
+    '#default_value' => $get_default_value('title'),
+    '#maxlength' => 512,
+    '#group' => 'advanced',
+  ];
+
+  $form['attributes']['id'] = [
+    '#type' => 'textfield',
+    '#title' => t('ID'),
+    '#description' => t(
+      'Allows linking to this content using a <a href="https://en.wikipedia.org/wiki/Fragment_identifier" target="_blank">URL fragment</a>. Must be unique.'
+    ),
+    '#default_value' => $get_default_value('id'),
+    '#maxlength' => 512,
+    '#group' => 'advanced',
+  ];
+
+  $form['attributes']['target'] = [
+    '#title' => t('Open in new window/tab'),
+    '#type' => 'checkbox',
+    '#description' => t(
+      'See WCAG guidance on <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G200" target="_blank">opening links in new windows/tabs</a>.'
+    ),
+    '#default_value' => $get_default_value('target', FALSE),
+    '#return_value' => '_blank',
+    '#group' => 'advanced',
+  ];
+
+  // Add validation callback for empty attributes.
+  array_unshift(
+    $form['#validate'],
+    '_hdbt_admin_editorial_attributes_validate'
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormStateInterface $form_state) {
+  hdbt_admin_editorial_form_editor_link_dialog_alter($form, $form_state);
+}
+
+/**
+ * Validation for link attributes.
+ */
+function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
+  $values = $form_state->getValue('attributes');
+  $link_element = $form_state->get('link_element');
+  foreach ($values as $key => $value) {
+    if (empty($value)) {
+      $form_state->setValue(['attributes', $key], '');
+      if (empty($link_element)) {
+        $form_state->unsetValue(['attributes', $key]);
+      }
+    }
   }
 }

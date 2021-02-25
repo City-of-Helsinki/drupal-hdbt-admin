@@ -147,6 +147,13 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
   $form['#attached']['library'][] = 'hdbt_admin_editorial/modal_window_position';
   $form['attributes']['href']['#weight'] = 0;
 
+  $form['attributes']['data-link-text'] = [
+    '#type' => 'textfield',
+    '#title' => t('Link text'),
+    '#default_value' => $get_default_value('data-link-text'),
+    '#maxlength' => 512,
+  ];
+
   $form['attributes']['class'] = [
     '#type' => 'select',
     '#title' => t('Design'),

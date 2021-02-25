@@ -39,6 +39,22 @@
     CKEDITOR.plugins.drupallink.registerLinkableWidget('hds-button');
 
     // Act on ckeditor content change.
+    editor.getCommand('drupallink').on('exec', function (evt) {
+      let linkElement = getCurrentLink(editor);
+
+      // Act only if link element is being handled.
+      if (!linkElement || !linkElement.$) {
+        return;
+      }
+
+      // Check if link has link text and set it as data attribute.
+      let text = linkElement.$.innerText;
+      if (text) {
+        linkElement.setAttribute('data-link-text', text);
+      }
+    });
+
+    // Act on ckeditor content change.
     editor.on('change', function (event) {
       let linkElement = getCurrentLink(editor);
 
@@ -70,6 +86,14 @@
         let span = linkElement.findOne('span.hds-button__label');
         if (span) {
           linkElement.setHtml(span.getHtml());
+          editor.fire('saveSnapshot');
+        }
+      }
+
+      // Check if link text has changed and act accordingly.
+      if (linkElement.$.dataset.linkText && linkElement.$.innerText) {
+        if (linkElement.$.dataset.linkText !== linkElement.$.innerText) {
+          linkElement.$.innerText = linkElement.$.dataset.linkText;
           editor.fire('saveSnapshot');
         }
       }

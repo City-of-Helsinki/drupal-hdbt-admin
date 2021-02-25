@@ -65,12 +65,11 @@
       }
 
       fieldset {
-          background: transparent;
-          border: 0;
-          box-shadow: none;
-          margin: 0;
-          padding: 0 0 1.5rem;
-
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0 0 1.5rem;
 
         legend {
             display: none;
@@ -89,11 +88,48 @@
       }
     }
 
-    .field--name-field-hero-cta {
+    .field--name-field-hero-link-design {
       grid-column-end: 2;
       grid-column-start: 1;
-      grid-row-end: 6;
-      grid-row-start: 5;
+      grid-row-end: 7;
+      grid-row-start: 6;
+
+      .paragraphs-subform {
+        display: block;
+      }
+    }
+
+    .field--name-field-hero-link {
+      grid-column-end: 3;
+      grid-column-start: 1;
+      grid-row-end: 8;
+      grid-row-start: 7;
+
+      .layer-wrapper {
+        border: 0 none;
+        box-shadow: none;
+        padding: 0;
+
+        @media (min-width: 1180px) {
+          margin: 0 0 0 -0.5rem;
+        }
+
+        tbody {
+          @media (min-width: 1180px) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
+
+        tr {
+          max-width: 520px;
+
+          @media (min-width: 1180px) {
+            flex: 1 1 32%;
+            margin: 0 0.5rem 1rem;
+          }
+        }
+      }
 
       .paragraphs-subform {
         display: block;

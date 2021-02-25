@@ -1,0 +1,8 @@
+modal_window_position:
+  version: VERSION
+  js:
+    assets/js/modal_window_position.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

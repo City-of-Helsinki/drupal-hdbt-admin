@@ -95,3 +95,10 @@ body:not(.toolbar-tray-open) .page-wrapper .layout-container {
     padding: 0;
   }
 }
+
+// Hide "(all languages)" from all paragraph fields.
+// There's no alter hook or preprocess which can be used to easily remove
+// the "addTranslatabilityClue" from paragraph fields.
+.field--widget-paragraphs .translation-entity-all-languages {
+  display: none;
+}

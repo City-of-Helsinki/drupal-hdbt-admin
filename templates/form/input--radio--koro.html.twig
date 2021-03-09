@@ -12,8 +12,8 @@
  */
 #}
 {% apply spaceless %}
-  <div class="koro {{ attributes.value == 'wave' ? 'wave' }}">
-    {% set koro_name = attributes.value == 'wave' ? 'wave--negative' : attributes.value %}
+  <div class="koro {{ attributes.value }}">
+    {% set koro_name = attributes.value %}
     {% set koro_path = '@hdbt/misc/koros/koro-' ~ koro_name ~ '.twig' %}
     {% include koro_path %}
   </div>

@@ -7,7 +7,7 @@
 
   Drupal.behaviors.select2IconIntegration = {
     attach: function (context) {
-      $('.select2-widget', context).on('select2-init', function (e) {
+      $('.select2-icon', context).on('select2-init', function (e) {
         let config = $(e.target).data('select2-config');
 
         const templateHandler = function (parentHandler) {

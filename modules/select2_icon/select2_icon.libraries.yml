@@ -1,5 +1,8 @@
 select2_icon:
   version: 1.x
+  css:
+    theme:
+      assets/css/select2_icon.css: {}
   js:
     assets/js/select2_icon.js: {}
   dependencies:

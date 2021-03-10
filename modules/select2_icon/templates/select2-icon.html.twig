@@ -14,7 +14,7 @@
 #}
 
 {% apply spaceless %}
-  <select{{ attributes }}>
+  <select{{ attributes.addClass('select2-icon') }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

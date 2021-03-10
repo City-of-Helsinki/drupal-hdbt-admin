@@ -37,11 +37,7 @@ class Select2IconWidget extends Select2Widget {
     $element['#icons_path'] = $icon_path;
     $element['#attached']['library'][] = 'select2_icon/select2_icon';
     $element['#attached']['drupalSettings']['select2Icon']['pathToIcons'] = $icon_path;
-
-    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\StringItemBase $item */
-    $element += [
-      '#default_value' => $this->getSelectedOptions($items),
-    ];
+    $element['#default_value'] = $this->getSelectedOptions($items);
 
     return $element;
   }

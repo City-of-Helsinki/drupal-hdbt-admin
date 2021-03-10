@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Select2 Icon module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function select2_icon_install() {
+  _select2_icon_install_configuration();
+}
+
+/**
+ * Install initial path for HDS icons to be used in Select2 Icon widget.
+ */
+function select2_icon_update_9101() {
+  _select2_icon_install_configuration();
+}
+
+/**
+ * Ensure the field weights on the user register form put legal docs at the bottom
+ */
+function _select2_icon_install_configuration() {
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_path = '/' . $theme_handler->getTheme('hdbt')->getPath();
+
+  $config = \Drupal::getContainer()->get('config.factory')->getEditable('select2_icon.settings');
+  $config_sprite = $config->get('path_to_sprite');
+  $config_json = $config->get('path_to_json');
+
+  if (empty($config_sprite)) {
+    $theme_path_to_sprite = '/dist/icons/sprite.svg';
+    $sprite = $theme_path . $theme_path_to_sprite;
+    $config->set('path_to_sprite', $sprite)->save();
+  }
+
+  if (empty($config_json)) {
+    $theme_path_to_json = '/src/icons/ui-icons.json';
+    $json = $theme_path . $theme_path_to_json;
+    $config->set('path_to_json', $json)->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function select2_icon_uninstall() {
+  \Drupal::getContainer()
+    ->get('config.factory')
+    ->getEditable('select2_icon.settings')
+    ->delete();
+}

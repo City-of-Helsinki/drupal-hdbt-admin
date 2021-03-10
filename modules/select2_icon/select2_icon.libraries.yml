@@ -1,0 +1,6 @@
+select2_icon:
+  version: 1.x
+  js:
+    assets/js/select2_icon.js: {}
+  dependencies:
+    - select2/select2.min

@@ -118,7 +118,7 @@
             handleLabelSpan(editor, linkElement);
           }
 
-          // If link element has class hds-button, but it's not pointing to blank.
+          // If link element has class hds-button and it's pointing to blank.
           if (linkElement.getAttribute('target') === '_blank') {
 
             // Add button icon if none exist.

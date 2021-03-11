@@ -4,9 +4,38 @@
   }
 }
 
-
 .paragraph-type--accordion-item {
   .field-accordion-item-content-values > thead {
     display: none;
+  }
+}
+
+// Diff styles
+.paragraph--type--accordion {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-accordion-heading-level {
+    margin-top: $spacing-half;
+  }
+
+  .paragraph--type--accordion-item {
+    .field--name-field-accordion-item-heading {
+      @include font-size(32px, 48px);
+      margin-top: $spacing-double;
+    }
+
+    .field--name-field-media-image {
+      .diffdel,
+      .diffins {
+        display: inline-block;
+        line-height: 0;
+        padding: 10px;
+      }
+    }
+
+    .paragraph--type--columns,
+    .paragraph--type--text {
+      margin-top: 0;
+    }
   }
 }

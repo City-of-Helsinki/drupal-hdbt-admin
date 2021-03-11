@@ -39,3 +39,41 @@
     }
   }
 }
+
+// Diff styles
+.paragraph--type--columns {
+  margin-top: $spacing-quadruple;
+  overflow: hidden;
+
+  .field--name-field-columns-title {
+    @include font-size(32px, 48px);
+    margin-bottom: $spacing;
+  }
+
+  .field--name-field-columns-design {
+    margin-top: $spacing-half;
+  }
+
+  .paragraph--type--image,
+  .paragraph--type--text {
+    margin-top: 0;
+  }
+
+  .field--name-field-media-image {
+    line-height: 0;
+    margin-bottom: $spacing-half;
+  }
+
+  .field--name-field-columns-left-column {
+    float: left;
+    margin-top: $spacing;
+    width: 50%;
+  }
+
+  .field--name-field-columns-right-column {
+    float: right;
+    margin-top: $spacing;
+    padding-left: 24px;
+    width: 50%;
+  }
+}

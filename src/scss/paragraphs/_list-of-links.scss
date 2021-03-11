@@ -77,3 +77,30 @@
     }
   }
 }
+
+// Diff styles
+.paragraph--type--list-of-links {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-list-of-links-links > .field__item {
+    margin-top: $spacing;
+  }
+
+  .field--name-field-list-of-links-title {
+    @include font-size(32px, 48px);
+    margin-bottom: $spacing;
+  }
+
+  .field--name-field-media-image {
+    line-height: 0;
+
+    img {
+      width: 368px;
+    }
+  }
+
+  .field--name-field-list-of-links-link {
+    @include font-size(20px, 24px);
+    margin-top: $spacing-half;
+  }
+}

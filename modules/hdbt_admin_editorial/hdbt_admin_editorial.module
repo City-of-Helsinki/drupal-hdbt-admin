@@ -180,10 +180,18 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#weight' => 1,
   ];
 
+  $form['attributes']['target'] = [
+    '#title' => t('Open in new window/tab'),
+    '#type' => 'checkbox',
+    '#default_value' => $get_default_value('target', FALSE),
+    '#return_value' => '_blank',
+    '#weight' => 2,
+  ];
+
   $form['advanced'] = [
     '#type' => 'details',
     '#title' => t('Advanced settings'),
-    '#weight' => 2,
+    '#weight' => 3,
   ];
 
   $form['attributes']['title'] = [
@@ -201,21 +209,10 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#type' => 'textfield',
     '#title' => t('ID'),
     '#description' => t(
-      'Allows linking to this content using a <a href="https://en.wikipedia.org/wiki/Fragment_identifier" target="_blank">URL fragment</a>. Must be unique.'
+      'Allows linking to this content using a URL fragment (#). Must be unique.'
     ),
     '#default_value' => $get_default_value('id'),
     '#maxlength' => 512,
-    '#group' => 'advanced',
-  ];
-
-  $form['attributes']['target'] = [
-    '#title' => t('Open in new window/tab'),
-    '#type' => 'checkbox',
-    '#description' => t(
-      'See WCAG guidance on <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G200" target="_blank">opening links in new windows/tabs</a>.'
-    ),
-    '#default_value' => $get_default_value('target', FALSE),
-    '#return_value' => '_blank',
     '#group' => 'advanced',
   ];
 

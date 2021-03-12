@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains necessary hooks for select2 icons.
+ * Contains necessary hooks for Select2 icons.
  */
 
 /**
@@ -10,11 +10,18 @@
  */
 function select2_icon_theme() {
   return [
-    'select2_icon' => [
+    'select2_icon_widget' => [
       'render element' => 'element',
       'preprocess functions' => [
         'template_preprocess_select2_icon',
         'template_preprocess_select',
+      ],
+    ],
+    'select2_icon' => [
+      'variables' => [
+        'icon_id' => NULL,
+        'sprite_url' => NULL,
+        'icon_label' => NULL,
       ],
     ],
   ];

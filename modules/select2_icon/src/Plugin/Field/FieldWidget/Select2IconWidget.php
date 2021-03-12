@@ -32,6 +32,7 @@ class Select2IconWidget extends WidgetBase {
 
     $element['icon'] = [
       '#type' => 'select2',
+      '#title' => t('Icon'),
       '#cardinality' => $this->fieldDefinition->getFieldStorageDefinition()->getCardinality(),
       '#select2' => [
         'width' => $this->getSetting('width') ?? '400px',

@@ -112,6 +112,19 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     // Attach columns toggle JS when necessary.
     $element['#attached']['library'][] = 'hdbt_admin/columns-toggle';
   }
+
+  // Perform alterations to Banner paragraph.
+  if ($element['#paragraph_type'] == 'banner') {
+    // Banner design selection.
+    $design_select = 'select[name="field_content[' . $element['#delta'] . '][subform][field_banner_design]"';
+
+    // Show icon only if design needs it.
+    $element['subform']['field_icon']['#states'] = [
+      'visible' => [
+        [$design_select => ['value' => 'align-left']],
+      ],
+    ];
+  }
 }
 
 /**

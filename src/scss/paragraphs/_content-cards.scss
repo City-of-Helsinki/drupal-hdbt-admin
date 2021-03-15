@@ -1,0 +1,20 @@
+//
+// @file
+// Styles for Content card paragraph.
+//
+
+.paragraph-type--content-cards {
+  .field--name-field-content-cards-content {
+    .layer-wrapper {
+      background-color: transparent;
+      border: 0 none;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .field-label {
+      display: none;
+    }
+  }
+}

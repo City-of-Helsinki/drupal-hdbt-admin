@@ -1,0 +1,68 @@
+//
+// @file
+// Styles for Content card paragraph.
+//
+
+.paragraph-type--content-cards {
+  .field--name-field-content-cards-content {
+    .layer-wrapper {
+      background-color: transparent;
+      border: 0 none;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .field-label {
+      display: none;
+    }
+  }
+}
+
+// Diff styles.
+.paragraph--type--content-cards {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-content-cards-title {
+    @include font-size(32px, 48px);
+  }
+
+  .field--name-field-content-cards-design {
+    margin-top: $spacing-half;
+  }
+
+  .field--name-field-content-cards-content {
+    > .field__item {
+      display: flex;
+      flex-direction: column;
+      margin-top: $spacing;
+
+      h2 {
+        margin: $spacing-half 0 0;
+        order: 2;
+        @include font-size(20px, 24px);
+      }
+      .node__content {
+        min-height: 400px;
+        order: 1;
+        position: relative;
+
+        &::after {
+          background-color: $color-bus;
+          content: "";
+          display: block;
+          height: 400px;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 600px;
+          z-index: -1;
+        }
+
+        .field--name-field-media-image {
+          line-height: 0;
+        }
+      }
+    }
+  }
+}

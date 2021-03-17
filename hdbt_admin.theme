@@ -5,6 +5,17 @@
  * Contains HDBT Admin theme.
  */
 
+use Drupal\Core\Language\LanguageInterface;
+
+/**
+ * Implements hook_preprocess().
+ */
+function hdbt_admin_preprocess(&$variables) {
+  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+  $variables['current_langcode'] = $language->getId();
+  $variables['current_language'] = $language->getName();
+}
+
 /**
  * Implements hook_preprocess_input().
  */

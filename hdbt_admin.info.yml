@@ -10,6 +10,7 @@ libraries:
   - hdbt_admin/global-styling
   - hdbt_admin/global-scripting
   - hdbt_admin/list-of-links
+  - hdbt_admin/language-switcher
 
 # Override libraries.
 libraries-override:

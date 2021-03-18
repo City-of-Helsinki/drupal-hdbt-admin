@@ -13,6 +13,7 @@ module.exports = {
   entry: {
     styles: ["./src/scss/styles.scss"],
     bundle: ["./src/js/common.js"],
+    languageSwitcher: ["./src/js/languageSwitcher"],
     heroToggle: ["./src/js/heroToggle.js"],
     columnsToggle: ["./src/js/columnsToggle.js"],
     listOfLinks: ["./src/js/listOfLinks.js"],

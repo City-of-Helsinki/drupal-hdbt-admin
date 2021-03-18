@@ -49,11 +49,6 @@
 // Table drag handle resizing
 .js .field--widget-paragraphs .draggable .tabledrag-handle {
   min-width: 20px;
-
-  // Hide additional table drags if there is no patch for the core.
-  + .tabledrag-cell-content__item {
-    display: none;
-  }
 }
 
 .js .paragraph-top .paragraph-type,

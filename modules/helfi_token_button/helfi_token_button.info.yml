@@ -1,5 +1,5 @@
-name: 'Hel.fi TPR-Token filler button'
+name: 'Hel.fi TPR-Token demo custom js'
 type: module
-description: 'Search and replace TPR IDs in node form fields'
+description: ''
 core_version_requirement: ^8 || ^9
 package: 'Hel.fi Drupal Platform'

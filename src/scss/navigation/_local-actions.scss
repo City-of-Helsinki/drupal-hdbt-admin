@@ -1,0 +1,7 @@
+body:not(.path-node) {
+  header.region {
+    .local-actions .local-actions__item a {
+      white-space: nowrap;
+    }
+  }
+}

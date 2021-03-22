@@ -13,6 +13,13 @@ select2.min:
     - core/jquery.once
     - core/drupal
 
+language-switcher:
+  js:
+    dist/js/languageSwitcher.min.js: {}
+  version: 1.x
+  dependencies:
+    - core/drupal
+
 hero-toggle:
   js:
     dist/js/heroToggle.min.js: {}

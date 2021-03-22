@@ -1,0 +1,22 @@
+// Diff styles
+.paragraph--type--liftup-with-image {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-liftup-with-image-title {
+    @include font-size(32px, 48px);
+  }
+
+  .field--name-field-media-image {
+    display: flex;
+    margin-bottom: $spacing-half;
+    margin-top: $spacing-half;
+
+    img {
+      width: 596px;
+    }
+  }
+
+  .field--name-field-liftup-with-image-design {
+    margin-top: $spacing-half;
+  }
+}

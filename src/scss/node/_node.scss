@@ -33,6 +33,15 @@
       padding-right: 0 !important;
     }
   }
+
+  // Details sidebar; Fix media library item width.
+  details#edit-admin-metainformation {
+    @media screen and (min-width: 64em) {
+      .media-library-selection .media-library-item--grid {
+        width: 100%;
+      }
+    }
+  }
 }
 
 // Hide "About text formats" link from text-area fields on node form.

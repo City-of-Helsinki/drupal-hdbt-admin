@@ -1,0 +1,72 @@
+.language-switcher {
+  margin-right: $spacing;
+  position: relative;
+
+  .language-link {
+    @include font-size(16px);
+    color: $color-black;
+    font-weight: $font-weight-regular;
+    text-decoration: none;
+
+    @media (min-width: $breakpoint-m) {
+      @include font-size(14px);
+      margin: 0 $spacing-half;
+    }
+
+    &.is-active {
+      cursor: default;
+      font-weight: $font-weight-bold;
+    }
+
+    &.is-disabled {
+      color: $color-black-40;
+      cursor: default;
+    }
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.language-switcher__button {
+  @include font-size(16px);
+  background: $color-white;
+  border: 1px solid $color-black-20;
+  box-shadow: 0 3px 4px #00000033;
+  height: 40px;
+  padding: 0 $spacing-half;
+
+  @media (min-width: $breakpoint-m) {
+    display: none;
+  }
+
+  .label {
+    grid-area: label;
+  }
+}
+
+.language-switcher__dropdown {
+  display: none;
+
+  &.is-active {
+    @media (max-width: $breakpoint-m) {
+      background: $color-white;
+      border: 1px solid $color-black-20;
+      border-radius: 0 0 3px 3px;
+      box-shadow: 0 3px 4px #00000033;
+      display: flex;
+      padding: $spacing;
+      position: absolute;
+      right: 0;
+      top: 45px;
+      z-index: 100;
+    }
+  }
+
+  @media (min-width: $breakpoint-m) {
+    display: flex;
+  }
+}

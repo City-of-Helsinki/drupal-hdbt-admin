@@ -1,0 +1,12 @@
+// Diff styles
+.paragraph--type--banner {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-banner-title {
+    @include font-size(32px, 48px);
+  }
+
+  .field--name-field-banner-design {
+    margin-top: $spacing-half;
+  }
+}

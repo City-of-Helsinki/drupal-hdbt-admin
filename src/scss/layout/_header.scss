@@ -1,0 +1,17 @@
+body:not(.path-node) {
+  header.region {
+    position: relative;
+    z-index: 100;
+
+    @media (min-width: $breakpoint-m) {
+      position: static;
+    }
+
+    .region-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

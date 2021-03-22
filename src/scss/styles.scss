@@ -9,7 +9,9 @@
 @import "_site-settings";
 @import "_common";
 
-@import "menu/**/*.*";
+@import "layout/**/*";
+@import "navigation/**/*.*";
 @import "node/**/*.*";
 @import "taxonomy/**/*.*";
 @import "paragraphs/**/*.*";
+@import "misc/**/*.*";

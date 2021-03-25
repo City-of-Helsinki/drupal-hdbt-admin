@@ -1,0 +1,9 @@
+.layout-region-node-secondary {
+  @media (min-width: 1720px) {
+    --ginSidebarWidth: 400px;
+  }
+
+  @media (min-width: 1900px) {
+    --ginSidebarWidth: 500px;
+  }
+}

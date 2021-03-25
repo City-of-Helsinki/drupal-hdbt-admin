@@ -1,0 +1,16 @@
+.select2-icon + .select2-container,
+.select2-icon + .select2-container .select2-selection {
+  min-height: 50px;
+}
+
+.select2-icon + .select2-container .select2-selection__placeholder,
+.select2-icon + .select2-container .select2-selection__arrow,
+.select2-icon + .select2-container .select2-selection__clear {
+  padding: 7px;
+}
+
+.select2-icon + .select2-container .select2-selection__arrow {
+  top: 4px;
+  right: 4px;
+}
+

@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - system
+  theme:
+    - hdbt_admin
+id: language_switcher_admin
+theme: hdbt_admin
+region: header
+weight: -3
+provider: null
+plugin: 'language_block:language_content'
+settings:
+  id: 'language_block:language_content'
+  label: 'Language switcher'
+  provider: language
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/node/*'
+    negate: true

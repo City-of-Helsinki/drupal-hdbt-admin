@@ -55,3 +55,21 @@
     }
   }
 }
+
+// Diff styles
+.paragraph--type--image {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-media-image {
+    display: flex;
+    line-height: 0;
+
+    img {
+      width: 596px;
+    }
+  }
+
+  .field--name-field-photographer {
+    margin-top: $spacing-half;
+  }
+}

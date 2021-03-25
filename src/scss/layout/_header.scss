@@ -1,0 +1,12 @@
+body:not(.path-node) {
+  header.region {
+    z-index: 100;
+
+    .region-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

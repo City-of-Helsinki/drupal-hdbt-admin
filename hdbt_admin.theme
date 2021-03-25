@@ -5,6 +5,17 @@
  * Contains HDBT Admin theme.
  */
 
+use Drupal\Core\Language\LanguageInterface;
+
+/**
+ * Implements hook_preprocess().
+ */
+function hdbt_admin_preprocess(&$variables) {
+  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+  $variables['current_langcode'] = $language->getId();
+  $variables['current_language'] = $language->getName();
+}
+
 /**
  * Implements hook_preprocess_input().
  */
@@ -12,6 +23,7 @@ function hdbt_admin_preprocess_input(&$variables) {
 
   // Set icons path for site settings form.
   if (
+    array_key_exists('#parents', $variables['element']) &&
     is_array($variables['element']['#parents']) &&
     in_array('default_icon', $variables['element']['#parents'])
   ) {
@@ -40,6 +52,7 @@ function hdbt_admin_preprocess_input(&$variables) {
  */
 function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
   if (
+    array_key_exists('#parents', $variables['element']) &&
     is_array($variables['element']['#parents']) &&
     $variables['theme_hook_original'] == 'form_element'
   ) {
@@ -52,6 +65,7 @@ function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, ar
  */
 function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $variables) {
   if (
+    array_key_exists('#parents', $variables['element']) &&
     is_array($variables['element']['#parents']) &&
     $variables['theme_hook_original'] == 'input__radio'
   ) {
@@ -67,14 +81,14 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
  * @param array $variables
  *   Variables array.
  */
-function _hdbt_admin_form_template_suggestions(&$suggestions, &$variables) {
-  if (in_array('theme_color', $variables['element']['#parents'])) {
+function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$variables) {
+  if (in_array('theme_color', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
   }
-  if (in_array('default_icon', $variables['element']['#parents'])) {
+  if (in_array('default_icon', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
   }
-  if (in_array('koro', $variables['element']['#parents'])) {
+  if (in_array('koro', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__koro';
   }
 }
@@ -85,6 +99,45 @@ function _hdbt_admin_form_template_suggestions(&$suggestions, &$variables) {
 function hdbt_admin_preprocess_table(&$variables) {
   // Add table field ID as a class as well. Remove the possible temp value from
   // the ID before adding it as a class.
-  $class = explode('--', $variables['attributes']['id']);
-  $variables['attributes']['class'][] = reset($class);
+  if (
+    is_array($variables['attributes']['class']) &&
+    array_key_exists('id', $variables['attributes'])
+  ) {
+    $class = explode('--', $variables['attributes']['id']);
+    $variables['attributes']['class'][] = reset($class);
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Alter meta information field visibility by moving the fiels in to
+ * Meta information accordion.
+ */
+function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $meta_fields = [
+    'field_liftup_image' => 1,
+    'field_metatags' => 2,
+    'simple_sitemap' => 3,
+  ];
+
+  // Create a new field group for meta information,
+  // if any of the meta data fields are available.
+  foreach($meta_fields as $field => $weight) {
+    if (isset($form[$field])) {
+      if (!array_key_exists('admin_metainformation', $form)) {
+        $form['admin_metainformation'] = [
+          '#title' => t('Meta information'),
+          '#group' => 'advanced',
+          '#weight' => -10,
+          '#access' => TRUE,
+          '#type' => 'details',
+          '#open' => TRUE,
+        ];
+      }
+
+      $form[$field]['#group'] = 'admin_metainformation';
+      $form[$field]['#weight'] = $weight;
+    }
+  }
 }

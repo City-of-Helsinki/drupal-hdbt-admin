@@ -1,0 +1,75 @@
+.diff-wrapper {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1280px;
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  .dropbutton-widget {
+    box-sizing: content-box;
+
+    .dropbutton__toggle {
+      padding: 0;
+    }
+  }
+}
+
+.field--type-image {
+  .diffdel,
+  .diffins,
+  .diffimg {
+    display: inline-block;
+    line-height: 0;
+    padding: 10px;
+  }
+
+  .diffdel,
+  del.diffimg {
+    img {
+      filter: grayscale(1);
+      opacity: .5;
+    }
+  }
+}
+
+// Title of the node that is being diffed.
+.diff-responsive-table-wrapper {
+  h2, h3, h4 {
+    font-weight: 400;
+  }
+
+  h5, h6 {
+    font-weight: 500;
+  }
+
+  > h2 {
+    @include font-size(34px, 50px);
+  }
+
+  p {
+    margin: $spacing-half 0 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .field--type-text-long {
+    margin-top: $spacing;
+  }
+
+  .field--name-field-lead {
+    @include font-size(20px, 28px);
+    margin-top: $spacing-quadruple;
+  }
+
+  .field--name-field-author {
+    margin-top: $spacing;
+  }
+
+  .field--name-field-keywords {
+    margin-top: $spacing-quadruple;
+  }
+}

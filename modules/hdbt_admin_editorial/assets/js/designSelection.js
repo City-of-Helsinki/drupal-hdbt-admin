@@ -62,23 +62,27 @@
 
         // Act when selection is being selected.
         designSelection.on('select2:selecting', function(event) {
-          const target = event.params.args.originalEvent.target;
+          const args = event.params.args;
 
-          // Construct lightbox if the thumbnail was clicked.
-          if (target && target.dataset.lightbox) {
-            const item = target.dataset.lightbox + '.jpg';
-            const pathToImage = drupalSettings.designSelect.pathToImages + item;
+          if (args.originalEvent) {
+            const target = args.originalEvent.target;
 
-            const lightbox = basicLightbox.create(`
-              <img src="${pathToImage}" style="width: 60vw; height: auto;" />
-            `, {
-              onClose: (instance) => {
-                designSelect.select2('open');
-              }
-            }).show();
+            // Construct lightbox if the thumbnail was clicked.
+            if (target && target.dataset.lightbox) {
+              const item = target.dataset.lightbox + '.jpg';
+              const pathToImage = drupalSettings.designSelect.pathToImages + item;
 
-            // Return false to stop propagation. Prevents "select" event to fire.
-            return false;
+              const lightbox = basicLightbox.create(`
+                <img src="${pathToImage}" style="width: 60vw; height: auto;" />
+              `, {
+                onClose: (instance) => {
+                  designSelect.select2('open');
+                }
+              }).show();
+
+              // Return false to stop propagation. Prevents "select" event to fire.
+              return false;
+            }
           }
         });
       }

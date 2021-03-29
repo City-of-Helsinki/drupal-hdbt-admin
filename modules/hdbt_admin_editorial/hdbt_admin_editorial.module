@@ -79,7 +79,7 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
   if ($element['#paragraph_type'] == 'hero') {
 
     // Hero designs & hero design selection.
-    $design_select = 'select[name="field_hero[' . $element['#delta'] . '][subform][field_hero_design]"';
+    $design_select = ':input[name="field_hero[' . $element['#delta'] . '][subform][field_hero_design][0]"]';
 
     // Show description only if design needs it.
     $element['subform']['field_hero_desc']['#states'] = [
@@ -116,7 +116,7 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
   // Perform alterations to Banner paragraph.
   if ($element['#paragraph_type'] == 'banner') {
     // Banner design selection.
-    $design_select = 'select[name="field_content[' . $element['#delta'] . '][subform][field_banner_design]"';
+    $design_select = ':input[name="field_content[' . $element['#delta'] . '][subform][field_banner_design][0]"]';
 
     // Show icon only if design needs it.
     $element['subform']['field_icon']['#states'] = [

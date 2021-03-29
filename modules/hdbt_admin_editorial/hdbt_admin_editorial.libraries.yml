@@ -9,8 +9,11 @@ modal_window_position:
 
 design_selection:
   version: 1.x
+  css:
+    theme:
+      assets/css/basicLightbox.min.css: {}
   js:
-    assets/js/zooming.min.js: {}
+    assets/js/basicLightbox.min.js: {}
     assets/js/designSelection.js: {}
   dependencies:
     - core/jquery

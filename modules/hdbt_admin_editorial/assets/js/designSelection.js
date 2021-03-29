@@ -1,88 +1,93 @@
 /**
- * @file .
+ * @file Design selection.
  */
-(function ($, Drupal) {
+(function ($, Drupal, drupalSettings) {
   "use strict";
-  function formatState (state) {
+
+  function formatState (state, container, design) {
     if (!state.id) { return state.text; }
-    // selectionMarkup = $(
-    //   '<span style="align-items: center; display: flex; height: 100%;"><svg class="icon" style="margin-right: 0.5rem; max-width: 2.5rem; max-height: 2.5rem; width: 100%; height: 100%;"><use xlink:href="' +
-    //   settings.innebIcons.pathToIcons + '#' + state.element.value + '" /></svg>' +
-    //   state.text + '</span>'
-    // );
-    return $(
-      '<div style="align-items: center; display: flex; height: 100%; width: 100%;">' +
-        '<img src="/sites/default/files/viljat.jpg" data-lightbox="image-1" class="image" style="width: 50px; height: 50px; border: 2px solid black;" />' +
-      '<span>' + state.text + '</span></div>'
-    );
+    const link_designs = [
+      'hero-link-design',
+      'banner-link-design',
+    ];
+
+    if (link_designs.includes(design)) {
+      design = 'link-design';
+    }
+
+    const item = design + '--' + state.element.value;
+    const thumb = item + '-thumbnail.jpg';
+    const pathToThumb = drupalSettings.designSelect.pathToImages + thumb;
+
+    return $(`
+      <div class="design-selection__wrapper">
+        <img src="${pathToThumb}" data-lightbox="${item}" class="design-selection__image" />
+        <span>${state.text}</span>
+      </div>    
+    `);
   }
 
   function designWatcher (context) {
+    $(context)
+      .find('select.form-select.design-selection')
+      .once('designSelected')
+      .each(function() {
 
-    $(context).find('select.form-select.design-selection').once('designSelected').each(
-      function() {
-
-        let designSelection = $(this).select2({
-          templateResult: formatState,
-          width: '100%',
-          closeOnSelect: false
+        // Initialize select2 for design selection select tag.
+        const designSelect = $(this);
+        const designSelection = designSelect.select2({
+          templateResult: (a, b) => {
+            return formatState(a, b, designSelect[0].dataset.designSelect);
+          },
+          width: '400px',
+          minimumResultsForSearch: -1,
         });
 
-        designSelection.on('select2:selecting', function (e) {
-          const originalTarget = e.params.args.originalEvent.target;
+        let defaultSelection = designSelection.val();
 
-          if (originalTarget && originalTarget.hasAttribute('class')) {
-            const image = $(e.params.args.originalEvent.target).hasClass('image');
-            if (image) {
-              console.log('ttu')
-              const instance = basicLightbox.create(`
-                <img src="/sites/default/files/viljat.jpg" style="width: 60vw; height: auto;" />
-              `).show();
-              e.preventDefault();
-            }
+        // Act when select2 is opened.
+        designSelection.on('select2:open', function() {
+          // Trigger unselect to deselect everything.
+          // Otherwise user cannot expand the image.
+          designSelection.val(null).trigger('change');
+        });
+
+        // Act when select2 is closed.
+        designSelection.on('select2:closing', function() {
+          // If user haven't selected any item, select the default selection.
+          if (designSelection.val() == null) {
+            designSelection.val(defaultSelection).trigger('change');
           }
         });
 
+        // Act when selection is being selected.
+        designSelection.on('select2:selecting', function(event) {
+          const target = event.params.args.originalEvent.target;
 
-//         designSelection.on('select2:selecting', function (e) {
-//           const image = $(e.params.args.originalEvent.target).hasClass('image');
-// console.log(image);
-//           if (image) {
-//             new Zooming().listen('.image');
-//             console.log('image löytys!');
-//             e.preventDefault();
-//
-//             $('.image').on('click', function(e) {
-//               console.log(e.target,'tätäoikeestiklikattiin')
-//             })
-//           }
-//         });
+          // Construct lightbox if the thumbnail was clicked.
+          if (target && target.dataset.lightbox) {
+            const item = target.dataset.lightbox + '.jpg';
+            const pathToImage = drupalSettings.designSelect.pathToImages + item;
+
+            const lightbox = basicLightbox.create(`
+              <img src="${pathToImage}" style="width: 60vw; height: auto;" />
+            `, {
+              onClose: (instance) => {
+                designSelect.select2('open');
+              }
+            }).show();
+
+            // Return false to stop propagation. Prevents "select" event to fire.
+            return false;
+          }
+        });
       }
     );
   }
 
-
   Drupal.behaviors.designSelection = {
     attach: function (context, settings) {
       designWatcher(context);
-
-      // let designSelection = $('select.form-select.design-selection', context).select2({
-      //   templateResult: formatState
-      // });
-
-      // designSelection.on("select2:closing", function (e) {  console.log("select2:closing", e); }, context);
-      // designSelection.on('select2:select', function (e) {
-      //   var data = e.params.data;
-      //   console.log(data);
-      // });
-      //   designSelection.on("select2:select", function (e) {
-      //     console.log(e,'select');
-      //   });
-
-      // designSelection.on('select2:closing', function (e) {
-      //   console.log(e.params.args,'closing');
-      //   e.preventDefault();
-      // });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, drupalSettings);

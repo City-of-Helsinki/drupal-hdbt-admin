@@ -13,8 +13,7 @@ design_selection:
     theme:
       assets/css/basicLightbox.min.css: {}
   js:
-    assets/js/basicLightbox.min.js: {}
-    assets/js/designSelection.js: {}
+    assets/js/designSelection.js: { weight: -1 }
   dependencies:
     - core/jquery
     - select2/select2

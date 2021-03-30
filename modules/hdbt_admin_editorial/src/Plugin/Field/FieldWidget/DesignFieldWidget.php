@@ -31,6 +31,7 @@ class DesignFieldWidget extends OptionsSelectWidget {
     $handler = \Drupal::service('module_handler');
     $image_path = $base_secure_url . '/' . $handler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images/';
 
+    $element['#type'] = 'select2';
     $element['#cardinality'] = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
     $element['#select2'] = [
       'width' => $this->getSetting('width') ?? '400px',

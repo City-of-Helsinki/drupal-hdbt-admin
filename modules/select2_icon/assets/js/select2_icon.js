@@ -2,13 +2,13 @@
  * @file
  * Select2 icon integration.
  */
-(function ($, drupalSettings) {
+(function ($, Drupal, drupalSettings) {
   'use strict';
 
   Drupal.behaviors.select2IconIntegration = {
     attach: function (context) {
-      $('.select2-icon', context).on('select2-init', function (e) {
-        let config = $(e.target).data('select2-config');
+      $('.select2-icon', context).on('select2-init', function (event) {
+        let config = $(event.target).data('select2-config');
 
         const templateHandler = function (parentHandler) {
           return function (option, item) {
@@ -31,10 +31,9 @@
 
         config.templateSelection = templateHandler(config.templateSelection);
         config.templateResult = templateHandler(config.templateResult);
-
-        $(e.target).data('select2-config', config);
+        $(event.target).data('select2-config', config);
       });
     }
   };
 
-})(jQuery, drupalSettings);
+})(jQuery, Drupal, drupalSettings);

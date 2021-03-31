@@ -6,3 +6,14 @@ modal_window_position:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
+design_selection:
+  version: 1.x
+  css:
+    theme:
+      assets/css/basicLightbox.min.css: {}
+  js:
+    assets/js/designSelection.js: { weight: -1 }
+  dependencies:
+    - core/jquery
+    - select2/select2

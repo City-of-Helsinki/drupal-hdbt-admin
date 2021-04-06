@@ -1,0 +1,96 @@
+$button-height: 4rem;
+$button-border-radius: 6px;
+
+.paragraph-selection,
+.js .paragraph-selection {
+
+  // Overrides for the paragraph dropbutton.
+  &.dropbutton {
+    background-color: $color-white;
+    height: $button-height;
+    min-height: $button-height;
+    width: 400px;
+
+    .dropbutton__item {
+      min-height: $button-height; // Height.
+
+      &:first-of-type {
+        > * {
+          border-radius: $button-border-radius 0 0 $button-border-radius;
+        }
+
+        &:not(:last-of-type) {
+          margin-right: calc(3rem + 1px);
+        }
+      }
+    }
+  }
+
+  .dropbutton__toggle {
+    min-height: $button-height;
+  }
+
+  // Paragraph selection styles.
+  .paragraph-selection__thumbnail {
+    background-color: $color-white;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: $button-border-radius 0 0 $button-border-radius;
+    border-right: 2px solid var(--colorGinTableBorder);
+    border-top: 0;
+    height: $button-height;
+    object-fit: cover;
+    transition: transform .2s ease-in-out;
+    width: 100px;
+  }
+
+  .paragraph-selection__wrapper {
+    align-items: center;
+    border: 0 !important;
+    display: flex;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    &:hover {
+      input.button {
+        color: $color-white;
+      }
+    }
+
+    // Must be as specific as this, otherwise border will be added.
+    .button.field-add-more-submit {
+      border: none !important;
+      border-radius: 0;
+      box-shadow: none;
+      display: block;
+      margin: 0;
+      min-height: $button-height;
+      padding: 0 0 0 $spacing;
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
+
+// Styles for open paragraph selection.
+.open .paragraph-selection,
+.js .open .paragraph-selection {
+  &.dropbutton {
+    border-radius: $button-border-radius $button-border-radius 0 0;
+  }
+
+  &.dropbutton .dropbutton__item:not(:first-of-type) {
+    border-radius: 0;
+
+    .paragraph-selection__thumbnail {
+      border-radius: 0;
+    }
+
+    .paragraph-selection__wrapper {
+      background-color: $color-white;
+    }
+  }
+}
+

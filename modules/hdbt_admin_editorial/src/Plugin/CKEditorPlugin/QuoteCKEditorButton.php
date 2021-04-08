@@ -31,7 +31,7 @@ class QuoteCKEditorButton extends CKEditorPluginBase {
     // the CKEditor plugin you are implementing.
     return [
       'quote' => [
-        'label' => t('Quote'),
+        'label' => $this->t('Quote'),
         'image' => 'themes/custom/hdbt_admin/modules/hdbt_admin_editorial/assets/js/plugins/quote/icons/quote.png',
       ],
     ];

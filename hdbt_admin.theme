@@ -123,7 +123,7 @@ function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
 
   // Create a new field group for meta information,
   // if any of the meta data fields are available.
-  foreach($meta_fields as $field => $weight) {
+  foreach ($meta_fields as $field => $weight) {
     if (isset($form[$field])) {
       if (!array_key_exists('admin_metainformation', $form)) {
         $form['admin_metainformation'] = [

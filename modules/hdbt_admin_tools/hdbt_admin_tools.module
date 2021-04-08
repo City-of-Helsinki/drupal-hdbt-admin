@@ -9,7 +9,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_toolbar_alter()
+ * Implements hook_toolbar_alter().
  */
 function hdbt_admin_tools_toolbar_alter(&$items) {
   foreach ($items as $key => $value) {

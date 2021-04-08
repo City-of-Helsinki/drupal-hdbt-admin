@@ -43,6 +43,7 @@
 }
 
 .design-selection__thumbnail {
+  background-color: $color-white;
   border: 2px solid #818181;
   border-radius: 6px;
   height: 50px;
@@ -54,14 +55,3 @@
     transform: scale(1.1);
   }
 }
-
-.design-selection__image-wrapper {
-  background: $color-white;
-  border: 5px solid $color-black-60;
-  border-radius: 5px;
-  max-width: 50vh;
-  padding: $spacing;
-  position: absolute;
-  z-index: 9999;
-}
-

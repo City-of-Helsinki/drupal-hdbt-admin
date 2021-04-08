@@ -56,15 +56,15 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
         ':input[name="field_unit_parent_unit[0][target_id]"]' => ['!value' => ''],
       ],
     ];
-  }
 
-  // Keep the alternative address field wrappers closed unless alternative address
-  // is given to the fields.
-  if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-    $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
-  }
-  if ($form['field_unit_alt_postal_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-    $form['field_unit_alt_postal_address']['widget'][0]['#open'] = FALSE;
+    // Keep the alternative address field wrappers closed unless alternative address
+    // is given to the fields.
+    if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
+      $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
+    }
+    if ($form['field_unit_alt_postal_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
+      $form['field_unit_alt_postal_address']['widget'][0]['#open'] = FALSE;
+    }
   }
 }
 

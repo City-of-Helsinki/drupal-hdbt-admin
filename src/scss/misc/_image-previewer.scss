@@ -1,0 +1,43 @@
+.image-previewer__image-wrapper {
+  background: $color-white;
+  border: 5px solid $color-black-60;
+  border-radius: 5px;
+  max-width: 80vw;
+  padding: $spacing;
+  position: absolute;
+  z-index: 9999;
+
+  @media (min-width: 1080px) {
+    max-width: 50vw;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 30vw;
+  }
+}
+
+.image-previewer__image {
+  max-width: 80vw;
+  min-width: 80vw;
+  width: 100%;
+
+  @media (min-width: 1080px) {
+    max-width: 50vw;
+    min-width: 50vw;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 30vw;
+    min-width: 30vw;
+  }
+}
+
+.image-previewer__title {
+  @include font-size(18px);
+  font-weight: $font-weight-bold;
+}
+
+.image-previewer__description {
+  @include font-size(14px);
+  display: block;
+}

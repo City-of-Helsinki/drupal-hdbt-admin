@@ -9,6 +9,8 @@
    * Get currently selected link.
    */
   function getCurrentLink(editor) {
+    if (!editor.getSelection()) return null;
+
     const selected = editor.getSelection();
     const domElement = selected.getSelectedElement();
 

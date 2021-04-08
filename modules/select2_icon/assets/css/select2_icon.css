@@ -9,8 +9,8 @@
   padding: 7px;
 }
 
-.select2-icon + .select2-container .select2-selection__arrow {
-  top: 4px;
-  right: 4px;
+.select2-icon + .select2-container .select2-selection--single .select2-selection__arrow {
+  height: 35px;
+  right: 5px;
+  top: 0;
 }
-

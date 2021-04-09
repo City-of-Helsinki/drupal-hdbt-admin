@@ -42,6 +42,13 @@
       }
     }
   }
+
+  // Hide the text format helper for now. Maybe replace with something like a info-icon later on.
+  .text-full {
+    .filter-wrapper {
+      display: none;
+    }
+  }
 }
 
 // Hide "About text formats" link from text-area fields on node form.

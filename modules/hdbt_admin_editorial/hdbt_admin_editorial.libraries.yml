@@ -7,13 +7,26 @@ modal_window_position:
     - core/jquery
     - core/jquery.once
 
+image_previewer:
+  version: 1.x
+  js:
+    assets/js/imagePreviewer.js: { weight: -2}
+  dependencies:
+    - core/jquery
+
 design_selection:
   version: 1.x
-  css:
-    theme:
-      assets/css/basicLightbox.min.css: {}
   js:
     assets/js/designSelection.js: { weight: -1 }
   dependencies:
     - core/jquery
     - select2/select2
+    - hdbt_admin_editorial/image_previewer
+
+paragraph_selection:
+  version: 1.x
+  js:
+    assets/js/paragraphSelection.js: {}
+  dependencies:
+    - core/jquery
+    - hdbt_admin_editorial/image_previewer

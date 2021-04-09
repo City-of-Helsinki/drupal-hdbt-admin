@@ -38,14 +38,14 @@
 
             // Craft path to thumbnails based on item values and base design.
             const item = design + '--' + option.element.value;
-            const thumb = item + '-thumbnail.jpg';
-            const pathToThumb = drupalSettings.designSelect.pathToImages + thumb;
+            const thumbnail = item + '.svg';
+            const pathToThumb = drupalSettings.designSelect.pathToImages + thumbnail;
 
             // Craft template and return it.
             return $(`
               <div class="design-selection__wrapper">
                 <span>${option.text}</span>
-                <img src="${pathToThumb}" data-hover-desc="${option.text}" data-hover-image="${item}" class="design-selection__thumbnail" />
+                <img src="${pathToThumb}" data-hover-title="${option.text}" data-hover-image="${item}" class="design-selection__thumbnail" />
               </div>
             `);
           };
@@ -57,44 +57,15 @@
         config.theme = 'default design-selection';
         $(event.target).data('select2-config', config);
       });
+
+      /**
+       * Assign image preview to selection thumbnail.
+       */
+      const selector = '.select2-container--open .design-selection__thumbnail';
+      $(selector, context).imagePreviewer(selector, {
+        pathToImages: drupalSettings.designSelect.pathToImages,
+      });
     }
   };
-
-  // Offsets for the image position.
-  const designSelectionImageXOffset = 32;
-  const designSelectionImageYOffset = 32;
-
-  /**
-   * When design selection thumbnail is being hovered, load a bigger image
-   * of the thumbnail and present it next to the mouse cursor.
-   */
-  $(document).on('mouseenter', '.select2-container--open .design-selection__thumbnail', function(event) {
-    const image = $(this).data('hover-image');
-    const description = $(this).data('hover-desc');
-    const pathToImage = drupalSettings.designSelect.pathToImages + image + '.jpg';
-
-    // Craft a new element for the design selection preview image.
-    $('body').append(`
-      <p id="design-selection-preview" class="design-selection__image-wrapper">
-        <img class="design-selection__image"src="${pathToImage}" alt="${description}" />
-        <span class="design-selection__description">${description}</span>
-      </p>
-    `);
-
-    // Initialize the preview position.
-    $('#design-selection-preview')
-      .css('top',(event.pageY - designSelectionImageYOffset) + 'px')
-      .css('left',(event.pageX + designSelectionImageXOffset) + 'px')
-      .fadeIn(200);
-  // When mouse is moved, move along with the cursor.
-  }).on('mousemove', '.select2-container--open .design-selection__thumbnail', function(event) {
-    let dp = $('#design-selection-preview')
-    let height = dp.height();
-    dp.css('top',(event.pageY - designSelectionImageYOffset - height) + 'px')
-      .css('left',(event.pageX + designSelectionImageXOffset) + 'px');
-  // When mouse leaves the thumbnail, remove the preview element.
-  }).on('mouseleave', '.select2-container--open .design-selection__thumbnail', function(){
-    $('#design-selection-preview').fadeOut(200).remove();
-  });
 
 })(jQuery, Drupal, drupalSettings);

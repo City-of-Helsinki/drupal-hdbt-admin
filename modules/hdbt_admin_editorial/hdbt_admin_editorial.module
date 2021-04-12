@@ -39,8 +39,8 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
 
     case 'node_unit_edit_form':
     case 'node_unit_form':
-      // Only either parent unit or is parent should be filled so hiding the other
-      // if the other has some values.
+      // Only either parent unit or is parent should be filled
+      // so hiding the other if the other has some values.
       $form['field_unit_parent_unit']['#states'] = [
         'invisible' => [
           ':input[name="field_unit_is_parent[value]"]' => ['checked' => TRUE],
@@ -52,8 +52,8 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
         ],
       ];
 
-      // Keep the alternative address field wrappers closed unless alternative address
-      // is given to the fields.
+      // Keep the alternative address field wrappers closed unless alternative
+      // address is given to the fields.
       if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
         $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
       }
@@ -64,8 +64,8 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
 
     case 'node_service_edit_form':
     case 'node_service_form':
-      // Only either parent service or is parent should be filled so hiding the other
-      // if the other has some values.
+      // Only either parent service or is parent should be filled
+      // so hiding the other if the other has some values.
       $form['field_service_parent_service']['#states'] = [
         'invisible' => [
           ':input[name="field_service_is_parent[value]"]' => ['checked' => TRUE],

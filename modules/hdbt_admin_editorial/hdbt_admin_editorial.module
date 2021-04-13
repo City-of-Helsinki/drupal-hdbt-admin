@@ -24,18 +24,59 @@ function hdbt_admin_editorial_entity_bundle_field_info_alter(&$fields, EntityTyp
  * Implements hook_form_FORM_ID_alter().
  */
 function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_id) {
-  if (
-    $form_id == 'node_landing_page_edit_form' ||
-    $form_id == 'node_landing_page_form' ||
-    $form_id == 'node_page_edit_form' ||
-    $form_id == 'node_page_form'
-  ) {
-    // Control Hero paragraph visibility via checkbox states.
-    $form['field_hero']['#states'] = [
-      'visible' => [
-        ':input[name="field_has_hero[value]"]' => ['checked' => TRUE],
-      ],
-    ];
+  switch ($form_id) {
+    case 'node_landing_page_edit_form':
+    case 'node_landing_page_form':
+    case 'node_page_edit_form':
+    case 'node_page_form':
+      // Control Hero paragraph visibility via checkbox states.
+      $form['field_hero']['#states'] = [
+        'visible' => [
+          ':input[name="field_has_hero[value]"]' => ['checked' => TRUE],
+        ],
+      ];
+      break;
+
+    case 'node_unit_edit_form':
+    case 'node_unit_form':
+      // Only either parent unit or is parent should be filled
+      // so hiding the other if the other has some values.
+      $form['field_unit_parent_unit']['#states'] = [
+        'invisible' => [
+          ':input[name="field_unit_is_parent[value]"]' => ['checked' => TRUE],
+        ],
+      ];
+      $form['field_unit_is_parent']['#states'] = [
+        'invisible' => [
+          ':input[name="field_unit_parent_unit[0][target_id]"]' => ['!value' => ''],
+        ],
+      ];
+
+      // Keep the alternative address field wrappers closed unless alternative
+      // address is given to the fields.
+      if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
+        $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
+      }
+      if ($form['field_unit_alt_postal_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
+        $form['field_unit_alt_postal_address']['widget'][0]['#open'] = FALSE;
+      }
+      break;
+
+    case 'node_service_edit_form':
+    case 'node_service_form':
+      // Only either parent service or is parent should be filled
+      // so hiding the other if the other has some values.
+      $form['field_service_parent_service']['#states'] = [
+        'invisible' => [
+          ':input[name="field_service_is_parent[value]"]' => ['checked' => TRUE],
+        ],
+      ];
+      $form['field_service_is_parent']['#states'] = [
+        'invisible' => [
+          ':input[name="field_service_parent_service[0][target_id]"]' => ['!value' => ''],
+        ],
+      ];
+      break;
   }
   // Custom submit callback.
   $form['actions']['submit']['#submit'][] = 'hdbt_admin_editorial_node_form_submit_callback';

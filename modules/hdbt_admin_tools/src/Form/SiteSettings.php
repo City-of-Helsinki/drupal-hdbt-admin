@@ -37,7 +37,7 @@ class SiteSettings extends ConfigFormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /* @var \Drupal\Core\Entity\EntityTypeManagerInterface */
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface */
     $entityTypeManager = $container->get('entity_type.manager');
 
     return new static(

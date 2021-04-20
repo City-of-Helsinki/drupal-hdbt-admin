@@ -27,8 +27,7 @@ function hdbt_admin_preprocess_input(&$variables) {
     is_array($variables['element']['#parents']) &&
     in_array('default_icon', $variables['element']['#parents'])
   ) {
-    global $base_secure_url;
-    $variables['icons_path'] = $base_secure_url . '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
+    $variables['icons_path'] = '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
   }
 
   if ($variables['element']['#type'] !== 'submit') {

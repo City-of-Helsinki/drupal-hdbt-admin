@@ -99,8 +99,9 @@ function hdbt_admin_preprocess_table(&$variables) {
   // Add table field ID as a class as well. Remove the possible temp value from
   // the ID before adding it as a class.
   if (
-    is_array($variables['attributes']['class']) &&
-    array_key_exists('id', $variables['attributes'])
+    array_key_exists('id', $variables['attributes']) &&
+    array_key_exists('class', $variables['attributes']) &&
+    is_array($variables['attributes']['class'])
   ) {
     $class = explode('--', $variables['attributes']['id']);
     $variables['attributes']['class'][] = reset($class);

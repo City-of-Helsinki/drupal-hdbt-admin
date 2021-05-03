@@ -1,0 +1,9 @@
+.view-header {
+  overflow: hidden;
+
+  .view-results {
+    @include font-size(13px);
+    padding: $spacing-quarter;
+    text-align: right;
+  }
+}

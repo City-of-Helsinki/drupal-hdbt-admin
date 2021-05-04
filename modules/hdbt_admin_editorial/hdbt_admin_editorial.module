@@ -98,8 +98,8 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
       ],
     ];
 
-    // Keep the alternative address field wrappers closed unless alternative address
-    // is given to the fields.
+    // Keep the alternative address field wrappers closed unless alternative
+    // address is given to the fields.
     if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
       $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
     }

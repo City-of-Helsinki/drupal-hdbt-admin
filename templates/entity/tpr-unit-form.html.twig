@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Two column template for the TPR Unit add/edit form.
+ *
+ * This template is be used when an entity form specifies 'tpr-unit-form'
+ * as its #theme callback.
+ */
+#}
+<div class="layout-node-form clearfix">
+  <div class="layout-region layout-region-node-main">
+    {{ form|without('advanced', 'footer', 'actions', 'gin_sticky', 'gin_sidebar') }}
+  </div>
+  <div class="layout-region layout-region-node-actions">
+    {{ form.gin_sticky }}
+  </div>
+  <div class="layout-region layout-region-node-secondary">
+    <div class="layout-region__content">
+      {{ form.advanced }}
+    </div>
+  </div>
+</div>

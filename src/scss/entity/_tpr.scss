@@ -1,0 +1,85 @@
+//
+// @file
+// Styles for tpr entity forms.
+//
+.page-wrapper__tpr-unit-edit-form,
+.page-wrapper__tpr-service-edit-form {
+  .region-header {
+    display: block;
+  }
+}
+
+.tpr-unit-form,
+.tpr-service-form {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  width: 100%;
+
+  .block-system-branding-block {
+    margin: 0 auto;
+    max-width: 1280px;
+
+    .site-logo {
+      @media (min-width: 1024px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .translation-entity-all-languages {
+    display: none;
+  }
+
+  .tpr-entity-status {
+    align-self: center;
+    flex-grow: 1;
+    margin-right: 2rem;
+
+    @media (min-width: 1024px) {
+      flex-grow: 0;
+    }
+  }
+
+  .region.region-sticky {
+    .region-sticky__items {
+      max-width: 1280px;
+
+      @media (min-width: 1767px) {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Remove obsolete padding around the node form on large desktop modes.
+  .page-wrapper__node-edit-form .node-form {
+    @media (min-width: 1440px) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  // Details sidebar; Fix media library item width.
+  details#edit-admin-metainformation {
+    @media screen and (min-width: 64em) {
+      .media-library-selection .media-library-item--grid {
+        width: 100%;
+      }
+    }
+  }
+
+  // Hide the text format helper for now. Maybe replace with something like a info-icon later on.
+  .text-full {
+    .filter-wrapper {
+      display: none;
+    }
+  }
+
+  // Hide "About text formats" link from text-area fields on node form.
+  .field--widget-text-textarea {
+    .form-type--textarea + .filter-wrapper {
+      display: none;
+    }
+  }
+}

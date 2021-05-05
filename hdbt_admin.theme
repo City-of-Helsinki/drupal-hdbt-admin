@@ -5,7 +5,6 @@
  * Contains HDBT Admin theme.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 
 /**
@@ -165,26 +164,24 @@ function hdbt_admin_preprocess_html(&$variables) {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function hdbt_admin_form_tpr_unit_form_alter(&$form, FormStateInterface $form_state) {
-  hdbt_admin_apply_form_theme($form, $form_state);
+function hdbt_admin_form_tpr_unit_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function hdbt_admin_form_tpr_service_form_alter(&$form, FormStateInterface $form_state) {
-  hdbt_admin_apply_form_theme($form, $form_state);
+function hdbt_admin_form_tpr_service_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
 }
 
 /**
  * Apply Claro and Gin like feel to custom entity forms.
  *
- * @param $form
+ * @param array $form
  *   Form.
- * @param $form_state
- *   Form state.
  */
-function hdbt_admin_apply_form_theme(&$form, $form_state) {
+function hdbt_admin_apply_form_theme(array &$form) {
   $form['#theme'] = [$form['#form_id']];
   $form['#attached']['library'][] = 'claro/node-form';
 

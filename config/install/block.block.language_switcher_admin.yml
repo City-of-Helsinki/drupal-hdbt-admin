@@ -20,5 +20,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "block.block.language_switcher_admin/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"
+    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"
     negate: true

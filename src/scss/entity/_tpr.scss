@@ -7,6 +7,14 @@
   .region-header {
     display: block;
   }
+
+  .form-actions {
+    align-items: center;
+
+    .form-item--status {
+      margin: 0 1rem !important;
+    }
+  }
 }
 
 .tpr-unit-form,
@@ -20,26 +28,10 @@
   .block-system-branding-block {
     margin: 0 auto;
     max-width: 1280px;
-
-    .site-logo {
-      @media (min-width: 1024px) {
-        margin-bottom: 1rem;
-      }
-    }
   }
 
   .translation-entity-all-languages {
     display: none;
-  }
-
-  .tpr-entity-status {
-    align-self: center;
-    flex-grow: 1;
-    margin-right: 2rem;
-
-    @media (min-width: 1024px) {
-      flex-grow: 0;
-    }
   }
 
   .region.region-sticky {

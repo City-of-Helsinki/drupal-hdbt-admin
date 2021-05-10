@@ -183,7 +183,6 @@ function hdbt_admin_form_tpr_service_form_alter(&$form) {
  */
 function hdbt_admin_apply_form_theme(array &$form) {
   $form['#theme'] = [$form['#form_id']];
-  $form['#attached']['library'][] = 'claro/node-form';
 
   // Convert advanced tabs to accordion.
   $form['advanced']['#type'] = 'container';
@@ -195,9 +194,11 @@ function hdbt_admin_apply_form_theme(array &$form) {
   }
 
   if (isset($form['actions'])) {
-    // Create gin_sticky group.
-    $form['gin_sticky'] = [
+    // Create gin_actions group.
+    $form['gin_actions'] = [
       '#type' => 'container',
+      '#weight' => -1,
+      '#multilingual' => TRUE,
       '#attributes' => [
         'class' => [
           'gin-sticky',
@@ -206,13 +207,13 @@ function hdbt_admin_apply_form_theme(array &$form) {
     ];
 
     // Create actions group.
-    $form['gin_sticky']['actions'] = [
+    $form['gin_actions']['actions'] = [
       '#type' => 'actions',
       '#weight' => 130,
     ];
 
     // Create artificial status group.
-    $form['gin_sticky']['tpr_entity_status'] = [
+    $form['gin_actions']['tpr_entity_status'] = [
       '#type' => 'container',
       '#weight' => 0,
       '#attributes' => [
@@ -227,10 +228,10 @@ function hdbt_admin_apply_form_theme(array &$form) {
     $form['content_translation']['status']['#disabled'] = FALSE;
 
     // Add submit, preview and status to gin_sticky actions.
-    $form['gin_sticky']['actions']['submit'] = ($form['actions']['submit']) ?? [];
-    $form['gin_sticky']['actions']['preview'] = ($form['actions']['preview']) ?? [];
-    $form['content_translation']['status']['#group'] = 'tpr_entity_status';
-    unset($form['content_translation']['status']['#description']);
+    $form['gin_actions']['actions']['submit'] = ($form['actions']['submit']) ?? [];
+    $form['gin_actions']['actions']['preview'] = ($form['actions']['preview']) ?? [];
+    $form['gin_actions']['actions']['status'] = ($form['content_translation']['status']) ?? [];
+    $form['gin_actions']['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
     $form['content_translation']['#attributes']['class'][] = 'is-hidden';
 
     // Create gin_sidebar group. This group belongs to meta group.
@@ -269,5 +270,8 @@ function hdbt_admin_apply_form_theme(array &$form) {
     unset($form['gin_sidebar']['actions']['preview']);
     unset($form['gin_sidebar']['actions']['submit']);
     unset($form['gin_sidebar']['actions']['delete']);
+
+    $form['#attached']['library'][] = 'claro/node-form';
+    $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
   }
 }

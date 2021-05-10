@@ -43,7 +43,6 @@
 {% set local_actions_block = active_admin_theme ~ '_local_actions' %}
 
 <div class="region region-meta layout-container">
-
   <div class="breadcrumb-wrapper">
     {{ page.breadcrumb }}
   </div>
@@ -52,8 +51,10 @@
 
 <header class="region region-sticky">
   <div class="layout-container region-sticky__items">
-    {{ page.header }}
-    {{ page.content[local_actions_block] }}
+    <div class="region-sticky__items__inner">
+      {{ page.header }}
+      {{ page.content[local_actions_block] }}
+    </div>
   </div>
 </header>
 
@@ -72,3 +73,4 @@
     {{ page.content|without(local_actions_block) }}
   </main>
 </div>
+

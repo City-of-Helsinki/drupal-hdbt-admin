@@ -45,8 +45,10 @@
 <div class="page-wrapper__node-edit-form">
   <header class="region region-sticky">
     <div class="layout-container region-sticky__items">
-      {{ page.header }}
-      {{ page.content[local_actions_block] }}
+      <div class="region-sticky__items__inner">
+        {{ page.header }}
+        {{ page.content[local_actions_block] }}
+      </div>
     </div>
   </header>
 

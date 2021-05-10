@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Two column template for the TPR Service add/edit form.
+ *
+ * This template is be used when an entity form specifies 'tpr-service-form'
+ * as its #theme callback.
+ */
+#}
+<div class="layout-node-form clearfix">
+  <div class="layout-region layout-region-node-main">
+    {{ form|without('advanced', 'footer', 'actions', 'gin_actions', 'gin_sidebar') }}
+  </div>
+  <div class="layout-region layout-region-node-secondary">
+    <div class="layout-region__content">
+      {{ form.advanced }}
+    </div>
+  </div>
+  <div class="layout-node-form__actions">
+    {{ form.gin_actions }}
+  </div>
+</div>

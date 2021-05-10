@@ -17,6 +17,7 @@ module.exports = {
     heroToggle: ["./src/js/heroToggle.js"],
     columnsToggle: ["./src/js/columnsToggle.js"],
     listOfLinks: ["./src/js/listOfLinks.js"],
+    tprEditForm: ["./src/js/tprEditForm.js"],
   },
   output: {
     devtoolLineToLine: true,

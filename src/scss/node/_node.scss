@@ -8,29 +8,40 @@
   .block-system-branding-block {
     margin: 0 auto;
     max-width: 1280px;
+  }
 
-    .site-logo {
-      @media (min-width: 1024px) {
-        margin-bottom: 1rem;
-      }
+  // Remove unnecessary padding from region sticky.
+  &.gin--horizontal-toolbar {
+    .region.region-sticky {
+      padding: 0;
     }
   }
 
-  .region.region-sticky {
-    .region-sticky__items {
-      max-width: 1280px;
-
-      @media (min-width: 1767px) {
-        margin: 0 auto;
-      }
-    }
+  .region-sticky__items__inner {
+    justify-content: space-between;
   }
 
-  // Remove obsolete padding around the node form on large desktop modes.
-  .page-wrapper__node-edit-form .node-form {
-    @media (min-width: 1440px) {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+  .page-wrapper__node-edit-form {
+    // Alter the "meta" bar styles on smaller screens.
+    .layout-region-node-secondary {
+      @media (max-width: 1024px) {
+        background: $color-white;
+        border-top: 2px solid gray;
+        margin-left: -2rem;
+        margin-right: -2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 1rem;
+        width: auto !important;
+      }
+    }
+
+    // Remove obsolete padding around the node form on large desktop modes.
+    .node-form {
+      @media (min-width: 1440px) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
     }
   }
 

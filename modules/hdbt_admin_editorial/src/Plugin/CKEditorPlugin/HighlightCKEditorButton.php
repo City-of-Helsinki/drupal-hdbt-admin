@@ -32,7 +32,7 @@ class HighlightCKEditorButton extends CKEditorPluginBase {
     return [
       'highlight' => [
         'label' => $this->t('Highlight'),
-        'image' => 'themes/custom/hdbt_admin/modules/hdbt_admin_editorial/assets/js/plugins/highlight/icons/highlight.png',
+        'image' => 'themes/contrib/hdbt_admin/modules/hdbt_admin_editorial/assets/js/plugins/highlight/icons/highlight.png',
       ],
     ];
   }

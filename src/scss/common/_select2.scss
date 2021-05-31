@@ -5,22 +5,38 @@
 
 // Select2 to look and feel more Gin-like.
 .select2-container {
+  min-height: 50px;
+
   .select2-selection {
     border: 1px solid var(--colorGinFormElementBorder);
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba($hdbt-color-black, .25);
     color: var(--colorGinText);
+    min-height: 50px;
 
     &:hover {
       border-color: var(--colorGinText);
       box-shadow: inset 0 0 0 1px var(--colorGinText);
     }
 
+    .select2-selection__placeholder,
+    .select2-selection__arrow,
+    .select2-selection__clear {
+      padding: 7px;
+    }
+
+
+    .select2-selection__arrow {
+      height: 35px;
+      right: 5px;
+      top: 0;
+    }
+
     .select2-selection__rendered {
       align-items: center;
       display: flex;
       flex-flow: row wrap;
-      padding: 0.25rem;
+      padding: 12px 16px;
     }
 
     .select2-search__field {

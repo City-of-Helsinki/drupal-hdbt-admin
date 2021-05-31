@@ -1,0 +1,10 @@
+.paragraphs-library-item-form-instructions {
+  align-items: center;
+  display: flex;
+
+  .icon {
+    height: $spacing-double;
+    margin-right: $spacing-half;
+    width: $spacing-double;
+  }
+}

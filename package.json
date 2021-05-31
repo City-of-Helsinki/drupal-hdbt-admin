@@ -7,9 +7,8 @@
   "repository": "github:City-of-Helsinki/drupal-hdbt-admin",
   "scripts": {
     "dev": "webpack --progress --mode development --config  webpack.config.dev.js --watch",
-    "build": "webpack -p --progress --mode production --config webpack.config.build.js && npm run reorder:scss",
+    "build": "webpack -p --progress --mode production --config webpack.config.build.js",
     "postinstall": "husky install",
-    "reorder:scss": "postcss src/scss/ --parser postcss-scss --syntax postcss-scss --use css-declaration-sorter --replace --no-map",
     "lint": "lint-staged",
     "lint:js": "eslint --fix src/"
   },

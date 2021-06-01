@@ -35,6 +35,10 @@
       td.paragraph-bullet::after {
         display: none;
       }
+
+      td + td {
+        width: 100%;
+      }
     }
   }
 }

@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<form{{ attributes }}>
+  <div class="paragraphs-library-item-form-instructions">
+    {% include '@hdbt/misc/icon.twig' with {icon: 'alert-circle'} %}
+    <p>{{ 'Please select an appropriate language for your paragraph from the language switcher on the top right corner of the page.'|t }}</p>
+  </div>
+  {{ children }}
+</form>

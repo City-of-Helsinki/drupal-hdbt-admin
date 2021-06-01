@@ -2,7 +2,8 @@ $button-height: 4rem;
 $button-border-radius: 6px;
 
 .paragraph-selection,
-.js .paragraph-selection {
+.js .paragraph-selection,
+.js.no-touchevents .paragraph-selection {
 
   // Overrides for the paragraph dropbutton.
   &.dropbutton {
@@ -28,6 +29,7 @@ $button-border-radius: 6px;
 
   .dropbutton__toggle {
     min-height: $button-height;
+    min-width: calc(3rem + 1px);
   }
 
   // Paragraph selection styles.
@@ -76,9 +78,31 @@ $button-border-radius: 6px;
 
 // Styles for open paragraph selection.
 .open .paragraph-selection,
-.js .open .paragraph-selection {
+.js .open .paragraph-selection,
+.js.no-touchevents .open .paragraph-selection {
   &.dropbutton {
     border-radius: $button-border-radius $button-border-radius 0 0;
+  }
+
+  &.dropbutton .dropbutton__items {
+    border: 2px solid var(--colorGinTableBorder);
+    bottom: auto;
+    width: calc(100% - 4px);
+
+    .dropbutton__item {
+      border: 0;
+      box-shadow: none;
+      margin: 0;
+
+      .paragraph-selection__wrapper {
+        background-color: $color-white;
+
+        &:hover {
+          background-color: var(--colorGinPrimaryHover);
+          box-shadow: none;
+        }
+      }
+    }
   }
 
   &.dropbutton .dropbutton__item:not(:first-of-type) {
@@ -93,4 +117,3 @@ $button-border-radius: 6px;
     }
   }
 }
-

@@ -36,77 +36,10 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
         ],
       ];
       break;
-
-    case 'node_unit_edit_form':
-    case 'node_unit_form':
-      // Only either parent unit or is parent should be filled
-      // so hiding the other if the other has some values.
-      $form['field_unit_parent_unit']['#states'] = [
-        'invisible' => [
-          ':input[name="field_unit_is_parent[value]"]' => ['checked' => TRUE],
-        ],
-      ];
-      $form['field_unit_is_parent']['#states'] = [
-        'invisible' => [
-          ':input[name="field_unit_parent_unit[0][target_id]"]' => ['!value' => ''],
-        ],
-      ];
-
-      // Keep the alternative address field wrappers closed unless alternative
-      // address is given to the fields.
-      if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-        $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
-      }
-      if ($form['field_unit_alt_postal_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-        $form['field_unit_alt_postal_address']['widget'][0]['#open'] = FALSE;
-      }
-      break;
-
-    case 'node_service_edit_form':
-    case 'node_service_form':
-      // Only either parent service or is parent should be filled
-      // so hiding the other if the other has some values.
-      $form['field_service_parent_service']['#states'] = [
-        'invisible' => [
-          ':input[name="field_service_is_parent[value]"]' => ['checked' => TRUE],
-        ],
-      ];
-      $form['field_service_is_parent']['#states'] = [
-        'invisible' => [
-          ':input[name="field_service_parent_service[0][target_id]"]' => ['!value' => ''],
-        ],
-      ];
-      break;
   }
   // Custom submit callback.
   $form['actions']['submit']['#submit'][] = 'hdbt_admin_editorial_node_form_submit_callback';
 
-  if (
-    $form_id == 'node_unit_edit_form' ||
-    $form_id == 'node_unit_form'
-  ) {
-    // Only either parent unit or is parent should be filled so hiding the other
-    // if the other has some values.
-    $form['field_unit_parent_unit']['#states'] = [
-      'invisible' => [
-        ':input[name="field_unit_is_parent[value]"]' => ['checked' => TRUE],
-      ],
-    ];
-    $form['field_unit_is_parent']['#states'] = [
-      'invisible' => [
-        ':input[name="field_unit_parent_unit[0][target_id]"]' => ['!value' => ''],
-      ],
-    ];
-
-    // Keep the alternative address field wrappers closed unless alternative
-    // address is given to the fields.
-    if ($form['field_unit_alt_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-      $form['field_unit_alt_address']['widget'][0]['#open'] = FALSE;
-    }
-    if ($form['field_unit_alt_postal_address']['widget'][0]['address']['#default_value']['country_code'] == NULL) {
-      $form['field_unit_alt_postal_address']['widget'][0]['#open'] = FALSE;
-    }
-  }
 }
 
 /**
@@ -172,6 +105,21 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     ];
     $element['subform']['field_hero_link']['#states'] = $link_states;
     $element['subform']['field_hero_link_design']['#states'] = $link_states;
+
+    $fields = [
+      'field_hero_desc',
+      'field_hero_image',
+      'field_hero_link',
+      'field_hero_link_design',
+    ];
+
+    // Set types if they're missing to prevent undefined index error in
+    // /core/lib/Drupal/Core/Form/FormHelper.php:211
+    foreach ($fields as $field) {
+      if (!isset($element['subform'][$field]['#type'])) {
+        $element['subform'][$field]['#type'] = '';
+      }
+    }
   }
 
   // Perform alterations to Columns paragraph.
@@ -350,4 +298,25 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
       }
     }
   }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hdbt_admin_editorial_form_alter(&$form) {
+
+  // Handle only admin routes.
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+
+  // Attach design selection library and path to images to current form.
+  // If design selection field widget is in use in f.e. a paragraph and it is
+  // loaded via ajax, there might be situation where the select2 library is
+  // loaded before the design selection library.
+  global $base_secure_url;
+  $handler = \Drupal::service('module_handler');
+  $image_path = $base_secure_url . '/' . $handler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images/';
+  $form['#attached']['library'][] = 'hdbt_admin_editorial/design_selection';
+  $form['#attached']['drupalSettings']['designSelect']['pathToImages'] = $image_path;
 }

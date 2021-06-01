@@ -26,3 +26,11 @@ function select2_icon_theme() {
     ],
   ];
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function select2_icon_form_paragraphs_library_item_edit_form_alter(&$form, &$form_state, $form_id) {
+  // Attach select2_icon library to the form library item edit form.
+  $form['#attached']['library'][] = 'select2_icon/select2_icon';
+}

@@ -1,7 +1,7 @@
 modal_window_position:
   version: VERSION
   js:
-    assets/js/modal_window_position.js: {}
+    assets/js/modalWindowPosition.js: {}
   dependencies:
     - core/drupal
     - core/jquery
@@ -30,3 +30,12 @@ paragraph_selection:
   dependencies:
     - core/jquery
     - hdbt_admin_editorial/image_previewer
+
+link_protocol_selection:
+  version: VERSION
+  js:
+    assets/js/linkProtocolSelector.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

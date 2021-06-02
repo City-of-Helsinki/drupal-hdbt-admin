@@ -159,27 +159,33 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     $input = $form_state->get('link_element') ?: [];
   }
 
-  /*
-   * Helper to retrieve form fields' default values.
-   *
-   * @param string $attribute_name
-   * @param string $fallback
-   *
-   * @return mixed
-   *   The existing value or the fallback.
-   */
+  // Helper function to retrieve form field default values.
   $get_default_value = function ($attribute_name, $fallback = '') use ($input) {
     return !empty($input[$attribute_name]) ? $input[$attribute_name] : $fallback;
   };
 
   $form['#attached']['library'][] = 'hdbt_admin_editorial/modal_window_position';
-  $form['attributes']['href']['#weight'] = 0;
+  $form['#attached']['library'][] = 'hdbt_admin_editorial/link_protocol_selection';
 
   $form['attributes']['data-link-text'] = [
     '#type' => 'textfield',
     '#title' => t('Link text'),
     '#default_value' => $get_default_value('data-link-text'),
     '#maxlength' => 512,
+  ];
+
+  $form['attributes']['protocol'] = [
+    '#type' => 'select',
+    '#title' => t('Protocol'),
+    '#default_value' => $get_default_value('protocol'),
+    '#options' => [
+      'false' => t('Select'),
+      'https://' => t('https://'),
+      'http://' => t('http://'),
+      'tel://' => t('tel://'),
+      'mailto://' => t('mailto://'),
+    ],
+    '#weight' => -100,
   ];
 
   $form['attributes']['class'] = [
@@ -249,10 +255,11 @@ function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormS
  * Validation for link attributes.
  */
 function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
+  $skip_attributes = ['protocol'];
   $values = $form_state->getValue('attributes');
   $link_element = $form_state->get('link_element');
   foreach ($values as $key => $value) {
-    if (empty($value)) {
+    if (empty($value) && !in_array($key, $skip_attributes)) {
       $form_state->setValue(['attributes', $key], '');
       if (empty($link_element)) {
         $form_state->unsetValue(['attributes', $key]);

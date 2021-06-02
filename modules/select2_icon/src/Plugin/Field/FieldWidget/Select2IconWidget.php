@@ -72,7 +72,7 @@ class Select2IconWidget extends WidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     global $base_secure_url;
-    $icon_path = $base_secure_url . '/' . $this->select2IconConfig->get('path_to_sprite');
+    $icon_path = $base_secure_url . $this->select2IconConfig->get('path_to_sprite');
 
     $element['icon'] = [
       '#type' => 'select2',

@@ -11,7 +11,7 @@ form[data-drupal-media-type="hel_map"] {
       position: relative;
 
       &::before {
-        background: rgba(0,0,0,0.1);
+        background: rgba($color-black, 0.1);
         bottom: 0;
         content: "";
         left: 0;
@@ -43,7 +43,7 @@ form[data-drupal-media-type="hel_map"] {
       width: 100%;
 
       &::before {
-        background: rgba(0,0,0,0.05);
+        background: rgba($color-black, 0.05);
       }
 
       iframe {

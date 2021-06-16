@@ -1,0 +1,55 @@
+// Media library selection and Media library item preview for hel-map.
+.field--name-field-map-map,
+form[data-drupal-media-type="hel_map"] {
+  .media-library-item {
+    .media-library-item__preview {
+      padding-bottom: 0;
+    }
+
+    .field--name-field-media-hel-map {
+      margin-bottom: -7px; // Fix empty space.
+      position: relative;
+
+      &::before {
+        background: rgba($color-black, 0.1);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      a {
+        display: none;
+      }
+    }
+  }
+}
+
+.field--name-field-map-map {
+  .media-library-selection .media-library-item--grid {
+    width: 100%;
+  }
+
+  .media-library-item {
+    .media-library-item__preview {
+      padding-bottom: 0;
+    }
+
+    .field--name-field-media-hel-map {
+      height: 300px;
+      margin-bottom: 0;
+      width: 100%;
+
+      &::before {
+        background: rgba($color-black, 0.05);
+      }
+
+      iframe {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

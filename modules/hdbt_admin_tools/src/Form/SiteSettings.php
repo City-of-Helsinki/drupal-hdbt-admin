@@ -4,47 +4,16 @@ namespace Drupal\hdbt_admin_tools\Form;
 
 /**
  * @file
- * Contains Drupal\hdbt_admin_tools\Form\SiteHeaderSettings.
+ * Contains Drupal\hdbt_admin_tools\Form\SiteSettings.
  */
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\NodeStorageInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Site settings.
  */
 class SiteSettings extends ConfigFormBase {
-
-  /**
-   * Node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface
-   */
-  protected $nodeStorage;
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct(ConfigFactoryInterface $config_factory, NodeStorageInterface $node_storage) {
-    parent::__construct($config_factory);
-    $this->nodeStorage = $node_storage;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface */
-    $entityTypeManager = $container->get('entity_type.manager');
-
-    return new static(
-      $container->get('config.factory'),
-      $entityTypeManager->getStorage('node')
-    );
-  }
 
   /**
    * {@inheritdoc}

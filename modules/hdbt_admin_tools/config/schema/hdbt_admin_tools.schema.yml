@@ -28,3 +28,18 @@ hdbt_admin_tools.site_settings:
         footer_top_content:
           label: 'Footer top content'
           type: text_format
+
+hdbt_admin_tools.cookie_consent_intro:
+  type: config_object
+  label: 'Cookie consent intro'
+  mapping:
+    cc:
+      label: 'Cookie consent'
+      type: mapping
+      mapping:
+        title:
+          label: 'Cookie consent intro title'
+          type: label
+        content:
+          label: 'Cookie consent intro content'
+          type: text_format

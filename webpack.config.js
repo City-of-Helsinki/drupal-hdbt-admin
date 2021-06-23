@@ -59,9 +59,6 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: path.resolve(__dirname, 'dist'),
-            },
           },
           {
             loader: 'css-loader',

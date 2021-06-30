@@ -38,16 +38,27 @@
 
             // Craft path to thumbnails based on item values and base design.
             const item = design + '--' + option.element.value;
+            const basePath = drupalSettings.designSelect.pathToImages;
             const thumbnail = item + '.svg';
-            const pathToThumb = drupalSettings.designSelect.pathToImages + thumbnail;
+            const fallback = drupalSettings.designSelect.fallbackImage;
 
-            // Craft template and return it.
-            return $(`
+            // Craft the image template.
+            const imageTemplate = $(`
               <div class="design-selection__wrapper">
                 <span>${option.text}</span>
-                <img src="${pathToThumb}" data-hover-title="${option.text}" data-hover-image="${item}" class="design-selection__thumbnail" />
+                <img src="" data-hover-title="${option.text}" data-hover-image="${item}" class="design-selection__thumbnail" />
               </div>
             `);
+
+            // In case the thumbnail image is not found, replace with default image.
+            fetch(basePath + thumbnail).then(function(response) {
+              return (response.ok)
+                ? imageTemplate.children('img').attr('src', basePath + thumbnail)
+                : imageTemplate.children('img').attr('src',basePath + fallback);
+            });
+
+            // Return the image template.
+            return imageTemplate;
           };
         };
 
@@ -55,6 +66,7 @@
         config.templateResult = templateHandler(config.templateResult, designSelect);
         config.minimumResultsForSearch = -1;
         config.theme = 'default design-selection';
+        config.fallbackImage = drupalSettings.designSelect.fallbackImage;
         $(event.target).data('select2-config', config);
       });
 

@@ -33,7 +33,7 @@
   ]
 %}
 {# // Apply custom color for the element border #}
-{% set input_style = '--input-radio-theme-color: var(--color-' ~ element['#return_value'] ~ ');' %}
+{% set input_style = '--input-radio-color-palette: var(--hdbt-color-' ~ element['#return_value'] ~ '--primary); --input-radio-color-palette-text: var(--hdbt-color-' ~ element['#return_value'] ~ '-text-primary);' %}
 
 <div{{ attributes.addClass(classes).setAttribute('style', input_style) }}>
   {% if label_display in ['before', 'invisible'] %}
@@ -47,12 +47,17 @@
       {{ description.content }}
     </div>
   {% endif %}
-  {{ children }}
+  <div class="color-palette-wrapper">
+    <div class="color-palette color-palette--primary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--primary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--primary);">{{ 'Primary'|t }}</div>
+    <div class="color-palette color-palette--secondary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--secondary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--secondary);">{{ 'Secondary'|t }}</div>
+    <div class="color-palette color-palette--accent" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--accent); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--accent);">{{ 'Accent'|t }}</div>
+  </div>
+  <div class="selection-wrapper">
+    {{ children }}
+    {{ label }}
+  </div>
   {% if suffix is not empty %}
     <span class="form-item__suffix{{disabled == 'disabled' ? ' is-disabled'}}">{{ suffix }}</span>
-  {% endif %}
-  {% if label_display == 'after' %}
-    {{ label }}
   {% endif %}
   {% if errors %}
     <div class="form-item__error-message">

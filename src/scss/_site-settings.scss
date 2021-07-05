@@ -5,23 +5,10 @@
 
 :root {
   // Default color variables.
-  --input-radio-theme-color: var(--color-black-70);
+  --input-radio-color-palette: var(--color-black-70);
+  --input-radio-color-palette-text: var(--color-white);
   --hdbt-admin-theme-color: var(--color-black);
   --hdbt-admin-text-color: var(--color-white);
-
-  // Default text colors based on background colors.
-  --hdbt-admin-text-color--coat-of-arms: var(--color-white);
-  --hdbt-admin-text-color--brick: var(--color-white);
-  --hdbt-admin-text-color--bus: var(--color-white);
-  --hdbt-admin-text-color--metro: var(--color-white);
-  --hdbt-admin-text-color--tram: var(--color-white);
-  --hdbt-admin-text-color--gold: var(--color-black);
-  --hdbt-admin-text-color--silver: var(--color-black);
-  --hdbt-admin-text-color--copper: var(--color-black);
-  --hdbt-admin-text-color--engel: var(--color-black);
-  --hdbt-admin-text-color--fog: var(--color-black);
-  --hdbt-admin-text-color--summer: var(--color-black);
-  --hdbt-admin-text-color--suomenlinna: var(--color-black);
 }
 
 .hdbt-admin-tools-site-settings {
@@ -35,12 +22,9 @@
 
     .form-type--boolean {
       align-items: center;
-      border: 2px solid var(--input-radio-theme-color);
-      border-radius: $spacing-quarter;
       display: flex;
       margin: $spacing-half;
       min-width: 200px;
-      padding: 0 $spacing-half 0 0;
 
       &.form-item--site-settings-koro {
         width: calc(100% - #{$spacing-double} - 4px); // 4px: Border.
@@ -48,6 +32,14 @@
         @media only screen and (min-width: $breakpoint-l) {
           width: 60%;
         }
+      }
+
+      &.form-item--site-settings-theme-color {
+        border: 4px solid $color-black-70;
+        flex-flow: column;
+        margin: $spacing;
+        min-width: 300px;
+        width: calc(25% - 40px);
       }
 
       &.form-item--site-settings-default-icon {
@@ -69,11 +61,47 @@
       }
     }
 
-    .theme-color {
-      background-color: var(--input-radio-theme-color);
-      color: var(--hdbt-admin-text-color);
-      height: 40px;
-      width: 40px;
+    .color-palette-wrapper {
+      align-items: center;
+      display: grid;
+      gap: 0;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 150px;
+      justify-content: center;
+      width: 100%;
+
+      .color-palette--primary {
+        grid-column-end: 3;
+        grid-column-start: 1;
+        grid-row-end: 2;
+        grid-row-start: 1;
+      }
+    }
+
+    .selection-wrapper {
+      display: flex;
+      margin: $spacing-double;
+
+      label {
+        @include font-size(20px);
+      }
+    }
+
+    .color-palette {
+      @include font-size(16px);
+      align-items: center;
+      background-color: var(--input-radio-color-palette);
+      color: var(--input-radio-color-palette-text);
+      display: flex;
+      font-weight: $font-weight-medium;
+      height: 100%;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .color-palette--primary {
+      font-weight: $font-weight-bold;
     }
 
     .koro {

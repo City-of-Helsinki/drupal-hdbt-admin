@@ -19,12 +19,18 @@
           const description = button.data('paragraph-description');
           const image = button.data('paragraph-image');
           const thumb = image + '.svg';
-          const pathToThumb = drupalSettings.paragraphSelect.pathToImages + thumb;
+          const basePath = drupalSettings.paragraphSelect.pathToImages;
+          const fallbackImage = drupalSettings.paragraphSelect.fallbackImage;
+          const pathToThumb = basePath + thumb;
 
           button.children('input[type=submit]').wrap( '<div class="paragraph-selection__wrapper"></div>');
           button.children('.paragraph-selection__wrapper').prepend(`
             <img src="${pathToThumb}" data-hover-title="${title}" data-hover-image="${image}" data-hover-description="${description}" class="paragraph-selection__thumbnail" />
           `);
+          button.find('img').on('error', function () {
+            this.onerror = null;
+            this.src = basePath + fallbackImage;
+          });
         });
       });
 

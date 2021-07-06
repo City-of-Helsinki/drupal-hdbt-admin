@@ -286,6 +286,7 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
 
     // Attach image path and paragraph selection library.
     $variables['#attached']['drupalSettings']['paragraphSelect']['pathToImages'] = $image_path;
+    $variables['#attached']['drupalSettings']['paragraphSelect']['fallbackImage'] = 'custom-style.svg';
     $variables['#attached']['library'][] = 'hdbt_admin_editorial/paragraph_selection';
 
     // Get paragraph types.

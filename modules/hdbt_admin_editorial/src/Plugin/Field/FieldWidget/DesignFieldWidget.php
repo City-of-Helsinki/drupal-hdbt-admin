@@ -40,6 +40,7 @@ class DesignFieldWidget extends OptionsSelectWidget {
     $element['#default_value'] = $this->getSelectedOptions($items);
     $element['#attached']['library'][] = 'hdbt_admin_editorial/design_selection';
     $element['#attached']['drupalSettings']['designSelect']['pathToImages'] = $image_path;
+    $element['#attached']['drupalSettings']['designSelect']['fallbackImage'] = 'custom-style.svg';
     $element['#attributes']['class'][] = 'design-selection';
     $element['#attributes']['data-design-select'] = $this->getFieldName();
 

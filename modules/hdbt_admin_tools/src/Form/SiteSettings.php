@@ -48,16 +48,14 @@ class SiteSettings extends ConfigFormBase {
       '#title' => $this->t('Site wide settings'),
     ];
 
-    $theme_colors = [
-      'coat-of-arms' => $this->t('Coat of Arms'),
-      'gold' => $this->t('Gold'),
-      'silver' => $this->t('Silver'),
-      'brick' => $this->t('Brick'),
+    $color_palette = [
       'bus' => $this->t('Bus'),
+      'coat-of-arms' => $this->t('Coat of Arms'),
       'copper' => $this->t('Copper'),
+      'gold' => $this->t('Gold'),
       'engel' => $this->t('Engel'),
-      'fog' => $this->t('Fog'),
       'metro' => $this->t('Metro'),
+      'silver' => $this->t('Silver'),
       'summer' => $this->t('Summer'),
       'suomenlinna' => $this->t('Suomenlinna'),
       'tram' => $this->t('Tram'),
@@ -65,9 +63,9 @@ class SiteSettings extends ConfigFormBase {
 
     $form['site_settings']['theme_color'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Theme color'),
-      '#options' => $theme_colors,
-      '#description' => $this->t('The theme color will be used site wide in various components.'),
+      '#title' => $this->t('Color palette'),
+      '#options' => $color_palette,
+      '#description' => $this->t('The chosen color palette will be used site wide in various components.'),
       '#default_value' => $settings->get('site_settings')['theme_color'] ?: [],
     ];
 
@@ -138,6 +136,7 @@ class SiteSettings extends ConfigFormBase {
     ];
 
     $form['#attached']['library'][] = 'hdbt_admin_tools/site_settings';
+    $form['#attached']['library'][] = 'hdbt/color-palette';
 
     return $form;
   }

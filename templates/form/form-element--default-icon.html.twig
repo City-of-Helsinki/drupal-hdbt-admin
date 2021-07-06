@@ -33,7 +33,7 @@
   ]
 %}
 {# // Apply custom color for the element border #}
-{% set input_style = '--input-radio-theme-color: var(--color-' ~ element['#return_value'] ~ ');' %}
+{% set input_style = '--input-radio-color-palette: var(--hdbt-color-' ~ element['#return_value'] ~ '--primary); --input-radio-color-palette-text: var(--hdbt-color-' ~ element['#return_value'] ~ '-text-primary);' %}
 
 <div{{ attributes.addClass(classes).setAttribute('style', input_style) }}>
   {% if label_display in ['before', 'invisible'] %}

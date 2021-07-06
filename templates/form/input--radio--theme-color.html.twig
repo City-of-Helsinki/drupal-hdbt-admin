@@ -12,6 +12,5 @@
  */
 #}
 {% apply spaceless %}
-  <div class="theme-color" style="--input-radio-theme-color: var(--color-{{ attributes.value }});"></div>
-  <input{{ attributes }}/>{{ children }}
+  <div class="selection"><input{{ attributes }}/>{{ children }}</div>
 {% endapply %}

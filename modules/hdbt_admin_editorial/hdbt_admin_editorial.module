@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
 
 /**
  * Implements hook_entity_bundle_field_info_alter().
@@ -165,7 +166,7 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
   };
 
   $form['#attached']['library'][] = 'hdbt_admin_editorial/modal_window_position';
-  $form['#attached']['library'][] = 'hdbt_admin_editorial/link_protocol_selection';
+  $form['#attached']['library'][] = 'hdbt_admin_editorial/link_plugin_enhancements';
 
   $form['attributes']['data-link-text'] = [
     '#type' => 'textfield',
@@ -174,10 +175,10 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#maxlength' => 512,
   ];
 
-  $form['attributes']['protocol'] = [
+  $form['attributes']['data-protocol'] = [
     '#type' => 'select',
     '#title' => t('Protocol'),
-    '#default_value' => $get_default_value('protocol'),
+    '#default_value' => $get_default_value('data-protocol'),
     '#options' => [
       'false' => t('Select'),
       'https://' => t('https://'),
@@ -188,10 +189,10 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#weight' => -100,
   ];
 
-  $form['attributes']['class'] = [
+  $form['attributes']['data-design'] = [
     '#type' => 'select',
     '#title' => t('Design'),
-    '#default_value' => $get_default_value('class'),
+    '#default_value' => $get_default_value('data-design'),
     '#options' => [
       'link' => t('Default'),
       'hds-button hds-button--primary' => t('Button primary'),
@@ -199,6 +200,14 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
       'hds-button hds-button--supplementary' => t('Button supplementary'),
     ],
     '#weight' => 1,
+  ];
+
+  $form['attributes']['data-icon'] = [
+    '#title' => t('Icon'),
+    '#type' => 'select2_icon_element',
+    '#default_value' => $get_default_value('data-icon', NULL),
+    '#options' => Select2Icon::loadIcons(),
+    '#weight' => 3,
   ];
 
   $form['attributes']['target'] = [

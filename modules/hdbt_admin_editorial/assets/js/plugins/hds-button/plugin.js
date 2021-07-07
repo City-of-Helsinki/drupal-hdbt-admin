@@ -99,17 +99,17 @@
         // Check for the button label.
         let buttonLabel = linkElement.find('span.hds-button__label');
 
-        // Handle link classes.
+        // Check if design has been selected (or exists) and act accordingly.
         if (linkElement.$.dataset.design) {
           const design = linkElement.$.dataset.design;
           let classList = design;
 
           // Set design as data-attribute.
-          console.log('perkele')
           linkElement.setAttribute('data-design', design);
 
-          // Handle design.
+          // Handle button designs.
           if (design !== 'link') {
+
             // Add button label if none exist.
             if (buttonLabel.count() === 0) {
               handleLabelSpan(editor, linkElement);
@@ -121,7 +121,7 @@
               classList += ' hdbt-icon hdbt-icon--link-external';
             }
 
-            // Add icon if set.
+            // Add the selected icon, if one exists.
             if (linkElement.$.dataset.icon) {
               classList = design;
               classList += ' hdbt-icon hdbt-icon--' + linkElement.$.dataset.icon;
@@ -133,6 +133,7 @@
             handleLabelSpan(editor, linkElement, 'remove');
           }
 
+          // Set link classes based on user selections.
           handleClasses(editor, linkElement, classList);
         }
 

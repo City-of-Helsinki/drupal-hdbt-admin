@@ -29,27 +29,6 @@
   }
 
   /**
-   * Handle icon span.
-   */
-  function handleIconSpan(editor, linkElement, action = 'add') {
-    if (action === 'add') {
-      let iconSpan = document.createElement('span');
-      iconSpan.setAttribute('aria-hidden', 'true');
-      iconSpan.classList.add('hds-button__icon', 'hds-icon');
-      // Set the icon which should be used.
-      iconSpan.classList.add('hds-icon--link-external');
-      linkElement.$.append(iconSpan);
-    }
-    else {
-      let spanIcon = linkElement.findOne('span.hds-button__icon');
-      if (spanIcon) {
-        spanIcon.remove();
-      }
-    }
-    editor.fire('saveSnapshot');
-  }
-
-  /**
    * Handle label span.
    */
   function handleLabelSpan(editor, linkElement, action = 'add') {
@@ -66,6 +45,15 @@
         linkElement.setHtml(spanLabel.getHtml());
       }
     }
+    editor.fire('saveSnapshot');
+  }
+
+  /**
+   * Handle icon classes.
+   */
+  function handleClasses(editor, linkElement, elementClasses) {
+    linkElement.$.classList = elementClasses;
+    linkElement.$.dataset.ckeSavedClass = elementClasses;
     editor.fire('saveSnapshot');
   }
 
@@ -110,32 +98,43 @@
 
         // Check for the button label.
         let buttonLabel = linkElement.find('span.hds-button__label');
-        let buttonIcon = linkElement.find('span.hds-button__icon');
 
-        // Act only if link element has hds-button class.
-        if (linkElement.hasClass('hds-button')) {
+        // Check if design has been selected (or exists) and act accordingly.
+        if (linkElement.$.dataset.design) {
+          const design = linkElement.$.dataset.design;
+          let classList = design;
 
-          // Add button label if none exist.
-          if (buttonLabel.count() === 0) {
-            handleLabelSpan(editor, linkElement);
-          }
+          // Set design as data-attribute.
+          linkElement.setAttribute('data-design', design);
 
-          // If link element has class hds-button and it's pointing to blank.
-          if (linkElement.getAttribute('target') === '_blank') {
+          // Handle button designs.
+          if (design !== 'link') {
 
-            // Add button icon if none exist.
-            if (buttonIcon.count() === 0) {
-              handleIconSpan(editor, linkElement);
+            // Add button label if none exist.
+            if (buttonLabel.count() === 0) {
+              handleLabelSpan(editor, linkElement);
+            }
+
+            // Add link-external icon if link element has class hds-button and
+            // it's pointing to blank.
+            if (linkElement.getAttribute('target') === '_blank') {
+              classList += ' hdbt-icon hdbt-icon--link-external';
+            }
+
+            // Add the selected icon, if one exists.
+            if (linkElement.$.dataset.icon) {
+              classList = design;
+              classList += ' hdbt-icon hdbt-icon--' + linkElement.$.dataset.icon;
+              linkElement.setAttribute('data-icon', linkElement.$.dataset.icon);
             }
           }
-          // Remove the possible icon span if one exists.
+          // Remove the possible spans if one exists.
           else {
-            handleIconSpan(editor, linkElement, 'remove');
+            handleLabelSpan(editor, linkElement, 'remove');
           }
-        }
-        // Remove the possible spans if one exists.
-        else {
-          handleLabelSpan(editor, linkElement, 'remove');
+
+          // Set link classes based on user selections.
+          handleClasses(editor, linkElement, classList);
         }
 
         // Check if link text has changed and act accordingly.

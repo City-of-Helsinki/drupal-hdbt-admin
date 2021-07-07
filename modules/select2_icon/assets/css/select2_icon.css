@@ -14,3 +14,7 @@
   right: 5px;
   top: 0;
 }
+
+.ui-widget-overlay + .select2-container {
+  z-index: 10002;
+}

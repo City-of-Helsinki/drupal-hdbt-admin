@@ -48,23 +48,10 @@ class SiteSettings extends ConfigFormBase {
       '#title' => $this->t('Site wide settings'),
     ];
 
-    $color_palette = [
-      'bus' => $this->t('Bus'),
-      'coat-of-arms' => $this->t('Coat of Arms'),
-      'copper' => $this->t('Copper'),
-      'gold' => $this->t('Gold'),
-      'engel' => $this->t('Engel'),
-      'metro' => $this->t('Metro'),
-      'silver' => $this->t('Silver'),
-      'summer' => $this->t('Summer'),
-      'suomenlinna' => $this->t('Suomenlinna'),
-      'tram' => $this->t('Tram'),
-    ];
-
     $form['site_settings']['theme_color'] = [
       '#type' => 'radios',
       '#title' => $this->t('Color palette'),
-      '#options' => $color_palette,
+      '#options' => $this->getColorPalettes(),
       '#description' => $this->t('The chosen color palette will be used site wide in various components.'),
       '#default_value' => $settings->get('site_settings')['theme_color'] ?: [],
     ];
@@ -139,6 +126,27 @@ class SiteSettings extends ConfigFormBase {
     $form['#attached']['library'][] = 'hdbt/color-palette';
 
     return $form;
+  }
+
+  /**
+   * Get color palettes.
+   *
+   * @return array
+   *   Returns color palettes.
+   */
+  public static function getColorPalettes() {
+    return [
+      'bus' => t('Bus'),
+      'coat-of-arms' => t('Coat of Arms'),
+      'copper' => t('Copper'),
+      'gold' => t('Gold'),
+      'engel' => t('Engel'),
+      'metro' => t('Metro'),
+      'silver' => t('Silver'),
+      'summer' => t('Summer'),
+      'suomenlinna' => t('Suomenlinna'),
+      'tram' => t('Tram'),
+    ];
   }
 
   /**

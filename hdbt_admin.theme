@@ -122,9 +122,10 @@ function hdbt_admin_preprocess_table(&$variables) {
  */
 function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
   $meta_fields = [
-    'field_liftup_image' => 1,
-    'field_metatags' => 2,
-    'simple_sitemap' => 3,
+    'field_color_palette' => 1,
+    'field_liftup_image' => 2,
+    'field_metatags' => 3,
+    'simple_sitemap' => 4,
   ];
 
   // Create a new field group for meta information,

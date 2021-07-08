@@ -14,6 +14,15 @@ image_previewer:
   dependencies:
     - core/jquery
 
+color_palette_selection:
+  version: 1.x
+  js:
+    assets/js/colorPaletteSelection.js: { weight: -1 }
+  dependencies:
+    - core/jquery
+    - select2/select2
+    - hdbt/color-palette
+
 design_selection:
   version: 1.x
   js:

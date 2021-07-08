@@ -48,9 +48,9 @@
     </div>
   {% endif %}
   <div class="color-palette-wrapper">
-    <div class="color-palette color-palette--primary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--primary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--primary);">{{ 'Primary'|t }}</div>
-    <div class="color-palette color-palette--secondary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--secondary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--secondary);">{{ 'Secondary'|t }}</div>
-    <div class="color-palette color-palette--accent" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--accent); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--accent);">{{ 'Accent'|t }}</div>
+    <div class="color-palette color-palette--primary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--primary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--primary);">{{ 'Primary'|t([],{'langcode': currentLanguageCode,'context':'Primary color' }) }}</div>
+    <div class="color-palette color-palette--secondary" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--secondary); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--secondary);">{{ 'Secondary'|t([],{'langcode': currentLanguageCode,'context':'Secondary color'}) }}</div>
+    <div class="color-palette color-palette--accent" style="--input-radio-color-palette: var(--hdbt-color-{{ element['#return_value'] }}--accent); --input-radio-color-palette-text: var(--hdbt-color-{{ element['#return_value'] }}-text--accent);">{{ 'Accent'|t([],{'langcode': currentLanguageCode,'context':'Accent color'}) }}</div>
   </div>
   <div class="selection-wrapper">
     {{ children }}

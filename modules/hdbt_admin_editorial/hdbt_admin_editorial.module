@@ -138,6 +138,8 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     $element['subform']['field_icon']['#states'] = [
       'visible' => [
         [$design_select => ['value' => 'align-left']],
+        'or',
+        [$design_select => ['value' => 'align-left-secondary']],
       ],
     ];
   }

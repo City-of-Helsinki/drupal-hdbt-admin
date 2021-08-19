@@ -18,6 +18,7 @@
       flex-flow: row wrap;
       justify-content: flex-start;
       margin: $spacing-half -#{$spacing-half};
+      max-width: 1560px;
     }
 
     .form-type--boolean {
@@ -35,11 +36,12 @@
       }
 
       &.form-item--site-settings-theme-color {
-        border: 4px solid $color-black-70;
+        border: 2px solid $color-black-70;
+        border-radius: 5px;
         flex-flow: column;
-        margin: $spacing;
-        min-width: 300px;
-        width: calc(25% - 40px);
+        flex-flow: row-reverse;
+        margin: $spacing-half;
+        width: 100%;
       }
 
       &.form-item--site-settings-default-icon {
@@ -63,25 +65,27 @@
 
     .color-palette-wrapper {
       align-items: center;
-      display: grid;
-      gap: 0;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      height: 150px;
+      display: flex;
+      flex-flow: row;
+      height: 50px;
       justify-content: center;
+      transition: height 150ms ease-in-out;
       width: 100%;
 
+      &:hover {
+        height: 150px;
+      }
+
       .color-palette--primary {
-        grid-column-end: 3;
-        grid-column-start: 1;
-        grid-row-end: 2;
-        grid-row-start: 1;
+        border-radius: 3px 3px 0 0;
+        flex-grow: 2;
       }
     }
 
     .selection-wrapper {
       display: flex;
-      margin: $spacing-double;
+      margin: 0 $spacing-double;
+      min-width: 180px;
 
       label {
         @include font-size(20px);
@@ -94,10 +98,10 @@
       background-color: var(--input-radio-color-palette);
       color: var(--input-radio-color-palette-text);
       display: flex;
+      flex-grow: 1;
       font-weight: $font-weight-medium;
       height: 100%;
       justify-content: center;
-      width: 100%;
     }
 
     .color-palette--primary {

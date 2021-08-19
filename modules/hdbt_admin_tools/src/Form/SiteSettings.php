@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class SiteSettings extends ConfigFormBase {
 
+  const COLOR_PALETTE_CACHE = 'hdbt_admin_tools:theme_color';
+
   /**
    * {@inheritdoc}
    */
@@ -147,6 +149,27 @@ class SiteSettings extends ConfigFormBase {
       'suomenlinna' => t('Suomenlinna'),
       'tram' => t('Tram'),
     ];
+  }
+
+  /**
+   * Provides default value for the color palettes field.
+   *
+   * @return string
+   *   An array of possible key and value options.
+   *
+   * @see options_allowed_values()
+   */
+  public static function getColorPaletteDefaultValue() {
+    if ($cached = \Drupal::cache()->get(static::COLOR_PALETTE_CACHE)) {
+      return $cached->data;
+    }
+
+    $settings = \Drupal::config('hdbt_admin_tools.site_settings');
+    if ($value = $settings->get('site_settings.theme_color')) {
+      \Drupal::cache()->set(static::COLOR_PALETTE_CACHE, $value);
+      return $value;
+    }
+    return '';
   }
 
   /**

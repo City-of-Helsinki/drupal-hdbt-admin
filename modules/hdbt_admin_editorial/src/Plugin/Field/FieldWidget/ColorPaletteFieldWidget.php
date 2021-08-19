@@ -5,6 +5,7 @@ namespace Drupal\hdbt_admin_editorial\Plugin\Field\FieldWidget;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsSelectWidget;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\hdbt_admin_tools\Form\SiteSettings;
 
 /**
  * Plugin implementation of the 'color_palette_field_widget' widget.
@@ -33,7 +34,9 @@ class ColorPaletteFieldWidget extends OptionsSelectWidget {
       'width' => $this->getSetting('width') ?? '100%',
     ];
     $element['#options'] = $this->getOptions($items->getEntity());
-    $element['#default_value'] = $this->getSelectedOptions($items);
+    $element['#default_value'] = !empty($this->getSelectedOptions($items))
+      ? $this->getSelectedOptions($items)
+      : SiteSettings::getColorPaletteDefaultValue();
     $element['#attached']['library'][] = 'hdbt_admin_editorial/color_palette_selection';
     $element['#attributes']['class'][] = 'color-palette-selection';
     $element['#attributes']['data-color-palette-select'] = $this->getFieldName();

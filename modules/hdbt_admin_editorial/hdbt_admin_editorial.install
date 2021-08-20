@@ -8,23 +8,17 @@
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 
 /**
- * Install 'color palette' field.
+ * Install 'color palette' field to node entity.
  */
 function hdbt_admin_editorial_update_9001() {
 
   // Field to be installed and entity types.
   $field = 'color_palette';
-  $entity_types = [
-    'node',
-    'tpr_unit',
-    'tpr_service'
-  ];
+  $entity_type = 'node';
 
-  foreach ($entity_types as $entity_type) {
-    $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-    $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity_type, $entity_type);
-    if (!empty($field_definitions[$field]) && $field_definitions[$field] instanceof FieldStorageDefinitionInterface) {
-      $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type,'hdbt_admin_editorial', $field_definitions[$field]);
-    }
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity_type, $entity_type);
+  if (!empty($field_definitions[$field]) && $field_definitions[$field] instanceof FieldStorageDefinitionInterface) {
+    $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type,'hdbt_admin_editorial', $field_definitions[$field]);
   }
 }

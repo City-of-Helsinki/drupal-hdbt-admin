@@ -7,6 +7,7 @@
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\hdbt_admin_tools\Form\SiteSettings;
 
 /**
  * Implements hook_toolbar_alter().
@@ -54,4 +55,37 @@ function _hdbt_admin_tools_config_translation_form_submit(array $form, FormState
   Cache::invalidateTags([
     'config:block.block.footertopblock',
   ]);
+}
+
+/**
+ * Provides options for the color palettes field.
+ *
+ * @return array
+ *   An array of possible key and value options.
+ *
+ * @see options_allowed_values()
+ */
+function hdbt_admin_tools_color_palette_allowed_values() {
+  return SiteSettings::getColorPalettes();
+}
+
+/**
+ * Provides default value for the color palettes field.
+ *
+ * @return array
+ *   An array of possible key and value options.
+ *
+ * @see options_allowed_values()
+ */
+function hdbt_admin_tools_color_palette_default_value() {
+  $cached = \Drupal::cache()->get('hdbt_settings:theme_color');
+
+  if ($cached) {
+    return [
+      ['value' => $cached->data],
+    ];
+  }
+
+  $settings = \Drupal::config('hdbt_admin_tools.site_settings');
+  return ($value = $settings->get('site_settings.theme_color')) ? [['value' => $value]] : [];
 }

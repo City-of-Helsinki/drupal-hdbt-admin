@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class SiteSettings extends ConfigFormBase {
 
+  const COLOR_PALETTE_CACHE = 'hdbt_admin_tools:theme_color';
+
   /**
    * {@inheritdoc}
    */
@@ -48,23 +50,10 @@ class SiteSettings extends ConfigFormBase {
       '#title' => $this->t('Site wide settings'),
     ];
 
-    $color_palette = [
-      'bus' => $this->t('Bus'),
-      'coat-of-arms' => $this->t('Coat of Arms'),
-      'copper' => $this->t('Copper'),
-      'gold' => $this->t('Gold'),
-      'engel' => $this->t('Engel'),
-      'metro' => $this->t('Metro'),
-      'silver' => $this->t('Silver'),
-      'summer' => $this->t('Summer'),
-      'suomenlinna' => $this->t('Suomenlinna'),
-      'tram' => $this->t('Tram'),
-    ];
-
     $form['site_settings']['theme_color'] = [
       '#type' => 'radios',
       '#title' => $this->t('Color palette'),
-      '#options' => $color_palette,
+      '#options' => $this->getColorPalettes(),
       '#description' => $this->t('The chosen color palette will be used site wide in various components.'),
       '#default_value' => $settings->get('site_settings')['theme_color'] ?: [],
     ];
@@ -139,6 +128,48 @@ class SiteSettings extends ConfigFormBase {
     $form['#attached']['library'][] = 'hdbt/color-palette';
 
     return $form;
+  }
+
+  /**
+   * Get color palettes.
+   *
+   * @return array
+   *   Returns color palettes.
+   */
+  public static function getColorPalettes() {
+    return [
+      'bus' => t('Bus'),
+      'coat-of-arms' => t('Coat of Arms'),
+      'copper' => t('Copper'),
+      'gold' => t('Gold'),
+      'engel' => t('Engel'),
+      'metro' => t('Metro'),
+      'silver' => t('Silver'),
+      'summer' => t('Summer'),
+      'suomenlinna' => t('Suomenlinna'),
+      'tram' => t('Tram'),
+    ];
+  }
+
+  /**
+   * Provides default value for the color palettes field.
+   *
+   * @return string
+   *   An array of possible key and value options.
+   *
+   * @see options_allowed_values()
+   */
+  public static function getColorPaletteDefaultValue() {
+    if ($cached = \Drupal::cache()->get(static::COLOR_PALETTE_CACHE)) {
+      return $cached->data;
+    }
+
+    $settings = \Drupal::config('hdbt_admin_tools.site_settings');
+    if ($value = $settings->get('site_settings.theme_color')) {
+      \Drupal::cache()->set(static::COLOR_PALETTE_CACHE, $value);
+      return $value;
+    }
+    return '';
   }
 
   /**

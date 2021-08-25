@@ -122,9 +122,10 @@ function hdbt_admin_preprocess_table(&$variables) {
  */
 function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
   $meta_fields = [
-    'field_liftup_image' => 1,
-    'field_metatags' => 2,
-    'simple_sitemap' => 3,
+    'color_palette' => 1,
+    'field_liftup_image' => 2,
+    'field_metatags' => 3,
+    'simple_sitemap' => 4,
   ];
 
   // Create a new field group for meta information,
@@ -279,5 +280,31 @@ function hdbt_admin_apply_form_theme(array &$form) {
 
     $form['#attached']['library'][] = 'claro/node-form';
     $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
+  }
+
+  $meta_fields = [
+    'color_palette' => 1,
+    'field_metatags' => 2,
+    'simple_sitemap' => 3,
+  ];
+
+  // Create a new field group for meta information,
+  // if any of the meta data fields are available.
+  foreach ($meta_fields as $field => $weight) {
+    if (isset($form[$field])) {
+      if (!array_key_exists('admin_metainformation', $form)) {
+        $form['admin_metainformation'] = [
+          '#title' => t('Meta information'),
+          '#group' => 'advanced',
+          '#weight' => -10,
+          '#access' => TRUE,
+          '#type' => 'details',
+          '#open' => TRUE,
+        ];
+      }
+
+      $form[$field]['#group'] = 'admin_metainformation';
+      $form[$field]['#weight'] = $weight;
+    }
   }
 }

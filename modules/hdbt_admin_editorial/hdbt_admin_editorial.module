@@ -5,8 +5,10 @@
  * Contains editorial alterations.
  */
 
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\hdbt_admin_tools\Form\SiteSettings;
 use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
 
 /**
@@ -338,4 +340,49 @@ function hdbt_admin_editorial_form_alter(&$form) {
   $image_path = $base_secure_url . '/' . $handler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images/';
   $form['#attached']['library'][] = 'hdbt_admin_editorial/design_selection';
   $form['#attached']['drupalSettings']['designSelect']['pathToImages'] = $image_path;
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function hdbt_admin_editorial_entity_base_field_info(EntityTypeInterface $entity_type) {
+
+  // Entity types to be updated.
+  $entity_types = [
+    'node',
+    'tpr_unit',
+    'tpr_service'
+  ];
+
+  // Add color palette field to each entity type.
+  if (in_array($entity_type->id(), $entity_types)) {
+    $fields['color_palette'] = BaseFieldDefinition::create('list_string')
+      ->setRequired(FALSE)
+      ->setTranslatable(FALSE)
+      ->setLabel(t('Color palette'))
+      ->setSettings([
+        'allowed_values_function' => 'Drupal\hdbt_admin_tools\Form\SiteSettings::getColorPalettes'
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'color_palette_field_widget',
+        'weight' => 0,
+      ]);
+    return $fields;
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function hdbt_admin_editorial_entity_presave($entity) {
+  if (!method_exists($entity, 'hasField') || !$entity->hasField('color_palette')) {
+    return;
+  }
+
+  // Do not save the color palette override value if chosen color palette is
+  // same as global color palette value. This will prevent possible false
+  // overrides if global color palette is changed.
+  if ($entity->color_palette->value == SiteSettings::getColorPaletteDefaultValue()) {
+    $entity->set('color_palette', NULL);
+  }
 }

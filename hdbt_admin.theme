@@ -125,7 +125,7 @@ function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
     'color_palette' => 1,
     'field_liftup_image' => 2,
     'field_metatags' => 3,
-    'simple_sitemap' => 4,
+    'simple_sitemap' => 10,
   ];
 
   // Create a new field group for meta information,
@@ -147,6 +147,9 @@ function hdbt_admin_form_node_form_alter(&$form, &$form_state, $form_id) {
       $form[$field]['#weight'] = $weight;
     }
   }
+
+  // Manipulate metatags field according to clients needs.
+  hdbt_admin_manipulate_field_metatags($form);
 }
 
 /**
@@ -305,6 +308,44 @@ function hdbt_admin_apply_form_theme(array &$form) {
 
       $form[$field]['#group'] = 'admin_metainformation';
       $form[$field]['#weight'] = $weight;
+    }
+  }
+
+  // Manipulate metatags field according to clients needs.
+  hdbt_admin_manipulate_field_metatags($form);
+}
+
+/**
+ * Manipulate metatags field according to clients needs.
+ *
+ * @param array $form
+ *   Form to be handled.
+ */
+function hdbt_admin_manipulate_field_metatags(&$form) {
+
+  if (!isset($form['field_metatags']['widget'][0])) {
+    return;
+  }
+
+  $metatags = &$form['field_metatags']['widget'][0];
+
+  // Open Meta tags and close Open Graph and Twitter cards by default.
+  $metatags['#open'] = TRUE;
+  $metatags['open_graph']['#open'] = FALSE;
+  $metatags['twitter_cards']['#open'] = FALSE;
+
+  // Use custom labels for the meta tag fields and set the field required.
+  foreach (['title' => 'Page title', 'description' => 'Description'] as $field_key => $field_label) {
+    if (isset($metatags['basic'][$field_key])) {
+      $metatags['basic'][$field_key]['#title'] = t($field_label, [], ['context' => 'HELfi Metatags']);
+      $metatags['basic'][$field_key]['#required'] = TRUE;
+    }
+  }
+
+  // Hide abstract and keywords fields from the form.
+  foreach (['abstract', 'keywords'] as $obsolete_field) {
+    if (isset($metatags['basic'][$obsolete_field])) {
+      $metatags['basic'][$obsolete_field]['#access'] = FALSE;
     }
   }
 }

@@ -23,6 +23,13 @@ color_palette_selection:
     - select2/select2
     - hdbt/color-palette
 
+dynamic_entity_reference:
+  version: 1.x
+  js:
+    assets/js/dynamicEntityReferenceDefaultValue.js: {}
+  dependencies:
+    - core/drupal
+
 design_selection:
   version: 1.x
   js:

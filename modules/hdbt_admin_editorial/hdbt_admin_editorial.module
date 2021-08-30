@@ -145,6 +145,19 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
       ],
     ];
   }
+
+  // Perform alterations to Content liftup paragraph.
+  if ($element['#paragraph_type'] == 'content_liftup') {
+    // Hide dynamic entity reference selection from prying eyes before the
+    // functionality is actually in use. The current setup is built to prevent
+    // data loss on future updates to referencable items. In the future it is
+    // possible to reference nodes, TPR services and TPR units.
+    // Revert when all entities can be referred.
+    $element['#attached']['library'][] = 'hdbt_admin_editorial/dynamic_entity_reference';
+
+    // Select TPR Unit for default target type.
+    $element['subform']['field_content_liftup_content']['widget'][0]['target_type']['#default_value'] = 'tpr_unit';
+  }
 }
 
 /**

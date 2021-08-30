@@ -1,0 +1,86 @@
+//
+// @file
+// Styles for Content liftup paragraph.
+//
+
+.paragraph-type--content-liftup {
+  .field--widget-dynamic-entity-reference-default {
+    .details-wrapper {
+      display: flex;
+
+      .form-item {
+        margin: 0;
+      }
+    }
+  }
+
+  .form-item__error-message {
+    display: block;
+  }
+
+  .field--name-field-content-liftup-content {
+    .layer-wrapper {
+      background-color: transparent;
+      border: 0 none;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .field-label {
+      display: none;
+    }
+
+    .form-item__description .notice {
+      color: $color-error-dark;
+      display: block;
+    }
+
+    // Revert when all entities can be referred.
+    .dynamic-entity-reference-target-type-changed {
+      display: none;
+    }
+  }
+}
+
+// Diff styles.
+.paragraph--type--content-liftup {
+  margin-top: $spacing-quadruple;
+
+  .field--name-field-content-liftup-content {
+    > .field__item {
+      display: flex;
+      flex-direction: column;
+      margin-top: $spacing;
+
+      h2 {
+        margin: $spacing-half 0 0;
+        order: 2;
+        @include font-size(20px, 24px);
+      }
+      .node__content {
+        min-height: 400px;
+        order: 1;
+        position: relative;
+
+        &::after {
+          background-color: $color-bus;
+          content: "";
+          display: block;
+          height: 400px;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 600px;
+          z-index: -1;
+        }
+
+        .field--name-field-media-image {
+          line-height: 0;
+        }
+      }
+    }
+  }
+}
+
+

@@ -11,6 +11,18 @@
       .form-item {
         margin: 0;
       }
+
+      .form-type--select {
+        align-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-right: $spacing;
+
+        label {
+          line-height: 20px;
+        }
+      }
     }
   }
 

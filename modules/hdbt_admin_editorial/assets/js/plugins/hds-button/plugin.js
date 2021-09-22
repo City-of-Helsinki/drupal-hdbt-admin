@@ -75,6 +75,11 @@
 
       // Act only if link element is being handled.
       if (!linkElement || !linkElement.$) {
+
+        // Save selected text to global variable.
+        if (editor.getSelectedHtml().$.textContent) {
+          window.drupalLinkTextSelection = editor.getSelectedHtml().$.textContent;
+        }
         return;
       }
 

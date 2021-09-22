@@ -187,8 +187,8 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
       'false' => t('Select'),
       'https://' => t('https://'),
       'http://' => t('http://'),
-      'tel://' => t('tel://'),
-      'mailto://' => t('mailto://'),
+      'tel:' => t('tel:'),
+      'mailto:' => t('mailto:'),
     ],
     '#weight' => -100,
   ];

@@ -4,7 +4,7 @@ namespace Drupal\hdbt_admin_editorial\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
+use Drupal\linkit\Plugin\Field\FieldWidget\LinkitWidget;
 
 /**
  * Plugin implementation of the 'link_target_icon_field_widget' widget.
@@ -17,7 +17,7 @@ use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
  *   }
  * )
  */
-class LinkTargetIconFieldWidget extends LinkWidget {
+class LinkTargetIconFieldWidget extends LinkitWidget {
 
   /**
    * {@inheritdoc}

@@ -7,5 +7,5 @@ footer_settings:
   footer_color: dark
   footer_top_content:
     format: full_html
-    value: '<p><a href="#">Search for contacts and phone numbers</a></p><p><a href="#" class="hds-button hds-button--secondary"><span aria-hidden="true" class="hds-icon hds-icon--phone"></span><span class="hds-button__label">Helsinki-info 09 310 1691</span></a></p>'
-  footer_top_title: 'Contact information'
+    value: "<p><a class=\"link\" data-design=\"link\" data-link-text=\"Helsinki-info advisory service\" data-protocol=\"false\" href=\"https://www.hel.fi/kanslia/neuvonta-en/\">Helsinki-info advisory service</a></p>\r\n\r\n<p><a class=\"link\" data-design=\"link\" data-link-text=\"Contact information search\" data-protocol=\"false\" href=\"https://numerot.hel.fi/\">Contact information search</a></p>\r\n\r\n<p><a class=\"link\" data-design=\"link\" data-link-text=\"Give feedback\" data-protocol=\"false\" href=\"https://www.hel.fi/feedback/\">Give feedback</a></p>\r\n"
+  footer_top_title: 'Contact us'

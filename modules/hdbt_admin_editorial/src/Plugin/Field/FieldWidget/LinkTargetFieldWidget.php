@@ -2,9 +2,11 @@
 
 namespace Drupal\hdbt_admin_editorial\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\linkit\Plugin\Field\FieldWidget\LinkitWidget;
+use Drupal\linkit\Utility\LinkitHelper;
 
 /**
  * Plugin implementation of the 'link_target_field_widget' widget.
@@ -45,6 +47,31 @@ class LinkTargetFieldWidget extends LinkitWidget {
     ];
 
     return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function massageFormValues(
+    array $values,
+    array $form,
+    FormStateInterface $form_state
+  ) {
+    foreach ($values as &$value) {
+      // Linkit module performs a check if given external domain points to
+      // same domain and converts it to relative if it does.
+      // This breaks all links between different hel.fi instances because all
+      // hel.fi links are converted to relative and helfi_proxy module adds a
+      // 'site prefix' to all non-absolute URLs.
+      // TL;DR www.hel.fi/helsinki/old-page becomes /helsinki/old-page and
+      // helfi_proxy module converts it to /fi/site-prefix/helsinki/old-page.
+      // @see https://helsinkisolutionoffice.atlassian.net/browse/UHF-2919.
+      if (!UrlHelper::externalIsLocal($value['uri'], \Drupal::request()->getSchemeAndHttpHost())) {
+        $value['uri'] = LinkitHelper::uriFromUserInput($value['uri']);
+      }
+      $value += ['options' => []];
+    }
+    return $values;
   }
 
   /**

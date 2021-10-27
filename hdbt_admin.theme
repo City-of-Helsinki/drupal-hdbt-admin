@@ -321,7 +321,7 @@ function hdbt_admin_apply_form_theme(array &$form) {
  * @param array $form
  *   Form to be handled.
  */
-function hdbt_admin_manipulate_field_metatags(&$form) {
+function hdbt_admin_manipulate_field_metatags(array &$form) {
 
   if (!isset($form['field_metatags']['widget'][0])) {
     return;
@@ -334,12 +334,17 @@ function hdbt_admin_manipulate_field_metatags(&$form) {
   $metatags['open_graph']['#open'] = FALSE;
   $metatags['twitter_cards']['#open'] = FALSE;
 
-  // Use custom labels for the meta tag fields and set the field required.
-  foreach (['title' => 'Page title', 'description' => 'Description'] as $field_key => $field_label) {
-    if (isset($metatags['basic'][$field_key])) {
-      $metatags['basic'][$field_key]['#title'] = t($field_label, [], ['context' => 'HELfi Metatags']);
-      $metatags['basic'][$field_key]['#required'] = TRUE;
-    }
+  // Use custom label for the Title meta tag field and set the field required.
+  if (isset($metatags['basic']['title'])) {
+    $metatags['basic']['title']['#title'] = t('Page title', [], ['context' => 'HELfi Metatags']);
+    $metatags['basic']['title']['#required'] = TRUE;
+  }
+
+  // Use custom label for the Description meta tag field
+  // and set the field required.
+  if (isset($metatags['basic']['description'])) {
+    $metatags['basic']['description']['#title'] = t('Description', [], ['context' => 'HELfi Metatags']);
+    $metatags['basic']['description']['#required'] = TRUE;
   }
 
   // Hide abstract and keywords fields from the form.

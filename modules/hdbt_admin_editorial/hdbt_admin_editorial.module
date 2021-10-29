@@ -117,7 +117,7 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     ];
 
     // Set types if they're missing to prevent undefined index error in
-    // /core/lib/Drupal/Core/Form/FormHelper.php:211
+    // /core/lib/Drupal/Core/Form/FormHelper.php:211.
     foreach ($fields as $field) {
       if (!isset($element['subform'][$field]['#type'])) {
         $element['subform'][$field]['#type'] = '';
@@ -351,7 +351,7 @@ function hdbt_admin_editorial_entity_base_field_info(EntityTypeInterface $entity
   $entity_types = [
     'node',
     'tpr_unit',
-    'tpr_service'
+    'tpr_service',
   ];
 
   // Add color palette field to each entity type.
@@ -361,7 +361,7 @@ function hdbt_admin_editorial_entity_base_field_info(EntityTypeInterface $entity
       ->setTranslatable(FALSE)
       ->setLabel(t('Color palette'))
       ->setSettings([
-        'allowed_values_function' => 'Drupal\hdbt_admin_tools\Form\SiteSettings::getColorPalettes'
+        'allowed_values_function' => 'Drupal\hdbt_admin_tools\Form\SiteSettings::getColorPalettes',
       ])
       ->setDisplayOptions('form', [
         'type' => 'color_palette_field_widget',

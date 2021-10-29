@@ -28,9 +28,7 @@ class Select2IconFormElement extends Select2 {
   public static function preRenderSelect($element) {
     $element = parent::preRenderSelect($element);
 
-    global $base_secure_url;
-    $settings = \Drupal::config('select2_icon.settings');
-    $icon_path = $base_secure_url . $settings->get('path_to_sprite');
+    $icon_path = \Drupal::config('select2_icon.settings')->get('path_to_sprite');
 
     // Set attributes to include the select2_icon library and settings.
     $element['#theme'] = 'select2_icon_widget';

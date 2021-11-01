@@ -66,12 +66,15 @@ class LinkTargetFieldWidget extends LinkitWidget {
       // TL;DR www.hel.fi/helsinki/old-page becomes /helsinki/old-page and
       // helfi_proxy module converts it to /fi/site-prefix/helsinki/old-page.
       // @see https://helsinkisolutionoffice.atlassian.net/browse/UHF-2919.
-      if (!UrlHelper::externalIsLocal($value['uri'], \Drupal::request()->getSchemeAndHttpHost())) {
+      if (
+        parse_url($value['uri'], PHP_URL_HOST) &&
+        !UrlHelper::externalIsLocal($value['uri'], \Drupal::request()->getSchemeAndHttpHost())
+      ) {
         $value['uri'] = LinkitHelper::uriFromUserInput($value['uri']);
       }
       $value += ['options' => []];
     }
-    return $values;
+    return parent::massageFormValues($values, $form, $form_state);
   }
 
   /**

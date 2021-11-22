@@ -22,3 +22,26 @@ function hdbt_admin_editorial_update_9001() {
     $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type,'hdbt_admin_editorial', $field_definitions[$field]);
   }
 }
+
+/**
+ * Install 'color palette' field to node entity, if it is missing.
+ */
+function hdbt_admin_editorial_update_9002() {
+
+  // Field to be installed and entity types.
+  $field = 'color_palette';
+  $entity_type = 'node';
+
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity_type, $entity_type);
+
+  // Install color palette field, if color palette field has not
+  // been installed to current entity.
+  if (
+    !empty($field_definitions[$field]) &&
+    $field_definitions[$field] instanceof FieldStorageDefinitionInterface &&
+    empty($entity_definition_update_manager->getFieldStorageDefinition($field, $entity_type))
+  ) {
+    $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type, 'hdbt_admin_editorial', $field_definitions[$field]);
+  }
+}

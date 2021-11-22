@@ -3,18 +3,20 @@
 // This file includes all imports
 //
 
-@import "library/variables/*.*";
-@import "library/mixins/*.*";
-@import "library/fonts/*.*";
-@import "_site-settings";
-@import "_common";
+// Use Dart Sass math module to perform calculations.
+// https://sass-lang.com/documentation/modules/math
+@use "sass:math";
 
-@import "layout/**/*";
-@import "navigation/**/*.*";
-@import "entity/**/*.*";
-@import "node/**/*.*";
-@import "paragraphs/**/*.*";
-@import "views/**/*.*";
-@import "common/**/*.*";
-@import "misc/**/*.*";
-@import "state/**/*.*";
+@import "library/_index";
+@import "site-settings";
+@import "common";
+
+@import "layout/_index";
+@import "navigation/_index";
+@import "entity/_index";
+@import "node/_index";
+@import "paragraphs/_index";
+@import "views/_index";
+@import "common/_index";
+@import "misc/_index";
+@import "state/_index";

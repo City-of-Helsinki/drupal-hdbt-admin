@@ -38,7 +38,7 @@
     "glob": "^7.1.7",
     "hds-core": "^1.2.0",
     "hds-design-tokens": "^1.2.0",
-    "html-loader": "^0.5.5",
+    "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^5.0.9",
     "joi": "^17.4.0",

@@ -3,9 +3,12 @@
    * Function that shows and hides fields on the List of Links Item paragraph
    * based on the active design chosen in the List of Links paragraph.
    *
-   * @param design
-   * @param images
-   * @param descs
+   * @param {Object} design
+   *   List of links selected design.
+   * @param {Object} images
+   *   Image object.
+   * @param {Object} descs
+   *   Descriptions object.
    */
   function toggleFields(design, images, descs) {
     // Get the selected design.

@@ -17,6 +17,7 @@
         });
 
         // Make content translation published status reactive.
+        // eslint max-nested-callbacks
         document
           .querySelectorAll('.form-item--status [name="status"]')
           .forEach((publishedState) => {

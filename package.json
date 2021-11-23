@@ -25,7 +25,7 @@
     "babel-loader": "^8.2.2",
     "breakpoint-sass": "^2.7.1",
     "chokidar": "^3.5.1",
-    "clean-webpack-plugin": "^0.1.19",
+    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.4.1",
     "css-declaration-sorter": "^6.0.3",
     "css-loader": "^5.2.6",

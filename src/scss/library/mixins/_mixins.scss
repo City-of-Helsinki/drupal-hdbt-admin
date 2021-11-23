@@ -1,3 +1,5 @@
+// Use Dart Sass math module to perform calculations.
+// https://sass-lang.com/documentation/modules/math
 @use "sass:math";
 
 // Calculate rem (root em) units from pixels for font-size and line-height.

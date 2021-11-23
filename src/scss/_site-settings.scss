@@ -54,11 +54,11 @@
 
       .form-boolean {
         margin-left: $spacing-half;
-        margin-top: -#{$spacing-quarter / 2};
+        margin-top: -#{$spacing-quarter * 0.5};
       }
 
       .form-item__label.option {
-        margin: $spacing-quarter / 2 $spacing-half 0 $spacing-half;
+        margin: $spacing-quarter * 0.5 $spacing-half 0 $spacing-half;
         padding: 0;
       }
     }

@@ -1,6 +1,7 @@
 const isDev = (process.env.NODE_ENV !== 'production');
 
 const path = require('path');
+const glob = require('glob');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -8,18 +9,25 @@ const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugi
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
-module.exports = {
-  entry: {
+// Handle entry points.
+const Entries = () => {
+  let entries = {
     styles: ['./src/scss/styles.scss'],
-    bundle: ['./src/js/common.js'],
-    languageSwitcher: ['./src/js/languageSwitcher'],
-    heroToggle: ['./src/js/heroToggle.js'],
-    columnsToggle: ['./src/js/columnsToggle.js'],
-    listOfLinks: ['./src/js/listOfLinks.js'],
-    tprEditForm: ['./src/js/tprEditForm.js'],
-  },
-  experiments: {
-    asset: true
+  };
+
+  const pattern = './src/js/**/*.js';
+  const ignore = [];
+
+  glob.sync(pattern, {ignore: ignore}).map((item) => {
+    entries[path.parse(item).name] = item }
+  );
+  return entries;
+};
+
+
+module.exports = {
+  entry() {
+    return Entries();
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -30,13 +38,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        generator: {
-          filename: 'media/[hash][ext]'
-        },
-        type: 'asset/resource',
-      },
       {
         test: /\.(woff|ttf|eot|svg)$/,
         include: [

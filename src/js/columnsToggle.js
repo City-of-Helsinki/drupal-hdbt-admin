@@ -3,9 +3,12 @@
    * Function that adds column sizes to column titles based on
    * the selected design.
    *
-   * @param design
-   * @param leftColumn
-   * @param rightColumn
+   * @param {Object} design
+   *   Selected design.
+   * @param {Object} leftColumn
+   *   Left column.
+   * @param {Object} rightColumn
+   *   Right column.
    */
   function toggleFields(design, leftColumn, rightColumn) {
     // Get the selected design.

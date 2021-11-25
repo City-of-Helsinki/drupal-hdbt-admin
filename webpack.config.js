@@ -65,6 +65,7 @@ module.exports = {
             options: {
               sourceMap: isDev,
               importLoaders: 2,
+              esModule: false,
             },
           },
           {

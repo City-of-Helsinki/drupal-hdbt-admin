@@ -65,6 +65,7 @@ module.exports = {
             options: {
               sourceMap: isDev,
               importLoaders: 2,
+              esModule: false,
             },
           },
           {
@@ -102,13 +103,11 @@ module.exports = {
     new CopyPlugin({
       'patterns': [
         {
-          'context': './',
           'from': 'node_modules/select2/dist/js/select2.min.js',
           'to': path.resolve(__dirname, 'dist') + '/js/',
           'force': true,
         },
         {
-          'context': './',
           'from': 'node_modules/select2/dist/css/select2.min.css',
           'to': path.resolve(__dirname, 'dist') + '/css/',
           'force': true,

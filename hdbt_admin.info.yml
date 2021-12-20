@@ -4,6 +4,8 @@ type: theme
 base theme: gin
 tags: sub-theme
 core_version_requirement: ^8 || ^9
+'interface translation project': hdbt_admin
+'interface translation server pattern': themes/contrib/hdbt_admin/translations/%language.po
 
 # Define Libraries
 libraries:

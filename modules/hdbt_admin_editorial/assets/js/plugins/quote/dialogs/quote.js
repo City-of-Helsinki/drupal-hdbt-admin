@@ -31,9 +31,9 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
 
-              // Get the div.quote element.
+              // Get the blockquote.quote element.
               if (element) {
-                let parent = element.getAscendant('div');
+                let parent = element.getAscendant('blockquote');
                 if (parent && parent.hasClass('quote')) {
                   element = parent;
                 }
@@ -74,35 +74,38 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
             // Called by the main setupContent call on dialog initialization.
             setup: function (element) {
-              // Get the div.quote element.
+              // Get the blockquote.quote element.
               if (element) {
-                let parent = element.getAscendant('div');
+                let parent = element.getAscendant('blockquote');
                 if (parent && parent.hasClass('quote')) {
                   element = parent;
                 }
               }
 
-              let authorElem = element.findOne('footer.quote__author');
-              if (authorElem !== null) {
-                this.setValue(authorElem.getText());
+              let citeElem = element.findOne('footer.quote__author cite');
+              if (citeElem !== null) {
+                this.setValue(citeElem.getText());
               }
             },
 
             // Called by the main commitContent call on dialog confirmation.
             commit: function (element) {
               let authorElem = element.findOne('footer.quote__author');
-              if (authorElem === null) {
+              let citeElem = element.findOne('footer.quote__author cite');
+              if (authorElem === null || citeElem === null) {
                 if (this.getValue() !== '') {
                   authorElem = editor.document.createElement('footer');
                   element.append(authorElem);
                   authorElem.setAttribute('class', 'quote__author');
-                  authorElem.setText(this.getValue());
+                  citeElem = editor.document.createElement('cite');
+                  authorElem.append(citeElem);
+                  citeElem.setText(this.getValue());
                 }
               }
               else {
                 if (this.getValue() !== '') {
                   authorElem.setAttribute('class', 'quote__author');
-                  authorElem.setText(this.getValue());
+                  citeElem.setText(this.getValue());
                 }
                 else {
                   // Author has been removed, remove authorElem.
@@ -125,7 +128,7 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
       // Get the authorElem element closest to the selection, if any.
       if (element) {
-        let parent = element.getAscendant('div');
+        let parent = element.getAscendant('blockquote');
         if (parent && parent.hasClass('quote')) {
           element = parent;
         }
@@ -133,7 +136,7 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
       // Create a new <authorElem> element if it does not exist.
       if (!element || !element.hasClass('quote')) {
-        element = editor.document.createElement('div');
+        element = editor.document.createElement('blockquote');
         element.addClass('quote');
         element.setAttribute('aria-label', editor.lang.quote.quoteText);
         element.setAttribute('role', 'region');
@@ -155,13 +158,13 @@ CKEDITOR.dialog.add('quoteDialog', function (editor) {
 
     // This method is invoked once a user clicks the OK button, confirming the dialog.
     onOk: function () {
-      let divQuote = this.element;
+      let blockquote = this.element;
       // Invoke the commit methods of all dialog elements, so the <blockquote> element gets modified.
-      this.commitContent(divQuote);
+      this.commitContent(blockquote);
 
       // Finally, in if insert mode, inserts the element at the editor caret position.
       if (this.insertMode) {
-        editor.insertElement(divQuote);
+        editor.insertElement(blockquote);
       }
     }
   };

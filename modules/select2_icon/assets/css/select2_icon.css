@@ -19,6 +19,11 @@
   z-index: 10002;
 }
 
+.select2-results .hdbt-icon,
+.select2-selection .hdbt-icon {
+  line-height: 1;
+}
+
 .select2-results .hdbt-icon::before,
 .select2-selection .hdbt-icon::before {
   --icon-proportions: 36px;

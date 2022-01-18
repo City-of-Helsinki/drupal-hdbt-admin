@@ -32,7 +32,6 @@ class Select2IconFormElement extends Select2 {
     $element['#theme'] = 'select2_icon_widget';
     $element['#attributes']['class'][] = 'select2-icon';
     $element['#attached']['library'][] = 'select2_icon/select2_icon';
-    $element['#attached']['library'][] = 'hdbt/hdbt-icons';
 
     return $element;
   }

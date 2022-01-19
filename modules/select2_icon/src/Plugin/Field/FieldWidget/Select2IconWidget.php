@@ -71,9 +71,6 @@ class Select2IconWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    global $base_secure_url;
-    $icon_path = $base_secure_url . $this->select2IconConfig->get('path_to_sprite');
-
     $element['icon'] = [
       '#type' => 'select2',
       '#title' => $this->t('Icon'),
@@ -82,13 +79,11 @@ class Select2IconWidget extends WidgetBase {
         'width' => $this->getSetting('width') ?? '400px',
       ],
       '#theme' => 'select2_icon_widget',
-      '#icons_path' => $icon_path,
       '#options' => Select2Icon::loadIcons(),
       '#default_value' => $this->getSelectedOptions($items),
     ];
 
     $element['icon']['#attached']['library'][] = 'select2_icon/select2_icon';
-    $element['icon']['#attached']['drupalSettings']['select2Icon']['pathToIcons'] = $icon_path;
 
     return $element;
   }

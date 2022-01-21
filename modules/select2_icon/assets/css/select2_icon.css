@@ -19,13 +19,8 @@
   z-index: 10002;
 }
 
-.select2-results .hdbt-icon,
-.select2-selection .hdbt-icon {
-  line-height: 1;
-}
-
-.select2-results .hdbt-icon::before,
-.select2-selection .hdbt-icon::before {
+.select2-results .hel-icon,
+.select2-selection .hel-icon {
   --icon-proportions: 36px;
   background-color: #000;
   content:"";
@@ -41,6 +36,6 @@
   width:var(--icon-proportions);
 }
 
-.select2-results__option--highlighted .hdbt-icon::before {
+.select2-results__option--highlighted .hel-icon {
   background-color: #fff;
 }

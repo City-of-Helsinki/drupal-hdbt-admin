@@ -81,13 +81,11 @@ class Select2IconFormatter extends FormatterBase {
    *   Returns array of elements.
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $icon_path = '/' . ltrim($this->select2IconConfig->get('path_to_sprite'), '/');
     $elements = [];
 
     foreach ($items as $delta => $item) {
       $elements[$delta] = [
         '#theme' => 'select2_icon',
-        '#sprite_url' => $icon_path,
         '#icon_id' => $item->icon,
       ];
     }

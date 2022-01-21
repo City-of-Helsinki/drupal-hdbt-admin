@@ -19,7 +19,7 @@
               if (iconName) {
                 return $(`
                   <span style="align-items: center; display: flex; height: 100%;">
-                    <span class="hdbt-icon hdbt-icon--${iconName}" aria-hidden="true"></span>
+                    <span class="hel-icon hel-icon--${iconName}" aria-hidden="true"></span>
                     <span style="margin-left: 8px;">${option.text}</span>
                   </span>
                 `);

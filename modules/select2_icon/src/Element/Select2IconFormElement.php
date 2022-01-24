@@ -28,13 +28,10 @@ class Select2IconFormElement extends Select2 {
   public static function preRenderSelect($element) {
     $element = parent::preRenderSelect($element);
 
-    $icon_path = \Drupal::config('select2_icon.settings')->get('path_to_sprite');
-
     // Set attributes to include the select2_icon library and settings.
     $element['#theme'] = 'select2_icon_widget';
     $element['#attributes']['class'][] = 'select2-icon';
     $element['#attached']['library'][] = 'select2_icon/select2_icon';
-    $element['#attached']['drupalSettings']['select2Icon']['pathToIcons'] = $icon_path;
 
     return $element;
   }

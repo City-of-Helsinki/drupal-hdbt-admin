@@ -18,3 +18,24 @@
 .ui-widget-overlay + .select2-container {
   z-index: 10002;
 }
+
+.select2-results .hel-icon,
+.select2-selection .hel-icon {
+  --icon-proportions: 36px;
+  background-color: #000;
+  content:"";
+  display:inline-block;
+  height:var(--icon-proportions);
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-size:var(--icon-proportions);
+  mask-size:var(--icon-proportions);
+  min-height:var(--icon-proportions);
+  min-width:var(--icon-proportions);
+  position:static;
+  width:var(--icon-proportions);
+}
+
+.select2-results__option--highlighted .hel-icon {
+  background-color: #fff;
+}

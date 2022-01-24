@@ -20,7 +20,6 @@ function select2_icon_theme() {
     'select2_icon' => [
       'variables' => [
         'icon_id' => NULL,
-        'sprite_url' => NULL,
         'icon_label' => NULL,
       ],
     ],

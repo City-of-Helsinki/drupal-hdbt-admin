@@ -17,13 +17,12 @@
             if (item) {
               let iconName = $(option.element).attr('data-select2-icon');
               if (iconName) {
-                return $(
-                  '<span style="align-items: center; display: flex; height: 100%;">' +
-                    '<svg class="icon" style="margin-right: 0.5rem; max-width: 2.5rem; max-height: 2.5rem; width: 100%; height: 100%;">' +
-                      '<use xlink:href="' + drupalSettings.select2Icon.pathToIcons + '#' + iconName + '" />' +
-                    '</svg>' + option.text +
-                  '</span>'
-                );
+                return $(`
+                  <span style="align-items: center; display: flex; height: 100%;">
+                    <span class="hel-icon hel-icon--${iconName}" aria-hidden="true"></span>
+                    <span style="margin-left: 8px;">${option.text}</span>
+                  </span>
+                `);
               }
             }
           };

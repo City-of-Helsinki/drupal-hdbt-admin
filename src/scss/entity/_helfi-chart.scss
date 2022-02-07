@@ -1,0 +1,29 @@
+// Media library item preview for helfi-chart.
+.helfi-chart {
+  .media-library-item__preview {
+    padding-bottom: 0;
+  }
+
+  iframe {
+    border: 0;
+    margin-bottom: -7px;
+    max-width: 100%;
+  }
+}
+
+// Media library selection.
+.field--name-field-chart-chart {
+  .media-library-selection .media-library-item--grid {
+    width: 100%;
+  }
+
+  .field--name-field-helfi-chart-url {
+    height: 300px;
+    width: 100%;
+
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

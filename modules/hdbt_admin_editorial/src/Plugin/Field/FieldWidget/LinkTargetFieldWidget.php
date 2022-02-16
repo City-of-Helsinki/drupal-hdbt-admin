@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\hdbt_admin_editorial\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\linkit\Plugin\Field\FieldWidget\LinkitWidget;
-use Drupal\linkit\Utility\LinkitHelper;
 
 /**
  * Plugin implementation of the 'link_target_field_widget' widget.

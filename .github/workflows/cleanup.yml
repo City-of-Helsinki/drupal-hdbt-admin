@@ -3,7 +3,7 @@ on:
     types: [published]
 name: Cleanup
 jobs:
-  tests:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: dev-drprasad/delete-older-releases@v0.2.0

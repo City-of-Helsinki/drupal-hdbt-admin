@@ -8,3 +8,5 @@ dependencies:
   - ckeditor
   - drupal:editor
   - linkit
+'interface translation project': hdbt_admin_editorial
+'interface translation server pattern': themes/contrib/hdbt_admin/modules/hdbt_admin_editorial/translations/%language.po

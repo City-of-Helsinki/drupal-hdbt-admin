@@ -43,6 +43,44 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
   // Custom submit callback.
   $form['actions']['submit']['#submit'][] = 'hdbt_admin_editorial_node_form_submit_callback';
 
+  // Alter revision log title based on customer needs.
+  if (isset($form['revision_log'])) {
+    $form['revision_log']['widget'][0]['value']['#title'] = t('Version notes', [], ['context' => 'HDBT Admin editorial']);
+  }
+
+  // Alter metatags based on customer needs.
+  if (isset($form['field_metatags'])) {
+    $field_metatags = &$form['field_metatags']['widget'][0];
+
+    // Remove basic tags description.
+    unset($form['field_metatags']['widget'][0]['basic']['#description']);
+
+    // Alter the preamble and intro text markup.
+    $field_metatags['preamble']['#markup'] = '<p><strong>' . t('Editing metadata', [], ['context' => 'HDBT Admin editorial']) . '</strong></p>';
+    $field_metatags['intro_text']['#markup'] = '<p>' . t('Can be left unchanged. Tokens can be used to set metadata.', [], ['context' => 'HDBT Admin editorial']) . '</p>';
+
+    // Alter basic tags title field descriptions.
+    $field_metatags['basic']['title']['#description'] = t('Page title is visible in search results and browser tab heading. The title is set automatically and does not need to be set here. Recommended max. legth: 55–65 characters.', [], ['context' => 'HDBT Admin editorial']);
+
+    // Alter basic tags description field title and descriptions.
+    $field_metatags['basic']['description']['#title'] = t('Description for search engines', [], ['context' => 'HDBT Admin editorial']);
+    $field_metatags['basic']['description']['#description'] = t('A succinct description of the page content. Max. 160 characters. May be visible in search results. The description is fetched from the Lead-field and does not need to be set here.', [], ['context' => 'HDBT Admin editorial']);
+  }
+
+  // Alter liftup image help texts and descriptions based on customer needs.
+  if (isset($form['field_liftup_image'])) {
+    $field_liftup_image = &$form['field_liftup_image']['widget'];
+    $field_liftup_image['#field_prefix']['empty_selection'] = [
+      '#markup' => t('Image is not selected.', [], ['context' => 'HDBT Admin editorial'])
+    ];
+    $field_liftup_image['open_button']['#value'] = t('Add image', [], ['context' => 'HDBT Admin editorial']);
+  }
+
+  // Alter publish on and unpublish on titles based on customer needs.
+  if (isset($form['publish_on']) && isset($form['unpublish_on'])) {
+    $form['publish_on']['widget'][0]['value']['#title'] =  t('Release time', [], ['context' => 'HDBT Admin editorial']);
+    $form['unpublish_on']['widget'][0]['value']['#title'] =  t('Hiding the page', [], ['context' => 'HDBT Admin editorial']);
+  }
 }
 
 /**

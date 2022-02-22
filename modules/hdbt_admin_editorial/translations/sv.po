@@ -1,0 +1,6 @@
+msgid ""
+msgstr ""
+
+msgctxt "HDBT Admin editorial"
+msgid "Version notes"
+msgstr "Hur ändrade du sidan?"

@@ -71,15 +71,15 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
   if (isset($form['field_liftup_image'])) {
     $field_liftup_image = &$form['field_liftup_image']['widget'];
     $field_liftup_image['#field_prefix']['empty_selection'] = [
-      '#markup' => t('Image is not selected.', [], ['context' => 'HDBT Admin editorial'])
+      '#markup' => t('Image is not selected.', [], ['context' => 'HDBT Admin editorial']),
     ];
     $field_liftup_image['open_button']['#value'] = t('Add image', [], ['context' => 'HDBT Admin editorial']);
   }
 
   // Alter publish on and unpublish on titles based on customer needs.
   if (isset($form['publish_on']) && isset($form['unpublish_on'])) {
-    $form['publish_on']['widget'][0]['value']['#title'] =  t('Release time', [], ['context' => 'HDBT Admin editorial']);
-    $form['unpublish_on']['widget'][0]['value']['#title'] =  t('Hiding the page', [], ['context' => 'HDBT Admin editorial']);
+    $form['publish_on']['widget'][0]['value']['#title'] = t('Release time', [], ['context' => 'HDBT Admin editorial']);
+    $form['unpublish_on']['widget'][0]['value']['#title'] = t('Hiding the page', [], ['context' => 'HDBT Admin editorial']);
   }
 }
 

@@ -8,9 +8,9 @@ A longer description of the task
 * Make sure your instance is up and running on latest dev branch.
     * `git pull origin dev`
     * `make fresh`
-* Update the Helfi Platform config
-    * `composer require drupal/helfi_platform_config:dev-UHF-0000_insert_correct_branch`
-* Run `make drush-updb drush-cr`
+* Update the HDBT Admin theme
+    * `composer require drupal/hdbt_admin:dev-UHF-0000_insert_correct_branch`
+* Run `make drush-cr`
 
 ## How to test
 * Describe how to test the feature

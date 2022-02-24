@@ -260,6 +260,24 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#weight' => 2,
   ];
 
+  $form['attributes']['target_check'] = [
+    '#title' => t('I confirm that the link meets the accessibility requirements.'),
+    '#description' => t('I have made sure that the description of this link clearly states that it will open in a new window. <a href="@wcag-techniques">See WCAG 3.2.5 accessibility requirement.</a>', [
+      '@wcag-techniques' => 'https://www.w3.org/WAI/WCAG21/Techniques/general/G200.html',
+    ]),
+    '#type' => 'checkbox',
+    '#default_value' => $get_default_value('target', FALSE) === '_blank',
+    '#weight' => 3,
+    '#states' => [
+      'visible' => [
+        ':input[name="attributes[target]"]' => ['checked' => TRUE],
+      ],
+      'required' => [
+        ':input[name="attributes[target]"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
   $form['advanced'] = [
     '#type' => 'details',
     '#title' => t('Advanced settings'),
@@ -309,6 +327,14 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
   $skip_attributes = ['protocol'];
   $values = $form_state->getValue('attributes');
   $link_element = $form_state->get('link_element');
+
+  // If the consent is not accepted,
+  // uncheck the open in new window / tab checkbox.
+  if ($values['target'] && !$values['target_check']) {
+    $values['target'] = FALSE;
+  }
+
+  // Handle link attributes.
   foreach ($values as $key => $value) {
     if (empty($value) && !in_array($key, $skip_attributes)) {
       $form_state->setValue(['attributes', $key], '');

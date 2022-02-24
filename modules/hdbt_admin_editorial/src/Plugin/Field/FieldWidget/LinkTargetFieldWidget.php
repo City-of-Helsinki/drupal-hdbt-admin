@@ -59,12 +59,12 @@ class LinkTargetFieldWidget extends LinkitWidget {
       '#states' => [
         'visible' => [
           ':input[name="' . $element_path . '[options][target_new]"]' => [
-            'checked' => TRUE
+            'checked' => TRUE,
           ],
         ],
         'required' => [
           ':input[name="' . $element_path . '[options][target_new]"]' => [
-            'checked' => TRUE
+            'checked' => TRUE,
           ],
         ],
       ],
@@ -91,15 +91,15 @@ class LinkTargetFieldWidget extends LinkitWidget {
   /**
    * Get element path as string for form element states.
    *
-   * @param $element
+   * @param array $element
    *   Form element.
-   * @param $delta
+   * @param int $delta
    *   Form element delta.
    *
    * @return string
    *   Returns element path as a string.
    */
-  function getElementStatePath($element, $delta): string {
+  function getElementStatePath(array $element, int $delta): string {
     $parents = $element['#field_parents'];
     $parents[] = $this->fieldDefinition->getName();
     $selector = $root = array_shift($parents);

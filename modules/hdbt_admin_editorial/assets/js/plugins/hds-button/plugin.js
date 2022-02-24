@@ -120,12 +120,6 @@
               handleLabelSpan(editor, linkElement);
             }
 
-            // Add link-external icon if link element has class hds-button and
-            // it's pointing to blank.
-            if (linkElement.getAttribute('target') === '_blank') {
-              classList += ' hdbt-icon hdbt-icon--link-external';
-            }
-
             // Add the selected icon, if one exists.
             if (linkElement.$.dataset.icon) {
               classList = design;

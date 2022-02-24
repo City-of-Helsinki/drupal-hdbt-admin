@@ -99,7 +99,7 @@ class LinkTargetFieldWidget extends LinkitWidget {
    * @return string
    *   Returns element path as a string.
    */
-  function getElementStatePath(array $element, int $delta): string {
+  protected function getElementStatePath(array $element, int $delta): string {
     $parents = $element['#field_parents'];
     $parents[] = $this->fieldDefinition->getName();
     $selector = $root = array_shift($parents);

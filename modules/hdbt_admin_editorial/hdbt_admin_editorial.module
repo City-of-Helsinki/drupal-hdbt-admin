@@ -249,7 +249,7 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#type' => 'select2_icon_element',
     '#default_value' => $get_default_value('data-icon', NULL),
     '#options' => Select2Icon::loadIcons(),
-    '#weight' => 3,
+    '#weight' => 2,
   ];
 
   $form['attributes']['target'] = [
@@ -257,7 +257,7 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#type' => 'checkbox',
     '#default_value' => $get_default_value('target', FALSE),
     '#return_value' => '_blank',
-    '#weight' => 2,
+    '#weight' => 3,
   ];
 
   $form['attributes']['target_check'] = [
@@ -281,7 +281,7 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
   $form['advanced'] = [
     '#type' => 'details',
     '#title' => t('Advanced settings'),
-    '#weight' => 3,
+    '#weight' => 4,
   ];
 
   $form['attributes']['title'] = [

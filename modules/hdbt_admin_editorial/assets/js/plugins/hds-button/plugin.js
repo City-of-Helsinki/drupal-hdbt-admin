@@ -115,16 +115,19 @@
           // Handle button designs.
           if (design !== 'link') {
 
+            // Add button design to classList.
+            classList = design;
+
             // Add button label if none exist.
             if (buttonLabel.count() === 0) {
               handleLabelSpan(editor, linkElement);
             }
 
-            // Add the selected icon, if one exists.
-            if (linkElement.$.dataset.icon) {
-              classList = design;
-              classList += ' hdbt-icon hdbt-icon--' + linkElement.$.dataset.icon;
-              linkElement.setAttribute('data-icon', linkElement.$.dataset.icon);
+            // Convert data-icon to data-selected-icon.
+            // Icons are handled via selected-icon data attribute.
+            if (linkElement.getAttribute('data-icon')) {
+              linkElement.setAttribute('data-selected-icon', linkElement.getAttribute('data-icon'));
+              linkElement.removeAttribute('data-icon');
             }
           }
           // Remove the possible spans if one exists.

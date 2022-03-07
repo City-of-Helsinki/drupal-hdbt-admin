@@ -244,10 +244,10 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#weight' => 1,
   ];
 
-  $form['attributes']['data-icon'] = [
+  $form['attributes']['data-selected-icon'] = [
     '#title' => t('Icon'),
     '#type' => 'select2_icon_element',
-    '#default_value' => $get_default_value('data-icon', NULL),
+    '#default_value' => $get_default_value('data-selected-icon', NULL),
     '#options' => Select2Icon::loadIcons(),
     '#weight' => 2,
   ];

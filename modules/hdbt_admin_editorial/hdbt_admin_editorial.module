@@ -326,7 +326,7 @@ function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormS
  * Validation for link attributes.
  *
  * String "true" / "false" values are handled in javascript.
- * See. ./modules/hdbt_admin_editorial/assets/js/plugins/hds-button/plugin.js
+ * See: ./modules/hdbt_admin_editorial/assets/js/plugins/hds-button/plugin.js.
  */
 function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
   $attributes = $form_state->getValue('attributes');
@@ -349,7 +349,7 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
   // Check if user has input value to href attribute.
   if (array_key_exists('href', $attributes) && !empty($attributes['href'])) {
     // Parse URL scheme from the href attribute and set it as data variable.
-    $scheme = parse_url($attributes['href'],PHP_URL_SCHEME);
+    $scheme = parse_url($attributes['href'], PHP_URL_SCHEME);
 
     // Check for tel-link.
     $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
@@ -361,7 +361,7 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
     );
 
     // Get Url object based on the href attribute.
-    // TODO: Convert to use helfi_api_base URL helper.
+    // @todo Convert to use helfi_api_base URL helper.
     $url = _hdbt_admin_editorial_parse_embedded_url($attributes['href']);
   }
 
@@ -370,7 +370,7 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
   if ($url instanceof Url) {
     // Get the whitelisted internal domains.
     $internal_domains = Drupal::getContainer()
-        ->getParameter('helfi_api_base.internal_domains') ?? [];
+      ->getParameter('helfi_api_base.internal_domains') ?? [];
     $externalUrl = new ExternalUri($url, $internal_domains);
     $form_state->setValue(
       ['attributes', 'data-is-external'],
@@ -382,7 +382,7 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
 /**
  * Parse embedded URL.
  *
- * TODO: Convert to use helfi_api_base URL helper.
+ * @todo Convert to use helfi_api_base URL helper.
  * See Drupal\helfi_api_base\Helper\ExternalUri.
  *
  * @param string $value

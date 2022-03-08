@@ -101,12 +101,20 @@
           return;
         }
 
+        // Clean unneeded "false" values from attributes.
+        // F.e. data-is-external="false".
+        for (const [key, value] of Object.entries(linkElement.getAttributes())) {
+          if (value === 'false') {
+            linkElement.removeAttribute(key);
+          }
+        }
+
         // Check for the button label.
         let buttonLabel = linkElement.find('span.hds-button__label');
 
         // Check if design has been selected (or exists) and act accordingly.
-        if (linkElement.$.dataset.design) {
-          const design = linkElement.$.dataset.design;
+        if (linkElement.getAttribute('data-design')) {
+          const design = linkElement.getAttribute('data-design');
           let classList = design;
 
           // Set design as data-attribute.
@@ -130,9 +138,12 @@
               linkElement.removeAttribute('data-icon');
             }
           }
-          // Remove the possible spans if one exists.
+          // Remove the possible spans and selected icon if they exist.
           else {
             handleLabelSpan(editor, linkElement, 'remove');
+            if (linkElement.getAttribute('data-selected-icon')) {
+              linkElement.removeAttribute('data-selected-icon');
+            }
           }
 
           // Set link classes based on user selections.

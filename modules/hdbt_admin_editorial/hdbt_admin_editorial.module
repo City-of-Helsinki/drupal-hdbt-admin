@@ -324,36 +324,45 @@ function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormS
 
 /**
  * Validation for link attributes.
+ *
+ * String "true" / "false" values are handled in javascript.
+ * See. ./modules/hdbt_admin_editorial/assets/js/plugins/hds-button/plugin.js
  */
 function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
-  $skip_attributes = [];
-  $values = $form_state->getValue('attributes');
-  $link_element = $form_state->get('link_element');
+  $attributes = $form_state->getValue('attributes');
   $url = FALSE;
 
-  // If the consent is not accepted,
+  // Allow icons only for the links with button design.
+  if (
+    isset($attributes['data-selected-icon']) &&
+    $attributes['data-design'] === 'link'
+  ) {
+    $form_state->unsetValue(['attributes', 'data-selected-icon']);
+  }
+
+  // If the accessibility consent is not accepted,
   // uncheck the open in new window / tab checkbox.
-  if ($values['target'] && !$values['target_check']) {
-    $values['target'] = FALSE;
+  if ($attributes['target'] && !$attributes['target_check']) {
+    $form_state->setValue(['attributes', 'target'], FALSE);
   }
 
   // Check if user has input value to href attribute.
-  if (array_key_exists('href', $values) && !empty($values['href'])) {
+  if (array_key_exists('href', $attributes) && !empty($attributes['href'])) {
     // Parse URL scheme from the href attribute and set it as data variable.
-    $scheme = parse_url($values['href'],PHP_URL_SCHEME);
+    $scheme = parse_url($attributes['href'],PHP_URL_SCHEME);
 
     // Check for tel-link.
-    $scheme = (empty($scheme) && str_contains($values['href'], 'tel:')) ? 'tel' : $scheme;
+    $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
 
     // Set scheme to data-protocol attribute.
     $form_state->setValue(
       ['attributes', 'data-protocol'],
-      !(empty($scheme)) ? $scheme : $values['data-protocol']
+      !(empty($scheme)) ? $scheme : 'false'
     );
 
     // Get Url object based on the href attribute.
     // TODO: Convert to use helfi_api_base URL helper.
-    $url = _hdbt_admin_editorial_parse_embedded_url($values['href']);
+    $url = _hdbt_admin_editorial_parse_embedded_url($attributes['href']);
   }
 
   // Check if current link is external (not whitelisted) and
@@ -367,16 +376,6 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
       ['attributes', 'data-is-external'],
       $externalUrl->isExternal() ? 'true' : 'false'
     );
-  }
-
-  // Handle link attributes.
-  foreach ($values as $key => $value) {
-    if (empty($value) && !in_array($key, $skip_attributes)) {
-      $form_state->setValue(['attributes', $key], '');
-      if (empty($link_element)) {
-        $form_state->unsetValue(['attributes', $key]);
-      }
-    }
   }
 }
 

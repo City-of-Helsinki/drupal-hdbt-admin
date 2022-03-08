@@ -341,6 +341,11 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
   if (array_key_exists('href', $values) && !empty($values['href'])) {
     // Parse URL scheme from the href attribute and set it as data variable.
     $scheme = parse_url($values['href'],PHP_URL_SCHEME);
+
+    // Check for tel-link.
+    $scheme = (empty($scheme) && str_contains($values['href'], 'tel:')) ? 'tel' : $scheme;
+
+    // Set scheme to data-protocol attribute.
     $form_state->setValue(
       ['attributes', 'data-protocol'],
       !(empty($scheme)) ? $scheme : $values['data-protocol']

@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Url;
 use Drupal\hdbt_admin_tools\Form\SiteSettings;
-use Drupal\helfi_api_base\Helper\ExternalUri;
+use Drupal\helfi_api_base\Link\UrlHelper;
 use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
 
 /**
@@ -330,7 +330,6 @@ function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormS
  */
 function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
   $attributes = $form_state->getValue('attributes');
-  $url = FALSE;
 
   // Allow icons only for the links with button design.
   if (
@@ -361,47 +360,18 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
     );
 
     // Get Url object based on the href attribute.
-    // @todo Convert to use helfi_api_base URL helper.
-    $url = _hdbt_admin_editorial_parse_embedded_url($attributes['href']);
-  }
+    $url = UrlHelper::parse($attributes['href']);
 
-  // Check if current link is external (not whitelisted) and
-  // set data attributes accordingly.
-  if ($url instanceof Url) {
-    // Get the whitelisted internal domains.
-    $internal_domains = Drupal::getContainer()
-      ->getParameter('helfi_api_base.internal_domains') ?? [];
-    $externalUrl = new ExternalUri($url, $internal_domains);
-    $form_state->setValue(
-      ['attributes', 'data-is-external'],
-      $externalUrl->isExternal() ? 'true' : 'false'
-    );
-  }
-}
-
-/**
- * Parse embedded URL.
- *
- * @todo Convert to use helfi_api_base URL helper.
- * See Drupal\helfi_api_base\Helper\ExternalUri.
- *
- * @param string $value
- *   URL as a string.
- *
- * @return \Drupal\Core\Url
- *   Returns Url object.
- */
-function _hdbt_admin_editorial_parse_embedded_url(string $value) : Url {
-  if (str_starts_with($value, '/')) {
-    return Url::fromUserInput($value);
-  }
-  try {
-    return Url::fromUri($value);
-  }
-  catch (\InvalidArgumentException $e) {
-    // Default to https://{value} if previous attempt failed.
-    // If this fails too, the result will be logged.
-    return Url::fromUri(sprintf('https://%s', $value));
+    // Check if current link is external (not whitelisted) and
+    // set data attributes accordingly.
+    if ($url instanceof Url) {
+      /** @var \Drupal\helfi_api_base\Link\InternalDomainResolver $resolver */
+      $resolver = \Drupal::service('helfi_api_base.internal_domain_resolver');
+      $form_state->setValue(
+        ['attributes', 'data-is-external'],
+        $resolver->isExternal($url) ? 'true' : 'false'
+      );
+    }
   }
 }
 
@@ -435,12 +405,9 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
       /** @var \Drupal\paragraphs\Entity\ParagraphsType $bundle */
       $bundle = $paragraph_types[$button['text']['#bundle_machine_name']];
       $image = str_replace('_', '-', $bundle->get('id'));
-
-      if ($bundle) {
-        $button['attributes']->setAttribute('data-paragraph-title', $bundle->get('label'));
-        $button['attributes']->setAttribute('data-paragraph-description', $bundle->get('description'));
-        $button['attributes']->setAttribute('data-paragraph-image', 'paragraph--' . $image);
-      }
+      $button['attributes']->setAttribute('data-paragraph-title', $bundle->get('label'));
+      $button['attributes']->setAttribute('data-paragraph-description', $bundle->get('description'));
+      $button['attributes']->setAttribute('data-paragraph-image', 'paragraph--' . $image);
     }
   }
 }

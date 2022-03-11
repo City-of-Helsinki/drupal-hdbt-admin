@@ -27,21 +27,11 @@ function hdbt_admin_preprocess(&$variables) {
  * Implements hook_preprocess_input().
  */
 function hdbt_admin_preprocess_input(&$variables) {
-
-  // Set icons path for site settings form.
-  if (
-    array_key_exists('#parents', $variables['element']) &&
-    is_array($variables['element']['#parents']) &&
-    in_array('default_icon', $variables['element']['#parents'])
-  ) {
-    $variables['icons_path'] = '/' . drupal_get_path('theme', 'hdbt') . '/dist/icons/sprite.svg';
-  }
-
   if ($variables['element']['#type'] !== 'submit') {
     return;
   }
 
-  if (strpos($variables['element']['#name'], 'field_hero') !== FALSE) {
+  if (str_contains($variables['element']['#name'], 'field_hero')) {
     if (array_key_exists('#paragraphs_mode', $variables['element'])) {
       $variables['#attached']['library'][] = 'hdbt_admin/hero-toggle';
       $variables['hdbt_selector'] = 'field-hero-action--' . $variables['element']['#paragraphs_mode'];

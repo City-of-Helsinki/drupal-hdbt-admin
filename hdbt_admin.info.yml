@@ -17,3 +17,4 @@ libraries:
 # Override libraries.
 libraries-override:
   select2/select2.min: hdbt_admin/select2.min
+  select2/select2: select2_icon/select2_icon

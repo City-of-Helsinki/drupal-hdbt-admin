@@ -83,8 +83,6 @@ class Select2IconWidget extends WidgetBase {
       '#default_value' => $this->getSelectedOptions($items),
     ];
 
-    $element['icon']['#attached']['library'][] = 'select2_icon/select2_icon';
-
     return $element;
   }
 

@@ -157,7 +157,7 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state,
   $node = $form_state->getFormObject()->getEntity();
 
   if ($node->isNew()) {
-    $form['actions']['preview']['#disabled'] = TRUE;
+    $form['actions']['preview']['#access'] = FALSE;
   }
 }
 

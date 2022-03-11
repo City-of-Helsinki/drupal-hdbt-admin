@@ -120,7 +120,7 @@ function hdbt_admin_preprocess_table(&$variables) {
  * Alter meta information field visibility by moving the fiels in to
  * Meta information accordion.
  */
-function hdbt_admin_form_node_form_alter(&$form, $form_state, $form_id) {
+function hdbt_admin_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   $meta_fields = [
     'field_short_title' => 1,
     'color_palette' => 1,

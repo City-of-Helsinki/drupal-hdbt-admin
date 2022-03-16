@@ -332,11 +332,10 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
   $attributes = $form_state->getValue('attributes');
 
   // Allow icons only for the links with button design.
-  if (
-    isset($attributes['data-selected-icon']) &&
-    $attributes['data-design'] === 'link'
-  ) {
-    $form_state->unsetValue(['attributes', 'data-selected-icon']);
+  if (isset($attributes['data-selected-icon'])) {
+    if ($attributes['data-design'] === 'link' || empty($attributes['data-selected-icon'])) {
+      $form_state->unsetValue(['attributes', 'data-selected-icon']);
+    }
   }
 
   // If the accessibility consent is not accepted,
@@ -347,18 +346,6 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
 
   // Check if user has input value to href attribute.
   if (array_key_exists('href', $attributes) && !empty($attributes['href'])) {
-    // Parse URL scheme from the href attribute and set it as data variable.
-    $scheme = parse_url($attributes['href'], PHP_URL_SCHEME);
-
-    // Check for tel-link.
-    $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
-
-    // Set scheme to data-protocol attribute.
-    $form_state->setValue(
-      ['attributes', 'data-protocol'],
-      !(empty($scheme)) ? $scheme : 'false'
-    );
-
     // Get Url object based on the href attribute.
     $url = UrlHelper::parse($attributes['href']);
 
@@ -367,10 +354,25 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
     if ($url instanceof Url) {
       /** @var \Drupal\helfi_api_base\Link\InternalDomainResolver $resolver */
       $resolver = \Drupal::service('helfi_api_base.internal_domain_resolver');
-      $form_state->setValue(
-        ['attributes', 'data-is-external'],
-        $resolver->isExternal($url) ? 'true' : 'false'
-      );
+      $is_external = $resolver->isExternal($url);
+
+      // Set form value is-external based on domain resolver.
+      $form_state->setValue(['attributes', 'data-is-external'], $is_external ? 'true' : 'false');
+
+      // Parse URL scheme from the href attribute and set it as data variable.
+      $scheme = parse_url(($is_external) ? $url->getUri() : $attributes['href'], PHP_URL_SCHEME);
+
+      // Check for tel-link.
+      $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
+
+      // Construct a protocol value for external links if user has not selected
+      // any value for the protocol.
+      if ($is_external && empty($scheme) && $attributes['data-protocol'] === 'false') {
+        $scheme = ($scheme === 'https' || $scheme === 'http') ? $scheme . '://' : $scheme;
+      }
+
+      // Set scheme to data-protocol attribute.
+      $form_state->setValue(['attributes', 'data-protocol'], !(empty($scheme)) ? $scheme : 'false');
     }
   }
 }

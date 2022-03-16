@@ -137,6 +137,14 @@
               linkElement.setAttribute('data-selected-icon', linkElement.getAttribute('data-icon'));
               linkElement.removeAttribute('data-icon');
             }
+
+            // Remove data-selected-icon if user has removed the icon.
+            if (
+              linkElement.getAttribute('data-selected-icon') &&
+              !linkElement.getAttribute('data-cke-saved-data-selected-icon')
+            ) {
+              linkElement.removeAttribute('data-selected-icon');
+            }
           }
           // Remove the possible spans and selected icon if they exist.
           else {

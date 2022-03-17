@@ -101,6 +101,10 @@
           return;
         }
 
+        // A poor man's way to determine whether the link being handled is
+        // new or already existing.
+        const linkIsNew = !linkElement.getAttribute('data-cke-saved-href');
+
         // Clean unneeded "false" values from attributes.
         // F.e. data-is-external="false".
         for (const [key, value] of Object.entries(linkElement.getAttributes())) {
@@ -140,6 +144,7 @@
 
             // Remove data-selected-icon if user has removed the icon.
             if (
+              !linkIsNew &&
               linkElement.getAttribute('data-selected-icon') &&
               !linkElement.getAttribute('data-cke-saved-data-selected-icon')
             ) {

@@ -17,121 +17,9 @@
  *  - data:  An array of data returned by your plugin's collect() method.
  */
 #}
+{{ attach_library('hdbt_admin/debug-item-composer') }}
+
 {{ id }} {{ label }}
-
-<script>
-function since(msString) {
-  const then = new Date(msString);
-  const now = new Date();
-  const ms = now - then
-  const sinceArr = [
-    {name: 'milliseconds', val: 1000},
-    {name: 'seconds', val: 60 * 1000},
-    {name: 'minutes', val: 60 * 60 * 1000},
-    {name: 'hours',   val: 24 * 60 * 60 * 1000},
-    {name: 'days',    val: 356 * 24 * 60 * 60 * 1000},
-    {name: 'years',   val: 10 * 356 * 24 * 60 * 60 * 1000},
-  ]
-
-  for(let i = 0; i < sinceArr.length; i++ ){
-    const item = sinceArr[i];
-    if(ms < item.val) {
-      let msNum = ms;
-      if(i > 0){
-        msNum = Math.round(ms / sinceArr[i-1].val);
-      }
-      return `${msNum} ${item.name} ago`;
-    }
-  }
-  return 'forever ago';
-}
-function handleResult(result, repo, element) {
-  const resultObj = JSON.parse(result);
-  if(resultObj.tag_name){
-    element.innerText = resultObj.tag_name;
-  }else{
-    element.innerText = 'Unknown';
-  }
-  const versionElement = element.parentElement.querySelector('td:first-of-type');
-  if(versionElement.innerText !== resultObj.tag_name) {
-    versionElement.style = 'color: red';
-  }
-}
-
-function getLatest(repo, element){
-
-  var myHeaders = new Headers();
-  myHeaders.append("Accept", "application/vnd.github.v3+json");
-  //myHeaders.append("Authorization", "Basic XXX"); // Replace XXX with username:token that has been base64 encoded
-
-  var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-  };
-
-  fetch("https://api.github.com/repos/"+repo+"/releases/latest", requestOptions)
-    .then(response => response.text())
-    .then(result => handleResult(result, repo, element))
-    .catch(error => console.log('error', error));
-}
-</script>
-
-{% set latest = {
-  'drupal/hdbt': {
-    name: 'drupal-hdbt',
-    repo: 'City-of-Helsinki/drupal-hdbt',
-  },
-  'drupal/hdbt_admin': {
-    name: 'drupal-hdbt-admin',
-    repo: 'City-of-Helsinki/drupal-hdbt-admin',
-  },
-  'drupal/helfi_ahjo': {
-    name: 'drupal-module-helfi-ahjo',
-    repo: 'City-of-Helsinki/drupal-module-helfi-ahjo',
-  },
-  'drupal/helfi_api_base': {
-    name: 'drupal-module-helfi-api-base',
-    repo: 'City-of-Helsinki/drupal-module-helfi-api-base',
-  },
-  'drupal/helfi_azure_fs': {
-    name: 'drupal-module-helfi-azure-fs',
-    repo: 'City-of-Helsinki/drupal-module-helfi-azure-fs',
-  },
-  'drupal/helfi_drupal_tools': {
-    name: 'drupal-tools',
-    repo: 'City-of-Helsinki/drupal-tools',
-  },
-  'drupal/helfi_hauki': {
-    name: 'drupal-module-helfi-hauki',
-    repo: 'City-of-Helsinki/drupal-module-helfi-hauki',
-  },
-  'drupal/helfi_media_formtool': {
-    name: 'drupal-module-helfi-media-formtool',
-    repo: 'City-of-Helsinki/drupal-module-helfi-media-formtool',
-  },
-  'drupal/helfi_media_map': {
-    name: 'drupal-module-helfi-media-map',
-    repo: 'City-of-Helsinki/drupal-module-helfi-media-map',
-  },
-  'drupal/helfi_platform_config': {
-    name: 'drupal-helfi-platform-config',
-    repo: 'City-of-Helsinki/drupal-helfi-platform-config',
-  },
-  'drupal/helfi_proxy': {
-    name: 'drupal-module-helfi-proxy',
-    repo: 'City-of-Helsinki/drupal-module-helfi-proxy',
-  },
-  'drupal/helfi_tpr': {
-    name: 'drupal-module-helfi-tpr',
-    repo: 'City-of-Helsinki/drupal-module-helfi-tpr',
-  },
-  'drupal/helfi_tunnistamo': {
-    name: 'drupal-module-helfi-tunnistamo',
-    repo: 'City-of-Helsinki/drupal-module-helfi-tunnistamo',
-  },
-
-} %}
 
 <table style="width:auto;">
   <thead>
@@ -153,22 +41,16 @@ function getLatest(repo, element){
         <td>
           {{ package.version }}
         </td>
-        <td id="{{ package.name|replace({'/':'_'}) }}-ago"></td>
+        <td data-since="{{ package.time }}">Loading..</td>
         <td>
           {{ package.time }}
         </td>
         <td>
-          {% if latest[package.name] %}
-            {{ link(latest[package.name].name, 'https://github.com/' ~ latest[package.name].repo ~ '/releases') }}
-          {% endif %}
+          {% set link_url = package.source.url|replace({'.git':''}) %}
+          {% set link_title = link_url|replace({'https://github.com/City-of-Helsinki/':''}) %}
+          {{ link(link_title, link_url ~ '/releases') }}
         </td>
-        <td id="{{ package.name|replace({'/':'_'}) }}-repo"></td>
+        <td data-package="{{ package.name }}" data-version="{{ package.version }}"></td>
       </tr>
-      <script>
-        document.querySelector('#{{ package.name|replace({'/':'_'}) }}-ago').innerHTML = since('{{ package.time }}');
-        {% if latest[package.name] %}
-          getLatest('{{ latest[package.name].repo }}', document.querySelector('#{{ package.name|replace({'/':'_'}) }}-repo'));
-        {% endif %}
-      </script>
     {% endfor %}
 </table>

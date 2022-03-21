@@ -27,12 +27,12 @@
 
             // Craft the image template.
             return $(`
-              <div class="color-selection-wrapper">
+              <div class="color-selection-wrapper hdbt-theme--${option.id}">
                 <div class="selection">${option.text}</div>
                 <div class="colors">
-                  <div style="--color-palette-selection--primary: var(--hdbt-color-${option.id}--primary);" class="color-selection primary"></div>
-                  <div style="--color-palette-selection--secondary: var(--hdbt-color-${option.id}--secondary);" class="color-selection secondary"></div>
-                  <div style="--color-palette-selection--accent: var(--hdbt-color-${option.id}--accent);" class="color-selection accent"></div>
+                  <div class="color-selection color-section--primary"></div>
+                  <div class="color-selection color-section--secondary"></div>
+                  <div class="color-selection color-section--accent"></div>
                 </div>
               </div>
             `);

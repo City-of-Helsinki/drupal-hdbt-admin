@@ -410,6 +410,9 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
       $button['attributes']->setAttribute('data-paragraph-title', $bundle->get('label'));
       $button['attributes']->setAttribute('data-paragraph-description', $bundle->get('description'));
       $button['attributes']->setAttribute('data-paragraph-image', 'paragraph--' . $image);
+
+      // Fix the translation when paragraph type names are being rendered.
+      $button['text']['#value'] = t('Add @type', ['@type' => strtolower($bundle->get('label'))]);
     }
   }
 }

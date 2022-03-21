@@ -38,17 +38,17 @@
     display: flex;
     width: 100%;
 
-    .color-section--primary {
+    .color-selection--primary {
       background-color: var(--hdbt-color-palette--primary);
       height: 100%;
       width: 50%;
     }
-    .color-section--secondary {
+    .color-selection--secondary {
       background-color: var(--hdbt-color-palette--secondary);
       height: 100%;
       width: 25%;
     }
-    .color-section--accent  {
+    .color-selection--accent  {
       background-color: var(--hdbt-color-palette--accent);
       height: 100%;
       width: 25%;

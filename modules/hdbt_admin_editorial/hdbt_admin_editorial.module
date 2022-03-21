@@ -8,7 +8,9 @@
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Url;
 use Drupal\hdbt_admin_tools\Form\SiteSettings;
+use Drupal\helfi_api_base\Link\UrlHelper;
 use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
 
 /**
@@ -244,12 +246,12 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#weight' => 1,
   ];
 
-  $form['attributes']['data-icon'] = [
+  $form['attributes']['data-selected-icon'] = [
     '#title' => t('Icon'),
     '#type' => 'select2_icon_element',
-    '#default_value' => $get_default_value('data-icon', NULL),
+    '#default_value' => $get_default_value('data-selected-icon', NULL),
     '#options' => Select2Icon::loadIcons(),
-    '#weight' => 3,
+    '#weight' => 2,
   ];
 
   $form['attributes']['target'] = [
@@ -257,13 +259,31 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#type' => 'checkbox',
     '#default_value' => $get_default_value('target', FALSE),
     '#return_value' => '_blank',
-    '#weight' => 2,
+    '#weight' => 3,
+  ];
+
+  $form['attributes']['target_check'] = [
+    '#title' => t('The link meets the accessibility requirements'),
+    '#description' => t('I have made sure that the description of this link clearly states that it will open in a new tab. <a href="@wcag-techniques" target="_blank">See WCAG 3.2.5 accessibility requirement (the link opens in a new tab).</a>', [
+      '@wcag-techniques' => 'https://www.w3.org/WAI/WCAG21/Techniques/general/G200.html',
+    ]),
+    '#type' => 'checkbox',
+    '#default_value' => $get_default_value('target', FALSE) === '_blank',
+    '#weight' => 3,
+    '#states' => [
+      'visible' => [
+        ':input[name="attributes[target]"]' => ['checked' => TRUE],
+      ],
+      'required' => [
+        ':input[name="attributes[target]"]' => ['checked' => TRUE],
+      ],
+    ],
   ];
 
   $form['advanced'] = [
     '#type' => 'details',
     '#title' => t('Advanced settings'),
-    '#weight' => 3,
+    '#weight' => 4,
   ];
 
   $form['attributes']['title'] = [
@@ -304,17 +324,55 @@ function hdbt_admin_editorial_form_linkit_editor_dialog_form_alter(&$form, FormS
 
 /**
  * Validation for link attributes.
+ *
+ * String "true" / "false" values are handled in javascript.
+ * See: ./modules/hdbt_admin_editorial/assets/js/plugins/hds-button/plugin.js.
  */
 function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterface $form_state) {
-  $skip_attributes = ['protocol'];
-  $values = $form_state->getValue('attributes');
-  $link_element = $form_state->get('link_element');
-  foreach ($values as $key => $value) {
-    if (empty($value) && !in_array($key, $skip_attributes)) {
-      $form_state->setValue(['attributes', $key], '');
-      if (empty($link_element)) {
-        $form_state->unsetValue(['attributes', $key]);
+  $attributes = $form_state->getValue('attributes');
+
+  // Allow icons only for the links with button design.
+  if (isset($attributes['data-selected-icon'])) {
+    if ($attributes['data-design'] === 'link' || empty($attributes['data-selected-icon'])) {
+      $form_state->unsetValue(['attributes', 'data-selected-icon']);
+    }
+  }
+
+  // If the accessibility consent is not accepted,
+  // uncheck the open in new window / tab checkbox.
+  if ($attributes['target'] && !$attributes['target_check']) {
+    $form_state->setValue(['attributes', 'target'], FALSE);
+  }
+
+  // Check if user has input value to href attribute.
+  if (array_key_exists('href', $attributes) && !empty($attributes['href'])) {
+    // Get Url object based on the href attribute.
+    $url = UrlHelper::parse($attributes['href']);
+
+    // Check if current link is external (not whitelisted) and
+    // set data attributes accordingly.
+    if ($url instanceof Url) {
+      /** @var \Drupal\helfi_api_base\Link\InternalDomainResolver $resolver */
+      $resolver = \Drupal::service('helfi_api_base.internal_domain_resolver');
+      $is_external = $resolver->isExternal($url);
+
+      // Set form value is-external based on domain resolver.
+      $form_state->setValue(['attributes', 'data-is-external'], $is_external ? 'true' : 'false');
+
+      // Parse URL scheme from the href attribute and set it as data variable.
+      $scheme = parse_url(($is_external) ? $url->getUri() : $attributes['href'], PHP_URL_SCHEME);
+
+      // Check for tel-link.
+      $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
+
+      // Construct a protocol value for external links if user has not selected
+      // any value for the protocol.
+      if ($is_external && empty($scheme) && $attributes['data-protocol'] === 'false') {
+        $scheme = ($scheme === 'https' || $scheme === 'http') ? $scheme . '://' : $scheme;
       }
+
+      // Set scheme to data-protocol attribute.
+      $form_state->setValue(['attributes', 'data-protocol'], !(empty($scheme)) ? $scheme : 'false');
     }
   }
 }
@@ -349,12 +407,9 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
       /** @var \Drupal\paragraphs\Entity\ParagraphsType $bundle */
       $bundle = $paragraph_types[$button['text']['#bundle_machine_name']];
       $image = str_replace('_', '-', $bundle->get('id'));
-
-      if ($bundle) {
-        $button['attributes']->setAttribute('data-paragraph-title', $bundle->get('label'));
-        $button['attributes']->setAttribute('data-paragraph-description', $bundle->get('description'));
-        $button['attributes']->setAttribute('data-paragraph-image', 'paragraph--' . $image);
-      }
+      $button['attributes']->setAttribute('data-paragraph-title', $bundle->get('label'));
+      $button['attributes']->setAttribute('data-paragraph-description', $bundle->get('description'));
+      $button['attributes']->setAttribute('data-paragraph-image', 'paragraph--' . $image);
     }
   }
 }

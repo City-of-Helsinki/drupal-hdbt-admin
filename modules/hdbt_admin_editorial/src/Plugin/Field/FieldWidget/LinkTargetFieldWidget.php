@@ -46,6 +46,30 @@ class LinkTargetFieldWidget extends LinkitWidget {
       '#weight' => 99,
     ];
 
+    $element_path = $this->getElementStatePath($element, $delta);
+
+    $element['options']['target_check'] = [
+      '#title' => t('The link meets the accessibility requirements'),
+      '#description' => t('I have made sure that the description of this link clearly states that it will open in a new tab. <a href="@wcag-techniques" target="_blank">See WCAG 3.2.5 accessibility requirement (the link opens in a new tab).</a>', [
+        '@wcag-techniques' => 'https://www.w3.org/WAI/WCAG21/Techniques/general/G200.html',
+      ]),
+      '#type' => 'checkbox',
+      '#default_value' => $options['target_new'] ?? FALSE,
+      '#weight' => 99,
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $element_path . '[options][target_new]"]' => [
+            'checked' => TRUE,
+          ],
+        ],
+        'required' => [
+          ':input[name="' . $element_path . '[options][target_new]"]' => [
+            'checked' => TRUE,
+          ],
+        ],
+      ],
+    ];
+
     return $element;
   }
 
@@ -60,8 +84,29 @@ class LinkTargetFieldWidget extends LinkitWidget {
    * @return \Drupal\link\LinkItemInterface
    *   Returns an array of link items.
    */
-  private function getLinkItem(FieldItemListInterface $items, $delta) {
+  protected function getLinkItem(FieldItemListInterface $items, $delta) {
     return $items[$delta];
+  }
+
+  /**
+   * Get element path as string for form element states.
+   *
+   * @param array $element
+   *   Form element.
+   * @param int $delta
+   *   Form element delta.
+   *
+   * @return string
+   *   Returns element path as a string.
+   */
+  protected function getElementStatePath(array $element, int $delta): string {
+    $parents = $element['#field_parents'];
+    $parents[] = $this->fieldDefinition->getName();
+    $selector = $root = array_shift($parents);
+    if ($parents) {
+      $selector = $root . '[' . implode('][', $parents) . ']';
+    }
+    return $selector . '[' . $delta . ']';
   }
 
 }

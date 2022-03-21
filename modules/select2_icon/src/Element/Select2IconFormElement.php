@@ -31,7 +31,6 @@ class Select2IconFormElement extends Select2 {
     // Set attributes to include the select2_icon library and settings.
     $element['#theme'] = 'select2_icon_widget';
     $element['#attributes']['class'][] = 'select2-icon';
-    $element['#attached']['library'][] = 'select2_icon/select2_icon';
 
     return $element;
   }

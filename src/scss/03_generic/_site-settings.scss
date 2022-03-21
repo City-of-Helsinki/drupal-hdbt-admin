@@ -105,6 +105,20 @@
     }
 
     .color-palette--primary {
+      --input-radio-color-palette: var(--hdbt-color-palette--primary);
+      --input-radio-color-palette-text: var(--hdbt-color-palette-text--primary);
+      font-weight: $font-weight-bold;
+    }
+
+    .color-palette--secondary {
+      --input-radio-color-palette: var(--hdbt-color-palette--secondary);
+      --input-radio-color-palette-text: var(--hdbt-color-palette-text--secondary);
+      font-weight: $font-weight-bold;
+    }
+
+    .color-palette--accent {
+      --input-radio-color-palette: var(--hdbt-color-palette--accent);
+      --input-radio-color-palette-text: var(--hdbt-color-palette-text--accent);
       font-weight: $font-weight-bold;
     }
 

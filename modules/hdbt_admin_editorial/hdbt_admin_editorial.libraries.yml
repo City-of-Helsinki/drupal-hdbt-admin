@@ -20,8 +20,8 @@ color_palette_selection:
     assets/js/colorPaletteSelection.js: { weight: -1 }
   dependencies:
     - core/jquery
-    - select2/select2
     - hdbt/color-palette
+    - select2_icon/select2_icon
 
 design_selection:
   version: 1.x
@@ -29,8 +29,8 @@ design_selection:
     assets/js/designSelection.js: { weight: -1 }
   dependencies:
     - core/jquery
-    - select2/select2
     - hdbt_admin_editorial/image_previewer
+    - select2_icon/select2_icon
 
 paragraph_selection:
   version: 1.x
@@ -39,6 +39,7 @@ paragraph_selection:
   dependencies:
     - core/jquery
     - hdbt_admin_editorial/image_previewer
+    - select2_icon/select2_icon
 
 link_plugin_enhancements:
   version: 1.x

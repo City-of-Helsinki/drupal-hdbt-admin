@@ -101,12 +101,24 @@
           return;
         }
 
+        // A poor man's way to determine whether the link being handled is
+        // new or already existing.
+        const linkIsNew = !linkElement.getAttribute('data-cke-saved-href');
+
+        // Clean unneeded "false" values from attributes.
+        // F.e. data-is-external="false".
+        for (const [key, value] of Object.entries(linkElement.getAttributes())) {
+          if (value === 'false') {
+            linkElement.removeAttribute(key);
+          }
+        }
+
         // Check for the button label.
         let buttonLabel = linkElement.find('span.hds-button__label');
 
         // Check if design has been selected (or exists) and act accordingly.
-        if (linkElement.$.dataset.design) {
-          const design = linkElement.$.dataset.design;
+        if (linkElement.getAttribute('data-design')) {
+          const design = linkElement.getAttribute('data-design');
           let classList = design;
 
           // Set design as data-attribute.
@@ -115,27 +127,36 @@
           // Handle button designs.
           if (design !== 'link') {
 
+            // Add button design to classList.
+            classList = design;
+
             // Add button label if none exist.
             if (buttonLabel.count() === 0) {
               handleLabelSpan(editor, linkElement);
             }
 
-            // Add link-external icon if link element has class hds-button and
-            // it's pointing to blank.
-            if (linkElement.getAttribute('target') === '_blank') {
-              classList += ' hdbt-icon hdbt-icon--link-external';
+            // Convert data-icon to data-selected-icon.
+            // Icons are handled via selected-icon data attribute.
+            if (linkElement.getAttribute('data-icon')) {
+              linkElement.setAttribute('data-selected-icon', linkElement.getAttribute('data-icon'));
+              linkElement.removeAttribute('data-icon');
             }
 
-            // Add the selected icon, if one exists.
-            if (linkElement.$.dataset.icon) {
-              classList = design;
-              classList += ' hdbt-icon hdbt-icon--' + linkElement.$.dataset.icon;
-              linkElement.setAttribute('data-icon', linkElement.$.dataset.icon);
+            // Remove data-selected-icon if user has removed the icon.
+            if (
+              !linkIsNew &&
+              linkElement.getAttribute('data-selected-icon') &&
+              !linkElement.getAttribute('data-cke-saved-data-selected-icon')
+            ) {
+              linkElement.removeAttribute('data-selected-icon');
             }
           }
-          // Remove the possible spans if one exists.
+          // Remove the possible spans and selected icon if they exist.
           else {
             handleLabelSpan(editor, linkElement, 'remove');
+            if (linkElement.getAttribute('data-selected-icon')) {
+              linkElement.removeAttribute('data-selected-icon');
+            }
           }
 
           // Set link classes based on user selections.

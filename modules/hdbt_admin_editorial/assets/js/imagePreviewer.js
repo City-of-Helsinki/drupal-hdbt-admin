@@ -54,6 +54,7 @@
 
     // When selector is being hovered, show a preview of the selected image.
     $(document).on('mouseenter', selector, function(event) {
+      event.stopImmediatePropagation();
       const image = $(this).data('hover-image');
       const title = $(this).data('hover-title') ?? '';
       const description = $(this).data('hover-description') ?? '';
@@ -84,6 +85,7 @@
         .fadeIn(config.fadeIn);
     // When mouse is moved, move along with the cursor.
     }).on('mousemove', selector, function(event) {
+      event.stopImmediatePropagation();
       let dp = $(`#${imageID}`);
       let height = dp.height();
       dp.css('top',(event.pageY - config.imageYOffset - height) + 'px')

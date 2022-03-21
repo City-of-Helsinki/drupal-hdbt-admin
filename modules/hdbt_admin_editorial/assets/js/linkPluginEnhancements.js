@@ -63,7 +63,7 @@
       if (design) {
         design.change((event) => {
           let chosenDesign = $(event.target).val();
-          handleVisibilty($('form.editor-link-dialog .form-item--attributes-data-icon'), chosenDesign !== 'link');
+          handleVisibilty($('form.editor-link-dialog .form-item--attributes-data-selected-icon'), chosenDesign !== 'link');
         }).change();
       }
     }

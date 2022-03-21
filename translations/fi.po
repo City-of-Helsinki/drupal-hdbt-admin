@@ -1,5 +1,153 @@
 msgid ""
 msgstr ""
 
+msgctxt "Accent color"
+msgid "Accent"
+msgstr "Korosteväri"
+
+msgid "Basic motif"
+msgstr "Perus"
+
+msgid "Beat"
+msgstr "Syke"
+
+msgid "Cookie consent intro"
+msgstr "Evästeiden hallinta intro"
+
+msgid "Default liftup image"
+msgstr "Oletuskuvio"
+
+msgid "Drag to re-order @entity_types."
+msgstr "Raahaa järjestelläksesi @entity_types."
+
+msgid "Edit footer bottom navigation links"
+msgstr "Muokkaa alatunnisteen alaosan valikkolinkkejä"
+
+msgid "Edit footer top navigation links"
+msgstr "Muokkaa alatunnisteen yläosan valikkolinkkejä"
+
+msgid "Footer bottom navigation menu links"
+msgstr "Alatunniste - Alavalikko"
+
+msgid "Footer color"
+msgstr "Alatunnisteen väri"
+
+msgid "Footer settings"
+msgstr "Alatunnisteen asetukset"
+
+msgid "Footer top content"
+msgstr "Alatunnisteen yläsisältö"
+
+msgid "Footer top navigation"
+msgstr "Alatunniste - Ylävalikko"
+
+msgid "Footer top navigation menu links"
+msgstr "Alatunniste - Ylävalikko"
+
+msgid "Footer top title"
+msgstr "Alatunnisteen yläosan otsikko"
+
+msgid "HDBT - Component library"
+msgstr "HDBT - Komponenttikirjasto"
+
+msgid "HDBT Component Library"
+msgstr "HDBT komponenttikirjasto"
+
+msgid "Header branding navigation menu links"
+msgstr "Ylätunniste - Toimintavalikko"
+
+msgid "Header top navigation menu links"
+msgstr "Ylätunniste - Universaalinavigaatio"
+
+msgctxt "HELfi Metatags"
+msgid "Page title"
+msgstr "Title"
+
+msgctxt "HELfi Metatags"
+msgid "Description"
+msgstr "Metakuvaus"
+
+msgid "Main menu"
+msgstr "Päävalikko"
+
+msgid ""
+"Please select an appropriate language for your paragraph from the "
+"language switcher on the top right corner of the page."
+msgstr ""
+"Varmista, että olet lisäämässä oikean kielistä lohkoa. Voit "
+"valita lohkon kielen sivun oikeassa ylälaidassa olevasta "
+"kielivalinnasta."
+
+msgid ""
+"Populates the title attribute of the link, usually shown as a small "
+"tooltip on hover."
+msgstr ""
+"Täyttää linkin otsikko attribuutin, joka näkyy yleensä pienenä "
+"työkaluvihjeenä hiiren osoittimessa."
+
 msgid "Published on"
 msgstr "Julkaisuaika"
+
+msgctxt "Primary color"
+msgid "Primary"
+msgstr "Pääväri"
+
+msgid "Protocol"
+msgstr "Protokolla"
+
+msgid "Pulse"
+msgstr "Pulssi"
+
+msgid "Regenerate all sitemaps after hitting <em>Save</em>"
+msgstr "Luo uudelleen kaikki sivustokartat kun sisältö tallennetaan"
+
+msgctxt "Secondary color"
+msgid "Secondary"
+msgstr "Apuväri"
+
+msgid ""
+"See wave motifs from <a href=\":vig\" target=\"_blank\">Visual "
+"Identity Guidelines</a>."
+msgstr ""
+"Koromuodoista lisää <a href=\":vig\" target=\"_blank\">Visuaalisen "
+"Ilmeen Ohjeistosta</a>. "
+
+msgid "Select footer background color"
+msgstr "Valitse alatunnisteen taustaväri"
+
+msgid "Select wave motif"
+msgstr "Valitse koromuoto"
+
+msgid "Site settings"
+msgstr "Sivuston asetukset"
+
+msgid "Site wide settings"
+msgstr "Sivuston laajuiset asetukset"
+
+msgid "Simple XML Sitemap"
+msgstr "XML-sivustokartta"
+
+msgid "The chosen color palette will be used site wide in various components."
+msgstr ""
+"Valittua väripalettia käytetään ympäri sivustoa erilaisissa "
+"komponenteissa."
+
+msgid "Theme color"
+msgstr "Teemaväripaletti"
+
+msgid "This liftup image will be used site wide if none are provided."
+msgstr ""
+"Tätä ikonia käytetään kuvien paikalla, jos muuta kuvaa ei ole "
+"tarjolla."
+
+msgid "User interface translations"
+msgstr "Käyttöliittymän kääntäminen"
+
+msgid "Vibration"
+msgstr "Värinä"
+
+msgid "View HDBT Component Library"
+msgstr "Näytä HDBT komponenttikirjasto"
+
+msgid "Wave"
+msgstr "Tyrsky"

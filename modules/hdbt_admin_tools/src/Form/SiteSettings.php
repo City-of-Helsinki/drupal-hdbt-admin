@@ -23,7 +23,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class SiteSettings extends ConfigFormBase {
 
-  const COLOR_PALETTE_CACHE = 'hdbt_admin_tools:theme_color';
   const SITE_SETTINGS_CONFIGURATION = 'hdbt_admin_tools.site_settings';
 
   /**
@@ -95,6 +94,7 @@ class SiteSettings extends ConfigFormBase {
       '#type' => 'radios',
       '#title' => $this->t('Color palette'),
       '#options' => $this->getColorPalettes(),
+      '#required' => TRUE,
       '#description' => $this->t('The chosen color palette will be used site wide in various components.'),
       '#default_value' => $settings->get('site_settings')['theme_color'] ?: [],
     ];
@@ -112,6 +112,7 @@ class SiteSettings extends ConfigFormBase {
       '#type' => 'radios',
       '#title' => $this->t('Default liftup image'),
       '#options' => $icons,
+      '#required' => TRUE,
       '#description' => $this->t('This liftup image will be used site wide if none are provided.'),
       '#default_value' => $settings->get('site_settings')['default_icon'] ?: [],
     ];
@@ -129,6 +130,7 @@ class SiteSettings extends ConfigFormBase {
       '#type' => 'radios',
       '#title' => $this->t('Select wave motif'),
       '#options' => $wave_motifs,
+      '#required' => TRUE,
       '#description' => $this->t(
         'See wave motifs from <a href=":vig" target="_blank">Visual Identity Guidelines</a>.',
         [':vig' => 'https://brand.hel.fi/en/wave-motifs/']
@@ -221,13 +223,8 @@ class SiteSettings extends ConfigFormBase {
    * @see options_allowed_values()
    */
   public static function getColorPaletteDefaultValue() {
-    if ($cached = \Drupal::cache()->get(static::COLOR_PALETTE_CACHE)) {
-      return $cached->data;
-    }
-
     $settings = \Drupal::config(self::SITE_SETTINGS_CONFIGURATION);
-    if ($value = $settings->get('site_settings.theme_color')) {
-      \Drupal::cache()->set(static::COLOR_PALETTE_CACHE, $value);
+    if ($value = $settings?->getOriginal('site_settings.theme_color', FALSE)) {
       return $value;
     }
     return '';

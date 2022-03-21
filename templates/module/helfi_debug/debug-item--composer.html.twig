@@ -17,11 +17,41 @@
  *  - data:  An array of data returned by your plugin's collect() method.
  */
 #}
-{{ id }}
-{{ label }}
+{{ attach_library('hdbt_admin/debug-item-composer') }}
 
-{% for package in data.packages %}
-  {{ package.name }}
-  {{ package.version }}
-  {{ package.time }}
-{% endfor %}
+{{ id }} {{ label }}
+
+<table style="width:auto;">
+  <thead>
+    <tr>
+      <th>Package</th>
+      <th>Version</th>
+      <th>Updated</th>
+      <th>Timestamp</th>
+      <th>Releases</th>
+      <th>Latest</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for package in data.packages %}
+      <tr>
+        <th>
+          {{ package.name }}
+        </th>
+        <td>
+          {{ package.version }}
+        </td>
+        <td data-since="{{ package.time }}">Loading..</td>
+        <td>
+          {{ package.time }}
+        </td>
+        <td>
+          {% set link_url = package.source.url|replace({'.git':''}) %}
+          {% set link_title = link_url|replace({'https://github.com/City-of-Helsinki/':''}) %}
+          {{ link(link_title, link_url ~ '/releases') }}
+        </td>
+        <td data-package="{{ package.name }}" data-version="{{ package.version }}"></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

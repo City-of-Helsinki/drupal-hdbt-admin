@@ -30,9 +30,9 @@
               <div class="color-selection-wrapper hdbt-theme--${option.id}">
                 <div class="selection">${option.text}</div>
                 <div class="colors">
-                  <div class="color-selection color-section--primary"></div>
-                  <div class="color-selection color-section--secondary"></div>
-                  <div class="color-selection color-section--accent"></div>
+                  <div class="color-selection color-selection--primary"></div>
+                  <div class="color-selection color-selection--secondary"></div>
+                  <div class="color-selection color-selection--accent"></div>
                 </div>
               </div>
             `);

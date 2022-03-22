@@ -1,33 +1,30 @@
 msgid ""
 msgstr ""
 
-msgctxt "HDBT Admin editorial"
-msgid "Version notes"
-msgstr "Miten muutit sivua?"
-
-msgctxt "HDBT Admin editorial"
-msgid "Editing metadata"
-msgstr "Metatietojen muuttaminen"
-
-msgctxt "HDBT Admin editorial"
-msgid "Can be left unchanged. Tokens can be used to set metadata."
-msgstr ""
-"Näitä asetuksia ei tarvitse muuttaa. "
-"Metatietojen asettamisessa voidaan käyttää valmiita korvauskuvioita."
-
-msgctxt "HDBT Admin editorial"
 msgid ""
-"Page title is visible in search results and browser tab heading. "
-"The title is set automatically and does not need to be set here. "
-"Recommended max. length: 55–65 characters."
+"Allows linking to this content using a URL fragment (#). Must be "
+"unique."
 msgstr ""
-"Sivun title näkyy hakutuloksissa ja selaimen välilehden otsikkona."
-"Title asetetaan automaattisesti, eikä sitä tarvitse muuttaa tästä. "
-"Suosituspituus: enintään 55–65 merkkiä."
+"Sallii linkityksen tähän sisältöön URL-fragmentin (#) avulla. "
+"Täytyy olla uniikki."
 
-msgctxt "HDBT Admin editorial"
-msgid "Description for search engines"
-msgstr "Kuvaus hakukoneille"
+msgid "Basic tags"
+msgstr "Perustägit"
+
+msgid "Button primary"
+msgstr "Täysvärinen"
+
+msgid "Button secondary"
+msgstr "Reunustettu"
+
+msgid "Button supplementary"
+msgstr "Ei reunuksia tai taustaväriä"
+
+msgid "Color palette"
+msgstr "Väripaletti"
+
+msgid "Dark"
+msgstr "Tumma"
 
 msgctxt "HDBT Admin editorial"
 msgid ""
@@ -40,26 +37,48 @@ msgstr ""
 "eikä sitä tarvitse muuttaa."
 
 msgctxt "HDBT Admin editorial"
+msgid "Add image"
+msgstr "Lisää kuva"
+
+msgctxt "HDBT Admin editorial"
+msgid "Can be left unchanged. Tokens can be used to set metadata."
+msgstr ""
+"Näitä asetuksia ei tarvitse muuttaa. "
+"Metatietojen asettamisessa voidaan käyttää valmiita korvauskuvioita."
+
+msgctxt "HDBT Admin editorial"
+msgid "Description for search engines"
+msgstr "Kuvaus hakukoneille"
+
+msgctxt "HDBT Admin editorial"
+msgid "Editing metadata"
+msgstr "Metatietojen muuttaminen"
+
+msgctxt "HDBT Admin editorial"
+msgid "Hiding the page"
+msgstr "Ajastettu piilottaminen"
+
+msgctxt "HDBT Admin editorial"
 msgid "Image is not selected."
 msgstr "Kuvaa ei ole valittu."
 
 msgctxt "HDBT Admin editorial"
-msgid "Add image"
-msgstr "Lisää kuva"
+msgid ""
+"Page title is visible in search results and browser tab heading. "
+"The title is set automatically and does not need to be set here. "
+"Recommended max. length: 55–65 characters."
+msgstr ""
+"Sivun title näkyy hakutuloksissa ja selaimen välilehden otsikkona."
+"Title asetetaan automaattisesti, eikä sitä tarvitse muuttaa tästä. "
+"Suosituspituus: enintään 55–65 merkkiä."
 
 msgctxt "HDBT Admin editorial"
 msgid "Release time"
 msgstr "Julkaisuaika"
 
 msgctxt "HDBT Admin editorial"
-msgid "Hiding the page"
-msgstr "Ajastettu piilottaminen"
-
-msgid "Basic tags"
-msgstr "Perustägit"
-
-msgid "The link meets the accessibility requirements"
-msgstr "Linkki täyttää saavutettavuusvaatimukset"
+msgid "Version notes"
+msgstr "Miten muutit sivua?"
 
 msgid ""
 "I have made sure that the description "
@@ -69,3 +88,12 @@ msgstr ""
 "Olen huolehtinut, että tämän linkin kuvauksessa "
 "kerrotaan selkeästi sen aukeavan uuteen välilehteen. "
 "<a href=\"@wcag-techniques\" target=\"_blank\">Katso WCAG 3.2.5 saavutettavuusvaatimukset (linkki avautuu uuteen välilehteen).</a>"
+
+msgid "Light"
+msgstr "Vaalea"
+
+msgid "Open in new window/tab"
+msgstr "Avaa uudessa ikkunassa / välilehdellä"
+
+msgid "The link meets the accessibility requirements"
+msgstr "Linkki täyttää saavutettavuusvaatimukset"

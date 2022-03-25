@@ -12,6 +12,7 @@ select2.min:
   dependencies:
     - core/jquery.once
     - core/drupal
+    - core/sortable
 
 language-switcher:
   js:

@@ -6,8 +6,8 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt-admin",
   "scripts": {
-    "dev": "webpack --progress --mode=development --config  webpack.config.dev.js --watch",
-    "build": "webpack --progress --mode=production --config webpack.config.build.js",
+    "dev": "webpack --progress --mode=development --config  webpack.config.js --watch",
+    "build": "webpack --progress --mode=production --config webpack.config.js",
     "postinstall": "husky install",
     "lint": "lint-staged",
     "lint:js": "eslint --fix src/"
@@ -25,7 +25,6 @@
     "babel-loader": "^8.2.2",
     "breakpoint-sass": "^2.7.1",
     "chokidar": "^3.5.1",
-    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.0.0",
     "css-declaration-sorter": "^6.0.3",
     "css-loader": "^6.0.0",

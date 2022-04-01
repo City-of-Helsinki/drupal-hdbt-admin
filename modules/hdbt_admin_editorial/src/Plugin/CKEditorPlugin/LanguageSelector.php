@@ -69,7 +69,7 @@ class LanguageSelector extends CKEditorPluginBase {
   public function getLibraries(Editor $editor) {
     return [
       'hdbt_admin_editorial/language_selector',
-      'select2_icon/select2_icon'
+      'select2_icon/select2_icon',
     ];
   }
 
@@ -113,7 +113,7 @@ class LanguageSelector extends CKEditorPluginBase {
     foreach (['English', 'Swedish', 'Finnish'] as $value) {
       $move = $list[$value];
       unset($list[$value]);
-      array_unshift($list,$move);
+      array_unshift($list, $move);
     }
 
     return ['language_list' => array_values($list)];

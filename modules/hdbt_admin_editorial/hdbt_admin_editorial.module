@@ -488,5 +488,5 @@ function hdbt_admin_editorial_entity_presave($entity) {
  */
 function hdbt_admin_editorial_ckeditor_css_alter(array &$css) {
   $css[] = Drupal::service('extension.list.theme')
-      ->getPath('hdbt_admin') . '/dist/css/ckeditor.min.css';
+    ->getPath('hdbt_admin') . '/dist/css/ckeditor.min.css';
 }

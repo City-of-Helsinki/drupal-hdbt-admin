@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\hdbt_admin_editorial\Plugin\CKEditorPlugin;
 
 use Drupal\ckeditor\CKEditorPluginBase;
@@ -29,7 +31,7 @@ class LanguageSelector extends CKEditorPluginBase {
    * names. They are the first argument of the editor.ui.addButton() or
    * editor.ui.addRichCombo() functions in the plugin.js file.
    */
-  public function getButtons() {
+  public function getButtons(): array {
     // Make sure that the path to the image matches the file structure of
     // the CKEditor plugin you are implementing.
     return [
@@ -43,7 +45,7 @@ class LanguageSelector extends CKEditorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getFile() {
+  public function getFile(): string {
     // Make sure that the path to the plugin.js matches the file structure of
     // the CKEditor plugin you are implementing.
     return $this->getModuleList()->getPath('hdbt_admin_editorial') . '/assets/js/plugins/language_selector/plugin.js';
@@ -52,21 +54,21 @@ class LanguageSelector extends CKEditorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function isInternal() {
+  public function isInternal(): bool {
     return FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getDependencies(Editor $editor) {
+  public function getDependencies(Editor $editor): array {
     return [];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getLibraries(Editor $editor) {
+  public function getLibraries(Editor $editor): array {
     return [
       'hdbt_admin_editorial/language_selector',
       'select2_icon/select2_icon',
@@ -76,7 +78,7 @@ class LanguageSelector extends CKEditorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getConfig(Editor $editor) {
+  public function getConfig(Editor $editor): array {
     $list = [];
 
     // Manually added missing languages what are not listed

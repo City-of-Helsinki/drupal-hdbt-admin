@@ -20,5 +20,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"
+    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit\r\n/group/*/content/create/*"
     negate: true

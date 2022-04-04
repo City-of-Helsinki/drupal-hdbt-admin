@@ -49,3 +49,10 @@ link_plugin_enhancements:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
+language_selector:
+  css:
+    theme:
+      assets/css/language_selector.css: {}
+  dependencies:
+    - core/drupal

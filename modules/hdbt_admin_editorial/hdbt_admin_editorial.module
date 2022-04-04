@@ -482,3 +482,11 @@ function hdbt_admin_editorial_entity_presave($entity) {
     $entity->set('color_palette', NULL);
   }
 }
+
+/**
+ * Implements hook_ckeditor_css_alter().
+ */
+function hdbt_admin_editorial_ckeditor_css_alter(array &$css) {
+  $css[] = Drupal::service('extension.list.theme')
+    ->getPath('hdbt_admin') . '/dist/css/ckeditor.min.css';
+}

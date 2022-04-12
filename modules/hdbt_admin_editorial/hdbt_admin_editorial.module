@@ -292,7 +292,7 @@ function hdbt_admin_editorial_form_editor_link_dialog_alter(&$form, FormStateInt
     '#description' => t(
       'Populates the title attribute of the link, usually shown as a small tooltip on hover.'
     ),
-    '#default_value' => $get_default_value('title'),
+    '#default_value' => '',
     '#maxlength' => 512,
     '#group' => 'advanced',
   ];

@@ -49,7 +49,7 @@
         // If user has selected text before the link exists, apply the
         // selected text from global variable to current link text input field.
         const textInput = $('form.editor-link-dialog input[data-drupal-selector="edit-attributes-data-link-text"]');
-        if (!textInput.val() && window.drupalLinkTextSelection !== '') {
+        if (!textInput.val() && window.drupalLinkTextSelection !== undefined){
           textInput.val(window.drupalLinkTextSelection);
         }
       }

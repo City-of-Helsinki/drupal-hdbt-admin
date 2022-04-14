@@ -80,6 +80,9 @@ msgctxt "HDBT Admin editorial"
 msgid "Version notes"
 msgstr "Miten muutit sivua?"
 
+msgid "Hide sidebar navigation from this page"
+msgstr "Piilota sivupalkin navigaatio tältä sivulta"
+
 msgid ""
 "I have made sure that the description "
 "of this link clearly states that it will open in a new tab. "

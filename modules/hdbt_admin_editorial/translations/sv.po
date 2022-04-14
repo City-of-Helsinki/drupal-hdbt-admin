@@ -4,3 +4,6 @@ msgstr ""
 msgctxt "HDBT Admin editorial"
 msgid "Version notes"
 msgstr "Hur ändrade du sidan?"
+
+msgid "Hide sidebar navigation from this page"
+msgstr "Dölj sidofältsnavigering från den här sidan"

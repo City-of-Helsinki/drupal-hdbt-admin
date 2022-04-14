@@ -45,3 +45,25 @@ function hdbt_admin_editorial_update_9002() {
     $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type, 'hdbt_admin_editorial', $field_definitions[$field]);
   }
 }
+/**
+ * Install 'hide sidebar navigation' field to node entity, if it is missing.
+ */
+function hdbt_admin_editorial_update_9003() {
+
+  // Field to be installed and entity types.
+  $field = 'hide_sidebar_navigation';
+  $entity_type = 'node';
+
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity_type, $entity_type);
+
+  // Install hide sidebar navigation field, if hide sidebar navigation field
+  // has not been installed to current entity.
+  if (
+    !empty($field_definitions[$field]) &&
+    $field_definitions[$field] instanceof FieldStorageDefinitionInterface &&
+    empty($entity_definition_update_manager->getFieldStorageDefinition($field, $entity_type))
+  ) {
+    $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type, 'hdbt_admin_editorial', $field_definitions[$field]);
+  }
+}

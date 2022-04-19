@@ -463,6 +463,13 @@ function hdbt_admin_editorial_entity_base_field_info(EntityTypeInterface $entity
         'type' => 'color_palette_field_widget',
         'weight' => 0,
       ]);
+    $fields['hide_sidebar_navigation'] = BaseFieldDefinition::create('boolean')
+      ->setRequired(FALSE)
+      ->setTranslatable(FALSE)
+      ->setLabel(t('Hide sidebar navigation from this page'))
+      ->setDefaultValue(FALSE)
+      ->setRevisionable(TRUE)
+      ->setDisplayConfigurable('form', TRUE);
     return $fields;
   }
 }

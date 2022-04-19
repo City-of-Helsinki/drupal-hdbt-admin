@@ -143,9 +143,16 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state,
   // Manipulate metatags field according to clients needs.
   hdbt_admin_manipulate_field_metatags($form);
 
-  // Disable "Preview" button on new nodes.
+  // Get current entity.
+  /** @var \Drupal\node\NodeInterface $node */
   $node = $form_state->getFormObject()->getEntity();
 
+  // Manipulate custom fields if the node is type of page.
+  if ($node->getType() === 'page') {
+    hdbt_admin_manipulate_custom_fields($form);
+  }
+
+  // Disable "Preview" button on new nodes.
   if ($node->isNew()) {
     $form['gin_actions']['actions']['preview']['#access'] = FALSE;
   }
@@ -312,6 +319,9 @@ function hdbt_admin_apply_form_theme(array &$form) {
 
   // Manipulate metatags field according to clients needs.
   hdbt_admin_manipulate_field_metatags($form);
+
+  // Manipulate custom fields.
+  hdbt_admin_manipulate_custom_fields($form);
 }
 
 /**
@@ -351,5 +361,25 @@ function hdbt_admin_manipulate_field_metatags(array &$form) {
     if (isset($metatags['basic'][$obsolete_field])) {
       $metatags['basic'][$obsolete_field]['#access'] = FALSE;
     }
+  }
+}
+
+/**
+ * Manipulate custom fields in entity edit forms.
+ *
+ * @param array $form
+ *   Form to be handled.
+ */
+function hdbt_admin_manipulate_custom_fields(array &$form) {
+  // If hide_sidebar_navigation field exists, move it under menu details.
+  if (array_key_exists('hide_sidebar_navigation', $form)) {
+    $form['hide_sidebar_navigation']['#weight'] = -10;
+    $form['hide_sidebar_navigation']['#states'] = [
+      'visible' => [
+        ':input[name="menu[enabled]"]' => ['checked' => TRUE],
+      ],
+    ];
+    $form['menu']['link']['hide_sidebar_navigation'] = $form['hide_sidebar_navigation'];
+    $form['hide_sidebar_navigation']['#type'] = 'hidden';
   }
 }

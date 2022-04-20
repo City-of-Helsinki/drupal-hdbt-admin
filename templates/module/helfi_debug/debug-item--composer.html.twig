@@ -48,7 +48,9 @@
         <td>
           {% set link_url = package.source.url|replace({'.git':''}) %}
           {% set link_title = link_url|replace({'https://github.com/City-of-Helsinki/':''}) %}
-          {{ link(link_title, link_url ~ '/releases') }}
+          {% if link_url %}
+            {{ link(link_title, link_url ~ '/releases') }}
+          {% endif %}
         </td>
         <td data-package="{{ package.name }}" data-version="{{ package.version }}"></td>
       </tr>

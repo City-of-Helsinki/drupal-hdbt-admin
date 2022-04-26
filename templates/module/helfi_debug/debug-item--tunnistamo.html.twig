@@ -19,11 +19,26 @@
 #}
 
 <h2>Tunnistamo</h2>
-{% for key, exists in data %}
+<table style="width:auto;">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Is set</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for key, exists in data %}
   {% set color = exists ? 'green' : 'red' %}
-  <div>
-    <span style="color: {{ color }}">
-      {{key}} {% if exists %} exists {% else %} is set {% endif %}
-    </span>
-  </div>
-{% endfor %}
+    <tr>
+      <th>
+        {{ key }}
+      </th>
+      <td>
+        <span style="color: {{ color }}">
+          {% if exists %} Is set {% else %} Missing {% endif %}
+        </span>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

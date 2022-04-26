@@ -23,19 +23,18 @@
   <thead>
     <tr>
       <th>Key</th>
-      <th>Is set</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
-  {% for key, exists in data %}
-  {% set color = exists ? 'green' : 'red' %}
+  {% for key, id in data %}
     <tr>
       <th>
         {{ key }}
       </th>
       <td>
         <span style="color: {{ color }}">
-          {% if exists %} Is set {% else %} Missing {% endif %}
+         {{ id ? id : 'FALSE' }}
         </span>
       </td>
     </tr>

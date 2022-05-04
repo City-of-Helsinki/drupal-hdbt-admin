@@ -81,6 +81,19 @@ function hdbt_admin_editorial_update_9003() {
       $hdbt_admin_breadcrumbs->setData($hdbt_admin_breadcrumbs_data)->save(TRUE);
     }
 
+    $hdbt_admin_language_switcher = $config_factory->getEditable('block.block.language_switcher_admin');
+    $hdbt_admin_language_switcher_data = $hdbt_admin_language_switcher->getRawData();
+    if (!empty($hdbt_admin_language_switcher_data)) {
+      $hdbt_admin_language_switcher_data['weight'] = -6;
+      $hdbt_admin_language_switcher->setData($hdbt_admin_language_switcher_data)->save(TRUE);
+    }
+
+    $hdbt_admin_local_tasks = $config_factory->getEditable('block.block.hdbt_admin_local_tasks');
+    $hdbt_admin_local_tasks_data = $hdbt_admin_local_tasks->getRawData();
+    if (!empty($hdbt_admin_local_tasks_data)) {
+      $hdbt_admin_local_tasks->delete();
+    }
+
     $configurations = [
       'block.block.hdbt_admin_primary_local_tasks',
       'block.block.hdbt_admin_secondary_local_tasks',

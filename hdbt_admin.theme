@@ -92,6 +92,13 @@ function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$vari
 /**
  * Implements hook_preprocess_HOOK().
  */
+function hdbt_admin_preprocess_html(&$variables) {
+  $variables['attributes']['class'][] = 'hdbt-admin';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function hdbt_admin_preprocess_table(&$variables) {
   // Add table field ID as a class as well. Remove the possible temp value from
   // the ID before adding it as a class.
@@ -112,6 +119,104 @@ function hdbt_admin_preprocess_table(&$variables) {
  * Meta information accordion.
  */
 function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Apply sidebar changes to node forms.
+  hdbt_admin_apply_form_theme($form);
+
+  // Get current entity.
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  // Disable "Preview" button on new nodes.
+  if ($node->isNew()) {
+    $form['gin_actions']['actions']['preview']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_form_tpr_unit_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_form_tpr_service_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_form_taxonomy_term_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Apply Gin like feel to custom entity forms.
+ *
+ * @param array $form
+ *   Form.
+ */
+function hdbt_admin_apply_form_theme(array &$form) {
+  // Changed submit button weight.
+  if (isset($form['actions']['submit'])) {
+    $form['actions']['submit']['#weight'] = '99';
+  }
+
+  $tpr_entities = [
+    'tpr_service',
+    'tpr_unit',
+  ];
+
+  // Handle TPR entities.
+  if (
+    isset($form['#entity_type']) &&
+    in_array($form['#entity_type'], $tpr_entities)
+  ) {
+
+    // Create artificial status group.
+    $form['gin_actions']['tpr_entity_status'] = [
+      '#type' => 'container',
+      '#weight' => 0,
+      '#attributes' => [
+        'class' => [
+          'tpr-entity-status',
+        ],
+      ],
+    ];
+
+    // Remove the disabled value even if there's only one translation, despite
+    // what is stated in ContentTranslationHandler.php#455.
+    $form['content_translation']['status']['#disabled'] = FALSE;
+
+    // Add content translation status gin_sticky actions.
+    $form['gin_actions']['actions']['preview'] = ($form['actions']['preview']) ?? [];
+    $form['gin_actions']['actions']['status'] = ($form['content_translation']['status']) ?? [];
+    $form['gin_actions']['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
+
+    // Move content translation fields to author information.
+    $form['author_information']['uid'] = ($form['content_translation']['uid']) ?? [];
+    $form['author_information']['created'] = ($form['content_translation']['created']) ?? [];
+    $form['author_information']['uid']['#group'] = 'author_information';
+    $form['author_information']['created']['#group'] = 'author_information';
+
+    // Create revision by default.
+    $form['revision']['#default_value'] = TRUE;
+  }
+
+  // Handle Taxonomy terms.
+  if (
+    isset($form['#entity_type']) &&
+    $form['#entity_type'] === 'taxonomy_term'
+  ) {
+    // Move taxonomy term overview button to sidebar.
+    $form['gin_sidebar']['actions']['overview'] = ($form['actions']['overview']) ?? [];
+    $form['gin_sidebar']['actions']['overview']['#weight'] = 0;
+    unset($form['gin_actions']['actions']['overview']);
+  }
+
   $meta_fields = [
     'field_short_title' => 1,
     'color_palette' => 1,
@@ -140,182 +245,8 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state,
     }
   }
 
-  // Manipulate metatags field according to clients needs.
-  hdbt_admin_manipulate_field_metatags($form);
-
-  // Get current entity.
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $form_state->getFormObject()->getEntity();
-
-  // Manipulate custom fields if the node is type of page.
-  if ($node->getType() === 'page') {
-    hdbt_admin_manipulate_custom_fields($form);
-  }
-
-  // Disable "Preview" button on new nodes.
-  if ($node->isNew()) {
-    $form['gin_actions']['actions']['preview']['#access'] = FALSE;
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_admin_preprocess_html(&$variables) {
-  // Get route name.
-  $route_name = \Drupal::routeMatch()->getRouteName();
-
-  // Routes to include.
-  $route_names = [
-    'entity.tpr_unit.edit_form',
-    'entity.tpr_service.edit_form',
-  ];
-
-  // Set appropriate class for TPR unit and service entities.
-  if (in_array($route_name, $route_names, TRUE)) {
-    $variables['attributes']['class'][] = 'gin--edit-form';
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function hdbt_admin_form_tpr_unit_form_alter(&$form) {
-  hdbt_admin_apply_form_theme($form);
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function hdbt_admin_form_tpr_service_form_alter(&$form) {
-  hdbt_admin_apply_form_theme($form);
-}
-
-/**
- * Apply Claro and Gin like feel to custom entity forms.
- *
- * @param array $form
- *   Form.
- */
-function hdbt_admin_apply_form_theme(array &$form) {
-  $form['#theme'] = [$form['#form_id']];
-
-  // Convert advanced tabs to accordion.
-  $form['advanced']['#type'] = 'container';
-  $form['advanced']['#accordion'] = TRUE;
-
-  // Changed submit button weight.
-  if (isset($form['actions']['submit'])) {
-    $form['actions']['submit']['#weight'] = '99';
-  }
-
-  if (isset($form['actions'])) {
-    // Create gin_actions group.
-    $form['gin_actions'] = [
-      '#type' => 'container',
-      '#weight' => -1,
-      '#multilingual' => TRUE,
-      '#attributes' => [
-        'class' => [
-          'gin-sticky',
-        ],
-      ],
-    ];
-
-    // Create actions group.
-    $form['gin_actions']['actions'] = [
-      '#type' => 'actions',
-      '#weight' => 130,
-    ];
-
-    // Create artificial status group.
-    $form['gin_actions']['tpr_entity_status'] = [
-      '#type' => 'container',
-      '#weight' => 0,
-      '#attributes' => [
-        'class' => [
-          'tpr-entity-status',
-        ],
-      ],
-    ];
-
-    // Remove the disabled value even if there's only one translation, despite
-    // what is stated in ContentTranslationHandler.php#455.
-    $form['content_translation']['status']['#disabled'] = FALSE;
-
-    // Add submit, preview and status to gin_sticky actions.
-    $form['gin_actions']['actions']['submit'] = ($form['actions']['submit']) ?? [];
-    $form['gin_actions']['actions']['preview'] = ($form['actions']['preview']) ?? [];
-    $form['gin_actions']['actions']['status'] = ($form['content_translation']['status']) ?? [];
-    $form['gin_actions']['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
-    $form['content_translation']['#attributes']['class'][] = 'is-hidden';
-
-    // Create gin_sidebar group. This group belongs to meta group.
-    $form['gin_sidebar'] = [
-      '#group' => 'meta',
-      '#type' => 'container',
-      '#weight' => 99,
-      '#multilingual' => TRUE,
-      '#attributes' => [
-        'class' => [
-          'gin-sidebar',
-        ],
-      ],
-    ];
-
-    // Move content translation fields to author information and remove
-    // the content translation detail group from prying eyes.
-    $form['author_information']['uid'] = ($form['content_translation']['uid']) ?? [];
-    $form['author_information']['created'] = ($form['content_translation']['created']) ?? [];
-    $form['author_information']['uid']['#group'] = 'author_information';
-    $form['author_information']['created']['#group'] = 'author_information';
-
-    // Convert revision information to container and change the group to meta.
-    $form['revision_information']['#type'] = 'container';
-    $form['revision_information']['#group'] = 'meta';
-    $form['revision_information']['#attributes']['class'][] = 'entity-meta__revision';
-
-    // Create revision by default.
-    $form['revision']['#default_value'] = TRUE;
-
-    // Copy actions and footer in to sidebar.
-    $form['gin_sidebar']['actions'] = ($form['actions']) ?? [];
-    $form['gin_sidebar']['footer'] = ($form['footer']) ?? [];
-
-    // Unset preview, submit and delete buttons from sidebar.
-    unset($form['gin_sidebar']['actions']['preview']);
-    unset($form['gin_sidebar']['actions']['submit']);
-    unset($form['gin_sidebar']['actions']['delete']);
-
-    $form['#attached']['library'][] = 'claro/node-form';
-    $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
-  }
-
-  $meta_fields = [
-    'color_palette' => 1,
-    'field_metatags' => 2,
-    'simple_sitemap' => 3,
-  ];
-
-  // Create a new field group for meta information,
-  // if any of the meta data fields are available.
-  foreach ($meta_fields as $field => $weight) {
-    if (isset($form[$field])) {
-      if (!array_key_exists('admin_metainformation', $form)) {
-        $form['admin_metainformation'] = [
-          '#title' => t('Meta information'),
-          '#group' => 'advanced',
-          '#weight' => -10,
-          '#access' => TRUE,
-          '#type' => 'details',
-          '#open' => TRUE,
-        ];
-      }
-
-      $form[$field]['#group'] = 'admin_metainformation';
-      $form[$field]['#weight'] = $weight;
-    }
-  }
+  // Hide the content translation detail group from prying eyes.
+  $form['content_translation']['#attributes']['class'][] = 'is-hidden';
 
   // Manipulate metatags field according to clients needs.
   hdbt_admin_manipulate_field_metatags($form);

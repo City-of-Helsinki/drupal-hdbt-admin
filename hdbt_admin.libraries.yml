@@ -25,10 +25,6 @@ hero-toggle:
   js:
     dist/js/heroToggle.min.js: {}
 
-tpr-edit-form:
-  js:
-    dist/js/tprEditForm.min.js: {}
-
 columns-toggle:
   js:
     dist/js/columnsToggle.min.js: {}

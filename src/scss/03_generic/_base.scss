@@ -1,0 +1,9 @@
+// Apply Helsinki Grotesk font to HDBT admin theme.
+body.hdbt-admin {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: $body-bg-color;
+  color: $color-black-90;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+}

@@ -217,6 +217,9 @@ function hdbt_admin_apply_form_theme(array &$form) {
     unset($form['gin_actions']['actions']['overview']);
   }
 
+  // Alter save button label to exclude "(this translation)".
+  $form['gin_actions']['actions']['submit']['#value'] = t('Save');
+
   $meta_fields = [
     'field_short_title' => 1,
     'color_palette' => 1,

@@ -7,3 +7,9 @@
     text-align: right;
   }
 }
+
+.view-content {
+  [data-drupal-selector*=-bulk-form] .form-actions {
+    align-self: baseline;
+  }
+}

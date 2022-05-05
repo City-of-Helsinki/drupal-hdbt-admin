@@ -1,9 +1,8 @@
-.layout-region-node-secondary {
-  @media (min-width: 1720px) {
-    --ginSidebarWidth: 400px;
-  }
+.hdbt-admin {
 
-  @media (min-width: 1900px) {
-    --ginSidebarWidth: 500px;
+  // Add more spacing to sidebar published at fields.
+  .entity-meta__revision .field--type-published-at {
+    display: inline-block;
+    margin-top: $spacing-half;
   }
 }

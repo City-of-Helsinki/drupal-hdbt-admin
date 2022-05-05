@@ -3,97 +3,98 @@
 // Styles for all paragraphs.
 //
 
-// remove white background and paddings from first level of paragraph elements.
-.paragraphs-tabs-wrapper {
-  > .form-item > .layer-wrapper {
-    background-color: transparent;
-    border: 0 none;
-    box-shadow: 0 0 0 transparent;
-    padding: 0;
-  }
-
-  .paragraph-type-label {
-    font-size: 18px !important;
-  }
-
-  table.field-multiple-table {
-    thead {
+.hdbt-admin {
+  // Remove white background and paddings from first level of paragraph elements.
+  .paragraphs-tabs-wrapper {
+    > .form-item > .layer-wrapper {
+      background-color: transparent;
+      border: 0 none;
       box-shadow: 0 0 0 transparent;
+      padding: 0;
+    }
 
-      th {
-        background: transparent;
-        padding-bottom: 0;
-        padding-left: 0;
+    .paragraph-type-label {
+      font-size: 18px !important;
+    }
+
+    table.field-multiple-table {
+      thead {
+        box-shadow: 0 0 0 transparent;
+
+        tr {
+          border: 0 none;
+        }
+
+        th {
+          background: transparent;
+          box-shadow: none;
+          padding-bottom: 0;
+          padding-left: 0;
+        }
+      }
+
+      .draggable {
+        background-color: #fff;
+        margin-top: 0.5rem;
+
+        // Hide the paragraph bullet when you are not able to organize paragraphs.
+        td.paragraph-bullet::after {
+          display: none;
+        }
+
+        td + td {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Hide "(all languages)" from all paragraph fields.
+  // There's no alter hook or preprocess which can be used to easily remove
+  // the "addTranslatabilityClue" from async paragraph fields.
+  .translation-entity-all-languages {
+    .node-form &,
+    .field--widget-paragraphs & {
+      display: none;
+    }
+  }
+
+  .js & {
+    // Reset padding on paragraph selection field.
+    .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
+      padding: 0;
+    }
+
+    // Reset the excessive spacing on paragraph drag handles.
+    .field--widget-paragraphs .field-multiple-drag {
+      min-width: 30px;
+
+      &.tabledrag-cell--only-drag {
+        min-width: 12px;
       }
     }
 
-    .draggable {
-      background-color: #fff;
-      margin-top: 0.5rem;
+    // Align paragraph labels to center.
+    .paragraph-top .paragraph-type,
+    .paragraph-top .paragraph-summary {
+      align-self: center;
+    }
 
-      // Hide the paragraph bullet when you are not able to organize paragraphs.
-      td.paragraph-bullet::after {
-        display: none;
+    // Reset paddings on paragraphs content areas.
+    .paragraphs-tabs-wrapper .field-multiple-table .draggable {
+      td {
+        padding: 0;
       }
 
-      td + td {
-        width: 100%;
+      .tabledrag-handle::after {
+        margin: 0;
+        padding: 0;
       }
     }
-  }
-}
 
-// Table drag handle resizing
-.js .field--widget-paragraphs .draggable .tabledrag-handle {
-  min-width: 20px;
-}
-
-.js .paragraph-top .paragraph-type,
-.js .paragraph-top .paragraph-summary {
-  align-self: center;
-}
-
-.paragraphs-tabs-wrapper .field-multiple-table .draggable {
-  td {
-    padding: 0;
-  }
-
-  .tabledrag-handle::after {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-// Give more space to the form on smaller resolutions
-.toolbar-tray-open:not(.toolbar-vertical) .page-wrapper .layout-container,
-body:not(.toolbar-tray-open) .page-wrapper .layout-container {
-  @media (min-width: 976px) {
-    margin-left: m#{i}n(5vw, 24px);
-    margin-right: m#{i}n(5vw, 24px);
-  }
-}
-
-
-// Hide Paragraph badge.
-.paragraphs-badge {
-  display: none;
-}
-
-// Override margin nullification from the admin theme.
-.js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
-  margin-right: .75rem;
-
-  &.dropbutton-wrapper {
-    padding: 0;
-  }
-}
-
-// Hide "(all languages)" from all paragraph fields.
-// There's no alter hook or preprocess which can be used to easily remove
-// the "addTranslatabilityClue" from async paragraph fields.
-.translation-entity-all-languages {
-  .node-form &,
-  .field--widget-paragraphs & {
-    display: none;
+    // Hide Paragraph badge.
+    .paragraphs-badge {
+      display: none;
+    }
   }
 }

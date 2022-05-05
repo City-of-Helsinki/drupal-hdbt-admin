@@ -1,12 +1,26 @@
-body:not(.gin--edit-form) {
-  header.region {
-    z-index: 100;
+.hdbt-admin {
+  // Set skip link z-index above the breadcrumb after element.
+  .skip-link {
+    z-index: 110;
+  }
 
-    .region-header {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
+  // Adjust the button font sizes on sticky header.
+  .region-sticky {
+    background-color: $body-bg-color;
+
+    .region-sticky__items__inner {
+      @media (min-width: 1024px) and (max-width: 1280px) {
+        .field--name-status {
+          label {
+            font-size: remify(14px);
+          }
+        }
+
+        .button {
+          font-size: 14px;
+          padding: $spacing-half $spacing * .75;
+        }
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 
 ## Requirements
 
-This theme requires [Drupal 9](https://www.drupal.org/project/drupal/releases/9.0.0), [Recommended PHP version](https://www.drupal.org/docs/system-requirements/php-requirements) and at least [Gin theme 8.x-3.0-beta2]().
+This theme requires [Drupal 9](https://www.drupal.org/project/drupal/releases/9.0.0), [recommended PHP version](https://www.drupal.org/docs/system-requirements/php-requirements) and at least [Gin theme 8.x-3.0-beta2]().
 
 Requirements for developing:
 - [NodeJS ( 16.15.0 )](https://nodejs.org/en/)

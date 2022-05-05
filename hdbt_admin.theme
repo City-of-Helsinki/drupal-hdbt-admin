@@ -160,20 +160,11 @@ function hdbt_admin_form_taxonomy_term_form_alter(&$form) {
  *   Form.
  */
 function hdbt_admin_apply_form_theme(array &$form) {
-  // Changed submit button weight.
-  if (isset($form['actions']['submit'])) {
-    $form['actions']['submit']['#weight'] = '99';
-  }
-
-  $tpr_entities = [
-    'tpr_service',
-    'tpr_unit',
-  ];
 
   // Handle TPR entities.
   if (
     isset($form['#entity_type']) &&
-    in_array($form['#entity_type'], $tpr_entities)
+    in_array($form['#entity_type'], ['tpr_unit', 'tpr_service'])
   ) {
 
     // Create artificial status group.
@@ -217,8 +208,17 @@ function hdbt_admin_apply_form_theme(array &$form) {
     unset($form['gin_actions']['actions']['overview']);
   }
 
-  // Alter save button label to exclude "(this translation)".
-  $form['gin_actions']['actions']['submit']['#value'] = t('Save');
+  // Alter submit button label to exclude "(this translation)" and move the
+  // button to last.
+  if (isset($form['gin_actions']['actions']['submit'])) {
+    $form['gin_actions']['actions']['submit']['#value'] = t('Save');
+    $form['gin_actions']['actions']['submit']['#weight'] = '99';
+  }
+
+  // Move unlock button right before submit.
+  if (isset($form['actions']['unlock'])) {
+    $form['gin_actions']['actions']['unlock']['#weight'] = '98';
+  }
 
   $meta_fields = [
     'field_short_title' => 1,

@@ -53,10 +53,7 @@
   // There's no alter hook or preprocess which can be used to easily remove
   // the "addTranslatabilityClue" from async paragraph fields.
   .translation-entity-all-languages {
-    .node-form &,
-    .field--widget-paragraphs & {
-      display: none;
-    }
+    display: none;
   }
 
   .js & {

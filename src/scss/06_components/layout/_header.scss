@@ -5,11 +5,13 @@
   }
 
   // Add consistent styles to all entity status (published) fields.
-  .form-item--status,
-  .field--name-status {
-    align-items: center;
-    display: flex;
-    margin-right: $spacing-and-half;
+  .hdbt_admin--edit-form {
+    .form-item--status,
+    .field--name-status {
+      align-items: center;
+      display: flex;
+      margin-right: $spacing-and-half;
+    }
   }
 
   // Add divider for sidebar when viewing it in tablet width.

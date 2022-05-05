@@ -3,39 +3,15 @@
  * @file
  * HDBT Admin theme implementation to display a TPR service page.
  *
- * @see Claro page.html.twig
+ * @see HDBT Admin page.html.twig
  */
 #}
-{% set page_title_block = active_admin_theme ~ '_page_title' %}
-{% set local_actions_block = active_admin_theme ~ '_local_actions' %}
 {% set classes = [
+  'hdbt_admin--edit-form',
   'page-wrapper__node-edit-form',
-  'page-wrapper__tpr-service-edit-form',
+  'page-wrapper__taxonomy-term-edit-form',
 ] %}
 
 <div{{ create_attribute({'class': classes} ) }}>
-  <header class="region region-sticky">
-    <div class="layout-container region-sticky__items">
-      <div class="region-sticky__items__inner">
-        {{ page.header }}
-        {{ page.content[local_actions_block] }}
-      </div>
-    </div>
-  </header>
-
-  <div class="sticky-shadow"></div>
-
-  <div class="layout-container">
-    {{ page.pre_content }}
-    <main class="page-content clearfix" role="main">
-      <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-      {{ page.highlighted }}
-      {% if page.help %}
-        <div class="help">
-          {{ page.help }}
-        </div>
-      {% endif %}
-      {{ page.content|without(local_actions_block) }}
-    </main>
-  </div>
+  {% include '@hdbt_admin/page/page.html.twig' %}
 </div>

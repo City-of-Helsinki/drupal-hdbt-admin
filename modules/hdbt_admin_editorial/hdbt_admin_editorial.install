@@ -53,7 +53,7 @@ function hdbt_admin_editorial_update_9002() {
 function hdbt_admin_editorial_update_9003() {
   $theme_handler = Drupal::service('theme_handler');
   $config_factory = \Drupal::configFactory();
-  $config_location = dirname(__FILE__) . '../../config/install/';
+  $config_location = dirname(__FILE__,3) . '/config/install/';
 
   // Install configurations if hdbt_admin theme exists.
   if ($theme_handler->themeExists('hdbt_admin')) {

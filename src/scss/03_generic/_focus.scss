@@ -1,0 +1,24 @@
+// Focus styles for add / edit forms.
+.hdbt-admin {
+  .page-wrapper *:focus,
+  .ui-dialog *:focus,
+  .dropbutton .dropbutton__item > *:focus,
+  .dropbutton .dropbutton__item > *:focus:hover,
+  .dropbutton__items > .dropbutton__item:first-of-type > *:focus,
+  .dropbutton__items > .dropbutton__item:first-of-type ~ .dropbutton__item > *:focus,
+  .dropbutton__items > .dropbutton__item:first-of-type ~ .dropbutton__item > *:focus:hover,
+  .form-boolean:focus:active,
+  .form-boolean:focus:hover,
+  .cke.cke_chrome.cke_focus,
+  .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:focus,
+  .form-element:focus,
+  .form-element:hover:focus,
+  .form-element.error:hover:focus,
+  .form-actions .action-link:focus,
+  .paragraphs-tabs-wrapper .field-multiple-table .draggable.drag,
+  .layout-paragraphs-field .layout-paragraphs-actions input.layout-paragraphs-edit:focus,
+  .layout-paragraphs-field .layout-paragraphs-actions input.layout-paragraphs-remove:focus {
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 2px 1px $color-coat-of-arms;
+    outline: none;
+  }
+}

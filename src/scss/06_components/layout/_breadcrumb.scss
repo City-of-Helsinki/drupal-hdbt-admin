@@ -4,9 +4,9 @@
   overflow: hidden;
   position: relative;
 
-  &:after {
+  &::after {
     background: linear-gradient(90deg, transparent, #fff);
-    content: "";
+    content: '';
     height: 100%;
     position: absolute;
     right: 0;
@@ -25,4 +25,3 @@
     }
   }
 }
-

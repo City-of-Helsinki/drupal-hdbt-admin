@@ -33,11 +33,11 @@
 }
 
 .image-previewer__title {
-  @include font-size(18px);
+  font-size: remify(18px);
   font-weight: $font-weight-bold;
 }
 
 .image-previewer__description {
-  @include font-size(14px);
   display: block;
+  font-size: remify(14px);
 }

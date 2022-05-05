@@ -1,3 +1,13 @@
+.hdbt_admin {
+  // Hide the text format helper for now.
+  // Maybe replace with something like a info-icon later on.
+  .text-full {
+    .filter-wrapper {
+      display: none;
+    }
+  }
+}
+
 .hdbt_admin--edit-form {
   // Adjust the from title font-size.
   .field--name-title .form-element {
@@ -17,5 +27,12 @@
   // Hide "Show row weights" option when editing paragraphs.
   .field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
     display: none;
+  }
+
+  // Hide "About text formats" link from text-area fields on node form.
+  .node-form .field--widget-text-textarea {
+    .form-type--textarea + .filter-wrapper {
+      display: none;
+    }
   }
 }

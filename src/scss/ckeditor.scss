@@ -17,7 +17,7 @@ span[lang] {
 span[lang]:after {
   color: #005799;
   content: " ("attr(lang)")";
-  font-size: 12px;
+  font-size: remify(12px);
 }
 
 .select2-container .select2-selection {

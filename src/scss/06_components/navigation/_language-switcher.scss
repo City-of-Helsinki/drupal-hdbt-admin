@@ -2,13 +2,13 @@
   position: relative;
 
   .language-link {
-    @include font-size(16px);
     color: $color-black;
+    font-size: remify($base-font-size);
     font-weight: $font-weight-regular;
     text-decoration: none;
 
     @media (min-width: $breakpoint-m) {
-      @include font-size(14px);
+      font-size: remify(14px);
       margin: 0 $spacing-half;
     }
 
@@ -31,10 +31,10 @@
 }
 
 .language-switcher__button {
-  @include font-size(16px);
   background: $color-white;
   border: 1px solid $color-black-20;
-  box-shadow: 0 3px 4px #00000033;
+  box-shadow: 0 3px 4px #0003;
+  font-size: remify($base-font-size);
   height: 40px;
   padding: 0 $spacing-half;
 

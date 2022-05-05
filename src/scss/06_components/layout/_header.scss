@@ -17,7 +17,7 @@
         }
 
         .button {
-          font-size: 14px;
+          font-size: remify(14px);
           padding: $spacing-half $spacing * .75;
         }
       }

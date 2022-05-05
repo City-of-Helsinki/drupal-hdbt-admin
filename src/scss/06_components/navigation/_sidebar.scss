@@ -1,8 +1,16 @@
 .hdbt-admin {
-
   // Add more spacing to sidebar published at fields.
   .entity-meta__revision .field--type-published-at {
     display: inline-block;
     margin-top: $spacing-half;
+  }
+
+  // Fix media library item width on desktop.
+  @media screen and (min-width: 1024px) {
+    .field--name-field-liftup-image {
+      .media-library-selection .media-library-item--grid {
+        width: 100%;
+      }
+    }
   }
 }

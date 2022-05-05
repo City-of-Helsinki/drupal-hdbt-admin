@@ -3,7 +3,7 @@
   margin-top: $spacing-quadruple;
 
   .field--name-field-liftup-with-image-title {
-    @include font-size(32px, 48px);
+    font-size: remify(32px);
   }
 
   .field--name-field-media-image {

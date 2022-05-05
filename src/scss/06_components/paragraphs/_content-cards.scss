@@ -24,7 +24,7 @@
   margin-top: $spacing-quadruple;
 
   .field--name-field-content-cards-title {
-    @include font-size(32px, 48px);
+    font-size: remify(32px);
   }
 
   .field--name-field-content-cards-design {
@@ -38,9 +38,9 @@
       margin-top: $spacing;
 
       h2 {
+        font-size: remify(20px);
         margin: $spacing-half 0 0;
         order: 2;
-        @include font-size(20px, 24px);
       }
       .node__content {
         min-height: 400px;
@@ -49,7 +49,7 @@
 
         &::after {
           background-color: $color-bus;
-          content: "";
+          content: '';
           display: block;
           height: 400px;
           left: 0;

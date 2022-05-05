@@ -2,7 +2,7 @@
   overflow: hidden;
 
   .view-results {
-    @include font-size(13px);
+    font-size: remify(13px);
     padding: $spacing-quarter;
     text-align: right;
   }

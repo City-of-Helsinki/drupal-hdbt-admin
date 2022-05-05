@@ -1,6 +1,6 @@
 // Use Dart Sass math module to perform calculations.
 // https://sass-lang.com/documentation/modules/math
-@use "sass:math";
+@use 'sass:math';
 
 // Function nounit strips any unit from variable.
 @function nounit($number) {

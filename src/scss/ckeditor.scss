@@ -15,7 +15,7 @@ span[lang] {
 
   &::after {
     color: #005799;
-    content: ' ("attr(lang)")';
+    content: " ("attr(lang)")";
     font-size: remify(12px);
   }
 }

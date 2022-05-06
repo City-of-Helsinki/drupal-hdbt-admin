@@ -12,7 +12,7 @@
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba($hdbt-color-black, .25);
     color: var(--colorGinText);
-    font-size: 16px;
+    font-size: remify($base-font-size);
     min-height: 60px;
 
     &:hover {
@@ -25,8 +25,8 @@
     }
 
     .select2-selection__placeholder {
-      font-size: 16px;
-      padding: 5px 5px;
+      font-size: remify($base-font-size);
+      padding: 5px;
     }
 
     .select2-selection__arrow {
@@ -40,13 +40,13 @@
       align-items: center;
       display: flex;
       flex-flow: row wrap;
-      font-size: 16px;
+      font-size: remify($base-font-size);
       padding: 12px 16px;
     }
 
     .select2-search__field {
-      @include font-size(16px, 24px);
       color: var(--colorGinText);
+      font-size: remify($base-font-size);
       margin: 0;
       min-width: 100px;
       padding: calc(0.75rem - 1px) calc(1rem - 1px);
@@ -57,8 +57,8 @@
       align-items: center;
       background: var(--colorGinPrimary);
       display: flex;
-      margin: .25rem;
-      padding: .5rem 1rem;
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
 
       &:hover {
         background-color: var(--colorGinPrimaryHover);
@@ -74,8 +74,8 @@
     }
 
     .select2-selection__choice__remove {
-      @include font-size(16px);
       color: var(--colorGinButtonText);
+      font-size: remify($base-font-size);
       margin-right: .5rem;
       transition: color 200ms;
 
@@ -86,8 +86,8 @@
   }
 
   .select2-results__option {
-    @include font-size(16px, 24px);
     color: var(--colorGinText);
+    font-size: remify($base-font-size);
     padding: calc(0.75rem - 1px) calc(1rem - 1px);
   }
 }

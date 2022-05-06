@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Install 'color palette' field to node entity.
@@ -43,5 +44,70 @@ function hdbt_admin_editorial_update_9002() {
     empty($entity_definition_update_manager->getFieldStorageDefinition($field, $entity_type))
   ) {
     $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type, 'hdbt_admin_editorial', $field_definitions[$field]);
+  }
+}
+
+/**
+ * Manually update HDBT Admin blocks to support Gin region format.
+ */
+function hdbt_admin_editorial_update_9003() {
+  $theme_handler = Drupal::service('theme_handler');
+  $config_factory = \Drupal::configFactory();
+  $config_location = dirname(__FILE__,3) . '/config/install/';
+
+  // Install configurations if hdbt_admin theme exists.
+  if ($theme_handler->themeExists('hdbt_admin')) {
+    $hdbt_admin_page_title = $config_factory->getEditable('block.block.hdbt_admin_page_title');
+    $hdbt_admin_page_title_data = $hdbt_admin_page_title->getRawData();
+    if (!empty($hdbt_admin_page_title_data)) {
+      $hdbt_admin_page_title_data['region'] = 'header';
+      $hdbt_admin_page_title_data['weight'] = -7;
+      $hdbt_admin_page_title->setData($hdbt_admin_page_title_data)->save(TRUE);
+    }
+
+    $hdbt_admin_branding = $config_factory->getEditable('block.block.hdbt_admin_branding');
+    $hdbt_admin_branding_data = $hdbt_admin_branding->getRawData();
+    if (!empty($hdbt_admin_branding_data)) {
+      $hdbt_admin_branding_data['region'] = 'breadcrumb';
+      $hdbt_admin_branding_data['weight'] = -5;
+      $hdbt_admin_branding->setData($hdbt_admin_branding_data)->save(TRUE);
+    }
+
+    $hdbt_admin_breadcrumbs = $config_factory->getEditable('block.block.hdbt_admin_breadcrumbs');
+    $hdbt_admin_breadcrumbs_data = $hdbt_admin_breadcrumbs->getRawData();
+    if (!empty($hdbt_admin_breadcrumbs_data)) {
+      $hdbt_admin_breadcrumbs_data['region'] = 'breadcrumb';
+      $hdbt_admin_breadcrumbs_data['weight'] = -4;
+      $hdbt_admin_breadcrumbs->setData($hdbt_admin_breadcrumbs_data)->save(TRUE);
+    }
+
+    $hdbt_admin_language_switcher = $config_factory->getEditable('block.block.language_switcher_admin');
+    $hdbt_admin_language_switcher_data = $hdbt_admin_language_switcher->getRawData();
+    if (!empty($hdbt_admin_language_switcher_data)) {
+      $hdbt_admin_language_switcher_data['weight'] = -6;
+      $hdbt_admin_language_switcher->setData($hdbt_admin_language_switcher_data)->save(TRUE);
+    }
+
+    $hdbt_admin_local_tasks = $config_factory->getEditable('block.block.hdbt_admin_local_tasks');
+    $hdbt_admin_local_tasks_data = $hdbt_admin_local_tasks->getRawData();
+    if (!empty($hdbt_admin_local_tasks_data)) {
+      $hdbt_admin_local_tasks->delete();
+    }
+
+    $configurations = [
+      'block.block.hdbt_admin_primary_local_tasks',
+      'block.block.hdbt_admin_secondary_local_tasks',
+      'block.block.hdbt_admin_content'
+    ];
+
+    foreach ($configurations as $config_name) {
+      $filepath = "{$config_location}{$config_name}.yml";
+      if (file_exists($filepath)) {
+        $data = Yaml::parse(file_get_contents($filepath));
+        if (is_array($data)) {
+          $config_factory->getEditable($config_name)->setData($data)->save(TRUE);
+        }
+      }
+    }
   }
 }

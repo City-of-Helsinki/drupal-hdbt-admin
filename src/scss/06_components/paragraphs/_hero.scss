@@ -72,11 +72,11 @@
         padding: 0 0 1.5rem;
 
         legend {
-            display: none;
+          display: none;
         }
 
         .fieldset__wrapper {
-            margin: 0;
+          margin: 0;
         }
       }
 
@@ -141,11 +141,10 @@
 // Diff styles
 .paragraph--type--hero {
   .field--name-field-hero-title {
-    @include font-size(32px, 48px);
+    font-size: remify(32px);
   }
 
   .field--name-field-hero-design {
     margin-top: $spacing-half;
   }
 }
-

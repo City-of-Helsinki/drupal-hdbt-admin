@@ -1,19 +1,19 @@
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - hdbt_admin
-id: hdbt_admin_local_tasks
+id: hdbt_admin_content
 theme: hdbt_admin
 region: content
-weight: -20
+weight: 0
 provider: null
-plugin: local_tasks_block
+plugin: system_main_block
 settings:
-  id: local_tasks_block
-  label: Tabs
-  provider: core
+  id: system_main_block
+  label: 'Main page content'
   label_display: '0'
-  primary: true
-  secondary: true
+  provider: system
 visibility: {  }

@@ -39,32 +39,7 @@
  * @see html.html.twig
  */
 #}
-{% set page_title_block = active_admin_theme ~ '_page_title' %}
-{% set local_actions_block = active_admin_theme ~ '_local_actions' %}
 
-<div class="page-wrapper__node-edit-form">
-  <header class="region region-sticky">
-    <div class="layout-container region-sticky__items">
-      <div class="region-sticky__items__inner">
-        {{ page.header }}
-        {{ page.content[local_actions_block] }}
-      </div>
-    </div>
-  </header>
-
-  <div class="sticky-shadow"></div>
-
-  <div class="layout-container">
-    {{ page.pre_content }}
-    <main class="page-content clearfix" role="main">
-      <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-      {{ page.highlighted }}
-      {% if page.help %}
-        <div class="help">
-          {{ page.help }}
-        </div>
-      {% endif %}
-      {{ page.content|without(local_actions_block) }}
-    </main>
-  </div>
+<div class="hdbt_admin--edit-form page-wrapper__node-edit-form">
+  {% include '@hdbt_admin/page/page.html.twig' %}
 </div>

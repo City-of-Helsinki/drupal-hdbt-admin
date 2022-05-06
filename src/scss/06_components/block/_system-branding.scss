@@ -1,0 +1,25 @@
+.block-system-branding-block {
+  align-items: center;
+  display: flex;
+  margin-right: $spacing-half;
+  margin-top: $spacing-quarter;
+
+  @media (min-width: 1280px) {
+    margin-right: $spacing - $spacing-quarter;
+  }
+
+  .site-logo {
+    line-height: 1;
+    transition: width .25s ease;
+    width: 60px;
+
+    @media (min-width: 1024px) {
+      width: 80px;
+    }
+
+    // Fix cut logo.
+    img {
+      padding-top: 3px;
+    }
+  }
+}

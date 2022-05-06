@@ -1,7 +1,6 @@
-//
-// @file
 // This file includes styling for WYSIWYG editor.
-//
+@import '00_functions/_index';
+@import '01_variables/typography';
 
 /**
  * Show the user that a 'lang' tag has been applied by adding a thin dotted
@@ -13,11 +12,12 @@ span[lang] {
   margin-left: 4px;
   outline: 2px dotted #005799;
   outline-offset: 3px;
-}
-span[lang]:after {
-  color: #005799;
-  content: " ("attr(lang)")";
-  font-size: 12px;
+
+  &::after {
+    color: #005799;
+    content: " ("attr(lang)")";
+    font-size: remify(12px);
+  }
 }
 
 .select2-container .select2-selection {

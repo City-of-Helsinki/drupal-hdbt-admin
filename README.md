@@ -8,10 +8,10 @@ as ES6. The JS and SCSS files are compiled and minified with webpack.
 
 ## Requirements
 
-This theme requires Drupal core >= 8.8.0.
+This theme requires [Drupal 9](https://www.drupal.org/project/drupal/releases/9.0.0), [recommended PHP version](https://www.drupal.org/docs/system-requirements/php-requirements) and at least [Gin theme 8.x-3.0-beta2]().
 
 Requirements for developing:
-- [NodeJS ( ^ 16.10 )](https://nodejs.org/en/)
+- [NodeJS ( 16.15.0 )](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
 
 ## Commands
@@ -20,7 +20,6 @@ Requirements for developing:
 | ------------- | --------------------------------------------------------------------------------- |
 | nvm use       | Uses correct Node version chosen for the theme compiler.                          |
 | npm i         | Install dependencies and link local packages.                                     |
-| npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
 | npm run dev   | Compile styles for development environment. and watch file changes.               |
 | npm run build | Build packages for production. Minify CSS/JS.                                     |
 
@@ -28,12 +27,10 @@ Setup the developing environment by running
 
     nvm use
     npm i
-    npx husky i
 
 Explanations for commands.
 - `nvm use` : Install and use the correct version of Node.
 - `npm i` : As stated above; Install dependencies and link local packages.
-- `npx husky i` : Execute husky package binary; Install git-hooks for the project.
 
 ## Structure for files and folders
 

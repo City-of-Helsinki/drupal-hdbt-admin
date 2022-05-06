@@ -2,8 +2,14 @@
   overflow: hidden;
 
   .view-results {
-    @include font-size(13px);
+    font-size: remify(13px);
     padding: $spacing-quarter;
     text-align: right;
+  }
+}
+
+.view-content {
+  [data-drupal-selector*=-bulk-form] .form-actions {
+    align-self: baseline;
   }
 }

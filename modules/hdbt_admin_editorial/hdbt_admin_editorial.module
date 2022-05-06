@@ -5,6 +5,7 @@
  * Contains editorial alterations.
  */
 
+use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -12,6 +13,30 @@ use Drupal\Core\Url;
 use Drupal\hdbt_admin_tools\Form\SiteSettings;
 use Drupal\helfi_api_base\Link\UrlHelper;
 use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
+
+/**
+ * Register routes to apply Gin’s content edit form layout.
+ *
+ * @return array
+ *   An array of route names.
+ *
+ * @see GinContentFormHelper->isContentForm()
+ */
+function hdbt_admin_editorial_gin_content_form_routes() {
+  // Apply gin theme to TPR unit, TPR service and Taxonomy terms.
+  return [
+    'entity.tpr_unit.add_form',
+    'entity.tpr_unit.edit_form',
+    'entity.tpr_service.add_form',
+    'entity.tpr_service.edit_form',
+    'entity.tpr_service_channel.add_form',
+    'entity.tpr_service_channel.edit_form',
+    'entity.tpr_errand_service.add_form',
+    'entity.tpr_errand_service.edit_form',
+    'entity.taxonomy_term.add_form',
+    'entity.taxonomy_term.edit_form',
+  ];
+}
 
 /**
  * Implements hook_entity_bundle_field_info_alter().
@@ -44,45 +69,6 @@ function hdbt_admin_editorial_form_node_form_alter(&$form, &$form_state, $form_i
   }
   // Custom submit callback.
   $form['actions']['submit']['#submit'][] = 'hdbt_admin_editorial_node_form_submit_callback';
-
-  // Alter revision log title based on customer needs.
-  if (isset($form['revision_log'])) {
-    $form['revision_log']['widget'][0]['value']['#title'] = t('Version notes', [], ['context' => 'HDBT Admin editorial']);
-  }
-
-  // Alter metatags based on customer needs.
-  if (isset($form['field_metatags'])) {
-    $field_metatags = &$form['field_metatags']['widget'][0];
-
-    // Remove basic tags description.
-    unset($form['field_metatags']['widget'][0]['basic']['#description']);
-
-    // Alter the preamble and intro text markup.
-    $field_metatags['preamble']['#markup'] = '<p><strong>' . t('Editing metadata', [], ['context' => 'HDBT Admin editorial']) . '</strong></p>';
-    $field_metatags['intro_text']['#markup'] = '<p>' . t('Can be left unchanged. Tokens can be used to set metadata.', [], ['context' => 'HDBT Admin editorial']) . '</p>';
-
-    // Alter basic tags title field descriptions.
-    $field_metatags['basic']['title']['#description'] = t('Page title is visible in search results and browser tab heading. The title is set automatically and does not need to be set here. Recommended max. legth: 55–65 characters.', [], ['context' => 'HDBT Admin editorial']);
-
-    // Alter basic tags description field title and descriptions.
-    $field_metatags['basic']['description']['#title'] = t('Description for search engines', [], ['context' => 'HDBT Admin editorial']);
-    $field_metatags['basic']['description']['#description'] = t('A succinct description of the page content. Max. 160 characters. May be visible in search results. The description is fetched from the Lead-field and does not need to be set here.', [], ['context' => 'HDBT Admin editorial']);
-  }
-
-  // Alter liftup image help texts and descriptions based on customer needs.
-  if (isset($form['field_liftup_image'])) {
-    $field_liftup_image = &$form['field_liftup_image']['widget'];
-    $field_liftup_image['#field_prefix']['empty_selection'] = [
-      '#markup' => t('Image is not selected.', [], ['context' => 'HDBT Admin editorial']),
-    ];
-    $field_liftup_image['open_button']['#value'] = t('Add image', [], ['context' => 'HDBT Admin editorial']);
-  }
-
-  // Alter publish on and unpublish on titles based on customer needs.
-  if (isset($form['publish_on']) && isset($form['unpublish_on'])) {
-    $form['publish_on']['widget'][0]['value']['#title'] = t('Release time', [], ['context' => 'HDBT Admin editorial']);
-    $form['unpublish_on']['widget'][0]['value']['#title'] = t('Hiding the page', [], ['context' => 'HDBT Admin editorial']);
-  }
 }
 
 /**
@@ -102,6 +88,36 @@ function hdbt_admin_editorial_node_form_submit_callback($form, FormStateInterfac
       $form_state->setRedirect('entity.node.canonical', $node, $language);
     }
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\taxonomy\TermForm.
+ */
+function hdbt_admin_editorial_form_taxonomy_term_form_alter(array &$form, FormStateInterface $form_state) {
+  // Move relations into sidebar.
+  $form['relations']['#group'] = 'advanced';
+
+  /** @var \Drupal\Core\Entity\ContentEntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\taxonomy\TermInterface $term */
+  $term = $form_object->getEntity();
+
+  // Move pathauto into sidebar.
+  $form['path_settings'] = [
+    '#type' => 'details',
+    '#title' => t('URL path settings'),
+    '#open' => !empty($form['path']['widget'][0]['alias']['#value']),
+    '#group' => 'advanced',
+    '#access' => !empty($form['path']['#access']) && $term->hasField('path') && $term->get('path')->access('edit'),
+    '#attributes' => [
+      'class' => ['path-form'],
+    ],
+    '#attached' => [
+      'library' => ['path/drupal.path'],
+    ],
+    '#weight' => 30,
+  ];
+  $form['path']['#group'] = 'path_settings';
 }
 
 /**
@@ -420,7 +436,7 @@ function hdbt_admin_editorial_preprocess_links__dropbutton__operations__paragrap
 /**
  * Implements hook_form_alter().
  */
-function hdbt_admin_editorial_form_alter(&$form) {
+function hdbt_admin_editorial_form_alter(&$form, $form_state) {
 
   // Handle only admin routes.
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
@@ -436,6 +452,53 @@ function hdbt_admin_editorial_form_alter(&$form) {
   $image_path = $base_secure_url . '/' . $handler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images/';
   $form['#attached']['library'][] = 'hdbt_admin_editorial/design_selection';
   $form['#attached']['drupalSettings']['designSelect']['pathToImages'] = $image_path;
+
+  // Perform alterations for Drupal core and contrib module field titles,
+  // descriptions and field visibility based on customer needs.
+  if ($form_state->getFormObject() instanceof EntityForm) {
+
+    // Alter revision log title based on customer needs.
+    if (isset($form['revision_log'])) {
+      $form['revision_log']['widget'][0]['value']['#title'] = t('Version notes', [], ['context' => 'HDBT Admin editorial']);
+    }
+
+    // Alter metatags based on customer needs.
+    if (isset($form['field_metatags'])) {
+      $field_metatags = &$form['field_metatags']['widget'][0];
+
+      // Remove basic tags description.
+      unset($form['field_metatags']['widget'][0]['basic']['#description']);
+
+      // Alter the preamble and intro text markup.
+      $field_metatags['preamble']['#markup'] = '<p><strong>' . t('Editing metadata', [], ['context' => 'HDBT Admin editorial']) . '</strong></p>';
+      $field_metatags['intro_text']['#markup'] = '<p>' . t('Can be left unchanged. Tokens can be used to set metadata.', [], ['context' => 'HDBT Admin editorial']) . '</p>';
+
+      // Alter basic tags title field descriptions.
+      $field_metatags['basic']['title']['#description'] = t('Page title is visible in search results and browser tab heading. The title is set automatically and does not need to be set here. Recommended max. legth: 55–65 characters.', [], ['context' => 'HDBT Admin editorial']);
+
+      // Alter basic tags description field title and descriptions.
+      $field_metatags['basic']['description']['#title'] = t('Description for search engines', [], ['context' => 'HDBT Admin editorial']);
+      $field_metatags['basic']['description']['#description'] = t('A succinct description of the page content. Max. 160 characters. May be visible in search results. The description is fetched from the Lead-field and does not need to be set here.', [], ['context' => 'HDBT Admin editorial']);
+    }
+
+    // Alter liftup image help texts and descriptions based on customer needs.
+    if (isset($form['field_liftup_image'])) {
+      $field_liftup_image = &$form['field_liftup_image']['widget'];
+      $field_liftup_image['open_button']['#value'] = t('Add image', [], ['context' => 'HDBT Admin editorial']);
+
+      if (isset($field_liftup_image['#field_prefix']['empty_selection'])) {
+        $field_liftup_image['#field_prefix']['empty_selection'] = [
+          '#markup' => t('Image is not selected.', [], ['context' => 'HDBT Admin editorial']),
+        ];
+      }
+    }
+
+    // Alter publish on and unpublish on titles based on customer needs.
+    if (isset($form['publish_on']) && isset($form['unpublish_on'])) {
+      $form['publish_on']['widget'][0]['value']['#title'] = t('Release time', [], ['context' => 'HDBT Admin editorial']);
+      $form['unpublish_on']['widget'][0]['value']['#title'] = t('Hiding the page', [], ['context' => 'HDBT Admin editorial']);
+    }
+  }
 }
 
 /**

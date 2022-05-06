@@ -5,7 +5,7 @@
   max-width: 80vw;
   padding: $spacing;
   position: absolute;
-  z-index: 9999;
+  z-index: 99999;
 
   @media (min-width: 1080px) {
     max-width: 50vw;
@@ -33,11 +33,11 @@
 }
 
 .image-previewer__title {
-  @include font-size(18px);
+  font-size: remify(18px);
   font-weight: $font-weight-bold;
 }
 
 .image-previewer__description {
-  @include font-size(14px);
   display: block;
+  font-size: remify(14px);
 }

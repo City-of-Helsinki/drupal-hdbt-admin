@@ -20,7 +20,7 @@
 
   .paragraph--type--accordion-item {
     .field--name-field-accordion-item-heading {
-      @include font-size(32px, 48px);
+      font-size: remify(32px);
       margin-top: $spacing-double;
     }
 

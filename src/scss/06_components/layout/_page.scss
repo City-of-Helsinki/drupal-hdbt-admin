@@ -1,0 +1,38 @@
+.hdbt_admin {
+  // Hide the text format helper for now.
+  // Maybe replace with something like a info-icon later on.
+  .text-full {
+    .filter-wrapper {
+      display: none;
+    }
+  }
+}
+
+.hdbt_admin--edit-form {
+  // Adjust the from title font-size.
+  .field--name-title .form-element {
+    font-size: remify(18px);
+  }
+
+  // Adjust the placement of lists in field descriptions.
+  .item-list ul {
+    margin: $spacing-half 0 0 $spacing-half;
+  }
+
+  // Unify the field label font size to base font size.
+  .form-item__label {
+    font-size: remify($base-font-size);
+  }
+
+  // Hide "Show row weights" option when editing paragraphs.
+  .field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
+    display: none;
+  }
+
+  // Hide "About text formats" link from text-area fields on node form.
+  .node-form .field--widget-text-textarea {
+    .form-type--textarea + .filter-wrapper {
+      display: none;
+    }
+  }
+}

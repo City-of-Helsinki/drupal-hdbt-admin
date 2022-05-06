@@ -1,12 +1,46 @@
-body:not(.gin--edit-form) {
-  header.region {
-    z-index: 100;
+.hdbt-admin {
+  // Set skip link z-index above the breadcrumb after element.
+  .skip-link {
+    z-index: 110;
+  }
 
-    .region-header {
+  // Add consistent styles to all entity status (published) fields.
+  .hdbt_admin--edit-form {
+    .form-item--status,
+    .field--name-status {
       align-items: center;
       display: flex;
-      justify-content: space-between;
+      margin-right: $spacing-and-half;
+    }
+  }
+
+  // Add divider for sidebar when viewing it in tablet width.
+  @media (max-width: 1023px) {
+    .hdbt_admin--edit-form .layout-region-node-secondary {
+      border-top: 2px solid $color-black-30;
+      margin-top: $spacing-double;
       width: 100%;
+    }
+  }
+
+  // Adjust the button font sizes on sticky header.
+  .region-sticky {
+    background-color: $body-bg-color;
+
+    .region-sticky__items__inner {
+      @media (min-width: 1024px) and (max-width: 1280px) {
+        .button {
+          font-size: remify(14px);
+          padding: $spacing-half $spacing * 0.75;
+        }
+
+        .form-item--status,
+        .field--name-status {
+          label {
+            font-size: remify(14px);
+          }
+        }
+      }
     }
   }
 }

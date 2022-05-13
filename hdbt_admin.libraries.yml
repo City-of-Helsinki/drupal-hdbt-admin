@@ -40,6 +40,10 @@ list-of-links:
     - core/drupal
     - core/jquery
 
+tpr-edit-form:
+  js:
+    dist/js/tprEditForm.min.js: {}
+
 debug-item-composer:
   js:
     dist/js/debug-item-composer.min.js: {}

@@ -149,6 +149,27 @@ function hdbt_admin_form_tpr_service_form_alter(&$form) {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function hdbt_admin_form_tpr_service_channel_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_form_tpr_errand_service_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hdbt_admin_form_tpr_ontology_word_details_form_alter(&$form) {
+  hdbt_admin_apply_form_theme($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function hdbt_admin_form_taxonomy_term_form_alter(&$form) {
   hdbt_admin_apply_form_theme($form);
 }
@@ -161,10 +182,19 @@ function hdbt_admin_form_taxonomy_term_form_alter(&$form) {
  */
 function hdbt_admin_apply_form_theme(array &$form) {
 
+  // TPR Entities.
+  $tpr_entities = [
+    'tpr_unit',
+    'tpr_service',
+    'tpr_service_channel',
+    'tpr_errand_service',
+    'tpr_ontology_word_details',
+  ];
+
   // Handle TPR entities.
   if (
     isset($form['#entity_type']) &&
-    in_array($form['#entity_type'], ['tpr_unit', 'tpr_service'])
+    in_array($form['#entity_type'], $tpr_entities)
   ) {
 
     // Create artificial status group.
@@ -195,6 +225,7 @@ function hdbt_admin_apply_form_theme(array &$form) {
 
     // Create revision by default.
     $form['revision']['#default_value'] = TRUE;
+    $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
   }
 
   // Handle Taxonomy terms.

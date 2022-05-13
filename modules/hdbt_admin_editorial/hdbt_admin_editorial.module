@@ -33,6 +33,8 @@ function hdbt_admin_editorial_gin_content_form_routes() {
     'entity.tpr_service_channel.edit_form',
     'entity.tpr_errand_service.add_form',
     'entity.tpr_errand_service.edit_form',
+    'entity.tpr_ontology_word_details.add_form',
+    'entity.tpr_ontology_word_details.edit_form',
     'entity.taxonomy_term.add_form',
     'entity.taxonomy_term.edit_form',
   ];

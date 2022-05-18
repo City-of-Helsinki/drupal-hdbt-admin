@@ -9,7 +9,8 @@
 
     @media (min-width: $breakpoint-m) {
       font-size: remify(14px);
-      margin: 0 $spacing-half;
+      margin: 0 $spacing-quarter;
+      padding: $spacing-quarter * .5 $spacing-quarter;
     }
 
     &.is-active {
@@ -31,12 +32,15 @@
 }
 
 .language-switcher__button {
-  background: $color-white;
-  border: 1px solid $color-black-20;
-  box-shadow: 0 3px 4px #0003;
-  font-size: remify($base-font-size);
-  height: 40px;
-  padding: 0 $spacing-half;
+  background-color: var(--colorGinInputBackground);
+  border: 2px solid var(--colorGinPrimary) !important;
+  border-radius: var(--ginBorderDefault);
+  box-shadow: 0 1px 2px var(--colorGinPrimaryLight);
+  color: var(--colorGinPrimary);
+  font-size: remify(14px);
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  padding: calc(1rem - 2px) calc(1.5rem - 2px);
 
   @media (min-width: $breakpoint-m) {
     display: none;
@@ -57,10 +61,11 @@
       border-radius: 0 0 3px 3px;
       box-shadow: 0 3px 4px #00000033;
       display: flex;
+      line-height: 2;
       padding: $spacing;
       position: absolute;
       right: 0;
-      top: 45px;
+      top: 40px;
       z-index: 100;
     }
   }

@@ -11,7 +11,7 @@
 {% set local_actions_block = active_admin_theme ~ '_local_actions' %}
 {% set branding_block = active_admin_theme ~ '_branding' %}
 {% set primary_local_tasks_block = active_admin_theme ~ '_primary_local_tasks' %}
-{% set language_switcher = 'language_switcher_admin' %}
+{% set language_switcher_admin = 'language_switcher_admin' %}
 
 {% if toolbar_variant != 'vertical' %}
   <div class="region-sticky-watcher"></div>
@@ -49,6 +49,7 @@
   <div class="layout-container region-sticky__items">
     <div class="region-sticky__items__inner">
       {{ page.header[page_title_block] }}
+      {{ page.header[language_switcher_admin] }}
       {{ page.content[local_actions_block] }}
     </div>
   </div>
@@ -58,7 +59,7 @@
 
 <div class="content-header clearfix">
   <div class="layout-container">
-    {{ page.header|without(page_title_block, branding_block, language_switcher) }}
+    {{ page.header|without(page_title_block, branding_block, language_switcher_admin) }}
   </div>
 </div>
 

@@ -28,6 +28,10 @@
     background-color: $body-bg-color;
 
     .region-sticky__items__inner {
+      align-items: center;
+      gap: $spacing-double;
+      justify-items: center;
+
       @media (min-width: 1024px) and (max-width: 1280px) {
         .button {
           font-size: remify(14px);

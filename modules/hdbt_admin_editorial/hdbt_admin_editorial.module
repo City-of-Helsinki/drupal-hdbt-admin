@@ -133,6 +133,7 @@ function hdbt_admin_editorial_form_taxonomy_term_form_alter(array &$form, FormSt
  *   with-image-right     = "Image on the right"
  *   without-image-center = "Without image, align center"
  *   without-image-left   = "Without image, align left"
+ *   with-search          = "With search"
  */
 function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$form_state, $context) {
 
@@ -146,6 +147,8 @@ function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$fo
     $element['subform']['field_hero_desc']['#states'] = [
       'invisible' => [
         [$design_select => ['value' => 'background-image']],
+        'or',
+        [$design_select => ['value' => 'with-search']],
       ],
     ];
 

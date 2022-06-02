@@ -57,31 +57,37 @@ class Select2Icon extends FieldItemBase {
    * Load icons either from cache or load them based on the data received from
    * json-file which is saved in configuration.
    *
-   * @return array|false
-   *   Returns and array of icons or false.
+   * @return array
+   *   Returns an array of icons or empty array.
    */
   public static function loadIcons() {
     if ($icons = \Drupal::cache()->get(static::SELECT2_ICON_CACHE)) {
       return $icons->data;
     }
     else {
+      $icons = [];
       $config = \Drupal::getContainer()->get('config.factory')->getEditable('select2_icon.settings');
       $json_path = \Drupal::root() . $config->get('path_to_json');
 
-      $data = file_get_contents($json_path);
-
-      if ($data !== FALSE) {
-        $json = json_decode($data, TRUE);
-
-        if (is_array($json) && !empty($json)) {
-          $icons = array_combine($json, $json);
-
-          \Drupal::cache()->set(static::SELECT2_ICON_CACHE, $icons);
-          return $icons;
+      try {
+        if (!$data = file_get_contents($json_path)) {
+          throw new \InvalidArgumentException(
+            'Failed to load icons due to missing icons data. Verify that the "path_to_json" key contains correct information in the select2_icon.settings configuration.'
+          );
         }
       }
+      catch (\InvalidArgumentException $e) {
+        \Drupal::messenger()->addWarning($e->getMessage());
+      }
+
+      $json = json_decode($data, TRUE);
+
+      if (is_array($json) && !empty($json)) {
+        $icons = array_combine($json, $json);
+        \Drupal::cache()->set(static::SELECT2_ICON_CACHE, $icons);
+      }
     }
-    return FALSE;
+    return $icons;
   }
 
 }

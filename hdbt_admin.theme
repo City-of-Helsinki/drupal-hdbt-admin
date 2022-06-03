@@ -262,7 +262,7 @@ function hdbt_admin_apply_form_theme(array &$form) {
       '#attributes' => [
         'class' => [
           'entity-meta__header',
-          'entity-meta__promote'
+          'entity-meta__promote',
         ],
       ],
       'admin_promote_label' => [

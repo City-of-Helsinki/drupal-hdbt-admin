@@ -253,7 +253,10 @@ function hdbt_admin_apply_form_theme(array &$form) {
 
   // Move the promoted to front page checkbox to more
   // prominent part of the page.
-  if ($form['promote']['#should_move']) {
+  if (
+    array_key_exists('#should_move', $form['promote']) &&
+    $form['promote']['#should_move']
+  ) {
     $form['admin_promote'] = [
       '#group' => 'advanced',
       '#weight' => -10,

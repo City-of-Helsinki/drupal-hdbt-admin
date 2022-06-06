@@ -1,4 +1,9 @@
 .hdbt-admin {
+  // Remove artificial colon from promote checkbox label.
+  .entity-meta__promote .form-item__label::after {
+    content: '';
+  }
+
   // Add more spacing to sidebar published at fields.
   .entity-meta__revision .field--type-published-at {
     display: inline-block;

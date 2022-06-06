@@ -251,6 +251,32 @@ function hdbt_admin_apply_form_theme(array &$form) {
     $form['gin_actions']['actions']['unlock']['#weight'] = '98';
   }
 
+  // Move the promoted to front page checkbox to more
+  // prominent part of the page.
+  if (
+    array_key_exists('#should_move', $form['promote']) &&
+    $form['promote']['#should_move']
+  ) {
+    $form['admin_promote'] = [
+      '#group' => 'advanced',
+      '#weight' => -10,
+      '#access' => TRUE,
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'entity-meta__header',
+          'entity-meta__promote',
+        ],
+      ],
+      'admin_promote_label' => [
+        '#access' => TRUE,
+        '#title' => $form['promote']['widget']['#title'],
+        '#type' => 'item',
+      ],
+    ];
+    $form['promote']['#group'] = 'admin_promote';
+  }
+
   $meta_fields = [
     'field_short_title' => 1,
     'color_palette' => 1,

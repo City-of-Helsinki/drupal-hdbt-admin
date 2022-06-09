@@ -359,6 +359,13 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
     }
   }
 
+  // Remove empty values to prevent rendering them in markup.
+  foreach (['target', 'target_check', 'title'] as $attribute) {
+    if (isset($attributes[$attribute]) && empty($attributes[$attribute])) {
+      $form_state->setValue(['attributes', $attribute], FALSE);
+    }
+  }
+
   // If the accessibility consent is not accepted,
   // uncheck the open in new window / tab checkbox.
   if ($attributes['target'] && !$attributes['target_check']) {
@@ -372,29 +379,27 @@ function _hdbt_admin_editorial_attributes_validate(array &$form, FormStateInterf
 
     // Check if current link is external (not whitelisted) and
     // set data attributes accordingly.
-    if ($url instanceof Url) {
-      /** @var \Drupal\helfi_api_base\Link\InternalDomainResolver $resolver */
-      $resolver = \Drupal::service('helfi_api_base.internal_domain_resolver');
-      $is_external = $resolver->isExternal($url);
+    /** @var \Drupal\helfi_api_base\Link\InternalDomainResolver $resolver */
+    $resolver = \Drupal::service('helfi_api_base.internal_domain_resolver');
+    $is_external = $resolver->isExternal($url);
 
-      // Set form value is-external based on domain resolver.
-      $form_state->setValue(['attributes', 'data-is-external'], $is_external ? 'true' : 'false');
+    // Set form value is-external based on domain resolver.
+    $form_state->setValue(['attributes', 'data-is-external'], $is_external ? 'true' : 'false');
 
-      // Parse URL scheme from the href attribute and set it as data variable.
-      $scheme = parse_url(($is_external) ? $url->getUri() : $attributes['href'], PHP_URL_SCHEME);
+    // Parse URL scheme from the href attribute and set it as data variable.
+    $scheme = parse_url(($is_external) ? $url->getUri() : $attributes['href'], PHP_URL_SCHEME);
 
-      // Check for tel-link.
-      $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
+    // Check for tel-link.
+    $scheme = (empty($scheme) && str_contains($attributes['href'], 'tel:')) ? 'tel' : $scheme;
 
-      // Construct a protocol value for external links if user has not selected
-      // any value for the protocol.
-      if ($is_external && empty($scheme) && $attributes['data-protocol'] === 'false') {
-        $scheme = ($scheme === 'https' || $scheme === 'http') ? $scheme . '://' : $scheme;
-      }
-
-      // Set scheme to data-protocol attribute.
-      $form_state->setValue(['attributes', 'data-protocol'], !(empty($scheme)) ? $scheme : 'false');
+    // Construct a protocol value for external links if user has not selected
+    // any value for the protocol.
+    if ($is_external && empty($scheme) && $attributes['data-protocol'] === 'false') {
+      $scheme = ($scheme === 'https' || $scheme === 'http') ? $scheme . '://' : $scheme;
     }
+
+    // Set scheme to data-protocol attribute.
+    $form_state->setValue(['attributes', 'data-protocol'], !(empty($scheme)) ? $scheme : 'false');
   }
 }
 

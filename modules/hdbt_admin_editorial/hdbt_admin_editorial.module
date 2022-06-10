@@ -136,6 +136,11 @@ function hdbt_admin_editorial_form_taxonomy_term_form_alter(array &$form, FormSt
  */
 function hdbt_admin_editorial_field_widget_paragraphs_form_alter(&$element, &$form_state, $context) {
 
+  // Early return if paragraph type is not set.
+  if (!isset($element['#paragraph_type'])) {
+    return;
+  }
+
   // Perform alterations to Hero paragraph.
   if ($element['#paragraph_type'] == 'hero') {
 

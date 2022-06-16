@@ -6,12 +6,15 @@
  */
 
 use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Url;
 use Drupal\hdbt_admin_tools\Form\SiteSettings;
 use Drupal\helfi_api_base\Link\UrlHelper;
 use Drupal\select2_icon\Plugin\Field\FieldType\Select2Icon;
+use Drupal\user\UserInterface;
 
 /**
  * Register routes to apply Gin’s content edit form layout.
@@ -573,4 +576,24 @@ function hdbt_admin_editorial_entity_presave($entity) {
 function hdbt_admin_editorial_ckeditor_css_alter(array &$css) {
   $css[] = Drupal::service('extension.list.theme')
     ->getPath('hdbt_admin') . '/dist/css/ckeditor.min.css';
+}
+
+/**
+ * Implements hook_entity_operation().
+ *
+ * Add update password operation to users list action list.
+ */
+function hdbt_admin_editorial_entity_operation(EntityInterface $entity) {
+  if (
+    $entity instanceof UserInterface &&
+    \Drupal::currentUser()->hasPermission('administer users')
+  ) {
+    $operations = [];
+    $operations['update_password'] = [
+      'title' => t('Update user password', [], ['context' => 'HDBT Admin editorial - One-time login link']),
+      'url' => Url::fromRoute('hdbt_admin_editorial.user_login_link', ['user' => $entity->id()]),
+      'weight' => 50,
+    ];
+    return $operations;
+  }
 }

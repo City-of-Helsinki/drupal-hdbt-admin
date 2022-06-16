@@ -36,13 +36,13 @@ class UserLoginLink extends FormBase {
 
       $form['message'] = [
         '#markup' =>
-          "<p>{$this->t('<strong>Do not send the one time link via MS Teams</strong> or any other instant messaging application!<br />Doing so will invalidate the login link, and it will become useless.', [], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>" .
-          "<p>{$this->t('Copy and send the one-time login link to the user via <strong>email</strong>.', [], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>"
+        "<p>{$this->t('<strong>Do not send the one time link via MS Teams</strong> or any other instant messaging application!<br />Doing so will invalidate the login link, and it will become useless.', [], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>" .
+        "<p>{$this->t('Copy and send the one-time login link to the user via <strong>email</strong>.', [], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>",
       ];
 
       if (empty($values)) {
         $form['submit_instructions'] = [
-          '#markup' => "<p>{$this->t('Click the button below to generate a one-time login link for <strong>%user_name</strong>.', ['%user_name' => $user->getAccountName()], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>"
+          '#markup' => "<p>{$this->t('Click the button below to generate a one-time login link for <strong>%user_name</strong>.', ['%user_name' => $user->getAccountName()], ['context' => 'HDBT Admin editorial - One-time login link'])}</p>",
         ];
 
         $form['actions']['submit'] = [

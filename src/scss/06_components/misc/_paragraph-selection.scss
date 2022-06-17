@@ -97,6 +97,7 @@ $button-border-radius: 6px;
       border: 0;
       box-shadow: none;
       margin: 0;
+      max-width: 100%;
 
       .paragraph-selection__wrapper {
         background-color: $color-white;

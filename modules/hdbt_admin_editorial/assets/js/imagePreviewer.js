@@ -91,8 +91,14 @@
       dp.css('top',(event.pageY - config.imageYOffset - height) + 'px')
         .css('left',(event.pageX + config.imageXOffset) + 'px');
     // When mouse leaves the thumbnail, remove the preview element.
-    }).on('mouseleave', selector, function(){
+    }).on('mouseleave', selector, function() {
       $(`#${imageID}`).fadeOut(config.fadeOut).remove();
+    });
+
+    // Remove the preview element if the user has managed to hover the preview
+    // image during AJAX call.
+    $(document).ajaxComplete(function() {
+      $(`#${imageID}`).remove();
     });
   };
 });

@@ -11,8 +11,7 @@
  *
  * JS:
  * $(selector, context).imagePreviewer(selector, {
- *   pathToImages: 'images/',
- *   imageType: 'jpg'
+ *   fadeIn: 100,
  * });
  *
  */
@@ -41,11 +40,8 @@
   let _config = {
     fadeIn: 200,
     fadeOut: 200,
-    pathToImages: '/images/',
     imageYOffset: 32,
     imageXOffset: 32,
-    imageType: 'svg',
-    fallbackImage: 'custom-style'
   };
 
   $.fn.imagePreviewer = function (selector, configuration) {
@@ -58,31 +54,23 @@
       const image = $(this).data('hover-image');
       const title = $(this).data('hover-title') ?? '';
       const description = $(this).data('hover-description') ?? '';
-      const pathToImage = config.pathToImages + image + '.' + config.imageType;
 
       // Craft a new element for the preview image.
       $('body').append(`
         <p id="${imageID}" class="image-previewer__image-wrapper">
-          <img class="image-previewer__image" src="" alt="${title}" />
+          <img class="image-previewer__image" width="723" height="407" src="${image}" alt="${title}" />
           <span class="image-previewer__title">${title}</span>
           <span class="image-previewer__description">${description}</span>
         </p>
       `);
 
-      const imageTemplate = $(`#${imageID}`);
-
-      // In case the thumbnail image is not found, replace with default image.
-      fetch(pathToImage).then(function(response) {
-        return (response.ok)
-          ? imageTemplate.children('img').attr('src', pathToImage)
-          : imageTemplate.children('img').attr('src',config.pathToImages + config.fallbackImage);
-      });
-
       // Initialize the preview position.
+      const imageTemplate = $(`#${imageID}`);
       imageTemplate
         .css('top',(event.pageY - config.imageYOffset) + 'px')
         .css('left',(event.pageX + config.imageXOffset) + 'px')
         .fadeIn(config.fadeIn);
+
     // When mouse is moved, move along with the cursor.
     }).on('mousemove', selector, function(event) {
       event.stopImmediatePropagation();
@@ -98,7 +86,14 @@
     // Remove the preview element if the user has managed to hover the preview
     // image during AJAX call.
     $(document).ajaxComplete(function() {
-      $(`#${imageID}`).remove();
+      $(`#${imageID}`).fadeOut(config.fadeOut).remove();
+    });
+
+    // Remove the preview element if user clicks on the thumbnail.
+    $(window).on('select2:closing', function() {
+      $('[id^="image-previewer-"]').each(function () {
+        $(this).remove();
+      })
     });
   };
 });

@@ -20,7 +20,7 @@ function hdbt_admin_editorial_update_9001() {
   $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity_type, $entity_type);
   if (!empty($field_definitions[$field]) && $field_definitions[$field] instanceof FieldStorageDefinitionInterface) {
-    $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type,'hdbt_admin_editorial', $field_definitions[$field]);
+    $entity_definition_update_manager->installFieldStorageDefinition($field, $entity_type, 'hdbt_admin_editorial', $field_definitions[$field]);
   }
 }
 
@@ -53,7 +53,7 @@ function hdbt_admin_editorial_update_9002() {
 function hdbt_admin_editorial_update_9003() {
   $theme_handler = Drupal::service('theme_handler');
   $config_factory = \Drupal::configFactory();
-  $config_location = dirname(__FILE__,3) . '/config/install/';
+  $config_location = dirname(__FILE__, 3) . '/config/install/';
 
   // Install configurations if hdbt_admin theme exists.
   if ($theme_handler->themeExists('hdbt_admin')) {
@@ -97,7 +97,7 @@ function hdbt_admin_editorial_update_9003() {
     $configurations = [
       'block.block.hdbt_admin_primary_local_tasks',
       'block.block.hdbt_admin_secondary_local_tasks',
-      'block.block.hdbt_admin_content'
+      'block.block.hdbt_admin_content',
     ];
 
     foreach ($configurations as $config_name) {
@@ -140,7 +140,7 @@ function hdbt_admin_editorial_update_9004() {
 
       // Get current field's table name and column.
       $table_name = $table_mapping->getDedicatedDataTableName($field_storage_definition);
-      $column = $table_mapping->getFieldColumnName($field_storage_definition,'value');
+      $column = $table_mapping->getFieldColumnName($field_storage_definition, 'value');
 
       // Go through our data array, treat array key as data to search for
       // and array value as replacement. Use sql replace to replace the data.

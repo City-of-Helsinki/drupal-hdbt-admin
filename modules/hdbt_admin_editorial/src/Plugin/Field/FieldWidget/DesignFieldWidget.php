@@ -2,9 +2,12 @@
 
 namespace Drupal\hdbt_admin_editorial\Plugin\Field\FieldWidget;
 
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsSelectWidget;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\hdbt_admin_editorial\DesignSelectionManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the 'design_field_widget' widget.
@@ -22,14 +25,39 @@ use Drupal\Core\Form\FormStateInterface;
 class DesignFieldWidget extends OptionsSelectWidget {
 
   /**
+   * The design selection manager service.
+   *
+   * @var \Drupal\hdbt_admin_editorial\DesignSelectionManager
+   */
+  protected DesignSelectionManager $designSelectionManager;
+
+  /**
+   * {@inheritDoc}
+   */
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, DesignSelectionManager $design_selection_manager) {
+    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
+    $this->designSelectionManager = $design_selection_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
+    return new static(
+      $plugin_id,
+      $plugin_definition,
+      $configuration['field_definition'],
+      $configuration['settings'],
+      $configuration['third_party_settings'],
+      $container->get('hdbt_admin_editorial.design_selection_manager')
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
-
-    global $base_secure_url;
-    $handler = \Drupal::service('module_handler');
-    $image_path = $base_secure_url . '/' . $handler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images/';
 
     $element['#type'] = 'select2';
     $element['#cardinality'] = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
@@ -39,8 +67,10 @@ class DesignFieldWidget extends OptionsSelectWidget {
     $element['#options'] = $this->getOptions($items->getEntity());
     $element['#default_value'] = $this->getSelectedOptions($items);
     $element['#attached']['library'][] = 'hdbt_admin_editorial/design_selection';
-    $element['#attached']['drupalSettings']['designSelect']['pathToImages'] = $image_path;
-    $element['#attached']['drupalSettings']['designSelect']['fallbackImage'] = 'custom-style.svg';
+    $element['#attached']['drupalSettings']['designSelect']['images'] = $this->designSelectionManager->getImages(
+      $this->getFieldName(),
+      array_keys($this->getOptions($items->getEntity()))
+    );
     $element['#attributes']['class'][] = 'design-selection';
     $element['#attributes']['data-design-select'] = $this->getFieldName();
 

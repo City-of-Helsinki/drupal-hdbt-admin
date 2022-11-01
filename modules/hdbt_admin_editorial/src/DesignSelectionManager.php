@@ -44,15 +44,14 @@ class DesignSelectionManager {
       return [];
     }
 
-    global $base_secure_url;
     $asset_path = $this->moduleHandler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images';
     $images = [];
 
     foreach ($selections as $selection) {
       $asset = "$asset_path/{$field_name}--$selection.svg";
       $images[$selection] = (file_exists(DRUPAL_ROOT . '/' . $asset))
-        ? "$base_secure_url/$asset"
-        : "$base_secure_url/$asset_path/custom-style.svg";
+        ? "/$asset"
+        : "/$asset_path/custom-style.svg";
     }
 
     // Let modules to alter the image lists.

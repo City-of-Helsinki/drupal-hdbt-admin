@@ -50,8 +50,8 @@ class DesignSelectionManager {
     foreach ($selections as $selection) {
       $asset = "$asset_path/{$field_name}--$selection.svg";
       $images[$selection] = (file_exists(DRUPAL_ROOT . '/' . $asset))
-        ? "/$asset"
-        : "/$asset_path/custom-style.svg";
+        ? helfi_proxy_absolute_url("/$asset")
+        : helfi_proxy_absolute_url("/$asset_path/custom-style.svg");
     }
 
     // Let modules to alter the image lists.

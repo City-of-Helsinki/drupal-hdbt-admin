@@ -56,7 +56,7 @@ class DesignSelectionManager {
     }
 
     // Let modules to alter the image lists.
-    $this->moduleHandler->alter('design_selection_images', $images, $field_name);
+    $this->moduleHandler->alter('hdbt_admin_editorial_design_selection_images', $images, $field_name);
 
     return $images;
   }

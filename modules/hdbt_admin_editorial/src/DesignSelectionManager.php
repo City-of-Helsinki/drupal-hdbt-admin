@@ -7,7 +7,7 @@ namespace Drupal\hdbt_admin_editorial;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 
 /**
- * Service class for global navigation related functions.
+ * Service class for design selection related functions.
  */
 class DesignSelectionManager {
 

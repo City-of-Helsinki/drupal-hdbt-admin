@@ -5,8 +5,6 @@
  * HDBT Admin editorial hooks.
  */
 
-use Drupal\elasticsearch_connector\Entity\Cluster;
-
 /**
  * @file
  * Hooks provided by the HDBT Admin editorial module.

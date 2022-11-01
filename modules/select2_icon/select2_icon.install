@@ -46,7 +46,7 @@ function _select2_icon_install_configuration() {
       $config = \Drupal::getContainer()->get('config.factory')->getEditable('select2_icon.settings');
       $configurations = [
         'path_to_sprite' => 'pathToIconSprite',
-        'path_to_json' => 'pathToIconJson'
+        'path_to_json' => 'pathToIconJson',
       ];
 
       foreach ($configurations as $key => $value) {

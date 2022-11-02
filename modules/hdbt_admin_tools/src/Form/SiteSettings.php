@@ -154,19 +154,6 @@ class SiteSettings extends ConfigFormBase {
       '#default_value' => $settings->get('footer_settings')['footer_color'],
     ];
 
-    $form['footer_settings']['footer_top_title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Footer top title'),
-      '#default_value' => $settings->get('footer_settings')['footer_top_title'],
-    ];
-
-    $form['footer_settings']['footer_top_content'] = [
-      '#type' => 'text_format',
-      '#format' => $settings->get('footer_settings')['footer_top_content']['format'],
-      '#title' => $this->t('Footer top content'),
-      '#default_value' => $settings->get('footer_settings')['footer_top_content']['value'],
-    ];
-
     $form['#attached']['library'][] = 'hdbt_admin_tools/site_settings';
     $form['#attached']['library'][] = 'hdbt/color-palette';
 

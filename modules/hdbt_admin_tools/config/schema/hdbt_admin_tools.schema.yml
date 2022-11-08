@@ -22,12 +22,6 @@ hdbt_admin_tools.site_settings:
         footer_color:
           label: 'Footer color'
           type: label
-        footer_top_title:
-          label: 'Footer top title'
-          type: label
-        footer_top_content:
-          label: 'Footer top content'
-          type: text_format
 
 hdbt_admin_tools.cookie_consent_intro:
   type: config_object

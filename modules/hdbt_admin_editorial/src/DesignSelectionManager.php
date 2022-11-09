@@ -46,12 +46,16 @@ class DesignSelectionManager {
 
     $asset_path = $this->moduleHandler->getModule('hdbt_admin_editorial')->getPath() . '/assets/images';
     $images = [];
+    /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+    $service = \Drupal::service('file_url_generator');
 
     foreach ($selections as $selection) {
       $asset = "$asset_path/{$field_name}--$selection.svg";
-      $images[$selection] = (file_exists(DRUPAL_ROOT . '/' . $asset))
-        ? helfi_proxy_absolute_url("/$asset")
-        : helfi_proxy_absolute_url("/$asset_path/custom-style.svg");
+
+      if (!file_exists(DRUPAL_ROOT . '/' . $asset)) {
+        $asset = "$asset_path/custom-style.svg";
+      }
+      $images[$selection] = $service->generate($asset)->toString(TRUE)->getGeneratedUrl();
     }
 
     // Let modules to alter the image lists.

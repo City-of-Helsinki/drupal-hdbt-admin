@@ -60,7 +60,7 @@ class Select2Icon extends FieldItemBase {
    * @return array
    *   Returns an array of icons or empty array.
    */
-  public static function loadIcons() {
+  public static function loadIcons() : array {
     if ($icons = \Drupal::cache()->get(static::SELECT2_ICON_CACHE)) {
       return $icons->data;
     }
@@ -69,17 +69,11 @@ class Select2Icon extends FieldItemBase {
       $config = \Drupal::getContainer()->get('config.factory')->getEditable('select2_icon.settings');
       $json_path = \Drupal::root() . $config->get('path_to_json');
 
-      try {
-        if (!$data = file_get_contents($json_path)) {
-          throw new \InvalidArgumentException(
-            'Failed to load icons due to missing icons data. Verify that the "path_to_json" key contains correct information in the select2_icon.settings configuration.'
-          );
-        }
-      }
-      catch (\InvalidArgumentException $e) {
-        \Drupal::messenger()->addWarning($e->getMessage());
-      }
+      if (!$data = file_get_contents($json_path)) {
+        \Drupal::messenger()->addWarning('Failed to load icons due to missing icons data. Verify that the "path_to_json" key contains correct information in the select2_icon.settings configuration.');
 
+        return [];
+      }
       $json = json_decode($data, TRUE);
 
       if (is_array($json) && !empty($json)) {

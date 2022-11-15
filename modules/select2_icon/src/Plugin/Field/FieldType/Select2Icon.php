@@ -70,7 +70,10 @@ class Select2Icon extends FieldItemBase {
       $json_path = \Drupal::root() . $config->get('path_to_json');
 
       if (!$data = file_get_contents($json_path)) {
-        \Drupal::messenger()->addWarning('Failed to load icons due to missing icons data. Verify that the "path_to_json" key contains correct information in the select2_icon.settings configuration.');
+        \Drupal::messenger()
+          ->addWarning('Failed to load icons due to missing icons data. Verify that the "path_to_json" key contains correct information in the select2_icon.settings configuration. Current value: @current_value', [
+            '@current_value' => $json_path,
+          ]);
 
         return [];
       }

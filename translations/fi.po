@@ -5,10 +5,6 @@ msgctxt "Accent color"
 msgid "Accent"
 msgstr "Korosteväri"
 
-msgctxt "Alt text in media library"
-msgid "Alt text"
-msgstr "Alt-teksti"
-
 msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tyhjä"

@@ -50,17 +50,15 @@
     <div{{ metadata_attributes.addClass('media-library-item__attributes') }}>
       <div class="media-library-item__name">{{ name }}</div>
 
-      {% if alt_text %}
-        <div class="media-library-item__alt">
+      <div class="media-library-item__alt">
+        {% if alt_text %}
           {{ 'Alt'|t({}, {'context': 'Alt text in media library'}) }}:
           <span>{{ alt_text }}</span>
-        </div>
-      {% else %}
-        <div class="media-library-item__alt">
+        {% else %}
           {{ 'Alt'|t({}, {'context': 'Alt text in media library'}) }}:
           <span>"" ({{ 'Empty'|t({}, {'context': 'Empty alt text in media library'}) }})</span>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 </article>

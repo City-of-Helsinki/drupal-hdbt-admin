@@ -24,7 +24,7 @@ class Select2Icon extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function propertyDefinitions(FieldStorageDefinitionInterface $storage) {
+  public static function propertyDefinitions(FieldStorageDefinitionInterface $storage): array {
     $properties = [];
     $properties['icon'] = DataDefinition::create('string')->setLabel(t('Icon ID'));
     return $properties;
@@ -33,7 +33,7 @@ class Select2Icon extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function schema(FieldStorageDefinitionInterface $field_definition) {
+  public static function schema(FieldStorageDefinitionInterface $field_definition): array {
     return [
       'columns' => [
         'icon' => [
@@ -47,7 +47,7 @@ class Select2Icon extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public function isEmpty() {
+  public function isEmpty(): bool {
     return empty($this->get('icon')->getValue());
   }
 
@@ -60,7 +60,7 @@ class Select2Icon extends FieldItemBase {
    * @return array
    *   Returns an array of icons or empty array.
    */
-  public static function loadIcons() : array {
+  public static function loadIcons(): array {
     if ($icons = \Drupal::cache()->get(static::SELECT2_ICON_CACHE)) {
       return $icons->data;
     }

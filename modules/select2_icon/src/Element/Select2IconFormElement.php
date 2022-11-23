@@ -16,7 +16,7 @@ class Select2IconFormElement extends Select2 {
   /**
    * {@inheritdoc}
    */
-  public static function processSelect(&$element, FormStateInterface $form_state, &$complete_form) {
+  public static function processSelect(&$element, FormStateInterface $form_state, &$complete_form): array {
     // Set icons for the options.
     $element['#options'] = [$element['#empty_value'] => ''] + Select2Icon::loadIcons();
     return $element;
@@ -25,7 +25,7 @@ class Select2IconFormElement extends Select2 {
   /**
    * {@inheritdoc}
    */
-  public static function preRenderSelect($element) {
+  public static function preRenderSelect($element): array {
     $element = parent::preRenderSelect($element);
 
     // Set attributes to include the select2_icon library and settings.

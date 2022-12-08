@@ -1,3 +1,6 @@
+field.widget.settings.link_target_icon_field_widget:
+  type: field.widget.settings.linkit
+
 field.widget.settings.design_field_widget:
   type: mapping
   label: 'Design field widget widget settings'

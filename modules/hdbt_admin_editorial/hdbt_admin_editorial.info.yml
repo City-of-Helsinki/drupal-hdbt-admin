@@ -8,6 +8,7 @@ dependencies:
   - drupal:ckeditor
   - drupal:editor
   - drupal:linkit
+  - drupal:options
   - drupal:hdbt_admin_tools
   - drupal:select2_icon
 'interface translation project': hdbt_admin_editorial

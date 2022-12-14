@@ -1,3 +1,6 @@
+field.widget.settings.link_target_field_widget:
+  type: field.widget.settings.linkit
+
 field.widget.settings.link_target_icon_field_widget:
   type: field.widget.settings.linkit
 

@@ -9,7 +9,7 @@ dependencies:
   - drupal:editor
   - drupal:linkit
   - drupal:options
-  - drupal:hdbt_admin_tools
-  - drupal:select2_icon
+  - hdbt_admin_tools:hdbt_admin_tools
+  - select2_icon:select2_icon
 'interface translation project': hdbt_admin_editorial
 'interface translation server pattern': themes/contrib/hdbt_admin/modules/hdbt_admin_editorial/translations/%language.po

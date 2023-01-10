@@ -56,7 +56,7 @@ class Select2IconWidget extends WidgetBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): static {
     return new static(
       $plugin_id,
       $plugin_definition,
@@ -70,7 +70,7 @@ class Select2IconWidget extends WidgetBase {
   /**
    * {@inheritdoc}
    */
-  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state): array {
     $element['icon'] = [
       '#type' => 'select2',
       '#title' => $this->t('Icon'),
@@ -95,7 +95,7 @@ class Select2IconWidget extends WidgetBase {
    * @return array
    *   The array of options for the widget.
    */
-  protected function getOptions(FieldableEntityInterface $entity) {
+  protected function getOptions(FieldableEntityInterface $entity): array {
     if (!isset($this->options)) {
       $this->options = Select2Icon::loadIcons();
     }
@@ -111,7 +111,7 @@ class Select2IconWidget extends WidgetBase {
    * @return array
    *   The array of corresponding selected options.
    */
-  protected function getSelectedOptions(FieldItemListInterface $items) {
+  protected function getSelectedOptions(FieldItemListInterface $items): array {
     // In case this widget is used for opt groups.
     $flat_options = OptGroup::flattenOptions($this->getOptions($items->getEntity()));
 

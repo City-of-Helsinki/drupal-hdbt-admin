@@ -25,40 +25,17 @@
             if (!option.id) { return option.text; }
             if (!parentDesign) { return option.text; }
 
-            // Use unified link designs for all links (buttons).
-            const link_designs = [
-              'hero-link-design',
-              'banner-link-design',
-            ];
-            let design = parentDesign;
-
-            if (link_designs.includes(parentDesign)) {
-              design = 'link-design';
-            }
-
             // Craft path to thumbnails based on item values and base design.
-            const item = design + '--' + option.element.value;
-            const basePath = drupalSettings.designSelect.pathToImages;
-            const thumbnail = item + '.svg';
-            const fallback = drupalSettings.designSelect.fallbackImage;
+            const image = (option.id in drupalSettings.designSelect.images)
+              ? drupalSettings.designSelect.images[option.id] : '';
 
             // Craft the image template.
-            const imageTemplate = $(`
+            return $(`
               <div class="design-selection__wrapper">
                 <span>${option.text}</span>
-                <img src="" data-hover-title="${option.text}" data-hover-image="${item}" class="design-selection__thumbnail" />
+                <img src="${image}" data-hover-title="${option.text}" data-hover-image="${image}" class="design-selection__thumbnail" />
               </div>
             `);
-
-            // In case the thumbnail image is not found, replace with default image.
-            fetch(basePath + thumbnail).then(function(response) {
-              return (response.ok)
-                ? imageTemplate.children('img').attr('src', basePath + thumbnail)
-                : imageTemplate.children('img').attr('src',basePath + fallback);
-            });
-
-            // Return the image template.
-            return imageTemplate;
           };
         };
 
@@ -66,7 +43,6 @@
         config.templateResult = templateHandler(config.templateResult, designSelect);
         config.minimumResultsForSearch = -1;
         config.theme = 'default design-selection';
-        config.fallbackImage = drupalSettings.designSelect.fallbackImage;
         $(event.target).data('select2-config', config);
       });
 
@@ -74,9 +50,7 @@
        * Assign image preview to selection thumbnail.
        */
       const selector = '.select2-container--open .design-selection__thumbnail';
-      $(selector, context).imagePreviewer(selector, {
-        pathToImages: drupalSettings.designSelect.pathToImages,
-      });
+      $(selector, context).imagePreviewer(selector);
     }
   };
 

@@ -1,5 +1,9 @@
 msgid ""
 msgstr ""
 
+msgctxt "Empty alt text in media library"
+msgid "Empty"
+msgstr "Tom"
+
 msgid "Published on"
 msgstr "Publicerad på"

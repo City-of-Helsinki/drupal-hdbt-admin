@@ -5,6 +5,10 @@ msgctxt "Accent color"
 msgid "Accent"
 msgstr "Korosteväri"
 
+msgctxt "Empty alt text in media library"
+msgid "Empty"
+msgstr "Tyhjä"
+
 msgid "Basic motif"
 msgstr "Perus"
 

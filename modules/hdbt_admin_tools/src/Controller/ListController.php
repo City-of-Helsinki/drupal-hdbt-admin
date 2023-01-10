@@ -23,7 +23,7 @@ class ListController {
    * @return array
    *   Render array.
    */
-  public function build() {
+  public function build(): array {
     $current_user = User::load(\Drupal::currentUser()->id());
     $faked_blocks = [];
 

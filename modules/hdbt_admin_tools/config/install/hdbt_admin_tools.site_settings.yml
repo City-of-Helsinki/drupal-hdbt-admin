@@ -5,7 +5,3 @@ site_settings:
   koro: basic
 footer_settings:
   footer_color: dark
-  footer_top_content:
-    format: full_html
-    value: "<ul class=\"menu\"><li class=\"menu__item menu__item--external\"><a class=\"link\" data-design=\"link\" data-link-text=\"Helsinki-info advisory service\" data-protocol=\"false\" href=\"https://www.hel.fi/kanslia/neuvonta-en/\">Helsinki-info advisory service</a></li><li class=\"menu__item menu__item--external\"><a class=\"link\" data-design=\"link\" data-link-text=\"Contact information search\" data-protocol=\"false\" href=\"https://numerot.hel.fi/\">Contact information search</a></li><li class=\"menu__item menu__item--external\"><a class=\"link\" data-design=\"link\" data-link-text=\"Give feedback\" data-protocol=\"false\" href=\"https://www.hel.fi/feedback/\">Give feedback</a></li></ul>\r\n"
-  footer_top_title: 'Contact us'

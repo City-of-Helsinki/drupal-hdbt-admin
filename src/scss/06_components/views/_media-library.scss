@@ -2,9 +2,20 @@
   .media-library-item__click-to-select-checkbox .form-boolean {
     box-shadow: 0 3px 6px $color-black-50;
   }
+  .pager {
+    width: 100%;
+  }
+}
 
-  // Override edit-button position for media library widget.
+// Override edit-button position for media library widget.
+[dir="ltr"] .media-library-view--widget .media-library-item {
   .media-library-item__edit {
     right: 0.5rem;
+  }
+}
+
+[dir="rtl"] .media-library-view--widget .media-library-item {
+  .media-library-item__edit {
+    left: 0.5rem;
   }
 }

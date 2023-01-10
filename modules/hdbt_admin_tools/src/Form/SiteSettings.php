@@ -100,12 +100,12 @@ class SiteSettings extends ConfigFormBase {
     ];
 
     $icons = [
-      'group' => $this->t('Group'),
-      'home-smoke' => $this->t('Home'),
-      'face-smile' => $this->t('Smiley'),
-      'heart-fill' => $this->t('Heart'),
-      'star-fill' => $this->t('Star'),
-      'layers' => $this->t('Layers'),
+      'abstract-1' => $this->t('Icon 1'),
+      'abstract-2' => $this->t('Icon 2'),
+      'abstract-3' => $this->t('Icon 3'),
+      'abstract-4' => $this->t('Icon 4'),
+      'abstract-5' => $this->t('Icon 5'),
+      'abstract-6' => $this->t('Icon 6'),
     ];
 
     $form['site_settings']['default_icon'] = [
@@ -152,19 +152,6 @@ class SiteSettings extends ConfigFormBase {
         'light' => $this->t('Light'),
       ],
       '#default_value' => $settings->get('footer_settings')['footer_color'],
-    ];
-
-    $form['footer_settings']['footer_top_title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Footer top title'),
-      '#default_value' => $settings->get('footer_settings')['footer_top_title'],
-    ];
-
-    $form['footer_settings']['footer_top_content'] = [
-      '#type' => 'text_format',
-      '#format' => $settings->get('footer_settings')['footer_top_content']['format'],
-      '#title' => $this->t('Footer top content'),
-      '#default_value' => $settings->get('footer_settings')['footer_top_content']['value'],
     ];
 
     $form['#attached']['library'][] = 'hdbt_admin_tools/site_settings';

@@ -79,13 +79,3 @@ hdbt_admin_tools.user_interface_translations:
   title: 'User interface translations'
   parent: hdbt_admin_tools.overview
   route_name: locale.translate_page
-
-hdbt_admin_tools.cookie_consent_content:
-  title: 'Cookie consent intro'
-  parent: hdbt_admin_tools.site_information
-  route_name: hdbt_admin_tools.cookie_consent_intro_form
-
-hdbt_admin_tools.eu_cookie_consent_content:
-  title: 'Cookie consent intro'
-  parent: eu_cookie_compliance
-  route_name: hdbt_admin_tools.cookie_consent_intro_form

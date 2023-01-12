@@ -64,12 +64,6 @@ hdbt_admin_tools.footer_bottom_menu:
   route_parameters: { menu: 'footer-bottom-navigation' }
   weight: 4
 
-hdbt_admin_tools.component_library:
-  title: 'HDBT - Component library'
-  parent: hdbt_admin_tools.overview
-  route_name: hdbt_component_library.component_library
-  weight: 1
-
 hdbt_admin_tools.taxonomy:
   title: 'Taxonomy'
   parent: hdbt_admin_tools.overview

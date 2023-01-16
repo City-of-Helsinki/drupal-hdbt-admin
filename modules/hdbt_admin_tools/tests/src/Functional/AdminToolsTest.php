@@ -28,6 +28,14 @@ class AdminToolsTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+    $this->drupalPlaceBlock('page_title_block');
+  }
+
+  /**
    * Test HDBT Admin tools routes.
    */
   public function testAdminToolsRoutes() : void {
@@ -37,12 +45,17 @@ class AdminToolsTest extends BrowserTestBase {
       'hdbt_admin_tools.taxonomy' => '',
     ];
 
+    // Test as user without proper permissions.
+    $authenticated_user = $this->drupalCreateUser([]);
+    $this->drupalLogin($authenticated_user);
+
     foreach ($routes as $route => $title) {
       $this->drupalGet(Url::fromRoute($route));
       $this->assertSession()->statusCodeEquals(403);
     }
 
-    $this->drupalLogin($this->createUser([
+    // Test as user with proper permissions.
+    $this->drupalLogin($this->drupalCreateUser([
       'access administration pages',
       'access taxonomy overview',
     ]));

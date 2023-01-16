@@ -9,6 +9,8 @@ use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests HDBT admin tools module.
+ *
+ * @group hdbt_admin
  */
 class AdminToolsTest extends BrowserTestBase {
 

@@ -6,6 +6,33 @@
  */
 
 /**
+ * Installs HDBT Admin tools module.
+ */
+function hdbt_admin_tools_install() : void {
+  hdbt_admin_tools_add_configuration_to_config_ignore();
+}
+
+/**
+ * Set hdbt admin tools settings to config ignore.
+ */
+function hdbt_admin_tools_add_configuration_to_config_ignore() {
+  if (!Drupal::moduleHandler()->moduleExists('config_ignore')) {
+    return;
+  }
+
+  // Add hdbt_admin_tools settings to config ignore.
+  $config = Drupal::configFactory()->getEditable('config_ignore.settings');
+  $ignored = $config->get('ignored_config_entities') ?? [];
+  $config_ignore = 'hdbt_admin_tools.site_settings';
+
+  $ignored = !in_array($config_ignore, $ignored)
+    ? $ignored[] = $config_ignore
+    : $ignored;
+
+  $config->set('ignored_config_entities', $ignored)->save();
+}
+
+/**
  * Remove footer top content and top title configuration.
  */
 function hdbt_admin_tools_update_9001() {
@@ -22,4 +49,11 @@ function hdbt_admin_tools_update_9001() {
       $hdbt_admin_tools_site_settings->setData($hdbt_admin_tools_site_settings_data)->save(TRUE);
     }
   }
+}
+
+/**
+ * Add HDBT admin tools setting to config ignore.
+ */
+function hdbt_admin_tools_update_9002() {
+  hdbt_admin_tools_add_configuration_to_config_ignore();
 }

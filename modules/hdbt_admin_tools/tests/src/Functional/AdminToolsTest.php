@@ -20,6 +20,7 @@ class AdminToolsTest extends BrowserTestBase {
   protected static $modules = [
     'hdbt_admin_tools',
     'taxonomy',
+    'block'
   ];
 
   /**

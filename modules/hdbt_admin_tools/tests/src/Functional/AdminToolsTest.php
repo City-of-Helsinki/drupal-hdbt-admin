@@ -44,7 +44,7 @@ class AdminToolsTest extends BrowserTestBase {
     $this->drupalLogin($this->createUser([
       'access administration pages',
       'administer nodes',
-      'access taxonomy overview'
+      'access taxonomy overview',
     ]));
 
     foreach ($routes as $route => $title) {

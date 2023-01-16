@@ -25,10 +25,9 @@ function hdbt_admin_tools_add_configuration_to_config_ignore() {
   $ignored = $config->get('ignored_config_entities') ?? [];
   $config_ignore = 'hdbt_admin_tools.site_settings';
 
-  $ignored = !in_array($config_ignore, $ignored)
-    ? $ignored[] = $config_ignore
-    : $ignored;
-
+  if (!in_array($config_ignore, $ignored)) {
+    $ignored[] = $config_ignore;
+  }
   $config->set('ignored_config_entities', $ignored)->save();
 }
 

@@ -18,7 +18,7 @@ jobs:
 
     services:
       db:
-        image: mariadb:10.10
+        image: mariadb
         env:
           MYSQL_USER: drupal
           MYSQL_PASSWORD: drupal
@@ -49,7 +49,7 @@ jobs:
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/$THEME_NAME -W
           composer run-script drupal-phpunit-upgrade
-          composer require "drush/drush ^10.0"
+          composer require "drush/drush ^11.0"
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer require --dev donatj/mock-webserver
           composer require --dev "drupal/coder"
@@ -60,7 +60,7 @@ jobs:
           vendor/bin/phpcs $THEME_FOLDER --extensions=php,theme,module,inc,install,test,info --ignore="*/node_modules/*" --standard=Drupal
 
       - name: Check that theme is not built with dev mode
-        run: if grep -q 'sourceMappingURL=' -R public/themes/contrib/$THEME_NAME/dist/css; then exit 1; fi
+        run: if grep -q 'sourceMappingURL=' -R $THEME_FOLDER/dist/css; then exit 1; fi
 
       - name: Install Drupal
         run: |

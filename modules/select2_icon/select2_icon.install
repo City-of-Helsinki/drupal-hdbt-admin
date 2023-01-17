@@ -33,13 +33,8 @@ function _select2_icon_install_configuration() {
   $theme_handler = \Drupal::service('theme_handler');
 
   if ($theme_handler->themeExists('hdbt')) {
-    /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
-    $service = \Drupal::service('file_url_generator');
-
-    $hdbt_theme = $theme_handler->getTheme('hdbt');
-    $theme_path = $service->generate($hdbt_theme->getPath())
-      ->toString(TRUE)->getGeneratedUrl();
-    $config_path = "$theme_path/.hdbtconfig.json";
+    $theme_path = '/' . $theme_handler->getTheme('hdbt')->getPath();
+    $config_path = \Drupal::root() . $theme_path . '/.hdbtconfig.json';
     $config_hdbt = FALSE;
     $data = file_get_contents($config_path);
 
@@ -62,13 +57,6 @@ function _select2_icon_install_configuration() {
       }
     }
   }
-}
-
-/**
- * Update path for the editor selectable icons.
- */
-function select2_icon_update_9103() {
-  _select2_icon_install_configuration();
 }
 
 /**

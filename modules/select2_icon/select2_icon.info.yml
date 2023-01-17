@@ -4,4 +4,4 @@ description: 'Select2 integration for previewing icons in select lists.'
 package: User interface
 core_version_requirement: ^8 || ^9
 dependencies:
-  - select2
+  - select2:select2

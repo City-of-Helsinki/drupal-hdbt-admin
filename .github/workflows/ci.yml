@@ -6,7 +6,8 @@ env:
   DRUPAL_CORE_VERSION: 9.5.x
   SYMFONY_DEPRECATIONS_HELPER: disabled
   BROWSERTEST_OUTPUT_DIRECTORY: 'sites/simpletest'
-  THEME_NAME: hdbt_admin
+  ADMIN_THEME: hdbt_admin
+  FRONTEND_THEME: hdbt
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -35,8 +36,8 @@ jobs:
       - name: Set Drupal root
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
 
-      - name: Set theme folder
-        run: echo "THEME_FOLDER=$DRUPAL_ROOT/themes/contrib/$THEME_NAME" >> $GITHUB_ENV
+      - name: Set admin theme folder
+        run: echo "ADMIN_THEME_FOLDER=$DRUPAL_ROOT/themes/contrib/$ADMIN_THEME" >> $GITHUB_ENV
 
       - name: Clone drupal
         run: git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupal.org/project/drupal.git/ $DRUPAL_ROOT
@@ -47,7 +48,8 @@ jobs:
           composer config platform.php ${{ matrix.php-versions }}
           composer config repositories.4 composer https://repository.drupal.hel.ninja/
           composer config repositories.5 path $GITHUB_WORKSPACE
-          composer require drupal/$THEME_NAME -W
+          composer require drupal/$ADMIN_THEME -W
+          composer require drupal/$FRONTEND_THEME -W
           composer run-script drupal-phpunit-upgrade
           composer require "drush/drush ^11.0"
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
@@ -57,10 +59,10 @@ jobs:
       - name: Run PHPCS
         run: |
           cd $DRUPAL_ROOT
-          vendor/bin/phpcs $THEME_FOLDER --extensions=php,theme,module,inc,install,test,info --ignore="*/node_modules/*" --standard=Drupal
+          vendor/bin/phpcs $ADMIN_THEME_FOLDER --extensions=php,theme,module,inc,install,test,info --ignore="*/node_modules/*" --standard=Drupal
 
       - name: Check that theme is not built with dev mode
-        run: if grep -q 'sourceMappingURL=' -R $THEME_FOLDER/dist/css; then exit 1; fi
+        run: if grep -q 'sourceMappingURL=' -R $ADMIN_THEME_FOLDER/dist/css; then exit 1; fi
 
       - name: Install Drupal
         run: |
@@ -76,10 +78,10 @@ jobs:
       - name: Run PHPUnit tests
         run: |
           cd $DRUPAL_ROOT
-          php -d pcov.directory=$THEME_FOLDER \
+          php -d pcov.directory=$ADMIN_THEME_FOLDER \
             vendor/bin/phpunit \
             --bootstrap $DRUPAL_ROOT/core/tests/bootstrap.php \
-            -c $THEME_FOLDER/phpunit.xml \
+            -c $ADMIN_THEME_FOLDER/phpunit.xml \
             --coverage-clover=coverage.xml \
-            $THEME_FOLDER
+            $ADMIN_THEME_FOLDER
           codecov

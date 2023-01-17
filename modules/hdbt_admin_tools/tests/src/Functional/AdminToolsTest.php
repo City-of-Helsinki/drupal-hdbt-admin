@@ -43,7 +43,7 @@ class AdminToolsTest extends BrowserTestBase {
     $routes = [
       'hdbt_admin_tools.list_all' => 'Tools',
       'hdbt_admin_tools.site_settings_form' => 'Site settings',
-      'hdbt_admin_tools.taxonomy' => '',
+      'hdbt_admin_tools.taxonomy' => 'Taxonomy',
     ];
 
     // Test as user without proper permissions.

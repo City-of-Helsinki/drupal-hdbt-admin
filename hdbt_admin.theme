@@ -18,9 +18,14 @@ function hdbt_admin_preprocess(&$variables) {
   $variables['current_language'] = $language->getName();
 
   // Add HDBT theme icons path to variables.
-  $hdbt_theme = \Drupal::service('theme_handler')->getTheme('hdbt');
-  if ($hdbt_theme) {
-    $variables['icons_path'] = '/' . $hdbt_theme->getPath() . '/dist/icons/sprite.svg';
+  $theme_handler = \Drupal::service('theme_handler');
+  if ($theme_handler->themeExists('hdbt')) {
+    /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+    $service = \Drupal::service('file_url_generator');
+    $hdbt_theme = $theme_handler->getTheme('hdbt');
+    $theme_path = $service->generate($hdbt_theme->getPath())
+      ->toString(TRUE)->getGeneratedUrl();
+    $variables['icons_path'] = "$theme_path/dist/icons/sprite.svg";
   }
 }
 

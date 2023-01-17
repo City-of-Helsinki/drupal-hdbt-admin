@@ -16,12 +16,6 @@ function hdbt_admin_preprocess(&$variables) {
   $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $variables['current_langcode'] = $language->getId();
   $variables['current_language'] = $language->getName();
-
-  // Add HDBT theme icons path to variables.
-  $hdbt_theme = \Drupal::service('theme_handler')->getTheme('hdbt');
-  if ($hdbt_theme) {
-    $variables['icons_path'] = '/' . $hdbt_theme->getPath() . '/dist/icons/sprite.svg';
-  }
 }
 
 /**

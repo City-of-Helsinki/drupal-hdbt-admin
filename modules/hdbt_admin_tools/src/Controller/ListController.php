@@ -111,27 +111,6 @@ class ListController {
       ];
     }
 
-    if (
-      $current_user->hasPermission('access administration pages') &&
-      \Drupal::moduleHandler()->moduleExists('hdbt_component_library')
-    ) {
-      $faked_blocks['hdbt_component_library'] = [
-        'title' => $this->t('HDBT Component Library'),
-        'description' => '',
-        'content' => [
-          '#theme' => 'admin_block_content',
-          '#content' => [
-            'navigation' => [
-              'url' => Url::fromUri('internal:/admin/appearance/hdbt/component-library'),
-              'title' => $this->t('View HDBT Component Library'),
-              'description' => '',
-              'options' => '',
-            ],
-          ],
-        ],
-      ];
-    }
-
     return [
       '#theme' => 'admin_page',
       '#blocks' => $faked_blocks,

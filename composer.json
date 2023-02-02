@@ -8,5 +8,8 @@
     "require": {
         "drupal/admin_toolbar": "^2.3",
         "drupal/gin": "3.0.0-beta5"
+    },
+    "conflict": {
+        "drupal/helfi_platform_config": "<3.0"
     }
 }

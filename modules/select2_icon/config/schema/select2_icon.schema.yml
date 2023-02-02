@@ -1,8 +1,0 @@
-select2_icon.settings:
-  type: config_entity
-  label: Select 2 icon settings
-  mapping:
-    path_to_json:
-      type: string
-    path_to_sprite:
-      type: string

@@ -28,7 +28,7 @@ function hook_hdbt_admin_editorial_design_selection_images_alter(array &$images,
  *
  * @param array $form
  *   The form.
- * @param FormStateInterface $form_state
+ * @param Drupal\Core\Form\FormStateInterface $form_state
  *   The form state.
  */
 function hook_helfi_form_editor_link_dialog_alter(array &$form, FormStateInterface &$form_state) {

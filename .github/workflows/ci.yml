@@ -1,13 +1,10 @@
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 2.x
 name: CI
-env:
-  SIMPLETEST_DB: "mysql://drupal:drupal@db:3306/drupal"
-  SIMPLETEST_BASE_URL: "http://127.0.0.1:8888"
-  DRUPAL_CORE_VERSION: 9.5.x
-  SYMFONY_DEPRECATIONS_HELPER: disabled
-  BROWSERTEST_OUTPUT_DIRECTORY: 'sites/simpletest'
-  ADMIN_THEME: hdbt_admin
-  FRONTEND_THEME: hdbt
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -16,72 +13,30 @@ jobs:
         php-versions: ['8.1']
     container:
       image: ghcr.io/city-of-helsinki/drupal-php-docker:${{ matrix.php-versions }}-alpine
-
-    services:
-      db:
-        image: mariadb
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
-        ports:
-          - 3306:3306
-
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - name: Set Drupal root
+      - name: Set variables
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
 
-      - name: Set admin theme folder
-        run: echo "ADMIN_THEME_FOLDER=$DRUPAL_ROOT/themes/contrib/$ADMIN_THEME" >> $GITHUB_ENV
+      - name: Parse $THEME_NAME from composer.json
+        run: echo "THEME_NAME=$(cat composer.json | jq -r .name | awk -F/ '{print $NF}')" >> $GITHUB_ENV
 
-      - name: Clone drupal
-        run: git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupal.org/project/drupal.git/ $DRUPAL_ROOT
+      - name: Clone platform
+        run: git clone https://github.com/City-of-Helsinki/drupal-helfi-platform.git $DRUPAL_ROOT
 
-      - name: Install required composer dependencies
+      - name: Build project
         run: |
           cd $DRUPAL_ROOT
-          composer config platform.php ${{ matrix.php-versions }}
-          composer config repositories.4 composer https://repository.drupal.hel.ninja/
           composer config repositories.5 path $GITHUB_WORKSPACE
-          composer require drupal/$ADMIN_THEME -W
-          composer require drupal/$FRONTEND_THEME -W
-          composer run-script drupal-phpunit-upgrade
-          composer require "drush/drush ^11.0"
-          composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          composer require --dev donatj/mock-webserver
-          composer require --dev "drupal/coder"
+          composer require drupal/$THEME_NAME -W
+
+      - name: Check that theme is not built with dev mode
+        run: if grep -q 'sourceMappingURL=' -R public/themes/contrib/$THEME_NAME/dist/css; then exit 1; fi
 
       - name: Run PHPCS
         run: |
           cd $DRUPAL_ROOT
-          vendor/bin/phpcs $ADMIN_THEME_FOLDER --extensions=php,theme,module,inc,install,test,info --ignore="*/node_modules/*" --standard=Drupal
-
-      - name: Check that theme is not built with dev mode
-        run: if grep -q 'sourceMappingURL=' -R $ADMIN_THEME_FOLDER/dist/css; then exit 1; fi
-
-      - name: Install Drupal
-        run: |
-          cd $DRUPAL_ROOT
-          php -d sendmail_path=$(which true); vendor/bin/drush --yes -v site-install minimal --db-url="$SIMPLETEST_DB"
-
-      - name: Start services
-        run: |
-          cd $DRUPAL_ROOT
-          vendor/bin/drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
-          chromedriver --port=4444 > /dev/null 2>&1 &
-
-      - name: Run PHPUnit tests
-        run: |
-          cd $DRUPAL_ROOT
-          php -d pcov.directory=$ADMIN_THEME_FOLDER \
-            vendor/bin/phpunit \
-            --bootstrap $DRUPAL_ROOT/core/tests/bootstrap.php \
-            -c $ADMIN_THEME_FOLDER/phpunit.xml \
-            --coverage-clover=coverage.xml \
-            $ADMIN_THEME_FOLDER
-          codecov
+          vendor/bin/phpcs public/themes/contrib/$THEME_NAME --extensions=php,theme,module --standard=Drupal

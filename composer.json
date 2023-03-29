@@ -6,7 +6,7 @@
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "require": {
-        "drupal/gin": "3.0.0-beta5"
+        "drupal/gin": "3.0.0-rc2"
     },
     "conflict": {
         "drupal/helfi_platform_config": "<3.0"

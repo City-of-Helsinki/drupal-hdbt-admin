@@ -22,7 +22,7 @@ $button-border-radius: 6px;
         }
 
         &:not(:last-of-type) {
-          margin-right: calc(3rem + 1px);
+          margin-right: calc(3rem + 1px) !important;
         }
       }
     }

@@ -6,12 +6,17 @@
       display: none;
     }
   }
+
+  .ui-dialog .ui-widget-content.ui-dialog-content {
+    padding-top: $spacing;
+  }
 }
 
 .hdbt_admin--edit-form {
   // Adjust the from title font-size.
   .field--name-title .form-element {
     font-size: remify(18px);
+    font-weight: 400;
   }
 
   // Adjust the placement of lists in field descriptions.
@@ -36,3 +41,5 @@
     }
   }
 }
+
+

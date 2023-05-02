@@ -9,6 +9,7 @@
         "drupal/gin": "3.0.0-rc2"
     },
     "conflict": {
-        "drupal/helfi_platform_config": "<3.0"
+        "drupal/helfi_platform_config": "<3.0",
+        "drupal/admin_toolbar": ">3.3.0"
     }
 }

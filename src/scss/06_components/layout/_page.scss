@@ -40,6 +40,19 @@
       display: none;
     }
   }
+
+  @media (min-width: $breakpoint-s) {
+    ul.paragraph-selection.dropbutton, ul.paragraph-selection.dropbutton {
+      width: 500px;
+    }
+  }
 }
 
-
+.js .hdbt_admin--edit-form,
+.js.no-touchevents .hdbt_admin--edit-form {
+  @media (min-width: $breakpoint-s) {
+    ul.paragraph-selection.dropbutton {
+      width: 500px;
+    }
+  }
+}

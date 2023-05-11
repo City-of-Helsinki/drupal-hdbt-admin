@@ -40,6 +40,28 @@
       display: none;
     }
   }
+
+  ul.paragraph-selection.dropbutton,
+  ul.paragraph-selection.dropbutton {
+    @media (min-width: $breakpoint-s) {
+      width: 500px;
+    }
+
+    .field-add-more-submit {
+      white-space: normal;
+    }
+  }
 }
 
+.js .hdbt_admin--edit-form,
+.js.no-touchevents .hdbt_admin--edit-form {
+  ul.paragraph-selection.dropbutton {
+    @media (min-width: $breakpoint-s) {
+      width: 500px;
+    }
 
+    .field-add-more-submit {
+      white-space: normal;
+    }
+  }
+}

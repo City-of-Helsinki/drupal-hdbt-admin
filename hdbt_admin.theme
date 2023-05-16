@@ -393,3 +393,10 @@ function hdbt_admin_preprocess_media(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function hdbt_admin_preprocess_page(&$variables) {
+  $variables['#attached']['drupalSettings']['eu_cookie_compliance']['hide_the_banner'] = TRUE;
+}

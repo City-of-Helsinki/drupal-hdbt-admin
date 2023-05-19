@@ -10,7 +10,6 @@ select2.min:
     component:
       dist/css/select2.min.css: { preprocess: false }
   dependencies:
-    - core/jquery.once
     - core/drupal
     - core/sortable
 

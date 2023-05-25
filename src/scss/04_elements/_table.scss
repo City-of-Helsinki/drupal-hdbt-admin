@@ -1,3 +1,42 @@
+// Override heading styles on table headers to make the title to be on the center of the element.
 .hdbt-admin table th .form-item__label {
-  margin-top: var(--gin-spacing-xs);
+  display: inline-block;
+  margin-bottom: var(--gin-spacing-xxs);
+  margin-top: var(--gin-spacing-xxs);
+}
+
+// The th-element is for some reason fixed height on smaller screens - override it with auto.
+[dir="ltr"] .hdbt-admin .field-multiple-table th {
+  height: auto;
+}
+
+// Override tabledrag toggle weight wrapper styles to make it look less broken.
+.hdbt-admin #field-display-overview .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+.hdbt-admin #field-display-overview-wrapper .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+.hdbt-admin .field--widget-entity-reference-paragraphs .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+.hdbt-admin .field--type-link .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+.hdbt-admin .field--type-smartdate .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper {
+  line-height: 1.25rem;
+  margin-bottom: calc((var(--gin-spacing-xs) + var(--gin-spacing-xs) + 1.25rem + var(--gin-spacing-xxs) + var(--gin-spacing-xxs)) * -1);
+  margin-right: 0;
+  padding: var(--gin-spacing-xs) var(--gin-spacing-m) var(--gin-spacing-xs) var(--gin-spacing-l);
+
+  .action-link {
+    margin-bottom: 0;
+
+    .action-link {
+      line-height: 1.25rem;
+      padding-bottom: var(--gin-spacing-xxs);
+      padding-top: var(--gin-spacing-xxs);
+    }
+  }
+}
+
+// Remove margin on the right from the table drag toggle weight wrapper to align the button correctly.
+[dir="ltr"] .hdbt-admin #field-display-overview .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+[dir="ltr"] .hdbt-admin #field-display-overview-wrapper .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+[dir="ltr"] .hdbt-admin .field--widget-entity-reference-paragraphs .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+[dir="ltr"] .hdbt-admin .field--type-link .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper,
+[dir="ltr"] .hdbt-admin .field--type-smartdate .gin-layer-wrapper > .tabledrag-toggle-weight-wrapper {
+  margin-right: 0;
 }

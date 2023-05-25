@@ -110,7 +110,7 @@ function hdbt_admin_preprocess_table(&$variables) {
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
- * Alter meta information field visibility by moving the fiels in to
+ * Alter meta information field visibility by moving the fields in to
  * Meta information accordion.
  */
 function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -124,6 +124,15 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state,
   // Disable "Preview" button on new nodes.
   if ($node->isNew()) {
     $form['gin_actions']['actions']['preview']['#access'] = FALSE;
+  }
+
+  // Don't show "menu link translation" published checkbox on news items, as
+  // news items cannot be added to any menu.
+  if (
+    $node->getType() === 'news_item' &&
+    isset($form['menu']['content_translation_status'])
+  ) {
+    $form['menu']['content_translation_status']['#access'] = FALSE;
   }
 }
 

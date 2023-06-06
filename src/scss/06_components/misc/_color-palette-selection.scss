@@ -36,7 +36,7 @@
 
   .color-selection-wrapper {
     display: flex;
-    width: 100%;
+    width: calc(100% - 14px);
 
     .color-selection--primary {
       background-color: var(--hdbt-color-palette--primary);
@@ -53,6 +53,11 @@
       height: 100%;
       width: 25%;
     }
+  }
+
+  .ts-dropdown .color-selection-wrapper {
+    padding: calc(0.75rem - 1px) calc(1rem - 1px);
+    width: calc(100% - 29px); // The full width without artificial scrollbar.
   }
 
   .colors {

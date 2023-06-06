@@ -1,18 +1,3 @@
-select2.min:
-  remote: https://github.com/select2/select2
-  license:
-    name: MIT
-    url: https://github.com/select2/select2/blob/master/LICENSE.md
-    gpl-compatible: true
-  js:
-    dist/js/select2.min.js: { minified: true, preprocess: false }
-  css:
-    component:
-      dist/css/select2.min.css: { preprocess: false }
-  dependencies:
-    - core/drupal
-    - core/sortable
-
 language-switcher:
   js:
     dist/js/languageSwitcher.min.js: {}

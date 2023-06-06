@@ -1,39 +1,4 @@
-.color-palette-selection {
-  &.select2-container {
-    height: 50px;
-  }
-  &.select2-container .select2-selection {
-    min-height: 50px;
-  }
-
-  .select2-selection .select2-selection__rendered {
-    flex-flow: row;
-    padding: 6px 8px;
-
-    .color-selection-wrapper {
-      padding-right: $spacing-double;
-    }
-  }
-
-  .select2-selection__placeholder,
-  .select2-selection__arrow,
-  .select2-selection__clear {
-    padding: 7px;
-  }
-
-  .select2-results > .select2-results__options {
-    max-height: 350px;
-  }
-  .select2-selection--single .select2-selection__rendered {
-    line-height: 22px;
-  }
-
-  .select2-selection--single .select2-selection__arrow {
-    height: 35px;
-    right: 5px;
-    top: 0;
-  }
-
+.select-color-palette {
   .color-selection-wrapper {
     display: flex;
     width: calc(100% - 14px);
@@ -71,7 +36,7 @@
   }
 }
 
-.color-palette-selection__wrapper {
+.select-color-palette__wrapper {
   align-items: center;
   display: flex;
   height: 100%;

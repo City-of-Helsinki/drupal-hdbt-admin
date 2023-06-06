@@ -14,11 +14,6 @@ libraries:
   - hdbt_admin/list-of-links
   - hdbt_admin/language-switcher
 
-# Override libraries.
-libraries-override:
-  select2/select2.min: hdbt_admin/select2.min
-  select2/select2: hdbt_admin_tools/select2_icon
-
 # Regions
 regions:
   header: 'Header'

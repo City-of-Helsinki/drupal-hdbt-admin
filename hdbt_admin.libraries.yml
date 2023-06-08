@@ -40,3 +40,19 @@ global-scripting:
   version: 1.x
   dependencies:
     - core/drupal
+
+# This is here to make the contrib select2 module work since its asset management doesn't suit our proxy setup.
+select2.min:
+  remote: https://github.com/select2/select2
+  license:
+    name: MIT
+    url: https://github.com/select2/select2/blob/master/LICENSE.md
+    gpl-compatible: true
+  js:
+    dist/js/select2.min.js: { minified: true, preprocess: false }
+  css:
+    component:
+      dist/css/select2.min.css: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/sortable

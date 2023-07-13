@@ -2,9 +2,9 @@ $button-height: 4rem;
 $button-border-thickness: 2px;
 $button-border-radius: 6px;
 
-.paragraph-selection,
-.js .paragraph-selection,
-.js.no-touchevents .paragraph-selection {
+.select-paragraph,
+.js .select-paragraph,
+.js.no-touchevents .select-paragraph {
 
   // Overrides for the paragraph dropbutton.
   &.dropbutton {
@@ -35,7 +35,7 @@ $button-border-radius: 6px;
   }
 
   // Paragraph selection styles.
-  .paragraph-selection__thumbnail {
+  .select-paragraph__thumbnail {
     background-color: $color-white;
     border-bottom: 0;
     border-left: 0;
@@ -48,7 +48,7 @@ $button-border-radius: 6px;
     width: 100px;
   }
 
-  .paragraph-selection__wrapper {
+  .select-paragraph__wrapper {
     align-items: center;
     border: 0 !important;
     display: flex;
@@ -80,9 +80,9 @@ $button-border-radius: 6px;
 }
 
 // Styles for open paragraph selection.
-.open .paragraph-selection,
-.js .open .paragraph-selection,
-.js.no-touchevents .open .paragraph-selection {
+.open .select-paragraph,
+.js .open .select-paragraph,
+.js.no-touchevents .open .select-paragraph {
   &.dropbutton {
     border-radius: $button-border-radius $button-border-radius 0 0;
   }
@@ -99,7 +99,7 @@ $button-border-radius: 6px;
       margin: 0;
       max-width: 100%;
 
-      .paragraph-selection__wrapper {
+      .select-paragraph__wrapper {
         background-color: $color-white;
 
         &:hover {
@@ -113,11 +113,11 @@ $button-border-radius: 6px;
   &.dropbutton .dropbutton__item:not(:first-of-type) {
     border-radius: 0;
 
-    .paragraph-selection__thumbnail {
+    .select-paragraph__thumbnail {
       border-radius: 0;
     }
 
-    .paragraph-selection__wrapper {
+    .select-paragraph__wrapper {
       background-color: $color-white;
     }
   }

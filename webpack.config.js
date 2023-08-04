@@ -10,8 +10,7 @@ const { merge } = require('webpack-merge');
 // Handle entry points.
 const Entries = () => {
   let entries = {
-    styles: ['./src/scss/styles.scss'],
-    ckeditor: ['./src/scss/ckeditor.scss'],
+    styles: ['./src/scss/styles.scss']
   };
 
   const pattern = './src/js/**/*.js';
@@ -22,7 +21,6 @@ const Entries = () => {
   );
   return entries;
 };
-
 
 module.exports = (env, argv) => {
 

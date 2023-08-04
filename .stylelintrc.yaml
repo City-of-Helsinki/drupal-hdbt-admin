@@ -13,7 +13,6 @@ rules:
   custom-property-pattern: "^([a-z][a-z0-9]*)(--?[a-z0-9]+)*$" # kebab-case pattern with allowed bem-like double --
 overrides:
   - files:
-      - '**/ckeditor.scss'
       - '**/styles.scss'
     rules:
       scss/at-import-no-partial-leading-underscore: null

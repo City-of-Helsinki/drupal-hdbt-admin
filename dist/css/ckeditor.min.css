@@ -1,1 +1,0 @@
-span[lang]{margin-left:4px;outline:2px dotted #005799;outline-offset:3px}span[lang]::after{color:#005799;content:" (" attr(lang) ")";font-size:.75rem}.select2-container .select2-selection{position:relative}

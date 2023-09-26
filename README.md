@@ -141,3 +141,7 @@ To fix
 ```
 vendor/bin/phpcbf public/themes/contrib/hdbt_admin --extensions=php,module,theme,inc --ignore="*.js,*.css" --standard=Drupal
 ```
+
+## Contact
+
+Slack: #helfi-drupal (http://helsinkicity.slack.com/)

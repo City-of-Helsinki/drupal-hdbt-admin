@@ -82,12 +82,6 @@ msgstr ""
 "valita lohkon kielen sivun oikeassa ylälaidassa olevasta "
 "kielivalinnasta."
 
-msgid ""
-"Populates the title attribute of the link, usually shown as a small "
-"tooltip on hover."
-msgstr ""
-"Täyttää linkin otsikko attribuutin, joka näkyy yleensä pienenä "
-"työkaluvihjeenä hiiren osoittimessa."
 
 msgid "Published on"
 msgstr "Julkaisuaika"
@@ -95,9 +89,6 @@ msgstr "Julkaisuaika"
 msgctxt "Primary color"
 msgid "Primary"
 msgstr "Pääväri"
-
-msgid "Protocol"
-msgstr "Protokolla"
 
 msgid "Pulse"
 msgstr "Pulssi"

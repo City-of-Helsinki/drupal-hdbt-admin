@@ -1,8 +1,7 @@
-//
 // @file
 // Styles for all paragraphs.
-//
 
+/* stylelint-disable max-nesting-depth */
 .hdbt-admin {
   // Remove white background and paddings from first level of paragraph elements.
   .paragraphs-tabs-wrapper {
@@ -18,33 +17,33 @@
     }
 
     table.field-multiple-table {
-      thead {
+      > thead {
         box-shadow: 0 0 0 transparent;
 
-        tr {
+        > tr {
           border: 0 none;
         }
 
-        th {
+        > tr > th {
           background: $color-white;
           box-shadow: none;
           padding-bottom: 0;
           padding-left: 0;
         }
       }
+    }
 
-      .draggable {
-        background-color: $color-white;
-        margin-top: 0.5rem;
+    table.field-multiple-table .draggable {
+      background-color: $color-white;
+      margin-top: 0.5rem;
 
-        // Hide the paragraph bullet when you are not able to organize paragraphs.
-        td.paragraph-bullet::after {
-          display: none;
-        }
+      // Hide the paragraph bullet when you are not able to organize paragraphs.
+      td.paragraph-bullet::after {
+        display: none;
+      }
 
-        td + td {
-          width: 100%;
-        }
+      > td + td {
+        width: 100%;
       }
     }
   }
@@ -79,7 +78,7 @@
 
     // Reset paddings on paragraphs content areas.
     .paragraphs-tabs-wrapper .field-multiple-table .draggable {
-      td {
+      > td {
         padding: 0;
       }
 

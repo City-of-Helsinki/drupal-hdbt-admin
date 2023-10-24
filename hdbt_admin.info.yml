@@ -16,8 +16,8 @@ libraries:
 
 # Override libraries.
 libraries-override:
+  # This is here to make the contrib select2 module work since its asset management doesn't suit our proxy setup.
   select2/select2.min: hdbt_admin/select2.min
-  select2/select2: hdbt_admin_tools/select2_icon
 
 # Regions
 regions:

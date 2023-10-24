@@ -1,0 +1,45 @@
+.select-color-palette {
+  .color-selection-wrapper {
+    display: flex;
+    width: calc(100% - 14px);
+
+    .color-selection--primary {
+      background-color: var(--hdbt-color-palette--primary);
+      height: 100%;
+      width: 50%;
+    }
+    .color-selection--secondary {
+      background-color: var(--hdbt-color-palette--secondary);
+      height: 100%;
+      width: 25%;
+    }
+    .color-selection--accent  {
+      background-color: var(--hdbt-color-palette--accent);
+      height: 100%;
+      width: 25%;
+    }
+  }
+
+  .ts-dropdown .color-selection-wrapper {
+    padding: calc(0.75rem - 1px) calc(1rem - 1px);
+    width: calc(100% - 29px); // The full width without artificial scrollbar.
+  }
+
+  .colors {
+    border: 1px solid gray;
+    display: flex;
+    width: 50%;
+  }
+  .selection {
+    padding-right: $spacing;
+    width: 50%;
+  }
+}
+
+.select-color-palette__wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -1,0 +1,37 @@
+.select-design {
+  .image {
+    margin-right: 16px;
+    transition: transform .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.select-design__wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ts-dropdown .select-design__wrapper {
+  padding: calc(0.75rem - 1px) calc(1rem - 1px);
+  width: calc(100% - 29px); // The full width without artificial scrollbar.
+}
+
+.select-design__thumbnail {
+  background-color: $color-white;
+  border: 2px solid #818181;
+  border-radius: 6px;
+  height: 50px;
+  margin-left: 16px;
+  min-width: 100px;
+  transition: transform 150ms;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

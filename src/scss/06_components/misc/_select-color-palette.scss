@@ -1,4 +1,6 @@
 .select-color-palette {
+  min-width: 100%;
+
   .color-selection-wrapper {
     display: flex;
     width: calc(100% - 14px);

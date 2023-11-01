@@ -93,4 +93,69 @@
       display: none;
     }
   }
+
+  // Prevent the overflow of Table element inside CKEditor5.
+  // Similar issue and a base for this workaround:
+  // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
+  // TODO: Remove this fix when the base issue has been addressed.
+  .paragraphs-tabs-wrapper {
+    table.field-multiple-table {
+      display: block;
+
+      > tbody {
+        display: block;
+
+        > tr.draggable {
+          align-items: center;
+          background-color: $color-white;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          margin-top: 0.5rem;
+          position: relative;
+
+          > td {
+            display: block;
+            min-width: 0;
+            position: relative;
+
+            &:first-child {
+              width: 30px;
+            }
+
+            &:last-child {
+              width: 60px;
+            }
+          }
+
+          > td + td {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+
+      > thead {
+        display: block;
+
+        > tr {
+          display: flex;
+
+          th:first-child {
+            display: flex;
+            width: 100%;
+
+            .paragraphs-actions {
+              margin-left: auto;
+              margin-right: 0;
+            }
+          }
+
+          .tabledrag-hide {
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
 }

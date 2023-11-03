@@ -12,8 +12,10 @@
       padding: 0;
     }
 
-    .paragraph-type-label {
-      font-size: remify(18px) !important;
+    .paragraph-type-label,
+    .paragraph-summary .summary-content {
+      font-size: remify(16px) !important;
+      line-height: 1.5 !important;
     }
 
     table.field-multiple-table {
@@ -99,7 +101,7 @@
   // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
   // TODO: Remove this fix when the base issue has been addressed.
   .paragraphs-tabs-wrapper {
-    table.field-multiple-table {
+    figure > table.field-multiple-table {
       display: block;
 
       > tbody {

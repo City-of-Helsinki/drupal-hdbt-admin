@@ -6,11 +6,11 @@
 // Hero-block style overrides
 .node-form .field--name-field-hero {
   thead .field-label {
-    display: none;
+    display: none !important;
   }
 
   .paragraph-type--hero .form-wrapper .paragraphs-subform {
-    @media (min-width: 1180px) {
+    @media (min-width: 1340px) {
       column-gap: 40px;
       display: grid;
       grid-template-columns: auto auto;
@@ -19,7 +19,7 @@
     }
 
     .field--name-field-hero-design {
-      @media (min-width: 1180px) {
+      @media (min-width: 1340px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 2;
@@ -28,7 +28,7 @@
     }
 
     .field--name-field-hero-bg-color {
-      @media (min-width: 1180px) {
+      @media (min-width: 1340px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 3;
@@ -37,7 +37,7 @@
     }
 
     .field--name-field-hero-title {
-      @media (min-width: 1180px) {
+      @media (min-width: 1340px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 4;
@@ -46,7 +46,7 @@
     }
 
     .field--name-field-hero-desc {
-      @media (min-width: 1180px) {
+      @media (min-width: 1340px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 5;
@@ -55,7 +55,7 @@
     }
 
     .field--name-field-hero-image {
-      @media (min-width: 1180px) {
+      @media (min-width: 1340px) {
         box-sizing: border-box;
         grid-column-end: 3;
         grid-column-start: 2;
@@ -82,7 +82,7 @@
 
       .media-library-widget-modal .media-library-item--grid,
       .media-library-selection .media-library-item--grid {
-        @media (min-width: 1180px) {
+        @media (min-width: 1340px) {
           width: 250px;
         }
       }
@@ -110,12 +110,12 @@
         box-shadow: none;
         padding: 0;
 
-        @media (min-width: 1180px) {
+        @media (min-width: 1340px) {
           margin: 0 0 0 -0.5rem;
         }
 
         tbody {
-          @media (min-width: 1180px) {
+          @media (min-width: 1340px) {
             display: flex;
             flex-wrap: wrap;
           }
@@ -124,7 +124,7 @@
         tr {
           max-width: 520px;
 
-          @media (min-width: 1180px) {
+          @media (min-width: 1340px) {
             flex: 1 1 32%;
             margin: 0 0.5rem 1rem;
           }

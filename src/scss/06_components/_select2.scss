@@ -4,7 +4,7 @@
 //
 
 // Select2 to look and feel more Gin-like.
-.select2-container {
+.select2.select2-container {
   min-height: 50px;
 
   .select2-selection {
@@ -26,7 +26,7 @@
 
     .select2-selection__placeholder {
       font-size: remify($base-font-size);
-      padding: 5px;
+      padding: 0;
     }
 
     .select2-selection__arrow {
@@ -41,7 +41,7 @@
       display: flex;
       flex-flow: row wrap;
       font-size: remify($base-font-size);
-      padding: 12px 16px;
+      padding: 16px;
     }
 
     .select2-search__field {
@@ -50,6 +50,7 @@
       margin: 0;
       min-width: 100px;
       padding: calc(0.75rem - 1px) calc(1rem - 1px);
+      width: 100% !important; // Select2 uses JS to set the width for the search field.
     }
 
     // Like button--small.
@@ -84,10 +85,17 @@
       }
     }
   }
+}
 
+// Select2 results.
+.select2-container .select2-results__options {
   .select2-results__option {
     color: var(--colorGinText);
     font-size: remify($base-font-size);
     padding: calc(0.75rem - 1px) calc(1rem - 1px);
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    color: $color-white;
   }
 }

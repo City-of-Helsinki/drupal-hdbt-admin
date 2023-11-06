@@ -50,6 +50,11 @@
     }
   }
 
+  // Remove obsolete bottom margin from form item without the label.
+  .paragraphs-subform .form-item--multiple .field-multiple-table .form-item--no-label {
+    margin-bottom: 0;
+  }
+
   // Hide "(all languages)" from all paragraph fields.
   // There's no alter hook or preprocess which can be used to easily remove
   // the "addTranslatabilityClue" from async paragraph fields.

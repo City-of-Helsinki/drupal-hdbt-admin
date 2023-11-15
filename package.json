@@ -29,7 +29,7 @@
     "css-declaration-sorter": "^7.0.0",
     "css-loader": "^6.0.0",
     "es6-promise": "^4.1.1",
-    "eslint": "^8.0.0",
+    "eslint": "^8.52.0",
     "eslint-import-resolver-webpack": "0.13.8",
     "eslint-plugin-import": "^2.25.3",
     "expose-loader": "^4.0.0",

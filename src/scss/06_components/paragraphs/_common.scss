@@ -1,8 +1,7 @@
-//
 // @file
 // Styles for all paragraphs.
-//
 
+/* stylelint-disable max-nesting-depth */
 .hdbt-admin {
   // Remove white background and paddings from first level of paragraph elements.
   .paragraphs-tabs-wrapper {
@@ -13,40 +12,47 @@
       padding: 0;
     }
 
-    .paragraph-type-label {
-      font-size: remify(18px) !important;
+    .paragraph-type-label,
+    .paragraph-summary .summary-content {
+      font-size: remify(16px) !important;
+      line-height: 1.5 !important;
     }
 
     table.field-multiple-table {
-      thead {
+      > thead {
         box-shadow: 0 0 0 transparent;
 
-        tr {
+        > tr {
           border: 0 none;
         }
 
-        th {
+        > tr > th {
           background: $color-white;
           box-shadow: none;
           padding-bottom: 0;
           padding-left: 0;
         }
       }
+    }
 
-      .draggable {
-        background-color: $color-white;
-        margin-top: 0.5rem;
+    table.field-multiple-table .draggable {
+      background-color: $color-white;
+      margin-top: 0.5rem;
 
-        // Hide the paragraph bullet when you are not able to organize paragraphs.
-        td.paragraph-bullet::after {
-          display: none;
-        }
+      // Hide the paragraph bullet when you are not able to organize paragraphs.
+      td.paragraph-bullet::after {
+        display: none;
+      }
 
-        td + td {
-          width: 100%;
-        }
+      > td + td {
+        width: 100%;
       }
     }
+  }
+
+  // Remove obsolete bottom margin from form item without the label.
+  .paragraphs-subform .form-item--multiple .field-multiple-table .form-item--no-label {
+    margin-bottom: 0;
   }
 
   // Hide "(all languages)" from all paragraph fields.
@@ -79,7 +85,7 @@
 
     // Reset paddings on paragraphs content areas.
     .paragraphs-tabs-wrapper .field-multiple-table .draggable {
-      td {
+      > td {
         padding: 0;
       }
 
@@ -92,6 +98,71 @@
     // Hide Paragraph badge.
     .paragraphs-badge {
       display: none;
+    }
+  }
+
+  // Prevent the overflow of Table element inside CKEditor5.
+  // Similar issue and a base for this workaround:
+  // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
+  // TODO: Remove this fix when the base issue has been addressed.
+  .paragraphs-tabs-wrapper {
+    figure > table.field-multiple-table {
+      display: block;
+
+      > tbody {
+        display: block;
+
+        > tr.draggable {
+          align-items: center;
+          background-color: $color-white;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          margin-top: 0.5rem;
+          position: relative;
+
+          > td {
+            display: block;
+            min-width: 0;
+            position: relative;
+
+            &:first-child {
+              width: 30px;
+            }
+
+            &:last-child {
+              width: 60px;
+            }
+          }
+
+          > td + td {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+
+      > thead {
+        display: block;
+
+        > tr {
+          display: flex;
+
+          th:first-child {
+            display: flex;
+            width: 100%;
+
+            .paragraphs-actions {
+              margin-left: auto;
+              margin-right: 0;
+            }
+          }
+
+          .tabledrag-hide {
+            margin: auto;
+          }
+        }
+      }
     }
   }
 }

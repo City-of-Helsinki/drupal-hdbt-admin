@@ -32,3 +32,6 @@ regions:
   sidebar_first: 'First sidebar'
 regions_hidden:
   - sidebar_first
+
+ckeditor5-stylesheets:
+  - dist/css/ckeditor.min.css

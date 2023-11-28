@@ -5,6 +5,7 @@
  * Contains HDBT Admin theme.
  */
 
+use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\media\MediaInterface;
@@ -118,8 +119,11 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state,
   hdbt_admin_apply_form_theme($form);
 
   // Get current entity.
+  $formObject = $form_state->getFormObject();
+  assert($formObject instanceof EntityFormInterface);
+
   /** @var \Drupal\node\NodeInterface $node */
-  $node = $form_state->getFormObject()->getEntity();
+  $node = $formObject->getEntity();
 
   // Disable "Preview" button on new nodes.
   if ($node->isNew()) {
@@ -396,6 +400,7 @@ function hdbt_admin_preprocess_media(&$variables) {
     }
 
     if ($variables['media']->hasTranslation($current_language)) {
+      // @phpstan-ignore-next-line
       $alt = $variables['media']
         ->getTranslation($current_language)->field_media_image->alt;
       $variables['alt_text'] = $alt !== '""' ? $alt : FALSE;

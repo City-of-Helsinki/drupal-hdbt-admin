@@ -1,0 +1,13 @@
+parameters:
+  fileExtensions:
+      - php
+      - module
+      - install
+      - theme
+  paths:
+    - ./
+  excludePaths:
+    - vendor
+  level: 3
+  checkMissingIterableValueType: false
+  treatPhpDocTypesAsCertain: false

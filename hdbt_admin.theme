@@ -424,12 +424,10 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
     return;
   }
 
-  // Theme.inc introduced a new variable in $variables['table']['#header'] that
+  // Theme.inc introduced a new variable in $variables['table']['#header']
   // that will print out the Sort order column. To keep the UI clean, let's
   // remove that unnecessary information.
   // See. theme.inc: template_preprocess_field_multiple_value_form().
-
-  // Remove the sort order column.
   foreach ($variables['table']['#header'] as $td => $value) {
     if (
       $value instanceof TranslatableMarkup &&
@@ -437,6 +435,7 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
       isset($value->getOptions()['context']) &&
       $value->getOptions()['context'] === 'Sort order'
     ) {
+      // Remove the sort order column.
       unset($variables['table']['#header'][$td]);
     }
   }

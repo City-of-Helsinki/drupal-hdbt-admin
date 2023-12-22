@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 
 /**
@@ -413,4 +414,30 @@ function hdbt_admin_preprocess_media(&$variables) {
  */
 function hdbt_admin_preprocess_page(&$variables) {
   $variables['#attached']['drupalSettings']['eu_cookie_compliance']['hide_the_banner'] = TRUE;
+}
+
+/**
+ * Implements hook_preprocess_field_multiple_value_form().
+ */
+function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
+  if (!isset($variables['table']['#header'])) {
+    return;
+  }
+
+  // Theme.inc introduced a new variable in $variables['table']['#header'] that
+  // that will print out the Sort order column. To keep the UI clean, let's
+  // remove that unnecessary information.
+  // See. theme.inc: template_preprocess_field_multiple_value_form().
+
+  // Remove the sort order column.
+  foreach ($variables['table']['#header'] as $td => $value) {
+    if (
+      $value instanceof TranslatableMarkup &&
+      $value->getUntranslatedString() === 'Order' &&
+      isset($value->getOptions()['context']) &&
+      $value->getOptions()['context'] === 'Sort order'
+    ) {
+      unset($variables['table']['#header'][$td]);
+    }
+  }
 }

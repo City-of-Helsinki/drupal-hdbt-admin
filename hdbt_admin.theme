@@ -426,7 +426,7 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
 
   // Theme.inc introduced a new variable in $variables['table']['#header']
   // that will print out the Sort order column. To keep the UI clean, let's
-  // remove that unnecessary information.
+  // add visually-hidden class to remove that unnecessary information.
   // See. theme.inc: template_preprocess_field_multiple_value_form().
   foreach ($variables['table']['#header'] as $td => $value) {
     if (
@@ -435,8 +435,17 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
       isset($value->getOptions()['context']) &&
       $value->getOptions()['context'] === 'Sort order'
     ) {
-      // Remove the sort order column.
-      unset($variables['table']['#header'][$td]);
+      // Add visually hidden class to the Sort order column.
+      $span_element = [
+        'data' => [
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => $value,
+        ],
+        'class' => ['visually-hidden'],
+      ];
+
+      $variables['table']['#header'][$td] = $span_element;
     }
   }
 }

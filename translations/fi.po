@@ -5,15 +5,27 @@ msgctxt "Accent color"
 msgid "Accent"
 msgstr "Korosteväri"
 
-msgctxt "Empty alt text in media library"
-msgid "Empty"
-msgstr "Tyhjä"
-
 msgid "Basic motif"
 msgstr "Perus"
 
 msgid "Beat"
 msgstr "Syke"
+
+msgctxt "Character counter"
+msgid "Characters: @counted/@total"
+msgstr "Merkkejä: @counted/@total"
+
+msgctxt "Character counter"
+msgid "The recommended maximum length for the title is @total characters."
+msgstr "Suositeltu otsikon enimmäispituus on @total merkkiä."
+
+msgctxt "Character counter"
+msgid "Consider shortening. A lead under @total characters works best for search engines."
+msgstr "Harkitse lyhentämistä. Alle @total merkin ingressi toimii hakukoneille parhaiten."
+
+msgctxt "Character counter"
+msgid "The recommended maximum length for the lead is @total characters."
+msgstr "Suositeltu ingressin enimmäispituus on @total merkkiä."
 
 msgid "Cookie consent intro"
 msgstr "Evästeiden hallinta intro"
@@ -29,6 +41,10 @@ msgstr "Muokkaa alatunnisteen alaosan valikkolinkkejä"
 
 msgid "Edit footer top navigation links"
 msgstr "Muokkaa alatunnisteen yläosan valikkolinkkejä"
+
+msgctxt "Empty alt text in media library"
+msgid "Empty"
+msgstr "Tyhjä"
 
 msgid "Footer bottom navigation menu links"
 msgstr "Alatunniste - Alavalikko"

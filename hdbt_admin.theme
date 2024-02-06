@@ -84,6 +84,12 @@ function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$vari
   if (in_array('koro', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__koro';
   }
+  if (
+    in_array('field_hero_title', $variables['element']['#parents'], TRUE) ||
+    in_array('field_hero_desc', $variables['element']['#parents'], TRUE)
+  ) {
+    $suggestions[] = $variables['theme_hook_original'] . '__character_count';
+  }
 }
 
 /**

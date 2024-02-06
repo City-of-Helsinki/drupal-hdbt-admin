@@ -1,3 +1,10 @@
+character-counter:
+  js:
+    dist/js/characterCounter.min.js: {}
+  version: 1.0.0
+  dependencies:
+    - core/drupal
+
 language-switcher:
   js:
     dist/js/languageSwitcher.min.js: {}

@@ -1,5 +1,5 @@
 /**
- * Functionality that adds a hero to an article if the hero-checkbox is checked.
+ * Functionality that adds a hero to entity if the hero-checkbox is checked.
  */
 
 // Boolean checkbox field that determines if there is hero added or not.
@@ -8,10 +8,9 @@ const heroCheckbox = document.querySelector(
 );
 
 // Helper function to trigger event
-function triggerEvent(el, type) {
-  var e = document.createEvent('Event');
-  e.initEvent(type, false, true);
-  el.dispatchEvent(e);
+function triggerEvent(element, type) {
+  const event = new Event(type);
+  element.dispatchEvent(event);
 }
 
 if (heroCheckbox) {

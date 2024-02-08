@@ -4,6 +4,7 @@ character-counter:
   version: 1.0.0
   dependencies:
     - core/drupal
+    - core/once
 
 language-switcher:
   js:

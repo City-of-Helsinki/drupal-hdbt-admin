@@ -1,0 +1,26 @@
+.character-counter {
+  margin-top: -$spacing-quarter;
+}
+
+.character-counter__count {
+  color: $color-black-70;
+  font-size: remify(14px);
+}
+
+.character-counter__warning {
+  align-items: center;
+  background: $color-alert-light;
+  border-left: 10px solid $color-alert-dark;
+  display: flex;
+  margin-top: $spacing-half;
+  padding: $spacing-half;
+}
+
+.character-counter__icon {
+  color: $color-alert-dark;
+}
+
+.character-counter__warning-text {
+  color: $color-black;
+  margin-inline-start: $spacing-half;
+}

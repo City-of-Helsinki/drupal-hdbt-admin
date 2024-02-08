@@ -84,6 +84,12 @@ function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$vari
   if (in_array('koro', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__koro';
   }
+  if (
+    in_array('field_hero_title', $variables['element']['#parents'], TRUE) ||
+    in_array('field_hero_desc', $variables['element']['#parents'], TRUE)
+  ) {
+    $suggestions[] = $variables['theme_hook_original'] . '__character_count';
+  }
 }
 
 /**
@@ -446,6 +452,37 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
       ];
 
       $variables['table']['#header'][$td] = $span_element;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_admin_preprocess_form_element(array &$variables) {
+  // Map the counter input tag, step value and total value to variables.
+  $counter_elements = [
+    'field_hero_title' => [
+      'counter_input_tag' => 'input',
+      'counter_step' => 0,
+      'counter_total' => 55,
+    ],
+    'field_hero_desc' => [
+      'counter_input_tag' => 'textarea',
+      'counter_step' => 160,
+      'counter_total' => 200,
+    ],
+  ];
+
+  // Set the mapped values to corresponding fields.
+  foreach ($counter_elements as $counter_element => $counter_values) {
+    if (
+      array_key_exists('name', $variables) &&
+      str_contains($variables['name'], $counter_element)
+    ) {
+      foreach ($counter_values as $key => $value) {
+        $variables[$key] = $value;
+      }
     }
   }
 }

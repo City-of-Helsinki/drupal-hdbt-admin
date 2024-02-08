@@ -1,6 +1,22 @@
 msgid ""
 msgstr ""
 
+msgctxt "Character counter"
+msgid "Characters: @counted/@total"
+msgstr "Tecken: @counted/@total"
+
+msgctxt "Character counter"
+msgid "The recommended maximum length for the title is @total characters."
+msgstr "Rekommenderad maxlängd för titeln är @total tecken."
+
+msgctxt "Character counter"
+msgid "Consider shortening. A lead under @step characters works best for search engines."
+msgstr "Överväg att förkorta. En ingress under @step tecken fungerar bäst för sökmotorer."
+
+msgctxt "Character counter"
+msgid "The recommended maximum length for the lead is @total characters."
+msgstr "Rekommenderad maxlängd för ingressen är @total tecken."
+
 msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tom"

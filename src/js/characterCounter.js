@@ -1,24 +1,58 @@
 'use strict';
 
-((Drupal) => {
+((Drupal, once) => {
+
+  const WARNING_GREEN = 0;
+  const WARNING_YELLOW = 1;
+  const WARNING_RED = 2;
+
+  // Translate character count texts.
   const characterCounter = (count, total) => {
-    return Drupal.t('Characters: @counted/@total', {'@counted': count, '@total': total}, {context: 'Character counter'});
+    return Drupal.t('Characters: @counted/@total', {
+      '@counted': count,
+      '@total': total
+    }, {context: 'Character counter'});
   };
 
-  const characterWarning = (count, step, total, input) => {
-    if (count >= total) {
+  // Determine the warning type based on character count.
+  const processWarningType = (count, step, total) => {
+    return (count >= total) ? WARNING_RED : (count > step && step > 0) ? WARNING_YELLOW : WARNING_GREEN;
+  };
+
+  // Translate warning texts based on warning type.
+  const characterWarning = (type, step, total, input, element) => {
+
+    // The maximum length has been reached, show warning.
+    if (type === WARNING_RED) {
+      // Show the warning text.
+      element.classList.remove('is-hidden');
+
+      // Use different translations for input and textarea fields.
       if (input === 'input') {
-        return Drupal.t('The recommended maximum length for the title is @total characters.', {'@total': total}, {context: 'Character counter'});
+        return Drupal.t('The recommended maximum length for the title is @total characters.', {
+          '@total': total
+        }, {context: 'Character counter'});
+      } else {
+        return Drupal.t('The recommended maximum length for the lead is @total characters.', {
+          '@total': total
+        }, {context: 'Character counter'});
       }
-      else {
-        return Drupal.t('The recommended maximum length for the lead is @total characters.', {'@total': total}, {context: 'Character counter'});
-      }
-    } else if (count > step && step > 0) {
-      return Drupal.t('Consider shortening. A lead under @step characters works best for search engines.', {'@step': step}, {context: 'Character counter'});
     }
-    return '';
+
+    // The character length is more than 160 chars, show warning.
+    if (type === WARNING_YELLOW) {
+      element.classList.remove('is-hidden');
+      return Drupal.t('Consider shortening. A lead under @step characters works best for search engines.', {
+        '@step': step
+      }, {context: 'Character counter'});
+    }
+
+    // Remove warnings.
+    element.classList.add('is-hidden');
+    return WARNING_GREEN;
   };
 
+  // Convert HTML tags to single spaces.
   const convertHtmlTags = (data) => {
     return data
       // Replace all HTML tags with a single space.
@@ -32,22 +66,22 @@
   };
 
   Drupal.behaviors.characterCounter = {
-    attach: function attach() {
-
-      const counterInstances = document.querySelectorAll('[data-counter-id]');
+    attach: function attach(context) {
+      // Get all character counter instances using once().
+      const counterInstances = once('character-counter', '[data-character-counter]', context);
 
       if (!counterInstances) {
         return;
       }
 
-      counterInstances.forEach(function (counterInstance) {
-        if (!counterInstance.dataset.counterId) {
-          return;
-        }
+      // Loop through all character counter instances.
+      counterInstances.forEach((counterInstance) => {
+        const counterCounter = counterInstance.dataset.characterCounter;
         const counterInputTag = counterInstance.dataset.counterInputTag;
         const counterTotalChars = counterInstance.dataset.counterTotal;
         const counterStepChars = counterInstance.dataset.counterStep;
-        const formItem = document.querySelector(`.${counterInstance.dataset.counterId}`);
+        const counterWarning =  counterInstance.querySelector('.character-counter__warning');
+        const formItem = context.querySelector(`.${counterCounter}`);
 
         if (!formItem) {
           return;
@@ -61,28 +95,51 @@
           return;
         }
 
-        // Set initial value for the character counter.
-        if (textInput.value.length > 0) {
-          charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
-          charWarning.textContent = characterWarning(textInput.value.length, counterStepChars, counterTotalChars, counterInputTag);
+        // Set initial warning type.
+        let warningType = WARNING_GREEN;
+
+        // The textarea counter needs to be inserted after the form item.
+        // Otherwise, it will be shown in a wrong position in the DOM.
+        if (
+          counterInputTag === 'textarea' &&
+          formItem.parentElement.classList.contains('form-item') &&
+          formItem.parentElement.querySelector('.form-item__description')
+        ) {
+          formItem.parentElement
+            .querySelector('.form-item__description')
+            .insertAdjacentElement('afterend', counterInstance);
         }
 
-        if (counterInputTag === 'input') {
-          textInput.addEventListener('input', function () {
-            charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
-            charWarning.textContent = characterWarning(textInput.value.length, counterStepChars, counterTotalChars, counterInputTag);
-          });
+        // Set initial value for the character counter.
+        if (textInput.value.length > 0) {
+          warningType = processWarningType(textInput.value.length, counterStepChars, counterTotalChars);
+          charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
+          charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
         }
-        else {
-          setTimeout(function() {
+
+        // Handle input tag and textarea tags separately.
+        if (counterInputTag === 'input') {
+          // Add event listener to the input tag and process
+          // the charCounter and charWarning.
+          textInput.addEventListener('input', function () {
+            warningType = processWarningType(textInput.value.length, counterStepChars, counterTotalChars);
+            charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
+            charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+          });
+        } else {
+          setTimeout(function () {
             const ckeditorEditable = textInput.parentElement.querySelector('.ck-editor__editable');
+
+            // Add event listener to the textarea tag (CKEditor) and process
+            // the charCounter and charWarning.
             if (ckeditorEditable && ckeditorEditable.ckeditorInstance) {
               const editor = ckeditorEditable.ckeditorInstance;
               editor.model.document.on('change:data', () => {
-                // Output the number of words to the console
+                // Output the number of words to the counter.
+                warningType  = processWarningType(convertHtmlTags(editor.getData()), counterStepChars, counterTotalChars);
                 charCounter.textContent = characterCounter(convertHtmlTags(editor.getData()), counterTotalChars);
-                charWarning.textContent = characterWarning(convertHtmlTags(editor.getData()), counterStepChars, counterTotalChars, counterInputTag);
-              } );
+                charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+              });
             }
           });
         }
@@ -90,4 +147,4 @@
     },
   };
 
-})(Drupal);
+})(Drupal, once);

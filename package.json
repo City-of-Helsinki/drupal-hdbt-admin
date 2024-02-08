@@ -80,8 +80,8 @@
   ],
   "devDependencies": {
     "stylelint": "^16.0.0",
-    "stylelint-config-standard-scss": "^11.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-order": "^6.0.0",
-    "stylelint-scss": "^5.0.0"
+    "stylelint-scss": "^6.0.0"
   }
 }

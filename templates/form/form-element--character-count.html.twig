@@ -84,9 +84,16 @@ js-form-type-[something] exists on form items. We have to keep them.
       {{ description.content }}
     </div>
   {% endif %}
-  <div class="character-counter-wrapper">
-    <div class="character-counter" data-counter-total="{{ counter_total }}" data-counter-step="{{ counter_step }}" data-counter-input-tag="{{ counter_input_tag }}" data-counter-id="form-item--{{ name|clean_class }}"></div>
-    <div class="character-counter--warning" data-warning-id="form-item--{{ name|clean_class }}"></div>
-    {{ attach_library('hdbt_admin/character-counter')}}
-  </div>
+  {% if type in ['textarea', 'textfield'] %}
+    <div class="character-counter" data-character-counter="form-item--{{ name|clean_class }}" data-counter-total="{{ counter_total }}" data-counter-step="{{ counter_step }}" data-counter-input-tag="{{ counter_input_tag }}">
+      <div class="character-counter__count" data-counter-id="form-item--{{ name|clean_class }}"></div>
+      <div class="character-counter__warning is-hidden">
+        <div class="character-counter__icon">
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+        </div>
+        <div class="character-counter__warning-text" data-warning-id="form-item--{{ name|clean_class }}"></div>
+      </div>
+      {{ attach_library('hdbt_admin/character-counter')}}
+    </div>
+  {% endif %}
 </div>

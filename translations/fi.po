@@ -20,8 +20,8 @@ msgid "The recommended maximum length for the title is @total characters."
 msgstr "Suositeltu otsikon enimmäispituus on @total merkkiä."
 
 msgctxt "Character counter"
-msgid "Consider shortening. A lead under @total characters works best for search engines."
-msgstr "Harkitse lyhentämistä. Alle @total merkin ingressi toimii hakukoneille parhaiten."
+msgid "Consider shortening. A lead under @step characters works best for search engines."
+msgstr "Harkitse lyhentämistä. Alle @step merkin ingressi toimii hakukoneille parhaiten."
 
 msgctxt "Character counter"
 msgid "The recommended maximum length for the lead is @total characters."

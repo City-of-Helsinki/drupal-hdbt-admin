@@ -146,7 +146,13 @@ module.exports = (env, argv) => {
         minimizer: [
           new TerserPlugin({
             terserOptions: {
-              ecma: 2015,
+              ecma: 2020,
+              mangle: {
+                reserved:[
+                  'Drupal',
+                  'drupalSettings'
+                ]
+              },
               format: {
                 comments: false,
               },

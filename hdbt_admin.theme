@@ -84,11 +84,10 @@ function _hdbt_admin_form_template_suggestions(array &$suggestions, array &$vari
   if (in_array('koro', $variables['element']['#parents'], TRUE)) {
     $suggestions[] = $variables['theme_hook_original'] . '__koro';
   }
-  if (
-    in_array('field_hero_title', $variables['element']['#parents'], TRUE) ||
-    in_array('field_hero_desc', $variables['element']['#parents'], TRUE)
-  ) {
-    $suggestions[] = $variables['theme_hook_original'] . '__character_count';
+  foreach (hdbt_admin_character_counter_configuration(TRUE) as $field) {
+    if (in_array($field, $variables['element']['#parents'], TRUE)) {
+      $suggestions[] = $variables['theme_hook_original'] . '__character_count';
+    }
   }
 }
 
@@ -457,31 +456,106 @@ function hdbt_admin_preprocess_field_multiple_value_form(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Get counter configurations for determined content types and fields.
+ *
+ * @param bool $only_field_names
+ *   If true, only field names will be returned.
+ *
+ * @return array
+ *   Returns the character counter configurations for given content types and
+ *   fields.
  */
-function hdbt_admin_preprocess_form_element(array &$variables) {
-  // Map the counter input tag, step value and total value to variables.
-  $counter_elements = [
-    'field_hero_title' => [
-      'counter_input_tag' => 'input',
-      'counter_step' => 0,
-      'counter_total' => 55,
+function hdbt_admin_character_counter_configuration(bool $only_field_names = FALSE): array {
+  $counter_title_configuration = [
+    'counter_input_tag' => 'input',
+    'counter_step' => 0,
+    'counter_total' => 55,
+  ];
+  $counter_description_configuration = [
+    'counter_input_tag' => 'textarea',
+    'counter_step' => 160,
+    'counter_total' => 200,
+  ];
+
+  $configurations = [
+    'any' => [
+      'any' => [
+        'field_hero_title' => $counter_title_configuration,
+        'field_hero_description' => $counter_description_configuration,
+      ],
     ],
-    'field_hero_desc' => [
-      'counter_input_tag' => 'textarea',
-      'counter_step' => 160,
-      'counter_total' => 200,
+    'node' => [
+      'page' => [
+        'title' => $counter_title_configuration,
+        'field_lead_in' => $counter_description_configuration,
+      ],
     ],
   ];
 
+  // Allow themes to alter the configurations.
+  $theme_manager = Drupal::service('theme.manager');
+  $theme_manager->alter('character_counter_configuration', $configurations);
+
+  if ($only_field_names) {
+    $field_names = [];
+    foreach ($configurations as $entity_types) {
+      foreach ($entity_types as $fields) {
+        $field_names = array_merge($field_names, array_keys($fields));
+      }
+    }
+    return $field_names;
+  }
+  return $configurations;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_admin_preprocess_form_element(array &$variables): void {
+  $configurations = hdbt_admin_character_counter_configuration();
+  $current_entity_type = NULL;
+  $route_match = \Drupal::routeMatch();
+
   // Set the mapped values to corresponding fields.
-  foreach ($counter_elements as $counter_element => $counter_values) {
-    if (
-      array_key_exists('name', $variables) &&
-      str_contains($variables['name'], $counter_element)
-    ) {
-      foreach ($counter_values as $key => $value) {
-        $variables[$key] = $value;
+  foreach ($configurations as $entity_type => $content_types) {
+    // Get current content type.
+    if ($entity_type === 'node') {
+      $current_entity_type = $route_match
+        ?->getParameter('node_type')
+        ?->get('type');
+    }
+    elseif ($entity_type !== 'any') {
+      $current_entity_type = $route_match
+        ?->getParameter($entity_type)
+        ?->bundle();
+    }
+
+    // Skip if there are no configurations for current entity type.
+    if ($entity_type !== 'any' && $current_entity_type === NULL) {
+      continue;
+    }
+
+    // Go through all content types.
+    foreach ($content_types as $content_type => $fields) {
+
+      // Skip if there are no configurations for current content type and
+      // the configuration is not for 'any'.
+      if ($content_type !== 'any' && $current_entity_type !== $content_type) {
+        continue;
+      }
+
+      // Assign the counter configurations to the current fields
+      // theme variables so that they can be handled further
+      // in the twig template.
+      foreach ($fields as $field => $counter_configuration) {
+        if (
+          isset($variables['name']) &&
+          str_contains($variables['name'], $field)
+        ) {
+          foreach ($counter_configuration as $key => $value) {
+            $variables[$key] = $value;
+          }
+        }
       }
     }
   }

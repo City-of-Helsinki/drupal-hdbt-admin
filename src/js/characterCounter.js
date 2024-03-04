@@ -70,7 +70,7 @@
       // Get all character counter instances using once().
       const counterInstances = once('character-counter', '[data-character-counter]', context);
 
-      if (!counterInstances) {
+      if (counterInstances.length === 0) {
         return;
       }
 
@@ -110,11 +110,15 @@
             .insertAdjacentElement('afterend', counterInstance);
         }
 
+        const updateCharacterCounter = (charCount) => {
+          warningType = processWarningType(charCount, counterStepChars, counterTotalChars);
+          charCounter.textContent = characterCounter(charCount, counterTotalChars);
+          charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+        };
+
         // Set initial value for the character counter.
         if (textInput.value.length > 0) {
-          warningType = processWarningType(textInput.value.length, counterStepChars, counterTotalChars);
-          charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
-          charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+          updateCharacterCounter(textInput.value.length);
         }
 
         // Handle input tag and textarea tags separately.
@@ -122,9 +126,7 @@
           // Add event listener to the input tag and process
           // the charCounter and charWarning.
           textInput.addEventListener('input', function () {
-            warningType = processWarningType(textInput.value.length, counterStepChars, counterTotalChars);
-            charCounter.textContent = characterCounter(textInput.value.length, counterTotalChars);
-            charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+            updateCharacterCounter(textInput.value.length);
           });
         } else {
           setTimeout(function () {
@@ -136,9 +138,16 @@
               const editor = ckeditorEditable.ckeditorInstance;
               editor.model.document.on('change:data', () => {
                 // Output the number of words to the counter.
-                warningType  = processWarningType(convertHtmlTags(editor.getData()), counterStepChars, counterTotalChars);
-                charCounter.textContent = characterCounter(convertHtmlTags(editor.getData()), counterTotalChars);
-                charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+                updateCharacterCounter(convertHtmlTags(editor.getData()));
+              });
+            }
+            // The CKEditor is not used in this textarea. Handle current text
+            // input normally.
+            else {
+              // Add event listener to the input tag and process
+              // the charCounter and charWarning.
+              textInput.addEventListener('input', function () {
+                updateCharacterCounter(textInput.value.length);
               });
             }
           });

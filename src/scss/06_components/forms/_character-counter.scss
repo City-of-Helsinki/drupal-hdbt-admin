@@ -1,5 +1,6 @@
 .character-counter {
-  margin-top: -$spacing-quarter;
+  line-height: calc(17rem / 16);
+  margin-block: calc(6rem / 16);
 }
 
 .character-counter__count {
@@ -23,4 +24,8 @@
 .character-counter__warning-text {
   color: $color-black;
   margin-inline-start: $spacing-half;
+}
+
+.form-item__description + .character-counter {
+  margin-top: -$spacing-quarter;
 }

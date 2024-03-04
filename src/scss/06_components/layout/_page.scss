@@ -35,6 +35,7 @@
   }
 
   // Hide "About text formats" link from text-area fields on node form.
+  .field--widget-formatted-text-character-counter,
   .node-form .field--widget-text-textarea {
     .form-type--textarea + .filter-wrapper {
       display: none;

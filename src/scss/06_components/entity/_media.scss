@@ -10,3 +10,9 @@
     font-weight: 400;
   }
 }
+
+// Do not show the media edit link if the media is shown in media library view.
+// Media library has a separate element to show the edit link.
+.views-row.media-library-item .media-library-item__preview-wrapper .media-library-item__edit {
+  display: none;
+}

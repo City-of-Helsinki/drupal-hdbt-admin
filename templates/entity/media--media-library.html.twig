@@ -44,6 +44,16 @@
     <div{{ preview_attributes.addClass('media-library-item__preview js-media-library-item-preview') }}>
       {{ content|without('name') }}
     </div>
+
+    {% if media.id and media.name.value %}
+      <a
+        href="{{ path('entity.media.edit_form', {'media': media.id }) }}"
+        class="media-library-item__edit icon-link"
+        title="{% trans %}Edit {{ media.name.value }}. Opens in a new tab.{% endtrans %}"
+        target="_new"
+      >{% trans %}Edit {{ media.name.value }}{% endtrans %}</a>
+    {% endif %}
+
     {% if not status %}
       <div class="media-library-item__status">{{ "unpublished" | t }}</div>
     {% endif %}

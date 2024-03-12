@@ -34,7 +34,7 @@ msgid "Default liftup image"
 msgstr "Oletuskuvio"
 
 msgid "Drag to re-order @entity_types."
-msgstr "Raahaa järjestelläksesi @entity_types."
+msgstr "Järjestä raahaamalla @entity_types."
 
 msgid "Edit footer bottom navigation links"
 msgstr "Muokkaa alatunnisteen alaosan valikkolinkkejä"

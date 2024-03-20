@@ -23,3 +23,11 @@ msgstr "Tom"
 
 msgid "Published on"
 msgstr "Publicerad på"
+
+msgctxt "File upload help"
+msgid "jpg, jpeg (pictures) png, gif (graphics)"
+msgstr "jpg, jpeg (bild) png, gif (grafik)"
+
+msgctxt "File upload help"
+msgid "Allowed types: @extensions."
+msgstr "Filtyper: @extensions."

@@ -46,6 +46,14 @@ msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tyhjä"
 
+msgctxt "File upload help"
+msgid "jpg, jpeg (pictures) png, gif (graphics)"
+msgstr "jpg, jpeg (valokuvat) png, gif (grafiikka)"
+
+msgctxt "File upload help"
+msgid "Allowed types: @extensions."
+msgstr "Tiedostotyypit: @extensions."
+
 msgid "Footer bottom navigation menu links"
 msgstr "Alatunniste - Alavalikko"
 

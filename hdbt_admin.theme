@@ -484,13 +484,17 @@ function hdbt_admin_preprocess_file_upload_help(array &$variables): void {
 
     $source_string = $description->getUntranslatedString();
     $arguments = $description->getArguments();
+    $extensions = $arguments['@extensions'] ?? FALSE;
 
-    if (
-      $source_string === 'Allowed types: @extensions.' &&
-      isset($arguments['@extensions']) &&
-      $arguments['@extensions'] === 'png gif jpg jpeg'
-    ) {
+    if ($extensions === 'png gif jpg jpeg') {
       $extensions = t('jpg, jpeg (pictures) png, gif (graphics)', [], ['context' => 'File upload help']);
+    }
+
+    if ($extensions === 'png jpg jpeg') {
+      $extensions = t('jpg, jpeg, png', [], ['context' => 'File upload help']);
+    }
+
+    if ($source_string === 'Allowed types: @extensions.' && $extensions) {
       $description = t('Allowed types: @extensions.', ['@extensions' => $extensions], ['context' => 'File upload help']);
     }
   }

@@ -495,3 +495,29 @@ function hdbt_admin_preprocess_file_upload_help(array &$variables): void {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_admin_preprocess_form_element_label(array &$variables): void {
+
+  if (!isset($variables['element']['#id'])) {
+    return;
+  }
+
+  // Alter the 'path' translation for redirect.
+  if (
+    str_contains($variables['element']['#id'], 'redirect-source') &&
+    str_contains($variables['element']['#id'], '-path')
+  ) {
+    $variables['title']['#markup'] = t('Path', [], ['context' => 'Redirect translations']);
+  }
+
+  // Alter the 'to' translation for redirect.
+  if (
+    str_contains($variables['element']['#id'], 'redirect-redirect') &&
+    str_contains($variables['element']['#id'], '-uri')
+  ) {
+    $variables['title']['#markup'] = t('To', [], ['context' => 'Redirect translations']);
+  }
+}

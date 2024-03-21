@@ -12,3 +12,13 @@
 .paragraph--type--text {
   margin-top: $spacing-quadruple;
 }
+
+// Do not set margin bottom for ckeditor textarea.
+.field-multiple-table tr .form-item.form-type--textarea:not(:last-of-type)  {
+  margin-bottom: 0;
+}
+
+// Set margin bottom for ckeditor textarea form item.
+.paragraphs-subform .field--widget-text-textarea .form-item {
+  margin-bottom: 1.5rem;
+}

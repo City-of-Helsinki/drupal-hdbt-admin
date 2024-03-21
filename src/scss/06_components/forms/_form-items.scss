@@ -3,3 +3,9 @@
   font-size: remify(14px);
   max-width: none;
 }
+
+// Set more sensible margins for form items
+// with item lists in their descriptions.
+.hdbt-admin .form-item .item-list li {
+  margin: 0 0 2px 16px;
+}

@@ -320,6 +320,18 @@ function hdbt_admin_apply_form_theme(array &$form): void {
   // Hide the content translation detail group from prying eyes.
   $form['content_translation']['#attributes']['class'][] = 'is-hidden';
 
+  // Alter the menu link selection labels.
+  $menu_link_labels = [
+    'menu_parent' => t('Parent link', [], ['context' => 'Menu link translations']),
+    'weight' => t('Weight', [], ['context' => 'Menu link translations']),
+  ];
+
+  foreach ($menu_link_labels as $key => $label) {
+    if (isset($form['menu']['link'][$key])) {
+      $form['menu']['link'][$key]['#title'] = $label;
+    }
+  }
+
   // Manipulate metatags field according to clients needs.
   hdbt_admin_manipulate_field_metatags($form);
 

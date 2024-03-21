@@ -95,6 +95,14 @@ msgctxt "HELfi Metatags"
 msgid "Description"
 msgstr "Metakuvaus"
 
+msgctxt "Menu link translations"
+msgid "Parent link"
+msgstr "Yläsivu"
+
+msgctxt "Menu link translations"
+msgid "Weight"
+msgstr "Järjestys"
+
 msgid "Main menu"
 msgstr "Päävalikko"
 

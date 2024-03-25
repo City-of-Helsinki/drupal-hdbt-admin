@@ -34,7 +34,7 @@ msgid "Default liftup image"
 msgstr "Oletuskuvio"
 
 msgid "Drag to re-order @entity_types."
-msgstr "Raahaa järjestelläksesi @entity_types."
+msgstr "Järjestä raahaamalla @entity_types."
 
 msgid "Edit footer bottom navigation links"
 msgstr "Muokkaa alatunnisteen alaosan valikkolinkkejä"
@@ -45,6 +45,14 @@ msgstr "Muokkaa alatunnisteen yläosan valikkolinkkejä"
 msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tyhjä"
+
+msgctxt "File upload help"
+msgid "jpg, jpeg (pictures) png, gif (graphics)"
+msgstr "jpg, jpeg (valokuvat) png, gif (grafiikka)"
+
+msgctxt "File upload help"
+msgid "Allowed types: @extensions."
+msgstr "Tiedostotyypit: @extensions."
 
 msgid "Footer bottom navigation menu links"
 msgstr "Alatunniste - Alavalikko"
@@ -87,6 +95,14 @@ msgctxt "HELfi Metatags"
 msgid "Description"
 msgstr "Metakuvaus"
 
+msgctxt "Menu link translations"
+msgid "Parent link"
+msgstr "Yläsivu"
+
+msgctxt "Menu link translations"
+msgid "Weight"
+msgstr "Järjestys"
+
 msgid "Main menu"
 msgstr "Päävalikko"
 
@@ -98,7 +114,6 @@ msgstr ""
 "valita lohkon kielen sivun oikeassa ylälaidassa olevasta "
 "kielivalinnasta."
 
-
 msgid "Published on"
 msgstr "Julkaisuaika"
 
@@ -108,6 +123,14 @@ msgstr "Pääväri"
 
 msgid "Pulse"
 msgstr "Pulssi"
+
+msgctxt "Redirect translations"
+msgid "Path"
+msgstr "Lähtöosoite"
+
+msgctxt "Redirect translations"
+msgid "To"
+msgstr "Kohdeosoite"
 
 msgid "Regenerate all sitemaps after hitting <em>Save</em>"
 msgstr "Luo uudelleen kaikki sivustokartat kun sisältö tallennetaan"

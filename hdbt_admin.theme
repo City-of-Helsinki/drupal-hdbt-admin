@@ -133,10 +133,15 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
     $form['gin_actions']['actions']['preview']['#access'] = FALSE;
   }
 
+  $news_content_types = [
+    'news_item',
+    'news_article',
+  ];
+
   // Don't show "menu link translation" published checkbox on news items, as
   // news items cannot be added to any menu.
   if (
-    $node->getType() === 'news_item' &&
+    in_array($node->getType(), $news_content_types) &&
     isset($form['menu']['content_translation_status'])
   ) {
     $form['menu']['content_translation_status']['#access'] = FALSE;

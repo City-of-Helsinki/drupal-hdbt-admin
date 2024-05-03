@@ -11,7 +11,7 @@ $button-border-radius: 6px;
     background-color: $color-white;
     height: $button-height;
     min-height: $button-height;
-    width: 400px;
+    width: 450px;
 
     .dropbutton__item {
       min-height: calc(#{$button-height} - (#{$button-border-thickness} * 2));

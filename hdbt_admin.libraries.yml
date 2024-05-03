@@ -29,6 +29,13 @@ tpr-edit-form:
   js:
     dist/js/tprEditForm.min.js: {}
 
+updating-news-auto-toggle:
+  js:
+    dist/js/updatingNewsAutoToggle.min.js: {}
+  version: 1.0
+  dependencies:
+    - core/once
+
 debug-item-composer:
   js:
     dist/js/debug-item-composer.min.js: {}

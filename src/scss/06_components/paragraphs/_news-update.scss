@@ -1,0 +1,36 @@
+// Hide news item updating news paragraph label as it's obsolete in field group.
+.field-news-item-updating-news-values > thead {
+  display: none;
+}
+
+// Hide news update paragraph field label as it's only taking extra space in UI.
+.field-news-update-values > thead {
+  display: none;
+}
+
+// Remove extra margins, padding and borders from
+// the date picker field wrapper and labels.
+.hdbt-admin .field--name-field-news-update-date > fieldset {
+  border: 0;
+  margin-bottom: 0;
+  padding: 0;
+
+  // Unify the font-size of the date-picker field label.
+  .fieldset__label {
+    font-size: remify(16px) !important;
+    line-height: 1.5 !important;
+    padding: 0;
+  }
+
+  // Remove side margins from fieldset wrapper.
+  .fieldset__wrapper {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Remove all margins from datetime wrapper and datetime label.
+  .fieldset__wrapper .form-datetime-wrapper,
+  .form-item.form-item--no-label {
+    margin: 0;
+  }
+}

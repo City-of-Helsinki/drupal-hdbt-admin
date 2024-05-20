@@ -146,6 +146,11 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
   ) {
     $form['menu']['content_translation_status']['#access'] = FALSE;
   }
+
+  // Auto toggle updating news field group if there is content in the group.
+  if ($node->getType() === 'news_item') {
+    $form['#attached']['library'][] = 'hdbt_admin/updating-news-auto-toggle';
+  }
 }
 
 /**

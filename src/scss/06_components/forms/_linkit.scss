@@ -1,0 +1,5 @@
+// Without width the input element doesn't scale on smaller screens.
+.js input.form-linkit-autocomplete {
+  max-width: 500px;
+  width: 100%;
+}

@@ -6,7 +6,7 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - uses: dev-drprasad/delete-older-releases@v0.3.2
+      - uses: dev-drprasad/delete-older-releases@v0.3.4
         with:
           keep_latest: 20
         env:

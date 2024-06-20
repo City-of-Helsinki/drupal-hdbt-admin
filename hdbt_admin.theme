@@ -128,8 +128,8 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
   /** @var \Drupal\node\NodeInterface $node */
   $node = $formObject->getEntity();
 
-  // Disable "Preview" button on new nodes.
-  if ($node->isNew()) {
+  // Disable "Preview" button on new nodes and new translations.
+  if ($node->isNew() || $node->isNewTranslation()) {
     $form['gin_actions']['actions']['preview']['#access'] = FALSE;
   }
 

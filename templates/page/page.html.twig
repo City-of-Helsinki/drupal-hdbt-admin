@@ -45,12 +45,13 @@
   <div class="region-sticky-watcher"></div>
 {% endif %}
 
-<header class="region region-sticky">
+<header class="region region-sticky {{ gin_form_actions_class }}">
   <div class="layout-container region-sticky__items">
     <div class="region-sticky__items__inner">
       {{ page.header[page_title_block] }}
       {{ page.header[language_switcher_admin] }}
       {{ page.content[local_actions_block] }}
+      {{ gin_form_actions }}
     </div>
   </div>
 </header>

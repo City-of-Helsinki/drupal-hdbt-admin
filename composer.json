@@ -10,7 +10,7 @@
         "drupal/admin_toolbar": "^3.0"
     },
     "conflict": {
-        "drupal/gin": ">3.0.0-rc10",
+        "drupal/gin": ">3.0.0-rc11",
         "drupal/helfi_platform_config": "<4.3"
     }
 }

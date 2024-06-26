@@ -130,7 +130,7 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
 
   // Disable "Preview" button on new nodes and new translations.
   if ($node->isNew() || $node->isNewTranslation()) {
-    $form['gin_actions']['actions']['preview']['#access'] = FALSE;
+    $form['actions']['preview']['#access'] = FALSE;
   }
 
   $news_content_types = [
@@ -219,7 +219,7 @@ function hdbt_admin_apply_form_theme(array &$form): void {
   ) {
 
     // Create artificial status group.
-    $form['gin_actions']['tpr_entity_status'] = [
+    $form['actions']['tpr_entity_status'] = [
       '#type' => 'container',
       '#weight' => 0,
       '#attributes' => [
@@ -234,9 +234,9 @@ function hdbt_admin_apply_form_theme(array &$form): void {
     $form['content_translation']['status']['#disabled'] = FALSE;
 
     // Add content translation status gin_sticky actions.
-    $form['gin_actions']['actions']['preview'] = ($form['actions']['preview']) ?? [];
-    $form['gin_actions']['actions']['status'] = ($form['content_translation']['status']) ?? [];
-    $form['gin_actions']['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
+    $form['actions']['preview'] = ($form['actions']['preview']) ?? [];
+    $form['actions']['status'] = ($form['content_translation']['status']) ?? [];
+    $form['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
 
     // Move content translation fields to author information.
     $form['author_information']['uid'] = ($form['content_translation']['uid']) ?? [];
@@ -257,19 +257,21 @@ function hdbt_admin_apply_form_theme(array &$form): void {
     // Move taxonomy term overview button to sidebar.
     $form['gin_sidebar']['actions']['overview'] = ($form['actions']['overview']) ?? [];
     $form['gin_sidebar']['actions']['overview']['#weight'] = 0;
-    unset($form['gin_actions']['actions']['overview']);
+    unset($form['actions']['overview']);
   }
 
   // Alter submit button label to exclude "(this translation)" and move the
   // button to last.
-  if (isset($form['gin_actions']['actions']['submit'])) {
-    $form['gin_actions']['actions']['submit']['#value'] = t('Save');
-    $form['gin_actions']['actions']['submit']['#weight'] = '99';
+  if (isset($form['actions']['submit'])) {
+    $form['actions']['submit']['#value'] = t('Save');
+    $form['actions']['submit']['#weight'] = '99';
   }
 
   // Move unlock button right before submit.
-  if (isset($form['actions']['unlock'])) {
-    $form['gin_actions']['actions']['unlock']['#weight'] = '98';
+  if (isset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'])) {
+    $form['actions']['unlock'] = $form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'];
+    $form['actions']['unlock']['#weight'] = '98';
+    unset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock']);
   }
 
   // Move the promoted to front page checkbox to more

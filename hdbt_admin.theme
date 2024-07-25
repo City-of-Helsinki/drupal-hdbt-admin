@@ -14,15 +14,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 
 /**
- * Implements hook_preprocess().
- */
-function hdbt_admin_preprocess(array &$variables):void {
-  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-  $variables['current_langcode'] = $language->getId();
-  $variables['current_language'] = $language->getName();
-}
-
-/**
  * Implements hook_preprocess_input().
  */
 function hdbt_admin_preprocess_input(array &$variables):void {
@@ -420,16 +411,19 @@ function hdbt_admin_preprocess_media(array &$variables): void {
     $variables['media'] instanceof MediaInterface &&
     $variables['media']->bundle() === 'image'
   ) {
-    $current_language = $variables['current_langcode'];
+    $language_id = Drupal::languageManager()
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+      ->getId();
     $route = \Drupal::routeMatch();
     if (!empty($route->getParameter('target'))) {
-      $current_language = $route->getParameter('target')->getId();
+      $language_id = $route->getParameter('target')->getId();
     }
 
-    if ($variables['media']->hasTranslation($current_language)) {
+    if ($variables['media']->hasTranslation($language_id)) {
       // @phpstan-ignore-next-line
       $alt = $variables['media']
-        ->getTranslation($current_language)->field_media_image->alt;
+        ->getTranslation($language_id)
+        ->field_media_image->alt;
       $variables['alt_text'] = $alt !== '""' ? $alt : FALSE;
     }
   }
@@ -536,4 +530,13 @@ function hdbt_admin_preprocess_form_element_label(array &$variables): void {
   ) {
     $variables['title']['#markup'] = t('To', [], ['context' => 'Redirect translations']);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_admin_preprocess_links__language_block(array &$variables): void {
+  // Add language variable for the template.
+  $variables['language'] = \Drupal::languageManager()
+    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
 }

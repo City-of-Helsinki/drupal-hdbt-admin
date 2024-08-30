@@ -5,7 +5,7 @@
     attach: function attach() {
       const newParent = document.querySelector('.region-sticky__items__inner');
 
-      if (newParent.querySelectorAll('.gin-sticky').length > 0) {
+      if (newParent.querySelectorAll('.tpr-entity-form-actions').length > 0) {
 
         // Make content translation published status reactive.
         // eslint max-nested-callbacks

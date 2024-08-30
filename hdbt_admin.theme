@@ -246,6 +246,9 @@ function hdbt_admin_apply_form_theme(array &$form): void {
 
     // Create revision by default.
     $form['revision']['#default_value'] = TRUE;
+
+    // Make TPR entity content translation published status reactive.
+    $form['actions']['#attributes']['class'][] = 'tpr-entity-form-actions';
     $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
   }
 

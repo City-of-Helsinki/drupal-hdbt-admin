@@ -12,3 +12,9 @@
   white-space: nowrap;
   width: 1px;
 }
+
+// Override --ck-spacing-small variable to fix
+// CKEditor Toolbar "zoom" problem on Chrome.
+.hdbt-admin .ck {
+  --ck-spacing-small: 0.25em;
+}

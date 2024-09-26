@@ -166,3 +166,10 @@
     }
   }
 }
+
+// Hide content_liftup from the paragraph list so that no more of these paragraphs are added.
+// The paragraph will later be moved after all instances where it is used have been changed to
+// use the unit_contact_card. This can be removed in the ticket UHF-9511.
+.add-more-button-content-liftup {
+  display: none;
+}

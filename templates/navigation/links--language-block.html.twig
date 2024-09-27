@@ -35,8 +35,8 @@
 {% if links %}
   <div {{ attributes.addClass('language-switcher') }}>
     <button id="language-switcher-toggle" class="language-switcher__button" aria-expanded="false" aria-controls="language-switcher-dropdown" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'Select language'|t }}">
-      {% if current_language %}
-        <span class="label" aria-label="{{ 'Current language is'|t }} {{ current_language|capitalize }}">{{ current_language|capitalize }}</span>
+      {% if language.name %}
+        <span class="label" aria-label="{{ 'Current language is'|t }} {{ language.name|capitalize }}">{{ language.name|capitalize }}</span>
       {% endif %}
     </button>
     <div aria-hidden="true" id="language-switcher-dropdown" class="language-switcher__dropdown">
@@ -51,12 +51,12 @@
           {# Check if link is part of alternative menu and set class accordingly. #}
           {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
 
-          {% if not untranslated and lang != current_langcode %}
+          {% if not untranslated and lang != language.id %}
             {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
             {% set element = 'a' %}
-          {% elseif lang == current_langcode %}
+          {% elseif lang == language.id %}
             {% set element = 'span' %}
-            {% set classes = classes|merge([lang == current_langcode ? 'is-active' : '']) %}
+            {% set classes = classes|merge([lang == language.id ? 'is-active' : '']) %}
           {% else %}
             {% set element = 'span' %}
             {% set classes = classes|merge(['is-disabled']) %}

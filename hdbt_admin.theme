@@ -9,18 +9,8 @@ declare(strict_types=1);
 
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
-
-/**
- * Implements hook_preprocess().
- */
-function hdbt_admin_preprocess(array &$variables):void {
-  $language = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-  $variables['current_langcode'] = $language->getId();
-  $variables['current_language'] = $language->getName();
-}
 
 /**
  * Implements hook_preprocess_input().
@@ -423,16 +413,17 @@ function hdbt_admin_preprocess_media(array &$variables): void {
     $variables['media'] instanceof MediaInterface &&
     $variables['media']->bundle() === 'image'
   ) {
-    $current_language = $variables['current_langcode'];
+    $language_id = $variables['language']->getId();
     $route = \Drupal::routeMatch();
     if (!empty($route->getParameter('target'))) {
-      $current_language = $route->getParameter('target')->getId();
+      $language_id = $route->getParameter('target')->getId();
     }
 
-    if ($variables['media']->hasTranslation($current_language)) {
+    if ($variables['media']->hasTranslation($language_id)) {
       // @phpstan-ignore-next-line
       $alt = $variables['media']
-        ->getTranslation($current_language)->field_media_image->alt;
+        ->getTranslation($language_id)
+        ->field_media_image->alt;
       $variables['alt_text'] = $alt !== '""' ? $alt : FALSE;
     }
   }

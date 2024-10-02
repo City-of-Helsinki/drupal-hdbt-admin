@@ -24,9 +24,9 @@ const Entries = () => {
 };
 
 
-module.exports = (env, argv) => {
+module.exports = (env, args) => {
 
-  const isDev = (argv.mode === 'development');
+  const isDev = (args.mode === 'development');
 
   // Set the base config
   const config = {
@@ -134,11 +134,25 @@ module.exports = (env, argv) => {
     }
   };
 
+  // Set the config for different modes, development or production.
+  if (args.mode === 'development') {
+    const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
 
-  if (argv.mode === 'production') {
+    return merge(config, {
+      mode: 'development',
+      devtool: 'eval-source-map',
+      plugins: [
+        new SourceMapDevToolPlugin({
+          filename: '[file].map',
+          exclude: [/node_modules/, /images/, /spritemap/, /svg-sprites/],
+        })
+      ]
+    });
+  }
+  else {
     const TerserPlugin = require('terser-webpack-plugin');
 
-    const full_config = merge(config, {
+    return merge(config, {
       mode: 'production',
       devtool: false,
       optimization: {
@@ -162,24 +176,5 @@ module.exports = (env, argv) => {
         ],
       },
     });
-
-    return full_config;
-
-  } else if (argv.mode === 'development') {
-    const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
-
-    const full_config = merge(config, {
-      mode: 'development',
-      devtool: 'eval-source-map',
-      plugins: [
-        new SourceMapDevToolPlugin({
-          filename: '[file].map',
-          exclude: [/node_modules/, /images/, /spritemap/, /svg-sprites/],
-        })
-      ]
-    });
-
-    return full_config;
-
   }
 };

@@ -13,5 +13,12 @@
         "drupal/gin": ">3.0.0-rc11",
         "drupal/helfi_platform_config": "<4.3",
         "drupal/helfi_api_base": "<2.7.6"
+    },
+    "extra": {
+        "patches": {
+            "drupal/gin": {
+                "Fix Gin show row weights button. (https://www.drupal.org/project/gin/issues/3461093)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt-admin/ad117e1b2a3dcf1543f111533452b176456305ff/patches/gin_show_row_weights-3461093.patch"
+            }
+        }
     }
 }

@@ -1,7 +1,10 @@
+  /* stylelint-disable no-descending-specificity */
+
 // @file
 // Styles for all paragraphs.
 
 /* stylelint-disable max-nesting-depth */
+
 .hdbt-admin {
   // Remove white background and paddings from first level of paragraph elements.
   .paragraphs-tabs-wrapper {
@@ -89,9 +92,14 @@
         padding: 0;
       }
 
-      .tabledrag-handle::after {
-        margin: 0;
-        padding: 0;
+      .tabledrag-handle {
+        display: block;
+        margin-left: -12px;
+
+        &::after {
+          margin: 0;
+          padding: 0;
+        }
       }
     }
 
@@ -105,6 +113,7 @@
   // Similar issue and a base for this workaround:
   // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
   // TODO: Remove this fix when the base issue has been addressed.
+  /* stylelint-disable-next-line no-duplicate-selectors */
   .paragraphs-tabs-wrapper {
     figure > table.field-multiple-table {
       display: block;
@@ -162,6 +171,68 @@
             margin: auto;
           }
         }
+      }
+    }
+  }
+
+  // Prevent the overflow of Paragraphs in node edit form.
+  // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
+  // TODO: Remove this fix when the base issue has been addressed.
+
+  /* stylelint-disable-next-line no-duplicate-selectors */
+  .paragraphs-tabs-wrapper {
+    .field-multiple-table {
+      display: block;
+
+      > tbody {
+        display: block;
+
+        > .draggable {
+          > td + td {
+            display: block;
+            width: 100%;
+          }
+
+          > thead {
+            display: block;
+
+            > tr {
+              display: flex;
+
+              th:first-child {
+                &.field-label {
+                  display: flex;
+                  padding-inline-end: 0;
+                  width: 100%;
+                }
+
+                .paragraphs-actions {
+                  margin-inline: auto 0;
+                }
+              }
+
+              .tabledrag-hide {
+                align-items: center;
+                display: inline-flex;
+                margin: 0 auto;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .draggable {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      padding-left: 1rem;
+      position: relative;
+
+      > td {
+        display: block;
+        position: relative;
       }
     }
   }

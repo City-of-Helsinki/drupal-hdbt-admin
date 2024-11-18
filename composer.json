@@ -18,7 +18,7 @@
         "patches": {
             "drupal/gin": {
                 "[#UHF-10892] Gin sidebar nextsibling issue. (https://www.drupal.org/i/3460390)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt-admin/d3e6cb08315b8df38696489d2c8f406a67f224b8/patches/gin-3460390-sidebar-nextsibling-innerhtml-rc11.patch",
-                "[#UHF-10239] Paragraph overflow issue. (https://www.drupal.org/i/3348101)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt-admin/d3e6cb08315b8df38696489d2c8f406a67f224b8/patches/gin-3348101-paragraphs-stick-out-from-edge-rc14.patch"
+                "[#UHF-10239] Paragraph overflow issue. (https://www.drupal.org/i/3348101)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt-admin/2d902b4b67ff317ab6132b237ac8f5080c3e6865/patches/gin-3348101-paragraphs-stick-out-from-edge-rc14.patch"
             }
         }
     }

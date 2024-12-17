@@ -36,13 +36,6 @@ updating-news-auto-toggle:
   dependencies:
     - core/once
 
-debug-item-composer:
-  js:
-    dist/js/debug-item-composer.min.js: {}
-  version: 1.x
-  dependencies:
-    - core/drupalSettings
-
 global-styling:
   version: 1.x
   css:

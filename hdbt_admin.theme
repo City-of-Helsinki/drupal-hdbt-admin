@@ -261,10 +261,10 @@ function hdbt_admin_apply_form_theme(array &$form): void {
   }
 
   // Move unlock button right before submit.
-  if (isset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'])) {
-    $form['actions']['unlock'] = $form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'];
+  if (isset($form['actions']['unlock']) && isset($form['gin_sticky_actions'])) {
     $form['actions']['unlock']['#weight'] = '98';
-    unset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock']);
+    $form['gin_sticky_actions']['actions']['unlock'] = $form['actions']['unlock'];
+    unset($form['actions']['unlock']);
   }
 
   // Move the promoted to front page checkbox to more

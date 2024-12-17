@@ -10,15 +10,8 @@
         "drupal/admin_toolbar": "^3.0"
     },
     "conflict": {
-        "drupal/gin": ">3.0.0-rc11",
+        "drupal/gin": ">3.0.0-rc15",
         "drupal/helfi_platform_config": "<4.3",
         "drupal/helfi_api_base": "<2.7.6"
-    },
-    "extra": {
-        "patches": {
-            "drupal/gin": {
-                "[#UHF-10892] Gin sidebar nextsibling issue. (https://www.drupal.org/i/3460390)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-hdbt-admin/d3e6cb08315b8df38696489d2c8f406a67f224b8/patches/gin-3460390-sidebar-nextsibling-innerhtml-rc11.patch"
-            }
-        }
     }
 }

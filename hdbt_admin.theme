@@ -67,14 +67,10 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
  *   Variables array.
  */
 function _hdbt_admin_form_template_suggestions(array &$suggestions, array $variables): void {
-  if (in_array('theme_color', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
-  }
-  if (in_array('default_icon', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
-  }
-  if (in_array('koro', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__koro';
+  foreach (['theme_color', 'default_icon', 'koro'] as $item) {
+    if (in_array($item, $variables['element']['#parents'], TRUE)) {
+      $suggestions[] = $variables['theme_hook_original'] . '__' . $item;
+    }
   }
 }
 
@@ -112,11 +108,11 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
   hdbt_admin_apply_form_theme($form);
 
   // Get current entity.
-  $formObject = $form_state->getFormObject();
-  assert($formObject instanceof EntityFormInterface);
+  $form_object = $form_state->getFormObject();
+  assert($form_object instanceof EntityFormInterface);
 
   /** @var \Drupal\node\NodeInterface $node */
-  $node = $formObject->getEntity();
+  $node = $form_object->getEntity();
 
   // Disable "Preview" button on new nodes and new translations.
   if ($node->isNew() || $node->isNewTranslation()) {
@@ -433,6 +429,7 @@ function hdbt_admin_preprocess_media(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function hdbt_admin_preprocess_page(array &$variables): void {
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
   $variables['#attached']['drupalSettings']['eu_cookie_compliance']['hide_the_banner'] = TRUE;
 }
 

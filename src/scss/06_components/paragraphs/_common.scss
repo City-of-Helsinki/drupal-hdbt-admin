@@ -5,13 +5,6 @@
 .hdbt-admin {
   // Remove white background and paddings from first level of paragraph elements.
   .paragraphs-tabs-wrapper {
-    > .form-item > .layer-wrapper {
-      background-color: transparent;
-      border: 0 none;
-      box-shadow: 0 0 0 transparent;
-      padding: 0;
-    }
-
     .paragraph-type-label,
     .paragraph-summary .summary-content {
       font-size: remify(16px) !important;
@@ -20,21 +13,57 @@
 
     table.field-multiple-table {
       > thead {
-        box-shadow: 0 0 0 transparent;
-
-        > tr {
-          border: 0 none;
+        // Paragraph header colors.
+        > tr > th {
+          background: #f4f4f4;
+          color: $color-black;
         }
 
-        > tr > th {
-          background: $color-white;
-          box-shadow: none;
-          padding-bottom: 0;
-          padding-left: 0;
+        // Paragraph header label color.
+        .form-item__label--multiple-value-form {
+          color: $color-black;
+        }
+
+        // Paragraph header "Edit all" button colors.
+        .paragraphs-icon-button {
+          border: 2px solid var(--gin-color-text-light) !important;
+          color: var(--gin-color-text-light);
+
+          &:hover,
+          &:not(:focus):hover {
+            background: var(--gin-color-primary);
+            border: 2px solid var(--gin-color-primary) !important;
+            color: $color-white;
+          }
         }
       }
     }
 
+    // Paragraphs "table drag toggle" button styles.
+    .tabledrag-toggle-weight-wrapper {
+      .action-link {
+        color: var(--gin-color-text-light);
+
+        &::before {
+          // Gin sets this color as important.
+          background: var(--gin-color-text-light) !important;
+        }
+
+        &:hover,
+        &:not(:focus):hover {
+          background: transparent;
+          color: var(--gin-color-primary);
+
+          &::before {
+            // Gin sets this color as important.
+            background-color: var(--gin-color-primary) !important;
+          }
+        }
+
+      }
+    }
+
+    // Paragraph background styles.
     table.field-multiple-table .draggable {
       background-color: $color-white;
       margin-top: 0.5rem;
@@ -42,10 +71,6 @@
       // Hide the paragraph bullet when you are not able to organize paragraphs.
       td.paragraph-bullet::after {
         display: none;
-      }
-
-      > td + td {
-        width: 100%;
       }
     }
   }
@@ -72,8 +97,12 @@
     .field--widget-paragraphs .field-multiple-drag {
       min-width: 30px;
 
+      // Reduce the space between drag handle and the edges of the paragraph
+      // while retaining the drag handle centered.
       &.tabledrag-cell--only-drag {
-        min-width: 12px;
+        margin-left: -2px;
+        margin-right: 6px;
+        min-width: $spacing;
       }
     }
 
@@ -101,101 +130,7 @@
     }
   }
 
-  // Prevent the overflow of Table element inside CKEditor5.
-  // Similar issue and a base for this workaround:
-  // https://www.drupal.org/project/gin/issues/3348101#comment-15274211
-  // TODO: Remove this fix when the base issue has been addressed.
-  .paragraphs-tabs-wrapper {
-    figure > table.field-multiple-table {
-      display: block;
-
-      > tbody {
-        display: block;
-
-        > tr.draggable {
-          align-items: center;
-          background-color: $color-white;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          margin-top: 0.5rem;
-          position: relative;
-
-          > td {
-            display: block;
-            min-width: 0;
-            position: relative;
-
-            &:first-child {
-              width: 30px;
-            }
-
-            &:last-child {
-              width: 60px;
-            }
-          }
-
-          > td + td {
-            display: block;
-            width: 100%;
-          }
-        }
-      }
-
-      > thead {
-        display: block;
-
-        > tr {
-          display: flex;
-
-          th:first-child {
-            display: flex;
-            width: 100%;
-
-            .paragraphs-actions {
-              margin-inline: auto 0;
-            }
-          }
-
-          .tabledrag-hide {
-            align-items: center;
-            display: inline-flex;
-            margin: 0 auto;
-          }
-        }
-      }
-
-      .draggable {
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        position: relative;
-
-        > td {
-          display: block;
-          flex: 0 0 auto;
-          position: relative;
-
-          &:nth-child(2) {
-            flex: 1 0 0;
-            min-width: 0;
-          }
-        }
-      }
-
-      .draggable-table {
-        .form-item {
-          margin-block-end: 0;
-        }
-
-        .tabledrag-handle::after {
-          margin-block-start: 0;
-        }
-      }
-    }
-  }
-
+  // @todo Is this necessary? If so, document it.
   .js {
     .field--widget-paragraphs,
     .field--widget-paragraphs-previewer {
@@ -205,17 +140,7 @@
     }
   }
 
-  td .claro-details {
-    box-sizing: border-box;
-    width: 100%;
+  .paragraphs-subform .field-multiple-table.draggable-table .form-item:not(.form-type--entity-autocomplete) {
+    margin-bottom: var(--gin-spacing-m);
   }
-
-
-  .paragraphs-subform .field-multiple-table.draggable-table {
-    .form-item, 
-    .tabledrag-handle::after {
-      margin-block-end: 0;
-    }
-  }
-
 }

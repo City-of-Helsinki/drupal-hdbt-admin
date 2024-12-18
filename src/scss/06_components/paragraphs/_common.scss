@@ -130,16 +130,8 @@
     }
   }
 
-  // @todo Is this necessary? If so, document it.
-  .js {
-    .field--widget-paragraphs,
-    .field--widget-paragraphs-previewer {
-      .field-multiple-table {
-        display: block;
-      }
-    }
-  }
-
+  // Add spacing for each form item, but not for entity autocomplete as the
+  // the autocomplete field is rendered differently.
   .paragraphs-subform .field-multiple-table.draggable-table .form-item:not(.form-type--entity-autocomplete) {
     margin-bottom: var(--gin-spacing-m);
   }

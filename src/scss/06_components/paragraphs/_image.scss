@@ -1,16 +1,16 @@
 .paragraph-type--image {
   .paragraphs-subform {
     .field--name-field-image {
-      @media (min-width: 768px) {
+      @media (width >= 768px) {
         float: left;
         width: 40%;
       }
 
-      @media (min-width: 1024px) {
+      @media (width >= 1024px) {
         width: 50%;
       }
 
-      @media (min-width: 1160px) {
+      @media (width >= 1160px) {
         width: 35%;
       }
 
@@ -32,7 +32,7 @@
 
       .media-library-widget-modal .media-library-item--grid,
       .media-library-selection .media-library-item--grid {
-        @media (min-width: 768px) {
+        @media (width >= 768px) {
           width: 100%;
         }
       }
@@ -40,16 +40,16 @@
 
     .field--name-field-image-caption,
     .field--name-field-original-aspect-ratio {
-      @media (min-width: 768px) {
+      @media (width >= 768px) {
         float: right;
         width: 55%;
       }
 
-      @media (min-width: 1024px) {
+      @media (width >= 1024px) {
         width: 45%;
       }
 
-      @media (min-width: 1160px) {
+      @media (width >= 1160px) {
         width: 60%;
       }
     }

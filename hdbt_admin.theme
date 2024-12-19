@@ -434,40 +434,6 @@ function hdbt_admin_preprocess_page(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_field_multiple_value_form().
- */
-function hdbt_admin_preprocess_field_multiple_value_form(array &$variables): void {
-  if (!isset($variables['table']['#header'])) {
-    return;
-  }
-
-  // Theme.inc introduced a new variable in $variables['table']['#header']
-  // that will print out the Sort order column. To keep the UI clean, let's
-  // add visually-hidden class to remove that unnecessary information.
-  // See. theme.inc: template_preprocess_field_multiple_value_form().
-  foreach ($variables['table']['#header'] as $td => $value) {
-    if (
-      $value instanceof TranslatableMarkup &&
-      $value->getUntranslatedString() === 'Order' &&
-      isset($value->getOptions()['context']) &&
-      $value->getOptions()['context'] === 'Sort order'
-    ) {
-      // Add visually hidden class to the Sort order column.
-      $span_element = [
-        'data' => [
-          '#type' => 'html_tag',
-          '#tag' => 'span',
-          '#value' => $value,
-        ],
-        'class' => ['visually-hidden'],
-      ];
-
-      $variables['table']['#header'][$td] = $span_element;
-    }
-  }
-}
-
-/**
  * Prepares variables for file upload help text templates.
  *
  * Default template: file-upload-help.html.twig.

@@ -8,52 +8,6 @@
       grid-template-rows: auto auto;
     }
 
-  .paragraphs-subform .field--name-field-list-of-links-image {
-      @media (width >= 1180px) {
-        grid-column-end: 3;
-        grid-column-start: 2;
-        grid-row-end: 3;
-        grid-row-start: 1;
-        justify-self: self-start;
-        max-width: 200px;
-      }
-
-      fieldset {
-        @media (width >= 1180px) {
-          background: transparent;
-          border: 0;
-          box-shadow: none;
-          margin: 0;
-          padding: 0 0 1.5rem;
-        }
-
-        legend {
-          @media (width >= 1180px) {
-            display: none;
-          }
-        }
-
-        .fieldset__wrapper {
-          @media (width >= 1180px) {
-            margin: 0;
-          }
-        }
-
-        .media-library-selection {
-          @media (width >= 1180px) {
-            margin-top: 0;
-          }
-        }
-      }
-
-      .media-library-widget-modal .media-library-item--grid,
-      .media-library-selection .media-library-item--grid {
-        @media (width >= 1180px) {
-          width: 100%;
-        }
-      }
-    }
-
     .field--name-field-list-of-links-link {
       @media (width >= 1180px) {
         grid-column-end: 2;
@@ -72,6 +26,52 @@
       }
 
       .form-element--type-text {
+        width: 100%;
+      }
+    }
+  }
+
+  .paragraphs-subform .field--name-field-list-of-links-image {
+    @media (width >= 1180px) {
+      grid-column-end: 3;
+      grid-column-start: 2;
+      grid-row-end: 3;
+      grid-row-start: 1;
+      justify-self: self-start;
+      max-width: 200px;
+    }
+
+    fieldset {
+      @media (width >= 1180px) {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0 0 1.5rem;
+      }
+
+      legend {
+        @media (width >= 1180px) {
+          display: none;
+        }
+      }
+
+      .fieldset__wrapper {
+        @media (width >= 1180px) {
+          margin: 0;
+        }
+      }
+
+      .media-library-selection {
+        @media (width >= 1180px) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .media-library-widget-modal .media-library-item--grid,
+    .media-library-selection .media-library-item--grid {
+      @media (width >= 1180px) {
         width: 100%;
       }
     }

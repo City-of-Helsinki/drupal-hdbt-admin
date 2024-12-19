@@ -19,6 +19,11 @@
           color: $color-black;
         }
 
+        // Fix the letter spacing for HelsinkiGrotesk.
+        .form-item__label {
+          letter-spacing: 0;
+        }
+
         // Paragraph header label color.
         .form-item__label--multiple-value-form {
           color: $color-black;

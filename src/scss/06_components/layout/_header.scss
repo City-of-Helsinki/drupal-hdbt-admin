@@ -1,51 +1,16 @@
 .hdbt-admin {
-  // Set skip link z-index above the breadcrumb after element.
-  .skip-link {
-    z-index: 110;
-  }
-
-  // Add consistent styles to all entity status (published) fields.
-  .hdbt_admin--edit-form {
-    .form-item--status,
-    .field--name-status {
-      margin-right: $spacing !important; // Overrides gin more actions style.
-    }
-
-    .form-item--status .form-item__label,
-    .field--name-status .form-item__label {
-      font-size: remify(15px);
-    }
-  }
-
-  // Add divider for sidebar when viewing it in tablet width.
-  @media (width <= 1023px) {
-    .hdbt_admin--edit-form .layout-region-node-secondary {
-      border-top: 2px solid $color-black-30;
-      margin-top: $spacing-double;
-      width: 100%;
-    }
-  }
-
-  // Adjust the button font sizes on sticky header.
-  .region-sticky {
+  // Adjust the sticky header styles.
+  .hdbt_admin--edit-form .region-sticky {
     background-color: $body-bg-color;
+    padding-block-start: $spacing-quarter;
 
-    .region-sticky__items__inner {
-      align-items: center;
-      gap: $spacing-double;
-      justify-items: center;
+    @media (width >= 1024px) {
+      padding-block-start: $spacing;
+    }
 
-      @media (width >= 1024px) and (width <= 1280px) {
-        .button {
-          padding: $spacing-half $spacing * 0.75;
-        }
-
-        .button,
-        .form-item--status label,
-        .field--name-status label {
-          font-size: remify(14px);
-        }
-      }
+    // Reset the unnecessary preview and submit button margins.
+    .button {
+      margin-block: unset;
     }
   }
 }

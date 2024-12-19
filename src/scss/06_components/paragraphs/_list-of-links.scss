@@ -1,3 +1,41 @@
+.paragraph--type--list-of-links {
+  margin-top: $spacing-quadruple;
+
+  // Alter the label styles for the list of links paragraph.
+  th.field-label {
+    padding-block: 6px;
+
+    .form-item__label {
+      font-size: 1rem;
+      letter-spacing: normal;
+      padding: 0;
+    }
+  }
+
+  // Diff styles
+  .field--name-field-list-of-links-links > .field__item {
+    margin-top: $spacing;
+  }
+
+  .field--name-field-list-of-links-title {
+    font-size: remify(32px);
+    margin-bottom: $spacing;
+  }
+
+  .field--name-field-media-image {
+    line-height: 0;
+
+    img {
+      width: 368px;
+    }
+  }
+
+  .field--name-field-list-of-links-link {
+    font-size: remify(20px);
+    margin-top: $spacing-half;
+  }
+}
+
 .paragraph-type--list-of-links-item {
   .paragraphs-subform {
     @media (width >= 1180px) {
@@ -75,43 +113,5 @@
         width: 100%;
       }
     }
-  }
-}
-
-.paragraph--type--list-of-links {
-  margin-top: $spacing-quadruple;
-
-  // Alter the label styles for the list of links paragraph.
-  th.field-label {
-    padding-block: 6px;
-
-    .form-item__label {
-      font-size: 1rem;
-      letter-spacing: normal;
-      padding: 0;
-    }
-  }
-
-  // Diff styles
-  .field--name-field-list-of-links-links > .field__item {
-    margin-top: $spacing;
-  }
-
-  .field--name-field-list-of-links-title {
-    font-size: remify(32px);
-    margin-bottom: $spacing;
-  }
-
-  .field--name-field-media-image {
-    line-height: 0;
-
-    img {
-      width: 368px;
-    }
-  }
-
-  .field--name-field-list-of-links-link {
-    font-size: remify(20px);
-    margin-top: $spacing-half;
   }
 }

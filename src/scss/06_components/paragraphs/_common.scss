@@ -112,10 +112,13 @@
       align-self: center;
     }
 
-    // Reset paddings on paragraphs content areas.
+    // Reset paddings on paragraphs content areas but give some padding
+    // to the right because there are cases where there is a row specific
+    // action button that will be glued to the input if there is no padding
+    // on the right.
     .paragraphs-tabs-wrapper .field-multiple-table .draggable {
       > td {
-        padding: 0;
+        padding: 0 $spacing-half 0 0;
       }
 
       .tabledrag-handle::after {
@@ -130,9 +133,9 @@
     }
   }
 
-  // Add spacing for each form item, but not for entity autocomplete as the
-  // the autocomplete field is rendered differently.
-  .paragraphs-subform .field-multiple-table.draggable-table .form-item:not(.form-type--entity-autocomplete) {
+  // Add spacing for each form item, but not for entity autocomplete, number and tel fields
+  // as they are rendered differently.
+  .paragraphs-subform .field-multiple-table.draggable-table .form-item:not(.form-type--entity-autocomplete, .form-type--tel, .form-type--number) {
     margin-bottom: var(--gin-spacing-m);
   }
 }

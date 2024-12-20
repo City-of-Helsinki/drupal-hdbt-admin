@@ -6,6 +6,12 @@ character-counter:
     - core/drupal
     - core/once
 
+drop-button:
+  js:
+    dist/js/dropButton.min.js: {}
+  dependencies:
+    - core/once
+
 language-switcher:
   js:
     dist/js/languageSwitcher.min.js: {}

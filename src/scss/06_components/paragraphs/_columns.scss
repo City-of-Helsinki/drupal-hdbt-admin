@@ -1,13 +1,13 @@
-//
-// @file
 // Styles for Columns paragraph.
-//
-
 .paragraph-type--columns {
-
   th.field-label {
-    align-items: center;
-    display: flex;
+    padding-block: 6px;
+
+    .form-item__label {
+      font-size: 1rem;
+      letter-spacing: normal;
+      padding: 0;
+    }
   }
 
   // The field indicating the column size
@@ -17,26 +17,6 @@
     color: var(--color-white);
     margin-left: auto;
     padding: $spacing-quarter;
-  }
-
-  .paragraphs-tabs-wrapper table.field-multiple-table {
-    margin: 0;
-
-    thead tr {
-      border: 0;
-
-      th {
-        padding: 0;
-      }
-    }
-
-    .form-actions {
-      margin: 0.5rem 0;
-    }
-
-    .dropbutton-wrapper {
-      padding: 0;
-    }
   }
 }
 

@@ -10,11 +10,13 @@
       height: 100%;
       width: 50%;
     }
+
     .color-selection--secondary {
       background-color: var(--hdbt-color-palette--secondary);
       height: 100%;
       width: 25%;
     }
+
     .color-selection--accent  {
       background-color: var(--hdbt-color-palette--accent);
       height: 100%;
@@ -32,6 +34,7 @@
     display: flex;
     width: 50%;
   }
+
   .selection {
     padding-right: $spacing;
     width: 50%;

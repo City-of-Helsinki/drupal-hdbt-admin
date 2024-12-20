@@ -29,11 +29,6 @@
     font-size: remify($base-font-size);
   }
 
-  // Hide "Show row weights" option when editing paragraphs.
-  .field--widget-paragraphs .tabledrag-toggle-weight-wrapper {
-    display: none;
-  }
-
   // Hide "About text formats" link from text-area fields on node form.
   .field--widget-formatted-text-character-counter,
   .node-form .field--widget-text-textarea {

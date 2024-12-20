@@ -67,14 +67,10 @@ function hdbt_admin_theme_suggestions_input_alter(array &$suggestions, array $va
  *   Variables array.
  */
 function _hdbt_admin_form_template_suggestions(array &$suggestions, array $variables): void {
-  if (in_array('theme_color', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__theme_color';
-  }
-  if (in_array('default_icon', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__default_icon';
-  }
-  if (in_array('koro', $variables['element']['#parents'], TRUE)) {
-    $suggestions[] = $variables['theme_hook_original'] . '__koro';
+  foreach (['theme_color', 'default_icon', 'koro'] as $item) {
+    if (in_array($item, $variables['element']['#parents'], TRUE)) {
+      $suggestions[] = $variables['theme_hook_original'] . '__' . $item;
+    }
   }
 }
 
@@ -112,11 +108,11 @@ function hdbt_admin_form_node_form_alter(&$form, FormStateInterface $form_state)
   hdbt_admin_apply_form_theme($form);
 
   // Get current entity.
-  $formObject = $form_state->getFormObject();
-  assert($formObject instanceof EntityFormInterface);
+  $form_object = $form_state->getFormObject();
+  assert($form_object instanceof EntityFormInterface);
 
   /** @var \Drupal\node\NodeInterface $node */
-  $node = $formObject->getEntity();
+  $node = $form_object->getEntity();
 
   // Disable "Preview" button on new nodes and new translations.
   if ($node->isNew() || $node->isNewTranslation()) {
@@ -261,10 +257,10 @@ function hdbt_admin_apply_form_theme(array &$form): void {
   }
 
   // Move unlock button right before submit.
-  if (isset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'])) {
-    $form['actions']['unlock'] = $form['actions']['gin_more_actions']['gin_more_actions_items']['unlock'];
+  if (isset($form['actions']['unlock']) && isset($form['gin_sticky_actions'])) {
     $form['actions']['unlock']['#weight'] = '98';
-    unset($form['actions']['gin_more_actions']['gin_more_actions_items']['unlock']);
+    $form['gin_sticky_actions']['actions']['unlock'] = $form['actions']['unlock'];
+    unset($form['actions']['unlock']);
   }
 
   // Move the promoted to front page checkbox to more
@@ -433,41 +429,8 @@ function hdbt_admin_preprocess_media(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function hdbt_admin_preprocess_page(array &$variables): void {
+  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
   $variables['#attached']['drupalSettings']['eu_cookie_compliance']['hide_the_banner'] = TRUE;
-}
-
-/**
- * Implements hook_preprocess_field_multiple_value_form().
- */
-function hdbt_admin_preprocess_field_multiple_value_form(array &$variables): void {
-  if (!isset($variables['table']['#header'])) {
-    return;
-  }
-
-  // Theme.inc introduced a new variable in $variables['table']['#header']
-  // that will print out the Sort order column. To keep the UI clean, let's
-  // add visually-hidden class to remove that unnecessary information.
-  // See. theme.inc: template_preprocess_field_multiple_value_form().
-  foreach ($variables['table']['#header'] as $td => $value) {
-    if (
-      $value instanceof TranslatableMarkup &&
-      $value->getUntranslatedString() === 'Order' &&
-      isset($value->getOptions()['context']) &&
-      $value->getOptions()['context'] === 'Sort order'
-    ) {
-      // Add visually hidden class to the Sort order column.
-      $span_element = [
-        'data' => [
-          '#type' => 'html_tag',
-          '#tag' => 'span',
-          '#value' => $value,
-        ],
-        'class' => ['visually-hidden'],
-      ];
-
-      $variables['table']['#header'][$td] = $span_element;
-    }
-  }
 }
 
 /**

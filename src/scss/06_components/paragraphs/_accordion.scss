@@ -1,3 +1,4 @@
+// Hide the unnecessary "Content" label from accordion thead.
 .paragraph-type--accordion {
   .field-accordion-items-values > thead {
     display: none;
@@ -5,6 +6,7 @@
 }
 
 .paragraph-type--accordion-item {
+  // Hide the unnecessary "Content" label from accordion item thead.
   .field-accordion-item-content-values > thead {
     display: none;
   }

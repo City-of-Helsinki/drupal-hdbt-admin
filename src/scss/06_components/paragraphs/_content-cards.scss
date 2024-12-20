@@ -1,20 +1,17 @@
-//
-// @file
 // Styles for Content card paragraph.
-//
-
 .paragraph-type--content-cards {
   .field--name-field-content-cards-content {
-    .layer-wrapper {
-      background-color: transparent;
-      border: 0 none;
-      box-shadow: none;
-      margin: 0;
-      padding: 0;
+    table.field-multiple-table {
+      > thead > tr > th {
+        // Remove the unnecessary "Content" label.
+        display: none !important;
+      }
     }
 
-    .field-label {
-      display: none;
+    // Fix margins for the URL autocomplete field.
+    .form-type--entity-autocomplete {
+      margin-inline-end: $spacing;
+      margin-inline-start: $spacing-half;
     }
   }
 }

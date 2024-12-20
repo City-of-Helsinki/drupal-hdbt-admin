@@ -13,10 +13,6 @@
 {% set primary_local_tasks_block = active_admin_theme ~ '_primary_local_tasks' %}
 {% set language_switcher_admin = 'language_switcher_admin' %}
 
-{% if toolbar_variant != 'vertical' %}
-  <div class="region-sticky-watcher"></div>
-{% endif %}
-
 <div class="gin-secondary-toolbar layout-container">
   <div class="gin-breadcrumb-wrapper">
     {% if route_name == 'entity.node.canonical' %}
@@ -41,9 +37,7 @@
   {{ page.gin_secondary_toolbar }}
 </div>
 
-{% if toolbar_variant == 'vertical' %}
-  <div class="region-sticky-watcher"></div>
-{% endif %}
+<div class="region-sticky-watcher"></div>
 
 <header class="region region-sticky {{ gin_form_actions_class }}">
   <div class="layout-container region-sticky__items">

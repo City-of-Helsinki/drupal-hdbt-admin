@@ -93,11 +93,6 @@
   }
 
   .js & {
-    // Reset padding on paragraph selection field.
-    .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-multiple {
-      padding: 0;
-    }
-
     // Reset the excessive spacing on paragraph drag handles.
     .field--widget-paragraphs .field-multiple-drag {
       min-width: 30px;

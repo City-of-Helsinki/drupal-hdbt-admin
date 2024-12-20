@@ -141,6 +141,11 @@ $button-active-color: var(--gin-color-primary);
       }
     }
   }
+
+  // The paragraph selector button that is always visible.
+  .dropbutton-action:not(.secondary-action) > .select-paragraph__wrapper {
+    width: calc(100% - $button-width + $button-border-thickness + $button-border-thickness);
+  }
 }
 
 // Handle styles for the drop button items (the list of paragraphs) when

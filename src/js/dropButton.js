@@ -16,6 +16,16 @@
       const secondaryAction = el.querySelector('.secondary-action');
       const dropMenu = el.querySelector('.dropbutton__items');
       const toggleHeight = el.offsetHeight;
+
+      // To avoid page jumping when user clicks the paragraph dropMenu
+      // we have set bottom:0; to the element when it is not open.
+      // If both top and bottom are defined to the element when calculating
+      // the height, there can be mistakes so we need to remove top
+      // property before dropMenu.offsetHeight calculation.
+      if (dropMenu.style.top) {
+        dropMenu.style.removeProperty('top');
+      }
+
       const dropMenuHeight = dropMenu.offsetHeight;
       const boundingRect = secondaryAction.getBoundingClientRect();
       const spaceBelow = window.innerHeight - boundingRect.bottom;

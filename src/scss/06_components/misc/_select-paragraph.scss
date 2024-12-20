@@ -6,18 +6,34 @@ $button-wrapper-width: 500px;
 $button-default-color: $color-white;
 $button-active-color: var(--gin-color-primary);
 
-.js .hdbt-admin .field--widget-paragraphs .paragraphs-dropbutton-wrapper {
-  // Remove obsolete spaces from drop button wrappers.
-  .dropbutton-multiple {
-    margin: 0;
-    padding: 0;
+.js .hdbt-admin {
+  // This fixes the issue with drop button hidden ul-element causing
+  // spacing under the node form.
+  .select-paragraph.dropbutton .dropbutton__items {
+    bottom: 0;
+    position: absolute;
   }
 
-  // Remove obsolete spaces from drop button widget.
-  .dropbutton-widget {
-    margin: 0 !important;
+  // Bottom needs to be set to auto so that it doesn't mess up
+  // the javascript calculations when the drop button is open.
+  .open .select-paragraph.dropbutton .dropbutton__items {
+    bottom: auto;
+  }
+
+  .field--widget-paragraphs .paragraphs-dropbutton-wrapper {
+    // Remove obsolete spaces from drop button wrappers.
+    .dropbutton-multiple {
+      margin: 0;
+      padding: 0;
+    }
+
+    // Remove obsolete spaces from drop button widget.
+    .dropbutton-widget {
+      margin: 0 !important;
+    }
   }
 }
+
 
 .hdbt-admin .select-paragraph,
 .js .hdbt-admin .select-paragraph,

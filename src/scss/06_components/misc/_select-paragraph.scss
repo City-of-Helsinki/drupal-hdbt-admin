@@ -1,56 +1,96 @@
 $button-height: 4rem;
+$button-width: 3.5rem;
 $button-border-thickness: 2px;
 $button-border-radius: 6px;
+$button-wrapper-width: 500px;
+$button-default-color: $color-white;
+$button-active-color: var(--gin-color-primary);
 
-.select-paragraph,
-.js .select-paragraph,
-.js.no-touchevents .select-paragraph {
+.js .hdbt-admin .field--widget-paragraphs .paragraphs-dropbutton-wrapper {
+  // Remove obsolete spaces from drop button wrappers.
+  .dropbutton-multiple {
+    margin: 0;
+    padding: 0;
+  }
 
-  // Overrides for the paragraph dropbutton.
+  // Remove obsolete spaces from drop button widget.
+  .dropbutton-widget {
+    margin: 0 !important;
+  }
+}
+
+.hdbt-admin .select-paragraph,
+.js .hdbt-admin .select-paragraph,
+.js.no-touchevents .hdbt-admin .select-paragraph {
+  // Override Gin styles for the drop button (paragraph selection).
   &.dropbutton {
-    background-color: $color-white;
+    background-color: $button-default-color;
+    border: $button-border-thickness solid $button-active-color;
+    border-radius: $button-border-radius;
     height: $button-height;
     min-height: $button-height;
-    width: 450px;
+    width: $button-wrapper-width;
 
+    // Override Gin styles for the drop button items (the list of paragraphs).
+    .dropbutton__items {
+      border: $button-border-thickness solid $button-active-color;
+      box-shadow: none;
+      margin-inline-start: -$button-border-thickness;
+      max-height: 40vh;
+      min-width: calc($button-wrapper-width - $button-border-thickness * 2);
+      padding: 0;
+    }
+
+    // Override Gin styles for the single drop button item.
     .dropbutton__item {
-      min-height: calc(#{$button-height} - (#{$button-border-thickness} * 2));
-
-      &:first-of-type {
-        > * {
-          border-radius: $button-border-radius 0 0 $button-border-radius;
-        }
-
-        &:not(:last-of-type) {
-          margin-right: calc(3rem + 1px) !important;
-        }
-      }
+      border: 0;
+      box-shadow: none;
+      margin: 0 !important;
+      max-width: 100%;
     }
   }
 
+  // Override Gin styles for the paragraph list visibility toggle button.
   .dropbutton__toggle {
-    min-height: calc(#{$button-height} - (#{$button-border-thickness} * 2));
-    min-width: calc(3rem + 1px);
+    border: $button-border-thickness solid $button-active-color !important;
+    border-radius: 0 $button-border-radius $button-border-radius 0;
+    margin-block-start: -$button-border-thickness;
+    margin-inline-end: -$button-border-thickness;
+    min-height: $button-height;
+    min-width: $button-width;
     z-index: 5;
+
+    &:hover,
+    &:focus {
+      background-color: $button-active-color;
+      box-shadow: none;
+    }
+
+    &::before {
+      mask-size: 18px 18px;
+    }
   }
 
-  // Paragraph selection styles.
+  // Paragraph type thumbnail.
   .select-paragraph__thumbnail {
-    background-color: $color-white;
-    border-bottom: 0;
-    border-left: 0;
+    background-color: $button-default-color;
+    border-block-end: 0;
+    border-block-start: 0;
+    border-inline-end: $button-border-thickness solid $button-active-color;
+    border-inline-start: 0;
     border-radius: $button-border-radius 0 0 $button-border-radius;
-    border-right: $button-border-thickness solid var(--colorGinTableBorder);
-    border-top: 0;
     height: calc(#{$button-height} - (#{$button-border-thickness} * 2));
     object-fit: cover;
     transition: transform .2s ease-in-out;
     width: 100px;
   }
 
+  // Paragraph type selection wrapper for thumbnail and input tag.
   .select-paragraph__wrapper {
     align-items: center;
+    background-color: $button-default-color;
     border: 0 !important;
+    border-radius: $button-border-radius calc($button-border-radius - 2px) calc($button-border-radius - 2px) $button-border-radius; // Border radius reveals white background on preview image hover if border is the default.
     display: flex;
     height: 100%;
     margin: 0;
@@ -58,12 +98,16 @@ $button-border-radius: 6px;
     width: 100%;
 
     &:hover {
+      background-color: $button-active-color;
+      box-shadow: none;
+
       input.button {
-        color: $color-white;
+        color: $button-default-color;
       }
     }
 
-    // Must be as specific as this, otherwise border will be added.
+    // The input field styles must be as specific as this,
+    // otherwise the Gin default styles will be used.
     .button.field-add-more-submit {
       border: none !important;
       border-radius: 0;
@@ -75,50 +119,36 @@ $button-border-radius: 6px;
       padding: 0 0 0 $spacing;
       text-align: left;
       width: 100%;
+
+      &:hover {
+        background-color: $button-active-color;
+      }
     }
   }
 }
 
-// Styles for open paragraph selection.
-.open .select-paragraph,
-.js .open .select-paragraph,
-.js.no-touchevents .open .select-paragraph {
-  &.dropbutton {
-    border-radius: $button-border-radius $button-border-radius 0 0;
-  }
+// Handle styles for the drop button items (the list of paragraphs) when
+// the paragraph selection is open on either up or down.
+.hdbt-admin .open {
+  &.paragraphs-open--up {
+    .dropbutton__items {
+      border-radius: $button-border-radius $button-border-radius 0 0;
+      margin-top: 4px;
+    }
 
-  &.dropbutton .dropbutton__items {
-    border: $button-border-thickness solid var(--colorGinTableBorder);
-    bottom: auto;
-    padding: 0;
-    width: calc(100% - 4px);
-
-    .dropbutton__item {
-      border: 0;
-      box-shadow: none;
-      margin: 0;
-      max-width: 100%;
-
-      .select-paragraph__wrapper {
-        background-color: $color-white;
-
-        &:hover {
-          background-color: var(--colorGinPrimaryHover);
-          box-shadow: none;
-        }
-      }
+    .select-paragraph.dropbutton {
+      border-radius: 0 0 $button-border-radius $button-border-radius;
     }
   }
 
-  &.dropbutton .dropbutton__item:not(:first-of-type) {
-    border-radius: 0;
-
-    .select-paragraph__thumbnail {
-      border-radius: 0;
+  &.paragraphs-open--down {
+    .dropbutton__items {
+      border-radius: 0 0 $button-border-radius $button-border-radius;
+      margin-block-start: -1px; // The margin-block-start is necessary to avoid a double border.
     }
 
-    .select-paragraph__wrapper {
-      background-color: $color-white;
+    .select-paragraph.dropbutton {
+      border-radius: $button-border-radius $button-border-radius 0 0;
     }
   }
 }

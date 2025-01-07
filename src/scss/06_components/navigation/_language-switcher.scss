@@ -1,3 +1,8 @@
+.language-switcher-language-url {
+  align-self: center;
+  margin-inline-end: $spacing;
+}
+
 .language-switcher {
   position: relative;
 
@@ -32,15 +37,16 @@
 }
 
 .language-switcher__button {
-  background-color: var(--colorGinInputBackground);
-  border: 2px solid var(--colorGinPrimary) !important;
-  border-radius: var(--ginBorderDefault);
-  box-shadow: 0 1px 2px var(--colorGinPrimaryLight);
-  color: var(--colorGinPrimary);
+  background-color: var(--gin-bg-input);
+  border: 2px solid var(--gin-color-primary) !important;
+  border-radius: var(--gin-border-m);
+  box-shadow: 0 1px 2px var(--gin-color-primary-light);
+  color: var(--gin-color-primary);
   font-size: remify(14px);
   font-weight: $font-weight-bold;
   line-height: 1;
-  padding: calc(1rem - 2px) calc(1.5rem - 2px);
+  padding-block: calc(var(--gin-spacing-s) - 2px);
+  padding-inline: var(--gin-spacing-m);
 
   @media (min-width: $breakpoint-m) {
     display: none;
@@ -54,23 +60,30 @@
 .language-switcher__dropdown {
   display: none;
 
+  @media (min-width: $breakpoint-m) {
+    display: flex;
+  }
+
   &.is-active {
     @media (max-width: $breakpoint-m) {
       background: $color-white;
       border: 1px solid $color-black-20;
       border-radius: 0 0 3px 3px;
-      box-shadow: 0 3px 4px #0003;
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 20%);
       display: flex;
       line-height: 2;
-      padding: $spacing;
+      padding: $spacing-half $spacing;
       position: absolute;
       right: 0;
       top: 40px;
+      width: max-content;
       z-index: 100;
     }
   }
 
-  @media (min-width: $breakpoint-m) {
-    display: flex;
+  .language-link {
+    @media (max-width: $breakpoint-m) {
+      display: block;
+    }
   }
 }

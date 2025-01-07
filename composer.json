@@ -6,11 +6,10 @@
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "require": {
-        "drupal/gin": "^3.0@rc",
+        "drupal/gin": "^4.0",
         "drupal/admin_toolbar": "^3.0"
     },
     "conflict": {
-        "drupal/gin": ">3.0.0-rc16",
         "drupal/helfi_platform_config": "<4.3",
         "drupal/helfi_api_base": "<2.7.6"
     }

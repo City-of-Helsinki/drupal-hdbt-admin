@@ -1,87 +1,18 @@
-.paragraph-type--list-of-links-item {
-  .paragraphs-subform {
-    @media (min-width: 1180px) {
-      box-sizing: border-box;
-      column-gap: 40px;
-      display: grid;
-      grid-template-columns: 50% auto;
-      grid-template-rows: auto auto;
-    }
-
-    .field--name-field-list-of-links-image {
-      @media (min-width: 1180px) {
-        grid-column-end: 3;
-        grid-column-start: 2;
-        grid-row-end: 3;
-        grid-row-start: 1;
-        justify-self: self-start;
-        max-width: 200px;
-      }
-
-      fieldset {
-        @media (min-width: 1180px) {
-          background: transparent;
-          border: 0;
-          box-shadow: none;
-          margin: 0;
-          padding: 0 0 1.5rem;
-        }
-
-        legend {
-          @media (min-width: 1180px) {
-            display: none;
-          }
-        }
-
-        .fieldset__wrapper {
-          @media (min-width: 1180px) {
-            margin: 0;
-          }
-        }
-
-        .media-library-selection {
-          @media (min-width: 1180px) {
-            margin-top: 0;
-          }
-        }
-      }
-
-      .media-library-widget-modal .media-library-item--grid,
-      .media-library-selection .media-library-item--grid {
-        @media (min-width: 1180px) {
-          width: 100%;
-        }
-      }
-    }
-
-    .field--name-field-list-of-links-link {
-      @media (min-width: 1180px) {
-        grid-column-end: 2;
-        grid-column-start: 1;
-        grid-row-end: 3;
-        grid-row-start: 1;
-      }
-    }
-
-    .field--name-field-list-of-links-desc {
-      @media (min-width: 1180px) {
-        grid-column-end: 3;
-        grid-column-start: 2;
-        grid-row-end: 3;
-        grid-row-start: 1;
-      }
-
-      .form-element--type-text {
-        width: 100%;
-      }
-    }
-  }
-}
-
-// Diff styles
 .paragraph--type--list-of-links {
   margin-top: $spacing-quadruple;
 
+  // Alter the label styles for the list of links paragraph.
+  th.field-label {
+    padding-block: 6px;
+
+    .form-item__label {
+      font-size: 1rem;
+      letter-spacing: normal;
+      padding: 0;
+    }
+  }
+
+  // Diff styles
   .field--name-field-list-of-links-links > .field__item {
     margin-top: $spacing;
   }
@@ -102,5 +33,85 @@
   .field--name-field-list-of-links-link {
     font-size: remify(20px);
     margin-top: $spacing-half;
+  }
+}
+
+.paragraph-type--list-of-links-item {
+  .paragraphs-subform {
+    @media (width >= 1180px) {
+      box-sizing: border-box;
+      column-gap: 40px;
+      display: grid;
+      grid-template-columns: 50% auto;
+      grid-template-rows: auto auto;
+    }
+
+    .field--name-field-list-of-links-link {
+      @media (width >= 1180px) {
+        grid-column-end: 2;
+        grid-column-start: 1;
+        grid-row-end: 3;
+        grid-row-start: 1;
+      }
+    }
+
+    .field--name-field-list-of-links-desc {
+      @media (width >= 1180px) {
+        grid-column-end: 3;
+        grid-column-start: 2;
+        grid-row-end: 3;
+        grid-row-start: 1;
+      }
+
+      .form-element--type-text {
+        width: 100%;
+      }
+    }
+  }
+
+  .paragraphs-subform .field--name-field-list-of-links-image {
+    @media (width >= 1180px) {
+      grid-column-end: 3;
+      grid-column-start: 2;
+      grid-row-end: 3;
+      grid-row-start: 1;
+      justify-self: self-start;
+      max-width: 200px;
+    }
+
+    fieldset {
+      @media (width >= 1180px) {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0 0 1.5rem;
+      }
+
+      legend {
+        @media (width >= 1180px) {
+          display: none;
+        }
+      }
+
+      .fieldset__wrapper {
+        @media (width >= 1180px) {
+          margin: 0;
+        }
+      }
+
+      .media-library-selection {
+        @media (width >= 1180px) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .media-library-widget-modal .media-library-item--grid,
+    .media-library-selection .media-library-item--grid {
+      @media (width >= 1180px) {
+        width: 100%;
+      }
+    }
   }
 }

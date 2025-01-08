@@ -7,11 +7,11 @@
   position: absolute;
   z-index: 99999;
 
-  @media (min-width: 1080px) {
+  @media (width >= 1080px) {
     max-width: 50vw;
   }
 
-  @media (min-width: 1600px) {
+  @media (width >= 1600px) {
     max-width: 30vw;
   }
 }
@@ -21,12 +21,12 @@
   min-width: 80vw;
   width: 100%;
 
-  @media (min-width: 1080px) {
+  @media (width >= 1080px) {
     max-width: 50vw;
     min-width: 50vw;
   }
 
-  @media (min-width: 1600px) {
+  @media (width >= 1600px) {
     max-width: 30vw;
     min-width: 30vw;
   }

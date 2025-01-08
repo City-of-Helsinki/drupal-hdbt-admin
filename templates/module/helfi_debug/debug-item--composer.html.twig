@@ -17,19 +17,15 @@
  *  - data:  An array of data returned by your plugin's collect() method.
  */
 #}
-{{ attach_library('hdbt_admin/debug-item-composer') }}
-
-{{ id }} {{ label }}
+<h2>{{ label }}</h2>
 
 <table style="width:auto;">
   <thead>
     <tr>
       <th>Package</th>
       <th>Version</th>
-      <th>Updated</th>
       <th>Timestamp</th>
       <th>Releases</th>
-      <th>Latest</th>
     </tr>
   </thead>
   <tbody>
@@ -41,7 +37,6 @@
         <td>
           {{ package.version }}
         </td>
-        <td data-since="{{ package.time }}">Loading..</td>
         <td>
           {{ package.time }}
         </td>
@@ -57,3 +52,7 @@
     {% endfor %}
   </tbody>
 </table>
+
+<p>
+  View outdated composer packages with: <code>composer show "drupal/helfi_*" "drupal/hdbt*" --outdated</code>
+</p>

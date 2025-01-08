@@ -6,6 +6,12 @@ character-counter:
     - core/drupal
     - core/once
 
+drop-button:
+  js:
+    dist/js/dropButton.min.js: {}
+  dependencies:
+    - core/once
+
 language-switcher:
   js:
     dist/js/languageSwitcher.min.js: {}
@@ -35,13 +41,6 @@ updating-news-auto-toggle:
   version: 1.0
   dependencies:
     - core/once
-
-debug-item-composer:
-  js:
-    dist/js/debug-item-composer.min.js: {}
-  version: 1.x
-  dependencies:
-    - core/drupalSettings
 
 global-styling:
   version: 1.x

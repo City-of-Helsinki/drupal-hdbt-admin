@@ -1,8 +1,5 @@
-// @file
-// Styles for Hero paragraph.
-
-// Diff styles Revosopm
 .paragraph--type--hero {
+  // Diff styles
   .field--name-field-hero-title {
     font-size: remify(32px);
   }
@@ -14,12 +11,13 @@
 
 // Hero-block style overrides
 .node-form .field--name-field-hero {
-  thead .field-label {
-    display: none !important;
+  // Hide the unnecessary "Content" label from hero thead.
+  .field-hero-values > thead {
+    display: none;
   }
 
   .paragraph-type--hero .form-wrapper .paragraphs-subform {
-    @media (width >= 1340px) {
+    @media (width >= 1024px) {
       column-gap: 40px;
       display: grid;
       grid-template-columns: auto auto;
@@ -28,7 +26,7 @@
     }
 
     .field--name-field-hero-design {
-      @media (width >= 1340px) {
+      @media (width >= 1024px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 2;
@@ -37,7 +35,7 @@
     }
 
     .field--name-field-hero-bg-color {
-      @media (width >= 1340px) {
+      @media (width >= 1024px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 3;
@@ -46,7 +44,7 @@
     }
 
     .field--name-field-hero-title {
-      @media (width >= 1340px) {
+      @media (width >= 1024px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 4;
@@ -55,7 +53,7 @@
     }
 
     .field--name-field-hero-desc {
-      @media (width >= 1340px) {
+      @media (width >= 1024px) {
         grid-column-end: 2;
         grid-column-start: 1;
         grid-row-end: 5;
@@ -66,7 +64,7 @@
     .field--name-field-hero-image {
       margin-top: $spacing;
 
-      @media (width >= 1340px) {
+      @media (width >= 1024px) {
         box-sizing: border-box;
         grid-column-end: 3;
         grid-column-start: 2;
@@ -93,7 +91,7 @@
 
       .media-library-widget-modal .media-library-item--grid,
       .media-library-selection .media-library-item--grid {
-        @media (width >= 1340px) {
+        @media (width >= 1024px) {
           width: 250px;
         }
       }
@@ -122,24 +120,24 @@
         box-shadow: none;
         padding: 0;
 
-        @media (width >= 1340px) {
+        @media (width >= 1024px) {
           margin: 0 0 0 -0.5rem;
         }
+      }
 
-        tbody {
-          @media (width >= 1340px) {
-            display: flex;
-            flex-wrap: wrap;
-          }
+      .layer-wrapper tbody {
+        @media (width >= 1024px) {
+          display: flex;
+          flex-wrap: wrap;
         }
+      }
 
-        tr {
-          max-width: 520px;
+      .layer-wrapper tr {
+        max-width: 520px;
 
-          @media (width >= 1340px) {
-            flex: 1 1 32%;
-            margin: 0 0.5rem 1rem;
-          }
+        @media (width >= 1024px) {
+          flex: 1 1 32%;
+          margin: 0 0.5rem 1rem;
         }
       }
 

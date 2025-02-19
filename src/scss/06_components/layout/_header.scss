@@ -12,5 +12,10 @@
     .button {
       margin-block: unset;
     }
+
+    // Mimic Gin .field--name-status styles.
+    .form-item--status .form-item__label {
+      font-size: .8125rem;
+    }
   }
 }

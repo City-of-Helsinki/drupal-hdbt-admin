@@ -204,17 +204,6 @@ function hdbt_admin_apply_form_theme(array &$form): void {
     in_array($form['#entity_type'], $tpr_entities)
   ) {
 
-    // Create artificial status group.
-    $form['actions']['tpr_entity_status'] = [
-      '#type' => 'container',
-      '#weight' => 0,
-      '#attributes' => [
-        'class' => [
-          'tpr-entity-status',
-        ],
-      ],
-    ];
-
     // Remove the disabled value even if there's only one translation, despite
     // what is stated in ContentTranslationHandler.php#455.
     $form['content_translation']['status']['#disabled'] = FALSE;
@@ -222,7 +211,8 @@ function hdbt_admin_apply_form_theme(array &$form): void {
     // Add content translation status gin_sticky actions.
     $form['actions']['preview'] = ($form['actions']['preview']) ?? [];
     $form['actions']['status'] = ($form['content_translation']['status']) ?? [];
-    $form['actions']['status']['#attributes']['class'][] = 'tpr-entity-status';
+    $form['actions']['status']['#group'] = 'status';
+    $form['actions']['status']['#attributes']['class'][] = 'js-tpr-entity-status';
 
     // Move content translation fields to author information.
     $form['author_information']['uid'] = ($form['content_translation']['uid']) ?? [];
@@ -234,7 +224,6 @@ function hdbt_admin_apply_form_theme(array &$form): void {
     $form['revision']['#default_value'] = TRUE;
 
     // Make TPR entity content translation published status reactive.
-    $form['actions']['#attributes']['class'][] = 'tpr-entity-form-actions';
     $form['#attached']['library'][] = 'hdbt_admin/tpr-edit-form';
   }
 

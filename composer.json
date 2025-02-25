@@ -11,7 +11,6 @@
     },
     "conflict": {
         "drupal/helfi_platform_config": "<4.3",
-        "drupal/helfi_api_base": "<2.7.6",
-        "drupal/admin_toolbar": ">3.5.1"
+        "drupal/helfi_api_base": "<2.7.6"
     }
 }

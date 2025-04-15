@@ -43,6 +43,10 @@ function hdbt_admin_theme_suggestions_form_element_alter(array &$suggestions, ar
   ) {
     _hdbt_admin_form_template_suggestions($suggestions, $variables);
   }
+
+  if (isset($variables['element']['value']['#character_counter'])) {
+    $suggestions[] = 'form_element__character_count';
+  }
 }
 
 /**

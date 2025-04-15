@@ -89,7 +89,9 @@
 
         const charCounter = formItem.querySelector('[data-counter-id]');
         const charWarning = formItem.querySelector('[data-warning-id]');
-        const textInput = formItem.querySelector(counterInputTag);
+        const textInput = counterInputTag === 'multifield' 
+          ? formItem.querySelector('input')
+          : formItem.querySelector(counterInputTag);
 
         if (!textInput) {
           return;
@@ -113,7 +115,9 @@
         const updateCharacterCounter = (charCount) => {
           warningType = processWarningType(charCount, counterStepChars, counterTotalChars);
           charCounter.textContent = characterCounter(charCount, counterTotalChars);
-          charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+          if (counterInputTag !== 'multifield') {
+            charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+          }
         };
 
         // Set initial value for the character counter.

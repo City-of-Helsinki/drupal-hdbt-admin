@@ -106,6 +106,10 @@ msgstr "Järjestys"
 msgid "Main menu"
 msgstr "Päävalikko"
 
+msgctxt "Paragraphs counter"
+msgid "The page contains many content elements (e.g., accordions, embeds, columns, banners): !counted. Consider reducing the number of elements to !total or moving some of the content to its own page. Having too many elements can prevent the page from being saved."
+msgstr "Sivulla on käytössä paljon sisältöelementtejä (esim. haitarit, upotukset, palstat, bannerit): !counted kpl:ta. Harkitse elementtien vähentämistä !total kpl:seen tai osan sisällöstä siirtämistä omalle sivulleen. Liian suuri elementtien määrä voi estää sivun tallentamisen."
+
 msgid ""
 "Please select an appropriate language for your paragraph from the "
 "language switcher on the top right corner of the page."

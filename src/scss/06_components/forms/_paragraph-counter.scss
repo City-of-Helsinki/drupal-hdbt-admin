@@ -1,0 +1,21 @@
+.paragraphs-counter__warning {
+  align-items: center;
+  background: $color-alert-light;
+  border-left: 10px solid $color-alert-dark;
+  box-sizing: border-box;
+  display: flex;
+  margin-inline: auto;
+  margin-top: $spacing-half;
+  max-width: 1280px;
+  padding: $spacing $spacing-half;
+  width: 100%;
+}
+
+.paragraphs-counter__icon {
+  color: $color-alert-dark;
+}
+
+.paragraphs-counter__warning-text {
+  color: $color-black;
+  margin-inline-start: $spacing-half;
+}

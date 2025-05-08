@@ -21,6 +21,10 @@ msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tom"
 
+msgctxt "Paragraphs counter"
+msgid "The page contains many content elements (e.g., accordions, embeds, columns, banners): !counted. Consider reducing the number of elements to !total or moving some of the content to its own page. Having too many elements can prevent the page from being saved."
+msgstr "Sidan innehåller många innehållselement (t.ex. dragspel, inbäddningar, kolumner, banners): !counted. Överväg att minska antalet element till !total eller flytta en del av innehållet till en egen sida. För många element kan hindra sidan från att sparas."
+
 msgid "Published on"
 msgstr "Publicerad på"
 

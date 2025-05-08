@@ -63,6 +63,15 @@
   <main class="page-content clearfix" role="main">
     <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
     {{ page.highlighted }}
+
+    <div class="paragraphs-counter__warning is-hidden">
+      <div class="paragraphs-counter__icon">
+        {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+      </div>
+      <div class="paragraphs-counter__warning-text"></div>
+    </div>
+    {{ attach_library('hdbt_admin/paragraphs-counter')}}
+
     {% if page.help %}
       <div class="help">
         {{ page.help }}

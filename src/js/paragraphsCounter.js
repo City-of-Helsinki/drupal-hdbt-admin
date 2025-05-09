@@ -16,7 +16,7 @@ const updateParagraphCounter = () => {
 
   const allParagraphs = document.querySelectorAll('.paragraph-top:not([data-drupal-selector*="hero"])');
 
-  if (allParagraphs.length >= paragraphsLimit) {
+  if (allParagraphs.length > paragraphsLimit) {
     const warningText = counterWarning.querySelector('.paragraphs-counter__warning-text');
 
     counterWarning.classList.remove('is-hidden');

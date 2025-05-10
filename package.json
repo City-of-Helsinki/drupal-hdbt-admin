@@ -40,7 +40,7 @@
     "html-webpack-plugin": "^5.3.2",
     "husky": "^9.0.0",
     "joi": "^17.4.0",
-    "lint-staged": "^15.0.0",
+    "lint-staged": "^16.0.0",
     "mini-css-extract-plugin": "^2.0.0",
     "normalize-url": "^8.0.0",
     "normalize.css": "^8.0.1",

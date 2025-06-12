@@ -35,3 +35,63 @@ msgstr "jpg, jpeg (bild) png, gif (grafik)"
 msgctxt "File upload help"
 msgid "Allowed types: @extensions."
 msgstr "Filtyper: @extensions."
+
+msgctxt "Language reminder"
+msgid "Choose the desired language"
+msgstr "Välj önskat språkversion"
+
+msgctxt "Language reminder"
+msgid "You were previously editing the language version: @language. Please choose the desired language version from the list to continue editing."
+msgstr "Du redigerade tidigare språkversionen: @language. Välj önskad språkversion från listan för att fortsätta redigeringen."
+
+msgctxt "Language reminder"
+msgid "Arabic"
+msgstr "arabiska"
+
+msgctxt "Language reminder"
+msgid "German"
+msgstr "tyska"
+
+msgctxt "Language reminder"
+msgid "English"
+msgstr "engelska"
+
+msgctxt "Language reminder"
+msgid "Spanish"
+msgstr "spanska"
+
+msgctxt "Language reminder"
+msgid "Estonian"
+msgstr "estniska"
+
+msgctxt "Language reminder"
+msgid "Persian, Farsi"
+msgstr "persiska, farsi"
+
+msgctxt "Language reminder"
+msgid "Finnish"
+msgstr "finska"
+
+msgctxt "Language reminder"
+msgid "French"
+msgstr "franska"
+
+msgctxt "Language reminder"
+msgid "Russian"
+msgstr "ryska"
+
+msgctxt "Language reminder"
+msgid "Northern Sam"
+msgstr "nordsamiska"
+
+msgctxt "Language reminder"
+msgid "Somali"
+msgstr "somaliska"
+
+msgctxt "Language reminder"
+msgid "Chinese, Simplified"
+msgstr "kinesiska"
+
+msgctxt "Language reminder"
+msgid "Ukrainian"
+msgstr "ukrainska"

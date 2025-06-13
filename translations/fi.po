@@ -189,3 +189,63 @@ msgstr "Näytä HDBT komponenttikirjasto"
 
 msgid "Wave"
 msgstr "Tyrsky"
+
+msgctxt "Language reminder"
+msgid "Choose the desired language"
+msgstr "Valitse haluamasi kieliversio"
+
+msgctxt "Language reminder"
+msgid "You were previously editing the language version: @language. Please choose the desired language version from the list to continue editing."
+msgstr "Olit aiemmin muokkaamassa sisältöä jonka kieliversio on @language. Valitse listasta haluamasi kieliversio jatkaaksesi muokkausta."
+
+msgctxt "Language reminder"
+msgid "Arabic"
+msgstr "arabia"
+
+msgctxt "Language reminder"
+msgid "German"
+msgstr "saksa"
+
+msgctxt "Language reminder"
+msgid "English"
+msgstr "englanti"
+
+msgctxt "Language reminder"
+msgid "Spanish"
+msgstr "espanja"
+
+msgctxt "Language reminder"
+msgid "Estonian"
+msgstr "viro"
+
+msgctxt "Language reminder"
+msgid "Persian, Farsi"
+msgstr "persia, farsi"
+
+msgctxt "Language reminder"
+msgid "Finnish"
+msgstr "suomi"
+
+msgctxt "Language reminder"
+msgid "French"
+msgstr "ranska"
+
+msgctxt "Language reminder"
+msgid "Russian"
+msgstr "venäjä"
+
+msgctxt "Language reminder"
+msgid "Northern Sam"
+msgstr "pohjoissaame"
+
+msgctxt "Language reminder"
+msgid "Somali"
+msgstr "somali"
+
+msgctxt "Language reminder"
+msgid "Chinese, Simplified"
+msgstr "kiina"
+
+msgctxt "Language reminder"
+msgid "Ukrainian"
+msgstr "ukraina"

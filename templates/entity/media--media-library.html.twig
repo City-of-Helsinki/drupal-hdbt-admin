@@ -46,8 +46,14 @@
     </div>
 
     {% if media.id and media.name.value %}
+      {# Generate a link to the entity translation overview page. #}
+      {% set overview_url = path(
+        'entity.media.content_translation_overview',
+        {'media': media.id},
+        {'query':{'edited_language': language.getName()|t({}, {'context': 'Language reminder'})}}
+      ) %}
       <a
-        href="{{ path('entity.media.edit_form', {'media': media.id }) }}"
+        href="{{ overview_url }}"
         class="media-library-item__edit icon-link"
         title="{% trans %}Edit {{ media.name.value }}. Opens in a new tab.{% endtrans %}"
         target="_new"

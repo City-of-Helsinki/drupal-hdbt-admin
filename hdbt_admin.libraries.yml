@@ -49,6 +49,13 @@ updating-news-auto-toggle:
   dependencies:
     - core/once
 
+language-reminder:
+  js:
+    dist/js/languageReminder.min.js: {}
+  version: 1.0.0
+  dependencies:
+    - core/drupal
+
 global-styling:
   version: 1.x
   css:

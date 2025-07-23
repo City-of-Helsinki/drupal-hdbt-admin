@@ -62,13 +62,6 @@ global-styling:
     theme:
       dist/css/styles.min.css: {}
 
-global-scripting:
-  js:
-    dist/js/common.min.js: {}
-  version: 1.x
-  dependencies:
-    - core/drupal
-
 # This is here to make the contrib select2 module work since its asset management doesn't suit our proxy setup.
 select2.min:
   remote: https://github.com/select2/select2

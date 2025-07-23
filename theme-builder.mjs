@@ -21,6 +21,7 @@ const jsFiles = globSync('./src/js/**/*.js', {
 // SCSS files.
 const styles = [
   ['src/scss/styles.scss', 'css/styles.min.css'],
+  ['src/scss/ckeditor.scss', 'css/ckeditor.min.css'],
 ];
 
 // Static files.

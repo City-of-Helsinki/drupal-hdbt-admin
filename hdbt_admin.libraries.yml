@@ -1,58 +1,61 @@
 character-counter:
+  version: 1.0.1
   js:
     dist/js/characterCounter.min.js: {}
-  version: 1.0.0
   dependencies:
     - core/drupal
     - core/once
 
 drop-button:
+  version: 1.0.1
   js:
     dist/js/dropButton.min.js: {}
   dependencies:
     - core/once
 
 language-switcher:
+  version: 1.0.1
   js:
     dist/js/languageSwitcher.min.js: {}
-  version: 1.x
   dependencies:
     - core/drupal
 
 hero-toggle:
+  version: 1.0.1
   js:
     dist/js/heroToggle.min.js: {}
 
 list-of-links:
+  version: 1.0.1
   js:
     dist/js/listOfLinks.min.js: {}
-  version: 1.x
   dependencies:
     - core/drupal
     - core/jquery
 
 paragraphs-counter:
+  version: 1.0.1
   js:
     dist/js/paragraphsCounter.min.js: {}
-  version: 1.0.0
   dependencies:
     - core/drupal
 
 tpr-edit-form:
+  version: 1.0.0
   js:
     dist/js/tprEditForm.min.js: {}
 
 updating-news-auto-toggle:
+  version: 1.0.1
   js:
     dist/js/updatingNewsAutoToggle.min.js: {}
-  version: 1.0
   dependencies:
     - core/once
 
 language-reminder:
+  version: 1.0.0
   js:
     dist/js/languageReminder.min.js: {}
-  version: 1.0.0
   dependencies:
     - core/drupal
 
@@ -61,13 +64,6 @@ global-styling:
   css:
     theme:
       dist/css/styles.min.css: {}
-
-global-scripting:
-  js:
-    dist/js/common.min.js: {}
-  version: 1.x
-  dependencies:
-    - core/drupal
 
 # This is here to make the contrib select2 module work since its asset management doesn't suit our proxy setup.
 select2.min:

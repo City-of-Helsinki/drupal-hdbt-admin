@@ -2,13 +2,11 @@
 
 ## Introduction
 
-HDBT Admin theme is an admin theme for the City of Helsinki. It is based on the contrib theme called Gin. The abbrevation comes from
-the words Helsinki Drupal Base Theme. Style follows the [BEM methodology](http://getbem.com/) and javascript is written
-as ES6. The JS and SCSS files are compiled and minified with webpack.
+HDBT Admin theme is an admin theme for the City of Helsinki. It is based on the contrib theme called Gin. The abbreviation comes from the words Helsinki Drupal Base Theme. Style follows the [BEM methodology](http://getbem.com/) and javascript is written as ES6. The JS and SCSS files are compiled and minified with HDBT's theme builder.
 
 ## Requirements
 
-This theme requires [Drupal 9](https://www.drupal.org/project/drupal/releases/9.0.0), [recommended PHP version](https://www.drupal.org/docs/system-requirements/php-requirements) and at least [Gin theme 8.x-3.0-beta2]().
+This theme requires [Drupal 10](https://www.drupal.org/project/drupal/releases/10.0.0), [recommended PHP version](https://www.drupal.org/docs/system-requirements/php-requirements) and at least [Gin theme 4.1](https://www.drupal.org/project/gin).
 
 Requirements for developing:
 - [NodeJS](https://nodejs.org/en/)
@@ -41,19 +39,23 @@ Explanations for commands.
 
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.
-- `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
-- `postcss.config.js and postcss.plugins.js` : Configurations for the postcss-tool that is run when the theme is built.
-  You can read more about the tool here: https://postcss.org/
-- `webpack.config.js` : Configuration file for the webpack-tool that is used to actually build the theme. Similar tool
-  to Gulp or Grunt. Usually if there is something wrong with the compiled theme files the culprit can be found here.
+- `package.json and package-lock.json` : Defines the node modules for compiling the theme.
+- `theme-builder/` : The theme builder tools.
+- `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme.
+
+Start SCSS/JS watcher by running
+
+    npm run dev
+
+Build the minified versions of CSS/JS into dist with
+
+    npm run build
 
 ## Structure for files and folders
 
 ### The config-folder
 
-The config folder includes configurations that are used when installing a new project from scratch. These configuration
-files are copied under the `conf/cmi` folder and used there. Therefore, altering them under the theme doesn't change
-anything unless you are building a new instance.
+The config folder includes configurations that are used when installing a new project from scratch. These configuration files are copied under the `conf/cmi` folder and used there. Therefore, altering them under the theme doesn't change anything unless you are building a new instance.
 
 ### The dist- and src-folders
 
@@ -73,12 +75,7 @@ Under the `./templates` folder, the structure is similar to the base-theme stabl
 
 The `./translations` folder includes translations for all the translatable strings provided by the hdbt-theme.
 
-## Webpack entries
-
-Any .js file in /src/js/ will be compiled to separate entry and minified into the /dist folder.
-Typescript entrypoints must be added separately. See webpack.config.js.
-
-### How to use entries in Drupal libraries
+### How to use JS and CSS entries in Drupal libraries
 
 Example:
 ```
@@ -91,9 +88,7 @@ component-library:
     dist/js/component-library.min.js: {}
 ```
 
-Library must be loaded on the page where it's used. It can be added via preprocess function or in a twig template. Read
-more about using libraries in Drupal from for example from
-[here](https://www.drupal.org/docs/develop/creating-modules/adding-assets-css-js-to-a-drupal-module-via-librariesyml).
+Library must be loaded on the page where it's used. It can be added via preprocess function or in a twig template. Read more about using libraries in Drupal from for example from [here](https://www.drupal.org/docs/develop/creating-modules/adding-assets-css-js-to-a-drupal-module-via-librariesyml).
 
 ## How tos
 
@@ -141,7 +136,3 @@ To fix
 ```
 vendor/bin/phpcbf public/themes/contrib/hdbt_admin --extensions=php,module,theme,inc --ignore="*.js,*.css" --standard=Drupal
 ```
-
-## Contact
-
-Slack: #helfi-drupal (http://helsinkicity.slack.com/)

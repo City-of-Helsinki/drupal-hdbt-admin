@@ -419,14 +419,6 @@ function hdbt_admin_preprocess_media(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_page().
- */
-function hdbt_admin_preprocess_page(array &$variables): void {
-  // @todo UHF-10862 Remove once the HDBT cookie banner module is in use.
-  $variables['#attached']['drupalSettings']['eu_cookie_compliance']['hide_the_banner'] = TRUE;
-}
-
-/**
  * Prepares variables for file upload help text templates.
  *
  * Default template: file-upload-help.html.twig.

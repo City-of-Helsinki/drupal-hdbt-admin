@@ -25,7 +25,6 @@
     "eslint-plugin-jsdoc": "^51.0.0",
     "glob": "^11.0.0",
     "hds-design-tokens": "^4.2.0",
-    "html-loader": "^4.0.0",
     "joi": "^17.4.0",
     "js-yaml": "^4.1.0",
     "npm-run-all2": "^8.0.4",

@@ -12,10 +12,6 @@
  */
 #}
 {% apply spaceless %}
-  <div class="koro {{ attributes.value }}">
-    {% set koro_name = attributes.value %}
-    {% set koro_path = '@hdbt/misc/koros/koro-' ~ koro_name ~ '.twig' %}
-    {% include koro_path %}
-  </div>
+  <div class="hds-koros hds-koros--{{ attributes.value }}"></div>
   <input{{ attributes }}/>{{ children }}
 {% endapply %}

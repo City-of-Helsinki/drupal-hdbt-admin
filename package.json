@@ -30,7 +30,7 @@
     "npm-run-all2": "^8.0.4",
     "postcss-cli": "^11.0.1",
     "select2": "^4.0.13",
-    "stylelint-config-standard-scss": "^15.0.0"
+    "stylelint-config-standard-scss": "^16.0.0"
   },
   "browserslist": [
     "last 3 major versions",

@@ -40,12 +40,10 @@
       warningContainer.className = 'form-notification__warning-text';
       warningContainer.innerHTML = Drupal.t('The hero component and the side navigation cannot be used together. The side navigation will not be visible if the hero component is enabled.');
 
-
       warningNotification.appendChild(iconContainer);
       warningNotification.appendChild(warningContainer);
 
       const hasHeroField = document.querySelector('.js-form-item-field-has-hero-value');
-      console.log(heroCheckbox.checked);
       if (hasHeroField && heroCheckbox.checked) {
         hasHeroField.insertAdjacentElement('afterend', warningNotification);
       }

@@ -13,3 +13,26 @@
 .hdbt-admin .field-actions {
   margin-top: $spacing-and-half;
 }
+
+.form-notification {
+  align-items: center;
+  background: $color-alert-light;
+  border-left: 10px solid $color-alert-dark;
+  display: flex;
+  margin-top: $spacing-half;
+  padding: $spacing-half;
+}
+
+.form-notification--warning {
+  background: $color-alert-light;
+
+  .form-notification__icon {
+    color: $color-alert-dark;
+  }
+}
+
+.form-notification__warning-text {
+  color: $color-black;
+  margin-block: 0;
+  margin-inline-start: $spacing-half;
+}

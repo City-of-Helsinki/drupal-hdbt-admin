@@ -249,3 +249,6 @@ msgstr "kiina"
 msgctxt "Language reminder"
 msgid "Ukrainian"
 msgstr "ukraina"
+
+msgid "The hero component and the side navigation cannot be used together. The side navigation will not be visible if the hero component is enabled."
+msgstr "Hero-kansikuvaa ja sivunavigaatiota ei voi käyttää yhdessä. Sivunavigaatio poistui näkyvistä, kun otit heron käyttöön."

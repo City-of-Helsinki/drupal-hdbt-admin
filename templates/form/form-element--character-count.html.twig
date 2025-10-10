@@ -87,11 +87,11 @@ js-form-type-[something] exists on form items. We have to keep them.
   {% if type in ['textarea', 'textfield'] %}
     <div class="character-counter" data-character-counter="form-item--{{ name|clean_class }}" data-counter-total="{{ counter_total }}" data-counter-step="{{ counter_step }}" data-counter-input-tag="{{ counter_input_tag }}">
       <div class="character-counter__count" data-counter-id="form-item--{{ name|clean_class }}"></div>
-      <div class="character-counter__warning is-hidden">
-        <div class="character-counter__icon">
+      <div class="form-notification form-notification--warning is-hidden">
+        <div class="form-notification__icon">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
         </div>
-        <div class="character-counter__warning-text" data-warning-id="form-item--{{ name|clean_class }}"></div>
+        <p class="form-notification__warning-text" data-warning-id="form-item--{{ name|clean_class }}"></p>
       </div>
       {{ attach_library('hdbt_admin/character-counter')}}
       {{ attach_library('hdbt/hdbt-icons')}}

@@ -5,11 +5,23 @@ msgctxt "Accent color"
 msgid "Accent"
 msgstr "Korosteväri"
 
-msgid "Basic motif"
-msgstr "Perus"
+msgid "Wave"
+msgstr "Tyrsky"
+
+msgid "Vibration"
+msgstr "Värinä"
 
 msgid "Beat"
 msgstr "Syke"
+
+msgid "Pulse"
+msgstr "Pulssi"
+
+msgid "Basic motif"
+msgstr "Perus"
+
+msgid "Calm"
+msgstr "Tyyni"
 
 msgctxt "Character counter"
 msgid "Characters: @counted/@total"
@@ -125,9 +137,6 @@ msgctxt "Primary color"
 msgid "Primary"
 msgstr "Pääväri"
 
-msgid "Pulse"
-msgstr "Pulssi"
-
 msgctxt "Redirect translations"
 msgid "Path"
 msgstr "Lähtöosoite"
@@ -181,14 +190,8 @@ msgstr ""
 msgid "User interface translations"
 msgstr "Käyttöliittymän kääntäminen"
 
-msgid "Vibration"
-msgstr "Värinä"
-
 msgid "View HDBT Component Library"
 msgstr "Näytä HDBT komponenttikirjasto"
-
-msgid "Wave"
-msgstr "Tyrsky"
 
 msgctxt "Language reminder"
 msgid "Choose the desired language"

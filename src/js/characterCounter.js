@@ -80,7 +80,7 @@
         const counterInputTag = counterInstance.dataset.counterInputTag;
         const counterTotalChars = counterInstance.dataset.counterTotal;
         const counterStepChars = counterInstance.dataset.counterStep;
-        const counterWarning =  counterInstance.querySelector('.character-counter__warning');
+        const counterWarning =  counterInstance.querySelector('.character-counter .form-notification');
         const formItem = context.querySelector(`.${counterCounter}`);
 
         if (!formItem) {

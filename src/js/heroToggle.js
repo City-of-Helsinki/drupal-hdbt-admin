@@ -23,7 +23,7 @@
         element.dispatchEvent(event);
       }
 
-      const isBasicPage = document.querySelector('[data-drupal-selector="node-page-edit-form"]')  ? true : false ;
+      const isBasicPage = document.querySelector('.node-page-form')  ? true : false ;
       const warningNotification = document.createElement('div');
       warningNotification.className = 'form-notification form-notification--warning';
 
@@ -56,7 +56,9 @@
             );
             if (addHero) {
               triggerEvent(addHero, 'mousedown');
-              hasHeroField.insertAdjacentElement('afterend', warningNotification);
+              if (isBasicPage) {
+                hasHeroField.insertAdjacentElement('afterend', warningNotification);
+              }
             }
           } else if (!this.checked) {
             let removeHero = document.querySelector(

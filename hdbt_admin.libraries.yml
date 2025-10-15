@@ -21,7 +21,7 @@ language-switcher:
     - core/drupal
 
 hero-toggle:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/heroToggle.min.js: {}
 

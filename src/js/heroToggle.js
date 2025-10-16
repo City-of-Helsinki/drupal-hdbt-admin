@@ -44,7 +44,7 @@
       warningNotification.appendChild(warningContainer);
 
       const hasHeroField = document.querySelector('.js-form-item-field-has-hero-value');
-      if (hasHeroField && heroCheckbox.checked) {
+      if (isBasicPage && hasHeroField && heroCheckbox.checked) {
         hasHeroField.insertAdjacentElement('afterend', warningNotification);
       }
 

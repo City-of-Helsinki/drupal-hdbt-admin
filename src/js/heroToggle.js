@@ -23,7 +23,7 @@
         element.dispatchEvent(event);
       }
 
-      const isBasicPage = document.querySelector('.node-page-form')  ? true : false ;
+      const isBasicPage = (document.querySelector('.node-page-form') || document.querySelector('.node-page-edit-form')) ? true : false;
       const warningNotification = document.createElement('div');
       warningNotification.className = 'form-notification form-notification--warning';
 
@@ -44,7 +44,7 @@
       warningNotification.appendChild(warningContainer);
 
       const hasHeroField = document.querySelector('.js-form-item-field-has-hero-value');
-      if (hasHeroField && heroCheckbox.checked) {
+      if (isBasicPage && hasHeroField && heroCheckbox.checked) {
         hasHeroField.insertAdjacentElement('afterend', warningNotification);
       }
 
@@ -66,8 +66,8 @@
             );
             if (removeHero) {
               triggerEvent(removeHero, 'mousedown');
-              if (isBasicPage && document.querySelector('.edit-form-notification--warning')) {
-                document.querySelector('.edit-form-notification--warning').remove();
+              if (isBasicPage && warningNotification ) {
+                warningNotification.remove();
               }
             }
           }

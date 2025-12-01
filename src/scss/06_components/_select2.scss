@@ -1,7 +1,5 @@
 // Select2 to look and feel more Gin-like.
 .select2.select2-container {
-  min-height: 50px;
-
   .select2-selection {
     border: 1px solid var(--gin-border-color-form-element);
     border-radius: 6px;
@@ -36,18 +34,9 @@
       display: flex;
       flex-flow: row wrap;
       font-size: remify($base-font-size);
-      padding: 8px;
-    }
-
-    .select2-search__field {
-      color: var(--gin-color-text);
-      font-size: remify($base-font-size);
       margin: 0;
-      min-width: 100px;
-      padding: calc(0.75rem - 1px) calc(1rem - 1px);
-      width: 100% !important; // Select2 uses JS to set the width for the search field.
+      padding: 0;
     }
-
     // Like button--small.
     .select2-selection__choice {
       align-items: center;
@@ -70,9 +59,10 @@
     }
 
     .select2-selection__choice__remove {
+      border: 0 none;
+      border-radius: 0 0 3px 0;
       color: var(--gin-color-button-text);
       font-size: remify($base-font-size);
-      margin-right: .5rem;
       transition: color 200ms;
 
       &:hover, &:active, &:focus {
@@ -90,6 +80,10 @@
     padding: calc(1rem - 1px);
   }
 
+  &.select2-container--default .select2-selection--multiple {
+    padding: $spacing-half;
+  }
+
   .required + & {
     .select2-selection.select2-selection--single .select2-selection__rendered {
       padding: calc(1rem - 1px) calc(1rem - 1px) calc(1rem - 1px) calc(2rem - 1px) ;
@@ -98,6 +92,26 @@
     .select2-selection.select2-selection--single .select2-selection__rendered .select2-selection__placeholder {
       margin: -15px;
     }
+  }
+
+  .select2-search.select2-search--inline {
+    align-items: center;
+    color: var(--gin-color-text);
+    display: flex;
+    font-size: remify($base-font-size);
+    height: auto;
+    margin: 0;
+    min-width: 100px;
+    padding: $spacing;
+    width: calc(100% - 32px) !important // Select2 uses JS to set the width for the search field.
+  }
+
+  .select2-search.select2-search--inline:focus-within {
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 2px 1px $color-coat-of-arms;
+  }
+
+  .select2-search.select2-search--inline textarea:focus {
+    box-shadow: none;
   }
 }
 

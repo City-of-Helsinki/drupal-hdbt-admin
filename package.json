@@ -14,6 +14,13 @@
     "lint:js": "eslint --fix src/js/ --no-error-on-unmatched-pattern",
     "lint": "npm-run-all --parallel lint:scss lint:js -s"
   },
+  "@comment dependencies": [
+    "Select2 Drupal module uses the development version of select2 library.",
+    "See: https://git.drupalcode.org/project/select2/-/compare/8.x-1.x...2.0.0#line_587d266bb_A70",
+    {
+      "select2": "A commit from develop branch."
+    }
+  ],
   "dependencies": {
     "@babel/core": "^7.23.2",
     "@hdbt/theme-builder": "file:../hdbt/theme-builder",
@@ -29,7 +36,7 @@
     "js-yaml": "^4.1.0",
     "npm-run-all2": "^8.0.4",
     "postcss-cli": "^11.0.1",
-    "select2": "^4.0.13",
+    "select2": "git+ssh://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9",
     "stylelint-config-standard-scss": "^15.0.0"
   },
   "browserslist": [

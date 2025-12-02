@@ -68,6 +68,7 @@ global-styling:
 # This is here to make the contrib select2 module work since its asset management doesn't suit our proxy setup.
 select2.min:
   remote: https://github.com/select2/select2
+  version: 2.0.0
   license:
     name: MIT
     url: https://github.com/select2/select2/blob/master/LICENSE.md

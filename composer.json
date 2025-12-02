@@ -6,8 +6,8 @@
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "require": {
-        "drupal/gin": "^4.0",
-        "drupal/admin_toolbar": "^3.0"
+        "drupal/gin": "^5.0",
+        "drupal/admin_toolbar": "^3.6"
     },
     "conflict": {
         "drupal/helfi_platform_config": "<4.16.68",

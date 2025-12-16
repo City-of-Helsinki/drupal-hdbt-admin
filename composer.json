@@ -12,7 +12,7 @@
     "extra": {
         "patches": {
             "drupal/gin_toolbar": {
-                "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "https://www.drupal.org/files/issues/2025-10-17/3552735-dialog-library-reordering-css-aggregation-fix-2.patch"
+                "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./patches/3552735.patch"
             }
         }
     },

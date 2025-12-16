@@ -12,7 +12,7 @@
     "extra": {
         "patches": {
             "drupal/gin_toolbar": {
-                "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./patches/3552735.patch"
+                "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./public/themes/contrib/hdbt_admin/patches/3552735.patch"
             }
         }
     },

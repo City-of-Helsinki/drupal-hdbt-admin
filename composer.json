@@ -9,13 +9,6 @@
         "drupal/admin_toolbar": "^3.0",
         "drupal/gin": "^4.0 || ^5.0"
     },
-    "extra": {
-        "patches": {
-            "drupal/gin_toolbar": {
-                "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./public/themes/contrib/hdbt_admin/patches/3552735.patch"
-            }
-        }
-    },
     "conflict": {
         "drupal/helfi_platform_config": "<4.16.68",
         "drupal/helfi_api_base": "<2.7.6"

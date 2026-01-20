@@ -2,6 +2,7 @@ $button-height: 4rem;
 $button-width: 3.5rem;
 $button-border-thickness: 2px;
 $button-border-radius: 6px;
+$button-border-inner-radius: 4px;
 $button-wrapper-width: 500px;
 $button-default-color: $color-white;
 $button-active-color: var(--gin-color-primary);
@@ -11,6 +12,8 @@ $button-active-color: var(--gin-color-primary);
   // spacing under the node form.
   .select-paragraph.dropbutton .dropbutton__items {
     bottom: 0;
+    max-height: 30vh;
+    overflow: auto;
     position: absolute;
   }
 
@@ -32,8 +35,20 @@ $button-active-color: var(--gin-color-primary);
       margin: 0 !important;
     }
   }
-}
 
+  // Allow all items to have height when the drop button is not open to
+  // calculate the height of the paragraph selection list.
+  .dropbutton-wrapper:not(.open) .dropbutton__item {
+    height: auto;
+  }
+
+  // Using opacity instead of display none to allow calculating
+  // the height of the hidden items. Visibility hidden will flash
+  // the items for a moment.
+  .dropbutton-wrapper:not(.open) .dropbutton__item.secondary-action .select-paragraph__wrapper {
+    opacity: 0;
+  }
+}
 
 .hdbt-admin .select-paragraph,
 .js .hdbt-admin .select-paragraph,
@@ -45,7 +60,7 @@ $button-active-color: var(--gin-color-primary);
     border-radius: $button-border-radius;
     height: $button-height;
     min-height: $button-height;
-    width: $button-wrapper-width;
+    width: calc($button-wrapper-width - $button-border-thickness * 2);
 
     // Override Gin styles for the drop button items (the list of paragraphs).
     .dropbutton__items {
@@ -68,10 +83,7 @@ $button-active-color: var(--gin-color-primary);
 
   // Override Gin styles for the paragraph list visibility toggle button.
   .dropbutton__toggle {
-    border: $button-border-thickness solid $button-active-color !important;
-    border-radius: 0 $button-border-radius $button-border-radius 0;
-    margin-block-start: -$button-border-thickness;
-    margin-inline-end: -$button-border-thickness;
+    border-left: 0 !important;
     min-height: $button-height;
     min-width: $button-width;
     z-index: 5;
@@ -79,6 +91,7 @@ $button-active-color: var(--gin-color-primary);
     &:hover,
     &:focus {
       background-color: $button-active-color;
+      border-radius: 0;
       box-shadow: none;
     }
 
@@ -94,8 +107,8 @@ $button-active-color: var(--gin-color-primary);
     border-block-start: 0;
     border-inline-end: $button-border-thickness solid $button-active-color;
     border-inline-start: 0;
-    border-radius: $button-border-radius 0 0 $button-border-radius;
-    height: calc(#{$button-height} - (#{$button-border-thickness} * 2));
+    border-radius: $button-border-inner-radius 0 0 $button-border-inner-radius;
+    height: $button-height;
     object-fit: cover;
     transition: transform .2s ease-in-out;
     width: 100px;
@@ -106,7 +119,8 @@ $button-active-color: var(--gin-color-primary);
     align-items: center;
     background-color: $button-default-color;
     border: 0 !important;
-    border-radius: $button-border-radius calc($button-border-radius - 2px) calc($button-border-radius - 2px) $button-border-radius; // Border radius reveals white background on preview image hover if border is the default.
+    border-radius: $button-border-inner-radius 0 0 $button-border-inner-radius;
+    border-right: $button-border-thickness solid $button-active-color !important;
     display: flex;
     height: 100%;
     margin: 0;
@@ -144,7 +158,7 @@ $button-active-color: var(--gin-color-primary);
 
   // The paragraph selector button that is always visible.
   .dropbutton-action:not(.secondary-action) > .select-paragraph__wrapper {
-    width: calc(100% - $button-width + $button-border-thickness + $button-border-thickness);
+    width: calc(100% - $button-width);
   }
 }
 
@@ -154,7 +168,7 @@ $button-active-color: var(--gin-color-primary);
   &.paragraphs-open--up {
     .dropbutton__items {
       border-radius: $button-border-radius $button-border-radius 0 0;
-      margin-top: 4px;
+      margin-top: 3px; // The margin-top is necessary to avoid a double border.
     }
 
     .select-paragraph.dropbutton {
@@ -165,7 +179,6 @@ $button-active-color: var(--gin-color-primary);
   &.paragraphs-open--down {
     .dropbutton__items {
       border-radius: 0 0 $button-border-radius $button-border-radius;
-      margin-block-start: -1px; // The margin-block-start is necessary to avoid a double border.
     }
 
     .select-paragraph.dropbutton {

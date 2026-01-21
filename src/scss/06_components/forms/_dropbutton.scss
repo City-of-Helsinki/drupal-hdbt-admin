@@ -1,3 +1,21 @@
-.hdbt-admin .dropbutton-widget {
+.hdbt-admin .dropbutton-widget .dropbutton {
   background-color: var(--color-white);
+}
+
+// This fixes the double border on the dropbutton.
+.no-touchevents .hdbt-admin {
+  .dropbutton > .dropbutton__item:first-of-type {
+    border-inline-end: 1px solid var(--gin-color-primary);
+    margin-inline-end: 24px;
+  }
+  .dropbutton-toggle > .dropbutton__toggle {
+    border-inline-start: 0 !important;
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+// Fixes the unnecessary border on the secondary action item
+// when the dropbutton is open.
+.hdbt-admin .dropbutton-wrapper.open .dropbutton > .dropbutton__item.secondary-action {
+  border: 0;
 }

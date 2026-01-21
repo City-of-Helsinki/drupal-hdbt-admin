@@ -83,7 +83,7 @@ $button-active-color: var(--gin-color-primary);
 
   // Override Gin styles for the paragraph list visibility toggle button.
   .dropbutton__toggle {
-    border-left: $button-border-thickness solid $button-active-color !important;
+    border: 0;
     min-height: $button-height;
     min-width: $button-width;
     z-index: 5;
@@ -141,11 +141,12 @@ $button-active-color: var(--gin-color-primary);
     .button.field-add-more-submit {
       border: none !important;
       border-radius: 0;
+      border-right: $button-border-thickness solid $button-active-color !important;
       box-shadow: none;
       display: block;
       font-size: remify(14px);
       margin: 0;
-      min-height: calc(#{$button-height} - (#{$button-border-thickness} * 2));
+      min-height: $button-height;
       padding: 0 0 0 $spacing;
       text-align: left;
       width: 100%;
@@ -164,7 +165,9 @@ $button-active-color: var(--gin-color-primary);
 
 // Handle styles for the drop button items (the list of paragraphs) when
 // the paragraph selection is open on either up or down.
-.hdbt-admin .open {
+.hdbt-admin .open,
+.js .hdbt-admin .open,
+.js.no-touchevents .hdbt-admin .open {
   &.paragraphs-open--up {
     .dropbutton__items {
       border-radius: $button-border-radius $button-border-radius 0 0;
@@ -184,5 +187,10 @@ $button-active-color: var(--gin-color-primary);
     .select-paragraph.dropbutton {
       border-radius: $button-border-radius $button-border-radius 0 0;
     }
+  }
+
+  // Remove the right border from the add more button in the drop button items.
+  .select-paragraph .dropbutton__items .select-paragraph__wrapper .button.field-add-more-submit {
+    border-right: 0 !important;
   }
 }

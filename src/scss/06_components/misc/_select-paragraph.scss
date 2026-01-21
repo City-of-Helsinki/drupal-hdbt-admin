@@ -83,7 +83,7 @@ $button-active-color: var(--gin-color-primary);
 
   // Override Gin styles for the paragraph list visibility toggle button.
   .dropbutton__toggle {
-    border-left: 0 !important;
+    border-left: $button-border-thickness solid $button-active-color !important;
     min-height: $button-height;
     min-width: $button-width;
     z-index: 5;
@@ -120,7 +120,7 @@ $button-active-color: var(--gin-color-primary);
     background-color: $button-default-color;
     border: 0 !important;
     border-radius: $button-border-inner-radius 0 0 $button-border-inner-radius;
-    border-right: $button-border-thickness solid $button-active-color !important;
+    border-right: 0 !important;
     display: flex;
     height: 100%;
     margin: 0;

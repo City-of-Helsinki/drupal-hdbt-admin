@@ -4,7 +4,7 @@
 
 // This fixes the double border on the dropbutton.
 .no-touchevents .hdbt-admin {
-  .dropbutton > .dropbutton__item:first-of-type {
+  .dropbutton--multiple > .dropbutton__item:first-of-type {
     border-inline-end: 1px solid var(--gin-color-primary);
     margin-inline-end: 24px;
   }

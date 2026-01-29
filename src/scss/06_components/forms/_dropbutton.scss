@@ -1,14 +1,24 @@
 .hdbt-admin .dropbutton-widget .dropbutton {
   background-color: var(--color-white);
+  max-height: 44px;
 }
 
 // This fixes the double border on the dropbutton.
 .no-touchevents .hdbt-admin {
-  .dropbutton--multiple > .dropbutton__item:first-of-type {
+  .dropbutton.dropbutton--multiple > .dropbutton__item:first-of-type {
+    border-inline-end: 1px solid var(--gin-color-primary);
+    margin-inline-end: 48px;
+  }
+  .dropbutton .dropbutton-toggle > .dropbutton__toggle {
+    border-inline-start: 0 !important;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .dropbutton--extrasmall.dropbutton--multiple > .dropbutton__item:first-of-type {
     border-inline-end: 1px solid var(--gin-color-primary);
     margin-inline-end: 24px;
   }
-  .dropbutton-toggle > .dropbutton__toggle {
+  .dropbutton--extrasmall .dropbutton-toggle > .dropbutton__toggle {
     border-inline-start: 0 !important;
     border-radius: 0 6px 6px 0;
   }

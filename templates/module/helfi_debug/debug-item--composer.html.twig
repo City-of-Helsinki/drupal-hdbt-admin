@@ -31,21 +31,18 @@
   <tbody>
     {% for package in data.packages %}
       <tr>
-        <th>
-          {{ package.name }}
-        </th>
+        <td>
+          {% if package.releases_url %}
+            {{ link(package.name, package.releases_url) }}
+          {% else %}
+            {{ package.name }}
+          {% endif %}
+        </td>
         <td>
           {{ package.version }}
         </td>
         <td>
           {{ package.time }}
-        </td>
-        <td>
-          {% set link_url = package.source.url|replace({'.git':''}) %}
-          {% set link_title = link_url|replace({'https://github.com/City-of-Helsinki/':''}) %}
-          {% if link_url %}
-            {{ link(link_title, link_url ~ '/releases') }}
-          {% endif %}
         </td>
         <td data-package="{{ package.name }}" data-version="{{ package.version }}"></td>
       </tr>

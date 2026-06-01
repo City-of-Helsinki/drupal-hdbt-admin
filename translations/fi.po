@@ -255,3 +255,11 @@ msgstr "ukraina"
 
 msgid "The hero component and the side navigation cannot be used together. The side navigation will not be visible if the hero component is enabled."
 msgstr "Hero-kansikuvaa ja sivunavigaatiota ei voi käyttää yhdessä. Sivunavigaatio poistui näkyvistä, kun otit heron käyttöön."
+
+msgctxt "Dashboard"
+msgid "Own content on this instance"
+msgstr "Oma sisältösi tällä sivustolla"
+
+msgctxt "Dashboard"
+msgid "Add content"
+msgstr "Lisää sisältöä"

@@ -257,8 +257,12 @@ msgid "The hero component and the side navigation cannot be used together. The s
 msgstr "Hero-kansikuvaa ja sivunavigaatiota ei voi käyttää yhdessä. Sivunavigaatio poistui näkyvistä, kun otit heron käyttöön."
 
 msgctxt "Dashboard"
-msgid "Own content on this instance"
-msgstr "Oma sisältösi tällä sivustolla"
+msgid "My pages"
+msgstr "Omat sivut"
+
+msgctxt "Dashboard"
+msgid "My pages include pages you have created and pages where you are the most recent editor. The list only shows pages from this instance."
+msgstr "Omat sivut tarkoittavat sivuja, jotka olet luonut tai joissa olet viimeisin päivittäjä. Listalla näytetään vain tämän instanssin sivut."
 
 msgctxt "Dashboard"
 msgid "Add content"

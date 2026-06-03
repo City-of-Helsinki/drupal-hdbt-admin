@@ -1,6 +1,7 @@
 .dashboard__header {
   align-items: center;
   display: flex;
+  gap: var(--gin-spacing-m);
   justify-content: space-between;
   padding-block-end: var(--gin-spacing-l);
   width: 100%;

@@ -50,7 +50,7 @@
       <h2>{{ 'My pages'|t({}, {'context': 'Dashboard'}) }}</h2>
       <p>{{ 'My pages include pages you have created and pages where you are the most recent editor. The list only shows pages from this instance.'|t({}, {'context': 'Dashboard'}) }}</p>
     </div>
-    <a href="/node/add" class="button button--action button--primary" data-drupal-link-system-path="node/add">{{ 'Add content'|t({}, {'context': 'Dashboard'}) }}</a>
+    {{ link('Add content'|t({}, {'context': 'Dashboard'}), 'internal:/node/add', {'class': ['button', 'button--action', 'button--primary'], 'data-drupal-link-system-path': 'node/add'}) }}
   </div>
   {% if header %}
     <div class="view-header">

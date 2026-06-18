@@ -1,0 +1,20 @@
+div[data-drupal-selector="edit-field-ai-summary-wrapper"] {
+  margin-block: 24px;
+
+  input[type="submit"] {
+    margin: 8px 0 8px;
+  }
+
+  .form-item {
+    margin-block-end: 16px;
+  }
+  
+  .form-item.form-type--textarea {
+    margin: 0;
+  }
+
+  // Remove the margin from the empty wrapper.
+  .filter-wrapper {
+    margin: 0;
+  }
+}

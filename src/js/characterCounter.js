@@ -5,6 +5,7 @@
   const WARNING_GREEN = 0;
   const WARNING_YELLOW = 1;
   const WARNING_RED = 2;
+  const WARNING_CRITICAL = 3;
 
   // Translate character count texts.
   const characterCounter = (count, total) => {
@@ -15,12 +16,28 @@
   };
 
   // Determine the warning type based on character count.
-  const processWarningType = (count, step, total) => {
+  const processWarningType = (count, step, total, max) => {
+    // Critical blocks input and takes precedence over the other thresholds.
+    if (max > 0 && count >= max) {
+      return WARNING_CRITICAL;
+    }
     return (count >= total) ? WARNING_RED : (count > step && step > 0) ? WARNING_YELLOW : WARNING_GREEN;
   };
 
   // Translate warning texts based on warning type.
-  const characterWarning = (type, step, total, input, element) => {
+  const characterWarning = (type, step, total, max, input, element) => {
+
+    // The maximum length has been reached, block further input.
+    if (type === WARNING_CRITICAL) {
+      element.classList.remove('is-hidden');
+      element.classList.add('form-notification--critical');
+      return Drupal.t('You have reached the maximum length of @max characters.', {
+        '@max': max
+      }, {context: 'Character counter'});
+    }
+
+    // Reset the critical styling for the other warning types.
+    element.classList.remove('form-notification--critical');
 
     // The maximum length has been reached, show warning.
     if (type === WARNING_RED) {
@@ -80,6 +97,10 @@
         const counterInputTag = counterInstance.dataset.counterInputTag;
         const counterTotalChars = counterInstance.dataset.counterTotal;
         const counterStepChars = counterInstance.dataset.counterStep;
+        const counterMaxChars = parseInt(counterInstance.dataset.counterMax, 10) || 0;
+        const counterTotal = parseInt(counterTotalChars, 10) || 0;
+        // Block at the total length or lower when a smaller maximum is set.
+        const counterBlockChars = (counterMaxChars > 0 && counterMaxChars < counterTotal) ? counterMaxChars : counterTotal;
         const counterWarning =  counterInstance.querySelector('.character-counter .form-notification');
         const formItem = context.querySelector(`.${counterCounter}`);
 
@@ -113,23 +134,33 @@
         }
 
         const updateCharacterCounter = (charCount) => {
-          warningType = processWarningType(charCount, counterStepChars, counterTotalChars);
-          charCounter.textContent = characterCounter(charCount, counterTotalChars);
+          warningType = processWarningType(charCount, counterStepChars, counterTotalChars, counterBlockChars);
+          charCounter.textContent = characterCounter(charCount, counterBlockChars);
           if (counterInputTag !== 'multifield') {
-            charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterInputTag, counterWarning);
+            charWarning.textContent = characterWarning(warningType, counterStepChars, counterTotalChars, counterBlockChars, counterInputTag, counterWarning);
           }
         };
 
-        // Set initial value for the character counter.
-        if (textInput.value.length > 0) {
-          updateCharacterCounter(textInput.value.length);
-        }
+        // Trim plain input down to the maximum length and keep the caret.
+        const enforcePlainMaxLength = () => {
+          if (counterBlockChars > 0 && textInput.value.length > counterBlockChars) {
+            const caret = Math.min(textInput.selectionStart, counterBlockChars);
+            textInput.value = textInput.value.slice(0, counterBlockChars);
+            textInput.setSelectionRange(caret, caret);
+          }
+        };
 
         // Handle input tag and textarea tags separately.
         if (counterInputTag === 'input') {
+          // Set initial value for the character counter.
+          if (textInput.value.length > 0) {
+            updateCharacterCounter(textInput.value.length);
+          }
+
           // Add event listener to the input tag and process
           // the charCounter and charWarning.
           textInput.addEventListener('input', function () {
+            enforcePlainMaxLength();
             updateCharacterCounter(textInput.value.length);
           });
         } else {
@@ -140,17 +171,57 @@
             // the charCounter and charWarning.
             if (ckeditorEditable && ckeditorEditable.ckeditorInstance) {
               const editor = ckeditorEditable.ckeditorInstance;
+              let lastValidData = editor.getData();
+              let isReverting = false;
+
+              // Set initial value for the character counter.
+              const initialCount = convertHtmlTags(lastValidData);
+              if (initialCount > 0) {
+                updateCharacterCounter(initialCount);
+              }
+
+              // Block new input once the maximum length is reached.
+              editor.model.on('insertContent', (evt) => {
+                if (counterBlockChars > 0 && convertHtmlTags(editor.getData()) >= counterBlockChars) {
+                  evt.stop();
+                }
+              }, {priority: 'highest'});
+
               editor.model.document.on('change:data', () => {
+                if (isReverting) {
+                  return;
+                }
+                const charCount = convertHtmlTags(editor.getData());
+
+                // Revert input that exceeds the maximum length.
+                if (counterBlockChars > 0 && charCount > counterBlockChars) {
+                  isReverting = true;
+                  editor.data.set(lastValidData);
+                  editor.model.change((writer) => {
+                    writer.setSelection(editor.model.document.getRoot(), 'end');
+                  });
+                  isReverting = false;
+                  updateCharacterCounter(convertHtmlTags(lastValidData));
+                  return;
+                }
+
+                lastValidData = editor.getData();
                 // Output the number of words to the counter.
-                updateCharacterCounter(convertHtmlTags(editor.getData()));
+                updateCharacterCounter(charCount);
               });
             }
             // The CKEditor is not used in this textarea. Handle current text
             // input normally.
             else {
+              // Set initial value for the character counter.
+              if (textInput.value.length > 0) {
+                updateCharacterCounter(textInput.value.length);
+              }
+
               // Add event listener to the input tag and process
               // the charCounter and charWarning.
               textInput.addEventListener('input', function () {
+                enforcePlainMaxLength();
                 updateCharacterCounter(textInput.value.length);
               });
             }

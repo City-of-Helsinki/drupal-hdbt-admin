@@ -39,6 +39,14 @@ msgctxt "Character counter"
 msgid "The recommended maximum length for the lead is @total characters."
 msgstr "Suositeltu ingressin enimmäispituus on @total merkkiä."
 
+msgctxt "Character counter"
+msgid "The recommended maximum length for the body is @total characters."
+msgstr "Suositeltu sisällön enimmäispituus on @total merkkiä."
+
+msgctxt "Character counter"
+msgid "You have reached the maximum length of @max characters."
+msgstr "Voit kirjoittaa tähän kenttään enintään @max merkkiä."
+
 msgid "Cookie consent intro"
 msgstr "Evästeiden hallinta intro"
 

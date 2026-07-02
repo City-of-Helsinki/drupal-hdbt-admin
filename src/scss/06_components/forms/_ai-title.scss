@@ -1,0 +1,49 @@
+.helfi-ai-title {
+  margin-block-end: $spacing-double;
+
+  .form-item {
+    margin-block-end: 0;
+  }
+}
+
+.helfi-ai-suggest {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  float: right;
+  margin-block-start: $spacing-half;
+
+  .button {
+    margin: 0;
+  }
+
+  .ajax-progress {
+    padding-block-start: 3px; // Fix the vertical alignment.
+  }
+
+  .ajax-progress__message {
+    font-size: remify(12px);
+  }
+}
+
+.helfi-ai-suggestions {
+  .helfi-ai-suggestions__options {
+    border: 0;
+    margin-block-end: 0;
+    margin-block-start: $spacing-half;
+    margin-inline: 0;
+  }
+
+  .helfi-ai-suggestions__count {
+    color: var(--color-black-70);
+    font-size: remify(12px);
+  }
+
+  .helfi-ai-suggestions__option {
+    margin-block: calc($spacing * .75);
+  }
+
+  .helfi-ai-suggestions__actions {
+    margin-block-end: $spacing;
+  }
+}

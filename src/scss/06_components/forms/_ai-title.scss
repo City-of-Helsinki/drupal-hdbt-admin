@@ -29,8 +29,7 @@
 .helfi-ai-suggestions {
   .helfi-ai-suggestions__options {
     border: 0;
-    margin-block-end: 0;
-    margin-block-start: $spacing-half;
+    margin-block: $spacing-half 0;
     margin-inline: 0;
   }
 

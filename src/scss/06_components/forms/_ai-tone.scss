@@ -1,0 +1,133 @@
+.helfi-ai-tone__dialog {
+  .ck.ck-dialog {
+    height: 80vh;
+    left: 2.5vh !important; // The original value is added via JS.
+    top: 10vh !important; // The original value is added via JS.
+    width: 95vw;
+  }
+
+  .ck.ck-form__header {
+    background-color: var(--color-coat-of-arms);
+    border-radius: 0.5rem 0.5rem 0 0;
+    grid-area: header;
+    padding: 0 1rem;
+  }
+
+  .ck.ck-form__header__label,
+  .ck.ck-button {
+    color: $color-white;
+  }
+
+  .ck.ck-dialog__content.helfi-ai-tone__wrapper {
+    padding: $spacing-half $spacing;
+  }
+
+  .helfi-ai-tone__tabs {
+    display: flex;
+
+    .helfi-ai-tone__tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      padding: 0 $spacing $spacing-half;
+
+      &:hover {
+        color: var(--ck-color-focus-border, #0000bf);
+      }
+
+      &--active {
+        border-bottom-color: var(--ck-color-focus-border, #0000bf);
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Tone check dialog styled to match the CKEditor chrome.
+  .helfi-ai-tone {
+    box-sizing: border-box;
+    padding: var(--ck-spacing-large, 1rem);
+
+    // Loading and error state spinner.
+    &--message {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+      min-height: 2rem;
+      min-width: 18rem;
+
+      &::before {
+        animation: helfi-ai-tone-spin 0.8s linear infinite;
+        border: 2px solid var(--ck-color-base-border, #ccced1);
+        border-radius: 50%;
+        border-top-color: var(--ck-color-focus-border, #0000bf);
+        content: '';
+        flex: 0 0 auto;
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+    }
+
+
+    // Show only the active panel.
+    &__panel {
+      display: none;
+
+      &--active {
+        display: block;
+      }
+
+      // Single-pane tabs match the comparison width.
+      > .helfi-ai-tone__pane {
+        width: min(60rem, 80vw);
+      }
+    }
+
+    // Comparison columns.
+    &__comparison {
+      display: flex;
+      gap: 1rem;
+      width: min(60rem, 80vw);
+    }
+
+    &__column {
+      flex: 1 1 50%;
+      // Allow shrinking so text wraps.
+      min-width: 0;
+    }
+
+    &__heading {
+      font-size: var(--ck-font-size-base, 1rem);
+      font-weight: bold;
+      margin: 0 0 0.5rem;
+    }
+
+    &__pane {
+      background: var(--ck-color-base-background, #fff);
+      border: 1px solid var(--ck-color-base-border, #ccced1);
+      border-radius: var(--ck-border-radius, 2px);
+      max-height: 22rem;
+      overflow-wrap: break-word;
+      // Scroll vertically and wrap long content.
+      overflow-y: auto;
+      padding: 0.75rem 1rem;
+
+      // Trim outer block margins.
+      > :first-child {
+        margin-top: 0;
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@keyframes helfi-ai-tone-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

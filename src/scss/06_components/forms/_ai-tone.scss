@@ -111,7 +111,7 @@
   .helfi-ai-tone__comparison {
     display: flex;
     flex: 1 1 auto;
-    gap: 1rem;
+    gap: $spacing;
     min-height: 0;
   }
 
@@ -125,12 +125,13 @@
 
   .helfi-ai-tone__heading {
     font-size: remify(14px);
-    font-weight: bold;
-    margin: 0 0 0.5rem;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-half;
   }
+
   .helfi-ai-tone__pane {
     border: 2px solid var(--color-black-70);
-    border-radius: 3px;
+    border-radius: $spacing-quarter;
     box-sizing: border-box;
     flex: 1 1 auto;
     max-width: 100%;
@@ -140,15 +141,9 @@
     overflow-x: hidden;
     overflow-y: auto;
     padding: $spacing;
-    word-break: break-word;
 
     > * {
-      box-sizing: border-box;
-      max-width: 100%;
-      min-width: 0;
-      overflow-wrap: anywhere;
       white-space: normal;
-      word-break: break-word;
     }
   }
 
@@ -156,21 +151,21 @@
   .helfi-ai-tone__del {
     background: var(--color-metro-light);
     color: var(--color-metro-dark);
-    padding: 1px 1px;
+    padding: 1px; // Little spacing around the text.
     text-decoration: none;
   }
 
   .helfi-ai-tone__ins {
     background: var(--color-tram-light);
     color: var(--color-tram-dark);
-    padding: 1px 1px;
+    padding: 1px; // Little spacing around the text.
     text-decoration: none;
   }
 
-  [data-pane=comparison-original] .helfi-ai-tone__ins {
+  [data-pane='comparison-original'] .helfi-ai-tone__ins {
     display: none;
   }
-  [data-pane=comparison-suggestion] .helfi-ai-tone__del {
+  [data-pane='comparison-suggestion'] .helfi-ai-tone__del {
     display: none;
   }
 

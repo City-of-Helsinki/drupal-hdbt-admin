@@ -1,5 +1,5 @@
 character-counter:
-  version: 1.1.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/characterCounter.min.js: {}
   dependencies:
@@ -7,26 +7,26 @@ character-counter:
     - core/once
 
 drop-button:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/dropButton.min.js: {}
   dependencies:
     - core/once
 
 language-switcher:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/languageSwitcher.min.js: {}
   dependencies:
     - core/drupal
 
 hero-toggle:
-  version: 1.0.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/heroToggle.min.js: {}
 
 list-of-links:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/listOfLinks.min.js: {}
   dependencies:
@@ -34,33 +34,33 @@ list-of-links:
     - core/jquery
 
 paragraphs-counter:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/paragraphsCounter.min.js: {}
   dependencies:
     - core/drupal
 
 tpr-edit-form:
-  version: 1.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/tprEditForm.min.js: {}
 
 updating-news-auto-toggle:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/updatingNewsAutoToggle.min.js: {}
   dependencies:
     - core/once
 
 language-reminder:
-  version: 1.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/languageReminder.min.js: {}
   dependencies:
     - core/drupal
 
 global-styling:
-  version: 1.x
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/styles.min.css: {}

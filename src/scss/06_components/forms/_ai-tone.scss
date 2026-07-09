@@ -1,29 +1,74 @@
-.helfi-ai-tone__dialog {
-  .ck.ck-dialog {
+// Loading spinner.
+@keyframes helfi-ai-tone-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// CKEditor dialog style overrides.
+.helfi-ai-tone__dialog .ck.ck-dialog {
+  // Resize the dialog window to gain better UX on smaller screens.
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  left: 50% !important; // The original value is added via JS to style attribute.
+  top: 50% !important; // The original value is added via JS to style attribute.
+  transform: translateY(-50%) translateX(-50%);
+  width: 96vw;
+
+  @media (min-width: $breakpoint-xl) {
     height: 80vh;
-    left: 2.5vh !important; // The original value is added via JS.
-    top: 10vh !important; // The original value is added via JS.
-    width: 95vw;
+    width: 90vw;
   }
 
+  @media (min-width: 1600px) {
+    height: 80vh;
+    margin: auto;
+    max-width: 1600px;
+    width: 80vw;
+  }
+
+  // Dialog header.
   .ck.ck-form__header {
-    background-color: var(--color-coat-of-arms);
-    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: var(--color-bus-dark);
+    border-radius: $spacing-half $spacing-half 0 0;
     grid-area: header;
-    padding: 0 1rem;
+    padding: 0 $spacing;
   }
 
-  .ck.ck-form__header__label,
-  .ck.ck-button {
-    color: $color-white;
+  .ck.ck-form__header .ck-button.ck-off {
+    color: var(--color-white);
   }
 
+  .ck.ck-form__header__label {
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: remify(16px);
+  }
+
+  // Dialog content.
   .ck.ck-dialog__content.helfi-ai-tone__wrapper {
-    padding: $spacing-half $spacing;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    padding-inline: $spacing;
+  }
+
+  .helfi-ai-tone__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
   }
 
   .helfi-ai-tone__tabs {
+    border-bottom: 1px solid var(--color-bus-dark);
     display: flex;
+    margin-block-start: $spacing-half;
+    margin-inline: -$spacing;
+    padding-inline: $spacing;
 
     .helfi-ai-tone__tab {
       background: none;
@@ -35,99 +80,154 @@
       padding: 0 $spacing $spacing-half;
 
       &:hover {
-        color: var(--ck-color-focus-border, #0000bf);
+        color: var(--color-bus-dark);
       }
 
       &--active {
-        border-bottom-color: var(--ck-color-focus-border, #0000bf);
-        font-weight: bold;
+        border-bottom-color: var(--color-bus-dark);
+        font-weight: $font-weight-bold;
       }
     }
   }
 
-  // Tone check dialog styled to match the CKEditor chrome.
-  .helfi-ai-tone {
+  .helfi-ai-tone__panels {
+    display: flex;
+    flex: 1 1 auto;
+    margin-block-start: $spacing-half;
+    min-height: 0;
+  }
+
+  .helfi-ai-tone__panel {
+    display: none;
+  }
+
+  .helfi-ai-tone__panel--active {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .helfi-ai-tone__comparison {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 1rem;
+    min-height: 0;
+  }
+
+  .helfi-ai-tone__column {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .helfi-ai-tone__heading {
+    font-size: remify(14px);
+    font-weight: bold;
+    margin: 0 0 0.5rem;
+  }
+  .helfi-ai-tone__pane {
+    border: 2px solid var(--color-black-70);
+    border-radius: 3px;
     box-sizing: border-box;
-    padding: var(--ck-spacing-large, 1rem);
+    flex: 1 1 auto;
+    max-width: 100%;
+    min-height: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $spacing;
+    word-break: break-word;
 
-    // Loading and error state spinner.
-    &--message {
-      align-items: center;
-      display: flex;
-      gap: 0.75rem;
-      min-height: 2rem;
-      min-width: 18rem;
-
-      &::before {
-        animation: helfi-ai-tone-spin 0.8s linear infinite;
-        border: 2px solid var(--ck-color-base-border, #ccced1);
-        border-radius: 50%;
-        border-top-color: var(--ck-color-focus-border, #0000bf);
-        content: '';
-        flex: 0 0 auto;
-        height: 1.25rem;
-        width: 1.25rem;
-      }
-    }
-
-
-    // Show only the active panel.
-    &__panel {
-      display: none;
-
-      &--active {
-        display: block;
-      }
-
-      // Single-pane tabs match the comparison width.
-      > .helfi-ai-tone__pane {
-        width: min(60rem, 80vw);
-      }
-    }
-
-    // Comparison columns.
-    &__comparison {
-      display: flex;
-      gap: 1rem;
-      width: min(60rem, 80vw);
-    }
-
-    &__column {
-      flex: 1 1 50%;
-      // Allow shrinking so text wraps.
+    > * {
+      box-sizing: border-box;
+      max-width: 100%;
       min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      word-break: break-word;
     }
+  }
 
-    &__heading {
-      font-size: var(--ck-font-size-base, 1rem);
-      font-weight: bold;
-      margin: 0 0 0.5rem;
-    }
+  // The word diff styles.
+  .helfi-ai-tone__del {
+    background: var(--color-metro-light);
+    color: var(--color-metro-dark);
+    padding: 1px 1px;
+    text-decoration: none;
+  }
 
-    &__pane {
-      background: var(--ck-color-base-background, #fff);
-      border: 1px solid var(--ck-color-base-border, #ccced1);
-      border-radius: var(--ck-border-radius, 2px);
-      max-height: 22rem;
-      overflow-wrap: break-word;
-      // Scroll vertically and wrap long content.
-      overflow-y: auto;
-      padding: 0.75rem 1rem;
+  .helfi-ai-tone__ins {
+    background: var(--color-tram-light);
+    color: var(--color-tram-dark);
+    padding: 1px 1px;
+    text-decoration: none;
+  }
 
-      // Trim outer block margins.
-      > :first-child {
-        margin-top: 0;
-      }
+  [data-pane=comparison-original] .helfi-ai-tone__ins {
+    display: none;
+  }
+  [data-pane=comparison-suggestion] .helfi-ai-tone__del {
+    display: none;
+  }
 
-      > :last-child {
-        margin-bottom: 0;
-      }
+  // Dialog actions.
+  .ck.ck-dialog__actions {
+    flex-shrink: 0;
+    justify-content: flex-start;
+    padding: 0 $spacing;
+  }
+
+  // Reset CKEditor styles for CTA buttons.
+  .ck.ck-dialog__actions .ck-button.helfi-ai-tone__reset {
+    background: none;
+    border: 0;
+    padding: 0;
+
+    &:active,
+    &:hover,
+    &:focus {
+      box-shadow: none;
     }
   }
 }
 
-@keyframes helfi-ai-tone-spin {
-  to {
-    transform: rotate(360deg);
+// Use smaller size for the dialog when waiting for a response.
+.helfi-ai-tone__dialog--loading .ck.ck-dialog {
+  height: auto;
+  min-height: 200px;
+  width: 500px;
+
+  .helfi-ai-tone--message::before {
+    animation: helfi-ai-tone-spin 0.8s linear infinite;
+    border: 3px solid var(--color-black-20);
+    border-radius: 50%;
+    border-top-color: var(--color-bus-dark);
+    content: '';
+    flex: 0 0 auto;
+    height: $spacing-and-half;
+    width: $spacing-and-half;
   }
+}
+
+// Use smaller size for the dialog when error occurs.
+.helfi-ai-tone__dialog--error .ck.ck-dialog {
+  height: auto;
+  min-height: 200px;
+  width: 700px;
+}
+
+// Styles for the loading and error messages.
+.helfi-ai-tone__dialog--loading .ck.ck-dialog .helfi-ai-tone--message,
+.helfi-ai-tone__dialog--error .ck.ck-dialog .helfi-ai-tone--message {
+  align-items: center;
+  display: flex;
+  font-size: remify(16px);
+  gap: $spacing-half;
+  justify-content: center;
+  line-height: 1;
+  min-width: 100%;
 }

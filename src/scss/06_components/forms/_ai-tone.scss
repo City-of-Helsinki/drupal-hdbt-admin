@@ -1,12 +1,12 @@
 // Loading spinner.
-@keyframes helfi-ai-tone-spin {
+@keyframes ai-tone-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
 // CKEditor dialog style overrides.
-.helfi-ai-tone__dialog .ck.ck-dialog {
+.ai-tone__dialog .ck.ck-dialog {
   // Resize the dialog window to gain better UX on smaller screens.
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
   }
 
   // Dialog content.
-  .ck.ck-dialog__content.helfi-ai-tone__wrapper {
+  .ck.ck-dialog__content.ai-tone__wrapper {
     display: flex;
     flex: 1 1 auto;
     min-height: 0;
@@ -55,7 +55,7 @@
     padding-inline: $spacing;
   }
 
-  .helfi-ai-tone__content {
+  .ai-tone__content {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -63,14 +63,14 @@
     width: 100%;
   }
 
-  .helfi-ai-tone__tabs {
+  .ai-tone__tabs {
     border-bottom: 1px solid var(--color-bus-dark);
     display: flex;
     margin-block-start: $spacing-half;
     margin-inline: -$spacing;
     padding-inline: $spacing;
 
-    .helfi-ai-tone__tab {
+    .ai-tone__tab {
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
@@ -90,32 +90,32 @@
     }
   }
 
-  .helfi-ai-tone__panels {
+  .ai-tone__panels {
     display: flex;
     flex: 1 1 auto;
     margin-block-start: $spacing-half;
     min-height: 0;
   }
 
-  .helfi-ai-tone__panel {
+  .ai-tone__panel {
     display: none;
   }
 
-  .helfi-ai-tone__panel--active {
+  .ai-tone__panel--active {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
     min-height: 0;
   }
 
-  .helfi-ai-tone__comparison {
+  .ai-tone__comparison {
     display: flex;
     flex: 1 1 auto;
     gap: $spacing;
     min-height: 0;
   }
 
-  .helfi-ai-tone__column {
+  .ai-tone__column {
     display: flex;
     flex: 1 1 50%;
     flex-direction: column;
@@ -123,13 +123,13 @@
     min-width: 0;
   }
 
-  .helfi-ai-tone__heading {
+  .ai-tone__heading {
     font-size: remify(14px);
     font-weight: $font-weight-bold;
     margin: 0 0 $spacing-half;
   }
 
-  .helfi-ai-tone__pane {
+  .ai-tone__pane {
     border: 2px solid var(--color-black-70);
     border-radius: $spacing-quarter;
     box-sizing: border-box;
@@ -148,22 +148,22 @@
   }
 
   // The word diff styles.
-  .helfi-ai-tone__del {
+  .ai-tone__del {
     background: var(--color-metro-light);
     color: var(--color-metro-dark);
     text-decoration: none;
   }
 
-  .helfi-ai-tone__ins {
+  .ai-tone__ins {
     background: var(--color-tram-light);
     color: var(--color-tram-dark);
     text-decoration: none;
   }
 
-  [data-pane='comparison-original'] .helfi-ai-tone__ins {
+  [data-pane='comparison-original'] .ai-tone__ins {
     display: none;
   }
-  [data-pane='comparison-suggestion'] .helfi-ai-tone__del {
+  [data-pane='comparison-suggestion'] .ai-tone__del {
     display: none;
   }
 
@@ -175,7 +175,7 @@
   }
 
   // Reset CKEditor styles for CTA buttons.
-  .ck.ck-dialog__actions .ck-button.helfi-ai-tone__reset {
+  .ck.ck-dialog__actions .ck-button.ai-tone__reset {
     background: none;
     border: 0;
     padding: 0;
@@ -189,13 +189,13 @@
 }
 
 // Use smaller size for the dialog when waiting for a response.
-.helfi-ai-tone__dialog--loading .ck.ck-dialog {
+.ai-tone__dialog--loading .ck.ck-dialog {
   height: auto;
   min-height: 200px;
   width: 500px;
 
-  .helfi-ai-tone--message::before {
-    animation: helfi-ai-tone-spin 0.8s linear infinite;
+  .ai-tone--message::before {
+    animation: ai-tone-spin 0.8s linear infinite;
     border: 3px solid var(--color-black-20);
     border-radius: 50%;
     border-top-color: var(--color-bus-dark);
@@ -207,15 +207,15 @@
 }
 
 // Use smaller size for the dialog when error occurs.
-.helfi-ai-tone__dialog--error .ck.ck-dialog {
+.ai-tone__dialog--error .ck.ck-dialog {
   height: auto;
   min-height: 200px;
   width: 700px;
 }
 
 // Styles for the loading and error messages.
-.helfi-ai-tone__dialog--loading .ck.ck-dialog .helfi-ai-tone--message,
-.helfi-ai-tone__dialog--error .ck.ck-dialog .helfi-ai-tone--message {
+.ai-tone__dialog--loading .ck.ck-dialog .ai-tone--message,
+.ai-tone__dialog--error .ck.ck-dialog .ai-tone--message {
   align-items: center;
   display: flex;
   font-size: remify(16px);

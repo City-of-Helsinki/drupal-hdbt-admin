@@ -6,9 +6,9 @@
 :root {
   // Default color variables.
   --input-radio-color-palette: var(--color-black-70);
-  --input-radio-color-palette-text: $color-white;
+  --input-radio-color-palette-text: var(--color-white);
   --hdbt-admin-theme-color: var(--color-black);
-  --hdbt-admin-text-color: $color-white;
+  --hdbt-admin-text-color: var(--color-white);
 }
 
 .hdbt-admin-tools-site-settings {

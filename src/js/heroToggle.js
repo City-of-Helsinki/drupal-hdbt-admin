@@ -23,7 +23,7 @@
         element.dispatchEvent(event);
       }
 
-      const isBasicPage = (document.querySelector('.node-page-form') || document.querySelector('.node-page-edit-form')) ? true : false;
+      const isBasicPage = !!document.querySelector('.basic-page-form');
       const warningNotification = document.createElement('div');
       warningNotification.className = 'form-notification form-notification--warning';
 

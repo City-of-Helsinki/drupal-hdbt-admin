@@ -1,7 +1,7 @@
 .hdbt-admin {
   // Adjust the sticky header styles.
   .hdbt_admin--edit-form .region-sticky {
-    background-color: $body-bg-color;
+    background-color: $color-white;
     padding-block-start: $spacing-quarter;
 
     @media (width >= 1024px) {

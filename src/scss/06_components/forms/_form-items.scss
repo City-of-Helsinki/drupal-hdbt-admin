@@ -31,6 +31,15 @@
   }
 }
 
+.form-notification--critical {
+  background: $color-error-light;
+  border-left-color: $color-error;
+
+  .form-notification__icon {
+    color: $color-error;
+  }
+}
+
 .form-notification__warning-text {
   color: $color-black;
   margin-block: 0;

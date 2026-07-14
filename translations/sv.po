@@ -17,6 +17,14 @@ msgctxt "Character counter"
 msgid "The recommended maximum length for the lead is @total characters."
 msgstr "Rekommenderad maxlängd för ingressen är @total tecken."
 
+msgctxt "Character counter"
+msgid "The recommended maximum length for the body is @total characters."
+msgstr "Rekommenderad maxlängd för innehållet är @total tecken."
+
+msgctxt "Character counter"
+msgid "You can enter a maximum of @max characters in this field."
+msgstr "Du kan ange högst @max tecken i det här fältet."
+
 msgctxt "Empty alt text in media library"
 msgid "Empty"
 msgstr "Tom"

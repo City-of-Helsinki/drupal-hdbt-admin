@@ -1,4 +1,4 @@
-.helfi-ai-title {
+.ai-title {
   margin-block-end: $spacing-double;
 
   .form-item {
@@ -6,7 +6,7 @@
   }
 }
 
-.helfi-ai-suggest {
+.ai-suggest {
   align-items: center;
   display: flex;
   flex-direction: row-reverse;
@@ -26,23 +26,23 @@
   }
 }
 
-.helfi-ai-suggestions {
-  .helfi-ai-suggestions__options {
+.ai-suggestions {
+  .ai-suggestions__options {
     border: 0;
     margin-block: $spacing-half 0;
     margin-inline: 0;
   }
 
-  .helfi-ai-suggestions__count {
+  .ai-suggestions__count {
     color: var(--color-black-70);
     font-size: remify(12px);
   }
 
-  .helfi-ai-suggestions__option {
+  .ai-suggestions__option {
     margin-block: calc($spacing * .75);
   }
 
-  .helfi-ai-suggestions__actions {
+  .ai-suggestions__actions {
     margin-block-end: $spacing;
   }
 }

@@ -23,7 +23,7 @@
         element.dispatchEvent(event);
       }
 
-      const isBasicPage = !!document.querySelector('.basic-page-form');
+      const isBasicPage = !!document.querySelector('.hdbt-entity-form--page');
       const warningNotification = document.createElement('div');
       warningNotification.className = 'form-notification form-notification--warning';
 

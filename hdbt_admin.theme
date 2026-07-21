@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -41,11 +42,11 @@ function hdbt_admin_preprocess_form(array &$variables): void {
   $node = $route_match->getParameter('node');
   $bundle = '';
 
-  // Bundle for edit forms
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  // Bundle for edit forms.
+  if ($node instanceof NodeInterface) {
     $bundle = $node->bundle();
   }
-  // Bundle for add forms
+  // Bundle for add forms.
   $node_type = $route_match->getParameter('node_type');
   if ($node_type) {
     $bundle = $node_type->id();
@@ -63,7 +64,7 @@ function hdbt_admin_preprocess_form(array &$variables): void {
   }
 
   $global_class = 'hdbt-entity-form';
-  $node_class =  'hdbt-entity-form--' . $bundle;
+  $node_class = 'hdbt-entity-form--' . $bundle;
 
   $variables['attributes']['class'][] = $node_class;
   $variables['attributes']['class'][] = $global_class;

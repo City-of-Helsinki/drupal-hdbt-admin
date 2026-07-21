@@ -1,0 +1,226 @@
+// Loading spinner.
+@keyframes ai-tone-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// CKEditor dialog style overrides.
+.ai-tone__dialog .ck.ck-dialog {
+  // Resize the dialog window to gain better UX on smaller screens.
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  left: 50% !important; // The original value is added via JS to style attribute.
+  top: 50% !important; // The original value is added via JS to style attribute.
+  transform: translateY(-50%) translateX(-50%);
+  width: 96vw;
+
+  @media (min-width: $breakpoint-xl) {
+    height: 80vh;
+    width: 90vw;
+  }
+
+  @media (min-width: 1600px) {
+    height: 80vh;
+    margin: auto;
+    max-width: 1600px;
+    width: 80vw;
+  }
+
+  // Dialog header.
+  .ck.ck-form__header {
+    background-color: var(--color-bus-dark);
+    border-radius: $spacing-half $spacing-half 0 0;
+    grid-area: header;
+    padding: 0 $spacing;
+  }
+
+  .ck.ck-form__header .ck-button.ck-off {
+    color: var(--color-white);
+  }
+
+  .ck.ck-form__header__label {
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: remify(16px);
+  }
+
+  // Dialog content.
+  .ck.ck-dialog__content.ai-tone__wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    padding-inline: $spacing;
+  }
+
+  .ai-tone__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .ai-tone__tabs {
+    border-bottom: 1px solid var(--color-bus-dark);
+    display: flex;
+    margin-block-start: $spacing-half;
+    margin-inline: -$spacing;
+    padding-inline: $spacing;
+
+    .ai-tone__tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      padding: 0 $spacing $spacing-half;
+
+      &:hover {
+        color: var(--color-bus-dark);
+      }
+
+      &--active {
+        border-bottom-color: var(--color-bus-dark);
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  .ai-tone__panels {
+    display: flex;
+    flex: 1 1 auto;
+    margin-block-start: $spacing-half;
+    min-height: 0;
+  }
+
+  .ai-tone__panel {
+    display: none;
+  }
+
+  .ai-tone__panel--active {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .ai-tone__comparison {
+    display: flex;
+    flex: 1 1 auto;
+    gap: $spacing;
+    min-height: 0;
+  }
+
+  .ai-tone__column {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .ai-tone__heading {
+    font-size: remify(14px);
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-half;
+  }
+
+  .ai-tone__pane {
+    border: 2px solid var(--color-black-70);
+    border-radius: $spacing-quarter;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    max-width: 100%;
+    min-height: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $spacing;
+
+    > * {
+      white-space: normal;
+    }
+  }
+
+  // The word diff styles.
+  .ai-tone__del {
+    background: var(--color-metro-light);
+    color: var(--color-metro-dark);
+    text-decoration: none;
+  }
+
+  .ai-tone__ins {
+    background: var(--color-tram-light);
+    color: var(--color-tram-dark);
+    text-decoration: none;
+  }
+
+  [data-pane='comparison-original'] .ai-tone__ins {
+    display: none;
+  }
+  [data-pane='comparison-suggestion'] .ai-tone__del {
+    display: none;
+  }
+
+  // Dialog actions.
+  .ck.ck-dialog__actions {
+    flex-shrink: 0;
+    justify-content: flex-start;
+    padding: 0 $spacing;
+  }
+
+  // Reset CKEditor styles for CTA buttons.
+  .ck.ck-dialog__actions .ck-button.ai-tone__reset {
+    background: none;
+    border: 0;
+    padding: 0;
+
+    &:active,
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// Use smaller size for the dialog when waiting for a response.
+.ai-tone__dialog--loading .ck.ck-dialog {
+  height: auto;
+  min-height: 200px;
+  width: 500px;
+
+  .ai-tone--message::before {
+    animation: ai-tone-spin 0.8s linear infinite;
+    border: 3px solid var(--color-black-20);
+    border-radius: 50%;
+    border-top-color: var(--color-bus-dark);
+    content: '';
+    flex: 0 0 auto;
+    height: $spacing-and-half;
+    width: $spacing-and-half;
+  }
+}
+
+// Use smaller size for the dialog when error occurs.
+.ai-tone__dialog--error .ck.ck-dialog {
+  height: auto;
+  min-height: 200px;
+  width: 700px;
+}
+
+// Styles for the loading and error messages.
+.ai-tone__dialog--loading .ck.ck-dialog .ai-tone--message,
+.ai-tone__dialog--error .ck.ck-dialog .ai-tone--message {
+  align-items: center;
+  display: flex;
+  font-size: remify(16px);
+  gap: $spacing-half;
+  justify-content: center;
+  line-height: 1;
+  min-width: 100%;
+}

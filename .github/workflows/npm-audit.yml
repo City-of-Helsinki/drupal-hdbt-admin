@@ -16,16 +16,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          path: themes/contrib/hdbt_admin
+
+      # HDBT is needed for the @hdbt/theme-builder local dependency.
+      - name: Checkout HDBT
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: City-of-Helsinki/drupal-hdbt
+          path: themes/contrib/hdbt
 
       - name: Run npm audit
         id: npm_audit
+        working-directory: themes/contrib/hdbt_admin
         run: |
           node_version=$(cat .nvmrc)
           echo "Using Node.js version $node_version"
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-          npm install --silent
+          npm install --loglevel=error
           set +e
           npm audit --package-lock-only --loglevel=error;
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
@@ -42,6 +52,7 @@ jobs:
         if: steps.npm_audit.outputs.CREATE_PR == 'true'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          path: themes/contrib/hdbt_admin
           commit-message: Updated node modules based on npm audit fix
           title: Automatic npm audit fix
           labels: auto-update

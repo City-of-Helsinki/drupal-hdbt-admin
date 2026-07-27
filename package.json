@@ -21,6 +21,9 @@
       "select2": "A commit from develop branch."
     }
   ],
+  "overrides": {
+    "brace-expansion": "^5.0.8"
+  },
   "dependencies": {
     "@babel/core": "^7.23.2",
     "@hdbt/theme-builder": "file:../hdbt/theme-builder",
@@ -31,12 +34,12 @@
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-jsdoc": "^54.0.0",
     "glob": "^11.0.0",
-    "hds-design-tokens": "^4.2.0",
+    "hds-design-tokens": "^5.2.0",
     "joi": "^18.0.0",
     "js-yaml": "^4.1.0",
     "npm-run-all2": "^8.0.4",
     "postcss-cli": "^11.0.1",
-    "select2": "git+ssh://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9",
+    "select2": "git+https://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9",
     "stylelint-config-standard-scss": "^15.0.0"
   },
   "browserslist": [

@@ -1,3 +1,7 @@
+.dashboard__tabs {
+  margin-top: var(--space-l);
+}
+
 .dashboard__header {
   align-items: center;
   display: flex;
@@ -5,6 +9,10 @@
   justify-content: space-between;
   padding-block-end: var(--gin-spacing-l);
   width: 100%;
+
+  &--tight {
+    padding-block-end: 0;
+  }
 }
 
 .translation-state--outdated {

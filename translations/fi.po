@@ -289,5 +289,5 @@ msgstr "Yhtään kohdetta ei ole valittuna"
 msgid "Update URL alias of an entity"
 msgstr "Päivitä sisällön osoitealias"
 
-mdgid "-- Select action --"
+msgid "-- Select action --"
 msgstr "-- Valitse --"

@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation for horizontal tabs.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered children.
+ *
+ * @see template_preprocess_horizontal_tabs()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="dashboard__header dashboard__header--tight">
+  <div>
+    <p>{{ 'The lists include TPR content where you are the most recent editor. The lists only show content from this instance.'|t({}, {'context': 'Dashboard'}) }}</p>
+  </div>
+</div>
+<div data-horizontal-tabs class="horizontal-tabs clearfix">
+  <ul data-horizontal-tabs-list class="horizontal-tabs-list visually-hidden"></ul>
+  <div data-horizontal-tabs-panes{{ attributes }}>{{ children }}</div>
+</div>

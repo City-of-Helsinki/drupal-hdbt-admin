@@ -283,11 +283,11 @@ msgctxt "Dashboard"
 msgid "The lists include TPR content where you are the most recent editor. The lists only show content from this instance."
 msgstr "Löydät listauksista TPR-sisällöt, joissa olet viimeisin päivittäjä. Listauksissa näytetään vain tämän instanssin sisällöt."
 
-msgid: "No items selected"
-msgstr: "Yhtään kohdetta ei ole valittuna"
+msgid "No items selected"
+msgstr "Yhtään kohdetta ei ole valittuna"
 
-msgid: "Update URL alias of an entity"
-msgstr: "Päivitä sisällön osoitealias"
+msgid "Update URL alias of an entity"
+msgstr "Päivitä sisällön osoitealias"
 
-mdgid: "-- Select action --"
-msgstr: "-- Valitse --"
+mdgid "-- Select action --"
+msgstr "-- Valitse --"

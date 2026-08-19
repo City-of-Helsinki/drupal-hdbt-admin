@@ -269,7 +269,7 @@ msgstr "Omat sisällöt"
 
 msgctxt "Dashboard"
 msgid "My content"
-msgstr "Oma sisältö"
+msgstr "Omat sisällöt"
 
 msgctxt "Dashboard"
 msgid "My pages include pages you have created and pages where you are the most recent editor. The list only shows pages from this instance."

@@ -1,0 +1,139 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Function _hdbt_admin_form_template_suggestions\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function _hdbt_admin_form_template_suggestions\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_apply_form_theme\(\) has parameter \$form with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_node_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_taxonomy_term_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_tpr_errand_service_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_tpr_ontology_word_details_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_tpr_service_channel_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_tpr_service_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_form_tpr_unit_form_alter\(\) has parameter \$form with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_manipulate_custom_fields\(\) has parameter \$form with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_manipulate_field_metatags\(\) has parameter \$form with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_file_upload_help\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_form\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_form_element_label\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_html\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_input\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_media\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_preprocess_table\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_theme_suggestions_form_element_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_theme_suggestions_form_element_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_theme_suggestions_input_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme
+
+		-
+			message: '#^Function hdbt_admin_theme_suggestions_input_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt_admin.theme

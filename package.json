@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "node theme-builder.mjs --watch --dev",
     "build": "npm run lint -s && node theme-builder.mjs",
-    "preinstall": "npx update-browserslist-db@latest",
     "postinstall": "npm --prefix ../../contrib/hdbt install --no-audit --progress=false",
     "lint:scss": "npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map",
     "lint:js": "eslint --fix src/js/ --no-error-on-unmatched-pattern",
@@ -21,22 +20,12 @@
       "select2": "A commit from develop branch."
     }
   ],
-  "overrides": {
-    "brace-expansion": "^5.0.8"
-  },
   "dependencies": {
-    "@babel/core": "^7.23.2",
     "@hdbt/theme-builder": "file:../hdbt/theme-builder",
-    "breakpoint-sass": "^3.0.0",
     "css-declaration-sorter": "^7.2.0",
     "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^10.0.0",
-    "eslint-plugin-jsdoc": "^54.0.0",
     "glob": "^11.0.0",
-    "hds-design-tokens": "^5.2.0",
-    "joi": "^18.0.0",
-    "js-yaml": "^4.1.0",
+    "hds-design-tokens": "^6.0.5",
     "npm-run-all2": "^8.0.4",
     "postcss-cli": "^11.0.1",
     "select2": "git+https://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9",
@@ -46,5 +35,8 @@
     "last 3 major versions",
     "> 1%",
     "not dead"
-  ]
+  ],
+  "allowScripts": {
+    "fsevents": false
+  }
 }

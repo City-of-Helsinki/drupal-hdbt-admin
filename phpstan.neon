@@ -1,3 +1,5 @@
+includes:
+	- phpstan-baseline.neon
 parameters:
   fileExtensions:
       - php
@@ -7,7 +9,6 @@ parameters:
   paths:
     - ./
   excludePaths:
-    - vendor
-  level: 3
-  checkMissingIterableValueType: false
+    - vendor (?)
+  level: 7
   treatPhpDocTypesAsCertain: false

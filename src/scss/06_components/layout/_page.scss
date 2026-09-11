@@ -1,12 +1,14 @@
-.hdbt_admin {
-  // Hide the text format helper for now.
-  // Maybe replace with something like a info-icon later on.
-  .text-full {
-    .filter-wrapper {
+.hdbt-admin {
+  // Hide the text format helper from textarea fields.
+  .field--widget-formatted-text-character-counter,
+  .field--widget-text-textarea {
+    .form-type--textarea + .filter-wrapper {
       display: none;
     }
   }
+}
 
+.hdbt_admin {
   .ui-dialog .ui-widget-content.ui-dialog-content {
     padding-top: $spacing;
   }
@@ -27,14 +29,6 @@
   // Unify the field label font size to base font size.
   .form-item__label {
     font-size: remify($base-font-size);
-  }
-
-  // Hide "About text formats" link from text-area fields on node form.
-  .field--widget-formatted-text-character-counter,
-  .node-form .field--widget-text-textarea {
-    .form-type--textarea + .filter-wrapper {
-      display: none;
-    }
   }
 
   ul.paragraph-selection.dropbutton {

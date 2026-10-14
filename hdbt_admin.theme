@@ -447,7 +447,6 @@ function hdbt_admin_preprocess_media(array &$variables): void {
     }
 
     if ($variables['media']->hasTranslation($language_id)) {
-      // @phpstan-ignore-next-line
       $alt = $variables['media']
         ->getTranslation($language_id)
         ->field_media_image->alt;

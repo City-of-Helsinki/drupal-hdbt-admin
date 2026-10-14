@@ -8,6 +8,11 @@
   }
 }
 
+// Keep the media library grid thumbnails square.
+.hdbt-admin .media-library-item--grid .media-library-item__preview {
+  min-height: 0;
+}
+
 // Override edit-button position for media library widget.
 [dir="ltr"] .media-library-view--widget .media-library-item {
   .media-library-item__edit {

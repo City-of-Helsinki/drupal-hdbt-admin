@@ -6,12 +6,11 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt-admin",
   "scripts": {
-    "dev": "node theme-builder.mjs --watch --dev",
-    "build": "npm run lint -s && node theme-builder.mjs",
-    "postinstall": "npm --prefix ../../contrib/hdbt install --no-audit --progress=false",
-    "lint:scss": "npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map",
-    "lint:js": "eslint --fix src/js/ --no-error-on-unmatched-pattern",
-    "lint": "npm-run-all --parallel lint:scss lint:js -s"
+    "dev": "../hdbt/tools/sandbox.sh node theme-builder.mjs --watch --dev",
+    "build": "../hdbt/tools/sandbox.sh sh -c 'node theme-builder.mjs'",
+    "postinstall": "npm --prefix ../hdbt install --no-audit --progress=false --loglevel=silent",
+    "lint:stylelint": "../hdbt/tools/sandbox.sh stylelint \"src/scss/**/*.scss\" --config ../hdbt/theme-builder/.stylelintrc.yaml --fix",
+    "lint": "../hdbt/tools/sandbox.sh npm-run-all --parallel lint:scss lint:js -s"
   },
   "@comment dependencies": [
     "Select2 Drupal module uses the development version of select2 library.",

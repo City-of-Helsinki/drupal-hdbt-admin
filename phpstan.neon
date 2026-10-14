@@ -10,5 +10,6 @@ parameters:
     - ./
   excludePaths:
     - vendor (?)
+    - node_modules (?)
   level: 7
   treatPhpDocTypesAsCertain: false

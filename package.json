@@ -5,12 +5,17 @@
   "author": "Druid",
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt-admin",
+  "@comment scripts": [
+    "Every build, lint and format script below runs inside a disposable Node container via the sandbox command."
+  ],
   "scripts": {
-    "dev": "../hdbt/tools/sandbox.sh node theme-builder.mjs --watch --dev",
-    "build": "../hdbt/tools/sandbox.sh sh -c 'node theme-builder.mjs'",
-    "postinstall": "npm --prefix ../hdbt install --no-audit --progress=false --loglevel=silent",
-    "lint:stylelint": "../hdbt/tools/sandbox.sh stylelint \"src/scss/**/*.scss\" --config ../hdbt/theme-builder/.stylelintrc.yaml --fix",
-    "lint": "../hdbt/tools/sandbox.sh npm-run-all --parallel lint:scss lint:js -s"
+    "preinstall": "npm install ../hdbt/theme-builder --loglevel=silent",
+    "dev": "sandbox node theme-builder.mjs --watch --dev",
+    "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint --loglevel=silent && node theme-builder.mjs'",
+    "lint:scss": "sandbox stylelint \"src/scss/**/*.scss\" --fix",
+    "lint:js": "sandbox biome lint --no-errors-on-unmatched src/js/",
+    "format:js": "sandbox biome format --write --no-errors-on-unmatched src/js/",
+    "lint": "sandbox npm-run-all --parallel lint:scss lint:js -s"
   },
   "@comment dependencies": [
     "Select2 Drupal module uses the development version of select2 library.",
@@ -21,16 +26,17 @@
   ],
   "dependencies": {
     "@hdbt/theme-builder": "file:../hdbt/theme-builder",
-    "css-declaration-sorter": "^7.2.0",
-    "eslint": "^8.57.1",
     "glob": "^11.0.0",
-    "hds-design-tokens": "^6.0.5",
     "npm-run-all2": "^8.0.4",
-    "postcss-cli": "^11.0.1",
-    "select2": "git+https://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9",
-    "stylelint-config-standard-scss": "^15.0.0"
+    "select2": "git+https://github.com/select2/select2.git#595494a72fee67b0a61c64701cbb72e3121f97b9"
   },
   "allowScripts": {
-    "fsevents": false
+    "fsevents": false,
+    "@parcel/watcher": false,
+    "esbuild": false
+  },
+  "engines": {
+    "npm": ">=12.0.0",
+    "node": ">=24.0.0"
   }
 }

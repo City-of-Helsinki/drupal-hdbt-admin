@@ -43,3 +43,41 @@ jobs:
       - name: Run phpstan
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
+
+  test-js:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: public/themes/contrib/hdbt_admin
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: public/themes/contrib/hdbt_admin
+          persist-credentials: false
+
+      - name: Checkout HDBT
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: City-of-Helsinki/drupal-hdbt
+          path: public/themes/contrib/hdbt
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: 'public/themes/contrib/hdbt_admin/.nvmrc'
+
+      - name: Install npm 12
+        run: npm install -g npm@12 --no-audit --progress=false
+
+      - name: Install dependencies
+        run: npm ci --no-audit --progress=false
+
+      - name: Check that the build produced no changes
+        run: |
+          npm run build
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Build output is out of date. Run 'npm run build' and commit the result."
+            git status --porcelain
+            git diff --stat
+            exit 1
+          fi

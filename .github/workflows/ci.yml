@@ -55,10 +55,23 @@ jobs:
           path: public/themes/contrib/hdbt_admin
           persist-credentials: false
 
+      # Use the HDBT branch with the same name when it exists.
+      - name: Resolve HDBT branch
+        id: hdbt
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if git ls-remote --exit-code --heads https://github.com/City-of-Helsinki/drupal-hdbt.git "$BRANCH" > /dev/null; then
+            echo "ref=$BRANCH" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=main" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout HDBT
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: City-of-Helsinki/drupal-hdbt
+          ref: ${{ steps.hdbt.outputs.ref }}
           path: public/themes/contrib/hdbt
           persist-credentials: false
 

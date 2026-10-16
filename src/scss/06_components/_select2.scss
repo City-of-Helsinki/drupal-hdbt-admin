@@ -37,6 +37,7 @@
       margin: 0;
       padding: 0;
     }
+
     // Like button--small.
     .select2-selection__choice {
       align-items: center;
@@ -60,7 +61,7 @@
 
     .select2-selection__choice__remove {
       border: 0 none;
-      border-radius: 0 0 3px 0;
+      border-radius: 0 0 3px;
       color: var(--gin-color-button-text);
       font-size: remify($base-font-size);
       transition: color 200ms;

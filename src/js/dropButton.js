@@ -1,7 +1,7 @@
 ((Drupal, once) => {
   Drupal.behaviors.hdbtAdminDropButton = {
     attach: function (context) {
-      once('hdbtAdminDropButton', '.dropbutton-multiple:has(.dropbutton--gin)', context).forEach(el => {
+      once('hdbtAdminDropButton', '.dropbutton-multiple:has(.dropbutton--gin)', context).forEach((el) => {
         el.querySelector('.dropbutton__toggle').addEventListener('click', () => {
           this.updatePosition(el);
 
@@ -39,11 +39,11 @@
       // reading direction.
       const leftAlignStyles = {
         left: `${boundingRect.left}px`,
-        right: 'auto'
+        right: 'auto',
       };
       const rightAlignStyles = {
         left: 'auto',
-        right: `${window.innerWidth - Math.round(boundingRect.right) + 1}px`
+        right: `${window.innerWidth - Math.round(boundingRect.right) + 1}px`,
       };
 
       if ('ltr' === preferredDir) {
@@ -67,7 +67,5 @@
         this.updatePosition(el);
       }
     },
-
   };
-
 })(Drupal, once);

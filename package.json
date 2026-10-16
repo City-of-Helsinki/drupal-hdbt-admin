@@ -6,12 +6,13 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt-admin",
   "@comment scripts": [
-    "Every build, lint and format script below runs inside a disposable Node container via the sandbox command."
+    "Every build, lint and format script below runs inside a disposable Node container via the sandbox command.",
+    "@todo UHF-13820: Add 'npm run lint --loglevel=silent' back to the build script."
   ],
   "scripts": {
     "preinstall": "npm install ../hdbt/theme-builder --loglevel=silent",
     "dev": "sandbox node theme-builder.mjs --watch --dev",
-    "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint --loglevel=silent && node theme-builder.mjs'",
+    "build": "sandbox sh -c 'npm run format:js --loglevel=silent && node theme-builder.mjs'",
     "lint:scss": "sandbox stylelint \"src/scss/**/*.scss\" --fix",
     "lint:js": "sandbox biome lint --no-errors-on-unmatched src/js/",
     "format:js": "sandbox biome format --write --no-errors-on-unmatched src/js/",

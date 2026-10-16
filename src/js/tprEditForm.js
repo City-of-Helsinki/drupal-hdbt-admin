@@ -8,15 +8,12 @@
 
       if (statusInput.length > 0) {
         // Make content translation published status reactive.
-        // eslint max-nested-callbacks
         statusInput.forEach((publishedState) => {
           publishedState.addEventListener('click', (event) => {
             const value = event.target.checked;
             // Sync published state value.
             document
-              .querySelectorAll(
-                '.form-item--content-translation-status [name="content_translation[status]"]'
-              )
+              .querySelectorAll('.form-item--content-translation-status [name="content_translation[status]"]')
               .forEach((publishedState) => {
                 publishedState.checked = value;
               });
@@ -25,5 +22,4 @@
       }
     },
   };
-
 })(jQuery, Drupal);

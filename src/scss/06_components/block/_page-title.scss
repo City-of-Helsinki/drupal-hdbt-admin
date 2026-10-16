@@ -2,7 +2,7 @@
   font-size: remify(22px);
   font-weight: 500;
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     font-size: remify(28px);
 
     .region-sticky--is-sticky & {

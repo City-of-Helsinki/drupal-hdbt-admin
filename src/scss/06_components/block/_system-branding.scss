@@ -4,7 +4,7 @@
   margin-right: $spacing-half;
   margin-top: $spacing-quarter;
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     margin-right: $spacing - $spacing-quarter;
   }
 
@@ -13,7 +13,7 @@
     transition: width .25s ease;
     width: 60px;
 
-    @media (min-width: 1024px) {
+    @media (width >= 1024px) {
       width: 80px;
     }
 

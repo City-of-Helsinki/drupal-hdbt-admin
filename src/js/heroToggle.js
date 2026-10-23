@@ -5,7 +5,7 @@
  * Also adds a warning message that hero and side navigation cannot be used together.
  */
 
-(Drupal => {
+((Drupal) => {
   Drupal.behaviors.heroToggle = {
     attach(context) {
       if (context !== document) {
@@ -13,9 +13,7 @@
       }
 
       // Boolean checkbox field that determines if there is hero added or not.
-      const heroCheckbox = document.querySelector(
-        '.form-item--field-has-hero-value input.form-checkbox'
-      );
+      const heroCheckbox = document.querySelector('.form-item--field-has-hero-value input.form-checkbox');
 
       // Helper function to trigger event
       function triggerEvent(element, type) {
@@ -38,7 +36,9 @@
 
       const warningContainer = document.createElement('p');
       warningContainer.className = 'form-notification__warning-text';
-      warningContainer.innerHTML = Drupal.t('The hero component and the side navigation cannot be used together. The side navigation will not be visible if the hero component is enabled.');
+      warningContainer.innerHTML = Drupal.t(
+        'The hero component and the side navigation cannot be used together. The side navigation will not be visible if the hero component is enabled.',
+      );
 
       warningNotification.appendChild(iconContainer);
       warningNotification.appendChild(warningContainer);
@@ -51,9 +51,7 @@
       if (heroCheckbox) {
         heroCheckbox.addEventListener('click', function () {
           if (this.checked) {
-            let addHero = document.querySelector(
-              '[data-hdbt-selector="field-hero-action--add"]'
-            );
+            let addHero = document.querySelector('[data-hdbt-selector="field-hero-action--add"]');
             if (addHero) {
               triggerEvent(addHero, 'mousedown');
               if (isBasicPage) {
@@ -61,18 +59,16 @@
               }
             }
           } else if (!this.checked) {
-            let removeHero = document.querySelector(
-              '[data-hdbt-selector="field-hero-action--remove"]'
-            );
+            let removeHero = document.querySelector('[data-hdbt-selector="field-hero-action--remove"]');
             if (removeHero) {
               triggerEvent(removeHero, 'mousedown');
-              if (isBasicPage && warningNotification ) {
+              if (isBasicPage && warningNotification) {
                 warningNotification.remove();
               }
             }
           }
         });
       }
-    }
+    },
   };
 })(Drupal);

@@ -1,6 +1,6 @@
 'use strict';
 
-(Drupal => {
+((Drupal) => {
   Drupal.behaviors.languageReminder = {
     attach(context) {
       if (context !== document) {
@@ -14,8 +14,12 @@
         const targetRegion = context.querySelector('.region.region-highlighted');
 
         if (targetRegion) {
-          const title = Drupal.t('Choose the desired language', {}, {context: 'Language reminder'});
-          const message = Drupal.t('You were previously editing the language version: @language. Please choose the desired language version from the list to continue editing.', { '@language': editedLanguage}, {context: 'Language reminder'});
+          const title = Drupal.t('Choose the desired language', {}, { context: 'Language reminder' });
+          const message = Drupal.t(
+            'You were previously editing the language version: @language. Please choose the desired language version from the list to continue editing.',
+            { '@language': editedLanguage },
+            { context: 'Language reminder' },
+          );
           const wrapper = context.createElement('div');
 
           wrapper.className = 'messages__wrapper';
@@ -30,6 +34,6 @@
           targetRegion.appendChild(wrapper);
         }
       }
-    }
+    },
   };
 })(Drupal);

@@ -18,7 +18,7 @@ Requirements for developing:
 | Command       | Container command       | Description                                                                       |
 |---------------|-------------------------|-----------------------------------------------------------------------------------|
 | nvm use       | N/A                     | Uses correct Node version chosen for the theme compiler.                          |
-| npm i         | make install-hdbt-admin | Install dependencies and link local packages.                                     |
+| npm i         | make install-hdbt-admin | Install dependencies. The `preinstall` script refreshes the theme builder.        |
 | npm ci        | N/A                     | Install a project with a clean slate. Use especially in travis like environments. |
 | npm run dev   | make watch-hdbt-admin   | Compile styles and js for development environment. and watch file changes.        |
 | npm run build | make build-hdbt-admin   | Build packages for production. Minify CSS/JS.                                     |
@@ -35,7 +35,7 @@ Set up the developing environment with `nvm` by running
 
 Explanations for commands.
 - `nvm use` : Install and use the correct version of Node.
-- `npm i` : As stated above; Install dependencies and link local packages.
+- `npm i` : Install dependencies. The `preinstall` script refreshes the theme builder from hdbt.
 
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.

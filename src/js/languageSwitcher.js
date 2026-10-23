@@ -1,16 +1,10 @@
 // Set constants.
-const languageSwitcherButton = document.querySelector(
-  '#language-switcher-toggle'
-);
-const languageSwitcherDropdown = document.querySelector(
-  '#language-switcher-dropdown'
-);
+const languageSwitcherButton = document.querySelector('#language-switcher-toggle');
+const languageSwitcherDropdown = document.querySelector('#language-switcher-dropdown');
 
 // Button event handler.
 function handleDropdown(event) {
-  const withinBoundaries = event
-    .composedPath()
-    .includes(languageSwitcherButton);
+  const withinBoundaries = event.composedPath().includes(languageSwitcherButton);
 
   // If language switcher button has been clicked.
   if (withinBoundaries) {
@@ -36,18 +30,12 @@ function handleDropdown(event) {
     const linkClicked = event.composedPath().includes(languageSwitcherDropdown);
 
     // Handle classes for the language switcher buttons.
-    if (
-      languageSwitcherButton.classList.contains('is-active') &&
-      !linkClicked
-    ) {
+    if (languageSwitcherButton.classList.contains('is-active') && !linkClicked) {
       languageSwitcherButton.classList.remove('is-active');
     }
 
     // Handle classes for the language switcher dropdowns.
-    if (
-      languageSwitcherDropdown.classList.contains('is-active') &&
-      !linkClicked
-    ) {
+    if (languageSwitcherDropdown.classList.contains('is-active') && !linkClicked) {
       languageSwitcherDropdown.classList.remove('is-active');
     }
   }

@@ -24,9 +24,9 @@ const updateParagraphCounter = () => {
       'The page contains many content elements (e.g., accordions, embeds, columns, banners): !counted. Consider reducing the number of elements to !total or moving some of the content to its own page. Having too many elements can prevent the page from being saved.',
       {
         '!counted': '<strong>' + allParagraphs.length + '</strong>',
-        '!total': '<strong>' + paragraphsLimit + '</strong>'
+        '!total': '<strong>' + paragraphsLimit + '</strong>',
       },
-      { context: 'Paragraphs counter' }
+      { context: 'Paragraphs counter' },
     );
   } else {
     counterWarning.classList.add('is-hidden');
@@ -64,7 +64,7 @@ const debounce = (func, wait = delay) => {
       const observer = new MutationObserver(
         debounce(() => {
           updateParagraphCounter();
-        }, delay)
+        }, delay),
       );
       // Start observing the container and its children for added/removed nodes.
       observer.observe(paragraphsContainer, {
@@ -73,5 +73,4 @@ const debounce = (func, wait = delay) => {
       });
     },
   };
-
 })(Drupal);

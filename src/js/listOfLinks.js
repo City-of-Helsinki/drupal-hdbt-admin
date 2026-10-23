@@ -59,9 +59,7 @@
     // Go through each paragraph.
     paragraphs.each(function () {
       // Find the design for the paragraph in question.
-      let design = $(this).find(
-        '.field--name-field-list-of-links-design select'
-      );
+      let design = $(this).find('.field--name-field-list-of-links-design select');
 
       // Find the images and descriptions of the List of Links child paragraphs.
       let images = $(this).find('.field--name-field-list-of-links-image');

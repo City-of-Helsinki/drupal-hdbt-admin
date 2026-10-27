@@ -94,7 +94,7 @@ jobs:
         run: |
           # @todo UHF-13820: Build without linting.
           # Change to `npm run build` when working with the ticket.
-          sandbox node theme-builder.mjs
+          sandbox node --no theme-builder.mjs
           if [ -n "$(git status --porcelain)" ]; then
             echo "::error::Build output is out of date. Run 'npm run build' and commit the result."
             git status --porcelain

@@ -1,12 +1,24 @@
 .favorite-toggle {
   background: transparent;
   border: 0 none;
-}
-
-.favorite-toggle .hel-icon {
   color: var(--color-black-60);
+
+  &:hover {
+    cursor: pointer;
+
+    .favorite-toggle__label,
+    .hel-icon {
+      color: var(--color-black);
+    }
+  }
+
+  .layout-container--favorite & {
+    margin-inline-start: -6px; // Stick the button to left edge.
+    margin-block-end: $spacing-quarter + $spacing-half;
+    margin-block-start: $spacing-quarter;
+  }
 }
 
-.favorite-toggle.favorite-toggle--active .hel-icon {
+.favorite-toggle.favorite-toggle--active {
   color: var(--color-info);
 }

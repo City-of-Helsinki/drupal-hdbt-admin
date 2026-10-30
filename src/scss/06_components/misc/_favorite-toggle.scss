@@ -1,0 +1,12 @@
+.favorite-toggle {
+  background: transparent;
+  border: 0 none;
+}
+
+.favorite-toggle .hel-icon {
+  color: var(--color-black-60);
+}
+
+.favorite-toggle.favorite-toggle--active .hel-icon {
+  color: var(--color-info);
+}

@@ -18,11 +18,18 @@
 
     .favorite-toggle__label,
     .hel-icon {
-      color: var(--color-black);
+      color: var(--color-black-80);
     }
   }
 }
 
 .favorite-toggle.favorite-toggle--active {
   color: var(--color-info);
+
+  &:hover {
+    .favorite-toggle__label,
+    .hel-icon {
+      color: var(--color-info-dark);
+    }
+  }
 }

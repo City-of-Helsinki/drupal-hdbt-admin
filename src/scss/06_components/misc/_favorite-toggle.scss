@@ -4,22 +4,20 @@
 }
 
 .favorite-toggle {
+  --icon-size: #{$spacing-and-half};
+
   align-items: center;
   background: transparent;
   border: 0 none;
   color: var(--color-black-60);
   column-gap: $spacing-quarter;
+  cursor: pointer;
   display: flex;
   font-weight: 500;
   padding-inline: 0;
 
   &:hover {
-    cursor: pointer;
-
-    .favorite-toggle__label,
-    .hel-icon {
-      color: var(--color-black-80);
-    }
+    color: var(--color-black-80);
   }
 }
 
@@ -27,9 +25,6 @@
   color: var(--color-info);
 
   &:hover {
-    .favorite-toggle__label,
-    .hel-icon {
-      color: var(--color-info-dark);
-    }
+    color: var(--color-info-dark);
   }
 }

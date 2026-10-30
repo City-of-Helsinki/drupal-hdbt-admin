@@ -1,7 +1,17 @@
+.layout-container.layout-container--favorite {
+  margin-block-end: $spacing-half;
+  padding-block-start: $spacing-quarter;
+}
+
 .favorite-toggle {
+  align-items: center;
   background: transparent;
   border: 0 none;
   color: var(--color-black-60);
+  column-gap: $spacing-quarter;
+  display: flex;
+  font-weight: 500;
+  padding-inline: 0;
 
   &:hover {
     cursor: pointer;
@@ -10,12 +20,6 @@
     .hel-icon {
       color: var(--color-black);
     }
-  }
-
-  .layout-container--favorite & {
-    margin-inline-start: -6px; // Stick the button to left edge.
-    margin-block-end: $spacing-quarter + $spacing-half;
-    margin-block-start: $spacing-quarter;
   }
 }
 

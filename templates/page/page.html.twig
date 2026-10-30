@@ -40,11 +40,6 @@
 <div class="region-sticky-watcher"></div>
 
 <header class="region region-sticky {{ gin_form_actions_class }}">
-  {% if favorite_toggle %}
-    <div class="layout-container">
-      {{ favorite_toggle }}
-    </div>
-  {% endif %}
   <div class="layout-container region-sticky__items">
     <div class="region-sticky__items__inner">
       {{ page.header[page_title_block] }}
@@ -56,6 +51,12 @@
 </header>
 
 <div class="sticky-shadow"></div>
+
+{% if favorite_toggle %}
+  <div class="layout-container layout-container--favorite">
+    {{ favorite_toggle }}
+  </div>
+{% endif %}
 
 <div class="content-header clearfix">
   <div class="layout-container">

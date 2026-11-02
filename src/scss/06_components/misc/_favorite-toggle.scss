@@ -1,0 +1,30 @@
+.layout-container.layout-container--favorite {
+  margin-block-end: $spacing-half;
+  padding-block-start: $spacing-quarter;
+}
+
+.favorite-toggle {
+  --icon-size: #{$spacing-and-half};
+
+  align-items: center;
+  background: transparent;
+  border: 0 none;
+  color: var(--color-black-60);
+  column-gap: $spacing-quarter;
+  cursor: pointer;
+  display: flex;
+  font-weight: 500;
+  padding-inline: 0;
+
+  &:hover {
+    color: var(--color-black-80);
+  }
+}
+
+.favorite-toggle.favorite-toggle--active {
+  color: var(--color-info);
+
+  &:hover {
+    color: var(--color-info-dark);
+  }
+}

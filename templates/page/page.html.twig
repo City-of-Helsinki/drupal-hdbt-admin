@@ -52,6 +52,12 @@
 
 <div class="sticky-shadow"></div>
 
+{% if favorite_toggle %}
+  <div class="layout-container layout-container--favorite">
+    {{ favorite_toggle }}
+  </div>
+{% endif %}
+
 <div class="content-header clearfix">
   <div class="layout-container">
     {{ page.header|without(page_title_block, branding_block, language_switcher_admin) }}

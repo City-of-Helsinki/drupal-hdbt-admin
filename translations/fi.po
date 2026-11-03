@@ -272,16 +272,16 @@ msgid "My content"
 msgstr "Omat sisällöt"
 
 msgctxt "Dashboard"
-msgid "My pages include pages you have created and pages where you are the most recent editor. The list only shows pages from this instance."
-msgstr "Omat sivut tarkoittavat sivuja, jotka olet luonut tai joissa olet viimeisin päivittäjä. Listalla näytetään vain tämän instanssin sivut."
+msgid "My pages include pages you have created, pages where you are the most recent editor and pages you have marked as favorite. The list only shows pages from this instance."
+msgstr "Omat sivut tarkoittavat sivuja, jotka olet luonut, joissa olet viimeisin päivittäjä tai jotka olet merkinnyt suosikiksi. Listalla näytetään vain tämän instanssin sivut."
 
 msgctxt "Dashboard"
 msgid "Add content"
 msgstr "Lisää sisältöä"
 
 msgctxt "Dashboard"
-msgid "The lists include TPR content where you are the most recent editor. The lists only show content from this instance."
-msgstr "Löydät listauksista TPR-sisällöt, joissa olet viimeisin päivittäjä. Listauksissa näytetään vain tämän instanssin sisällöt."
+msgid "The lists include TPR content where you are the most recent editor and TPR content you have marked as favorite. The lists only show content from this instance."
+msgstr "Löydät listauksista TPR-sisällöt, joissa olet viimeisin päivittäjä tai jotka olet merkinnyt suosikiksi. Listauksissa näytetään vain tämän instanssin sisällöt."
 
 msgid "No items selected"
 msgstr "Yhtään kohdetta ei ole valittuna"

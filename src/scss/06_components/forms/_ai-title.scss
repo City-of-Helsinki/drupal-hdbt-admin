@@ -1,48 +1,138 @@
+// Place the suggest button next to the title field.
 .ai-title {
-  margin-block-end: $spacing-double;
+  column-gap: $spacing;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
 
+  // Let the form item children join the grid,
+  // since the button renders outside the form item.
   .form-item {
-    margin-block-end: 0;
+    display: contents;
+  }
+
+  // Keep the label, counter and messages full width.
+  .form-item > * {
+    grid-column: 1 / -1;
+  }
+
+  .form-item__label {
+    grid-row: 1;
+  }
+
+  // Share the second row between the title field and the button.
+  .form-text {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: none;
+    width: 100%;
   }
 }
 
-.ai-suggest {
+// Center the button and the throbber vertically next to the title field.
+.ai-title__suggest {
   align-items: center;
   display: flex;
-  flex-direction: row-reverse;
-  float: right;
-  margin-block-start: $spacing-half;
 
   .button {
+    height: 100%;
     margin: 0;
   }
 
+  // Keep the throbber and its message on one line.
   .ajax-progress {
-    padding-block-start: 3px; // Fix the vertical alignment.
+    align-items: center;
+    display: flex;
+    margin: 0;
+    white-space: nowrap;
   }
 
-  .ajax-progress__message {
-    font-size: remify(12px);
+  // Match the button height with the title field.
+  .ai-title & {
+    align-self: stretch;
+    grid-column: 2;
+    grid-row: 2;
   }
 }
 
-.ai-suggestions {
-  .ai-suggestions__options {
+// Replace the button with the throbber while loading.
+.ai-title__suggest:has(.ajax-progress) .button {
+  display: none;
+}
+
+.ui-dialog.helfi-ai-dialog {
+  .ui-dialog-titlebar {
+    background: var(--color-info);
+  }
+
+  .ui-dialog-title {
+    font-size: remify(24px);
+    font-weight: $font-weight-medium;
+  }
+}
+
+.ai-title-suggestions {
+  font-size: remify(18px);
+  margin-block-start: $spacing-and-half;
+
+  .ai-title-suggestions__heading {
+    color: var(--color-black-90);
+    font-weight: $font-weight-bold;
+    margin: 0;
+  }
+
+  .ai-title-suggestions__original-value {
+    margin: 0 0 $spacing;
+  }
+
+  .ai-title-suggestions__options {
     border: 0;
-    margin-block: $spacing-half 0;
-    margin-inline: 0;
+    margin: $spacing-and-half 0 0;
+    padding: 0;
+
+    > legend {
+      margin-block-end: $spacing-and-half;
+      padding: 0;
+    }
   }
 
-  .ai-suggestions__count {
-    color: var(--color-black-70);
-    font-size: remify(12px);
+  .ai-title-suggestions__option {
+    align-items: center;
+    border-block-start: 1px solid var(--color-black-50);
+    column-gap: $spacing-and-half;
+    display: flex;
+    margin: 0;
+    padding: $spacing $spacing-and-half;
   }
 
-  .ai-suggestions__option {
-    margin-block: calc($spacing * .75);
+  .ai-title-suggestions__option:last-child {
+    border-block-end: 1px solid var(--color-black-50);
   }
 
-  .ai-suggestions__actions {
-    margin-block-end: $spacing;
+  .ai-title-suggestions__option:has(:checked) {
+    background-color: var(--color-bus-light);
+  }
+
+  .ai-title-suggestions__option-input {
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  .ai-title-suggestions__option-label {
+    font-size: remify(18px);
+    font-weight: $font-weight-regular;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-title-suggestions__actions {
+    margin-block: $spacing-and-half $spacing;
+  }
+
+  // Set the disabled button colors through Gin variables.
+  .ai-title-suggestions__apply:disabled {
+    --gin-color-disabled: var(--color-white);
+    --gin-color-disabled-bg: var(--color-black-50);
+    --gin-color-disabled-border: var(--color-black-50);
   }
 }

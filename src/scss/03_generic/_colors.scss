@@ -1,3 +1,8 @@
+body.hdbt-admin {
+  --gin-color-primary: var(--color-info);
+  --gin-color-primary-hover: var(--color-info-dark);
+}
+
 :root {
   --hdbt-default-link-color: var(--color-black-90);
 

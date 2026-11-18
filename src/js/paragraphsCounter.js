@@ -11,7 +11,7 @@ let observerInitialized = false;
  * if there are more than 40 paragraphs on the page.
  */
 const updateParagraphCounter = () => {
-  const counterWarning = document.querySelector('.paragraphs-counter__warning');
+  const counterWarning = document.querySelector('[data-hdbt-selector="paragraphs-counter"]');
   if (!counterWarning) return;
 
   const allParagraphs = document.querySelectorAll('.paragraph-top:not([data-drupal-selector*="hero"])');

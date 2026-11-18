@@ -19,7 +19,7 @@
   color: var(--color-alert-dark);
 
   &::before {
-    background-color: var(--color-alert-dark);
+    background-color: currentcolor;
     background-size: contain;
     content: '';
     display: inline-block;
@@ -32,5 +32,10 @@
     vertical-align: bottom;
     white-space: nowrap;
     width: 24px;
+  }
+
+  // Links darken on hover instead of using the default link hover color.
+  &:is(a):hover {
+    color: color-mix(in srgb, var(--color-alert-dark), #000 20%);
   }
 }

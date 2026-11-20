@@ -1,6 +1,8 @@
 body.hdbt-admin {
+  --color-info-rgba: 0, 98, 185;
   --gin-color-primary: var(--color-info);
-  --gin-color-primary-hover: var(--color-info-dark);
+  // Darken the color-info-dark to distinguish the link hover color change.
+  --gin-color-primary-hover: color-mix(in srgb, var(--color-info-dark) 80%, black);
 }
 
 :root {
@@ -60,4 +62,9 @@ body.hdbt-admin {
   // Focused button colors. These are not available for some reason in hds-core.
   --border-color-focus: var(--color-coat-of-arms);
   --border-color-hover-focus: var(--color-coat-of-arms-dark);
+
+  // Alert link colors.
+  --color-alert-dark-rgba: 194, 121, 0;
+  --link-alert-color: rgba(var(--color-alert-dark-rgba));
+  --link-alert-color-hover: color-mix(in srgb, rgb(var(--color-alert-dark-rgba)) 80%, black);
 }

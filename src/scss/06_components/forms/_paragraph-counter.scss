@@ -9,6 +9,15 @@
   max-width: 1280px;
   padding: $spacing $spacing-half;
   width: 100%;
+
+  &:not(:has(~ .paragraphs-counter__warning)) {
+    margin-block-end: $spacing;
+  }
+}
+
+// Remove the extra margin between the paragraph counter and the content region.
+.page-content > .paragraphs-counter__warning:not(.is-hidden) + .region-content {
+  margin-block-start: 0;
 }
 
 .paragraphs-counter__icon {

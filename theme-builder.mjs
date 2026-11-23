@@ -1,5 +1,5 @@
+import { globSync } from 'node:fs';
 import path from 'node:path';
-import { globSync } from 'glob';
 import { buildAll, watchAndBuild } from '@hdbt/theme-builder/builder';
 
 const __dirname = path.resolve();
@@ -12,8 +12,8 @@ const outDir = path.resolve(__dirname, 'dist');
 const reactApps = {};
 
 // Vanilla JS files.
-const jsFiles = globSync('./src/js/**/*.js', {
-  // ignore: [],
+const jsFiles = globSync('src/js/**/*.js', {
+  // exclude: [],
 }).reduce((acc, file) => ({
   ...acc, [path.parse(file).name]: file
 }), {});
